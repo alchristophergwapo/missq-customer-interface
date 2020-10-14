@@ -14,22 +14,22 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Place Order',
-      url: '/folder/Place Order',
+      url: '/place-order',
       icon: 'mail'
     },
     {
       title: 'Workforce',
-      url: '/folder/Workforce',
+      url: '/workforce',
       icon: 'paper-plane'
     },
     {
       title: 'Finance',
-      url: '/folder/Finance',
+      url: '/finance',
       icon: 'wallet-outline'
     },
     {
       title: 'Settings',
-      url: '/folder/Settings',
+      url: '/settings',
       icon: 'settings-outline'
     },
     
