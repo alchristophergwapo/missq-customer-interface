@@ -6,22 +6,30 @@
                     <ion-list-header>
                         <ion-img src="../assets/images/msqlogo.png"></ion-img><span>Ms.Q Associates</span>
                     </ion-list-header>
-                    <ion-note>We serve at your pleasure</ion-note>
-                    <ion-item routerLink="place-order" routerDirection="root" lines="none">
-                        <ion-icon slot="start" name="bag-add"></ion-icon>
-                        <ion-label>Place Order</ion-label>
+                    <ion-note>"We serve at your pleasure"</ion-note>
+                    <ion-item class="active" routerLink="place-order" routerDirection="root" lines="none">
+                        <div>
+                            <ion-icon slot="start" name="bag-add"></ion-icon>
+                            <ion-label>Place Order</ion-label>
+                        </div>
                     </ion-item>
                     <ion-item routerLink="workforce" routerDirection="root" lines="none">
-                        <ion-icon slot="start" name="build"></ion-icon>
-                        <ion-label>Workforce</ion-label>
+                        <div>
+                            <ion-icon slot="start" name="build"></ion-icon>
+                            <ion-label>Workforce</ion-label>
+                        </div>
                     </ion-item>
                     <ion-item routerLink="finance" routerDirection="root" lines="none">
-                        <ion-icon slot="start" name="wallet"></ion-icon>
-                        <ion-label>Finance</ion-label>
+                        <div>
+                            <ion-icon slot="start" name="wallet"></ion-icon>
+                            <ion-label>Finance</ion-label>
+                        </div>
                     </ion-item>
                     <ion-item routerLink="settings" routerDirection="root" lines="none">
-                        <ion-icon slot="start" name="settings-sharp"></ion-icon>
-                        <ion-label>Settings</ion-label>
+                        <div>
+                            <ion-icon slot="start" name="settings-sharp"></ion-icon>
+                            <ion-label>Settings</ion-label>
+                        </div>
                     </ion-item>
                 </ion-list>
             </ion-content>
