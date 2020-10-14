@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <img id="back" height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
+        <img alt="logo" id="header_logo" height="50" float-left src="assets/images/msqlogo.png">&nbsp;&nbsp;&nbsp;&nbsp;
+        <ion-title>Ms.Q Associates</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+    <ion-card>
+        <form #form="ngForm" (ngSubmit)="register(form)">
+            <ion-card-title>
+                <div text-center>
+                    <h3>Login !</h3>
+                </div>
+            </ion-card-title>
+            <ion-card-content>
+                <div padding class="container">
+                    <ion-item>
+                        <ion-icon name="mail-sharp"></ion-icon>&nbsp;
+                        <ion-input name="email" type="email" placeholder="your@gmail.com" ngModel required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="key-outline"></ion-icon>&nbsp;
+                        <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="key-sharp"></ion-icon>&nbsp;
+                        <ion-input name="confirm" type="password" placeholder="Confirm Password" ngModel required>
+                        </ion-input>
+                    </ion-item>
+                </div><br>
+                <div>
+                    <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
+                </div>
+            </ion-card-content>
+        </form>
+    </ion-card>
+</ion-content>
