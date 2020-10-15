@@ -1,4 +1,4 @@
-<ion-app>
+<!-- <ion-app>
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
@@ -9,7 +9,7 @@
                     <ion-note>We serve at your pleasure</ion-note>
 
                     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+                    s    <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
                             <ion-icon slot="start" [name]="p.icon" [name]="p.icon"></ion-icon>
                             <ion-label>{{ p.title }}</ion-label>
                         </ion-item>
@@ -20,4 +20,7 @@
         </ion-menu>
         <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
+</ion-app> -->
+<ion-app>
+    <ion-router-outlet></ion-router-outlet>
 </ion-app>

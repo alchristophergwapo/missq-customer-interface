@@ -1,11 +1,14 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar>
         <img id="back" height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
         <img alt="logo" id="header_logo" height="50" float-left src="assets/images/msqlogo.png">&nbsp;&nbsp;&nbsp;&nbsp;
         <ion-title>Ms.Q Associates</ion-title>
     </ion-toolbar>
-</ion-header>
+</ion-header> -->
 <ion-content class="background">
+    <div class="back">
+        <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
+    </div>
     <ion-card>
         <form #form="ngForm" (ngSubmit)="register(form)">
             <ion-card-title>
@@ -18,32 +21,32 @@
                     <ion-item>
                         <ion-icon name="person-circle-sharp"></ion-icon>&nbsp;
                         <ion-input name="name" type="text" placeholder="Name" ngModel required></ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="location-sharp"></ion-icon>&nbsp;
                         <ion-input name="address" type="text" placeholder="Address" ngModel required></ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="call-sharp"></ion-icon>&nbsp;
                         <ion-input name="phone" type="number" placeholder="Phone Number" ngModel required></ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
                         <ion-input name="email" type="email" placeholder="your@gmail.com" ngModel required></ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="calendar-sharp"></ion-icon>&nbsp;
                         <ion-input name="bday" type="date" placeholder="Birth Date" ngModel required></ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
                         <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
                         <ion-input name="confirm" type="password" placeholder="Confirm Password" ngModel required>
                         </ion-input>
-                    </ion-item>
+                    </ion-item><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-input name="picture" type="file" placeholder="Picture(Selfie)" ngModel required>
@@ -51,7 +54,7 @@
                     </ion-item>
                 </div><br>
                 <div>
-                    <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
+                    <ion-button size="large" type="submit" color='secondary' [disabled]="form.invalid" expand="block">Submit</ion-button>
                 </div>
             </ion-card-content>
         </form>

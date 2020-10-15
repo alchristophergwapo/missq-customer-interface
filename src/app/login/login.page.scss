@@ -1,5 +1,13 @@
 #header_logo {
-    margin-left: 5%;
+    background-color: white;
+    border-radius: 60%;
+    padding: 8px;
+    width: 130px;
+    height: 120px;
+    border: 4px solid #22bbea8f;
+    position: absolute;
+    transform: translateY(-5%);
+    transform: translateX(-5%);
 }
 
 ion-title {
@@ -21,11 +29,6 @@ form {
     // margin-right: 20%;
 }
 
-ion-card-title {
-    font-family: cursive;
-    color: rgb(21, 160, 224);
-}
-
 ion-card {
     margin-left: 5%;
     margin-right: 5%;
@@ -33,4 +36,31 @@ ion-card {
     left: 0;
     right: 0;
     top: 25%;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+ion-card-title {
+    font-family: cursive;
+    color: black;
+    // font-size: 40px;
+    // -webkit-text-stroke: 1px white;
+    // -webkit-text-fill-color: rgb(21, 160, 224);
+}
+
+ion-item {
+    --background: white;
+    --color: black;
+    border-radius: 30px;
+    box-shadow: 3px 3px #808080;
+}
+
+.back {
+    background-color: white;
+    background-color: white;
+    border-radius: 60%;
+    padding: 6px;
+    width: 55px;
+    border: 4px solid #22bbea8f;
 }
