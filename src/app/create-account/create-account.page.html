@@ -13,7 +13,7 @@
         <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
     </div>
     <ion-card>
-        <form #form="ngForm" novalidate (ngSubmit)="register(form)">
+        <form #form="ngForm" novalidate (ngSubmit)="register(form)"><br><br><br>
             <ion-card-title>
                 <div text-center>
                     <h3>Create your account!</h3>
@@ -78,7 +78,8 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
-                        <ion-input name="picture" type="file" #picCtrl="ngModel" placeholder="Picture(Selfie)" ngModel required>
+                        <ion-input name="picture" type="file" #picCtrl="ngModel" placeholder="Picture(Selfie)" ngModel
+                            required>
                         </ion-input>
                     </ion-item>
                     <ion-label *ngIf="!picCtrl.valid && picCtrl.touched">
