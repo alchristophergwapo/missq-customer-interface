@@ -15,14 +15,18 @@ export class CreateAccountPage implements OnInit {
   constructor() {
     this.data = {
       name: '',
+      address: '',
+      phone: '',
       email: '',
-      comment: '',
-      tos: false
+      date: '',
+      password: '',
+      cpassword: '',
     };
   }
 
   register(myForm: FormsModule) {
     this.isSubmitted = true;
+    console.log(this.data);
     console.log('Form');
     console.log(myForm);
   }

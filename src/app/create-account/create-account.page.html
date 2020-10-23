@@ -13,7 +13,7 @@
         <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
     </div>
     <ion-card>
-        <form #form="ngForm" novalidate (ngSubmit)="register(form)"><br><br><br>
+        <form #form="ngForm" novalidate (ngSubmit)="register(form)"><br><br>
             <ion-card-title>
                 <div text-center>
                     <h3>Create your account!</h3>
@@ -61,7 +61,7 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel
+                        <ion-input name="password" type="password" [(ngModel)]='password' #passCtrl="ngModel" placeholder="Password" ngModel
                             required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
@@ -69,7 +69,7 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
-                        <ion-input name="confirm" type="password" #cpassCtrl="ngModel" placeholder="Confirm Password"
+                        <ion-input name="confirm" type="password" #cpassCtrl="ngModel" [(ngModel)]='password_repeat' placeholder="Confirm Password"
                             ngModel required>
                         </ion-input>
                     </ion-item>
