@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -15,9 +15,12 @@ export class CreateAccountPage implements OnInit {
   constructor() {
     this.data = {
       name: '',
+      address: '',
+      phone: '',
       email: '',
-      comment: '',
-      tos: false
+      date: '',
+      password: '',
+      cpassword: ''
     };
   }
 

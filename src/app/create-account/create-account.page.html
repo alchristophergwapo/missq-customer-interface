@@ -6,71 +6,66 @@
     </ion-toolbar>
 </ion-header> -->
 <ion-content class="background">
-    <div class="back">
-        <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
-    </div>
     <div id="container1">
         <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
     </div>
     <ion-card>
-        <form #form="ngForm" novalidate (ngSubmit)="register(form)"><br><br><br>
+        <div class="back">
+            <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
+        </div>
+        <form #form="ngForm" novalidate (ngSubmit)="register(form)" novalidate><br>
             <ion-card-title>
                 <div text-center>
                     <h3>Create your account!</h3>
                 </div>
             </ion-card-title>
             <ion-card-content>
-                <div padding class="container">
+                <div padding>
                     <ion-item>
                         <ion-icon name="person-circle-sharp"></ion-icon>&nbsp;
-                        <ion-input name="name" type="text" #nameCtrl="ngModel" placeholder="Name" ngModel required></ion-input>
+                        <ion-input name="name" type="text" #nameCtrl="ngModel" [(ngModel)]="data.name" placeholder="Name" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!nameCtrl.valid && nameCtrl.touched">
                         <ion-text color="danger">Name is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="location-sharp"></ion-icon>&nbsp;
-                        <ion-input name="address" #addCtrl="ngModel" type="text" placeholder="Address" ngModel required></ion-input>
+                        <ion-input name="address" #addCtrl="ngModel" type="text" [(ngModel)]="data.address" placeholder="Address" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!addCtrl.valid && addCtrl.touched">
                         <ion-text color="danger">Address is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="call-sharp"></ion-icon>&nbsp;
-                        <ion-input name="phone" type="number" #phoneCtrl="ngModel" placeholder="Phone Number" ngModel
-                            required></ion-input>
+                        <ion-input name="phone" type="number" #phoneCtrl="ngModel" [(ngModel)]="data.phone" placeholder="Phone Number" ngModel required number></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched">
                         <ion-text color="danger">Phone Number is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
-                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel
-                            required email></ion-input>
+                        <ion-input name="email" type="email" #emailCtrl="ngModel" [(ngModel)]="data.email" placeholder="your@gmail.com" ngModel required email></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched">
                         <ion-text color="danger">Email is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="calendar-sharp"></ion-icon>&nbsp;
-                        <ion-input name="bday" type="date" #dateCtrl="ngModel" placeholder="Birth Date" ngModel
-                            required></ion-input>
+                        <ion-input name="bday" type="date" #dateCtrl="ngModel" [(ngModel)]="data.date" placeholder="Birth Date" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!dateCtrl.valid && dateCtrl.touched">
                         <ion-text color="danger">Date is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel
-                            required></ion-input>
+                        <ion-input name="password" type="password" #passCtrl="ngModel" [(ngModel)]="data.password" placeholder="Password" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
                         <ion-text color="danger">Password is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
-                        <ion-input name="confirm" type="password" #cpassCtrl="ngModel" placeholder="Confirm Password"
-                            ngModel required>
+                        <ion-input name="confirm" type="password" [(ngModel)]="data.cpassword" #cpassCtrl="ngModel" placeholder="Confirm Password" ngModel required>
                         </ion-input>
                     </ion-item>
                     <ion-label *ngIf="!cpassCtrl.valid && cpassCtrl.touched">
@@ -78,13 +73,12 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
-                        <ion-input name="picture" type="file" #picCtrl="ngModel" placeholder="Picture(Selfie)" ngModel
-                            required>
+                        <ion-input name="picture" type="file" #picCtrl="ngModel" placeholder="Picture(Selfie)" ngModel required>
                         </ion-input>
                     </ion-item>
-                    <ion-label *ngIf="!picCtrl.valid && picCtrl.touched">
+                    <!-- <ion-label *ngIf="!picCtrl.valid && picCtrl.touched">
                         <ion-text color="danger">File is not valid</ion-text>
-                    </ion-label>
+                    </ion-label> -->
                 </div><br>
                 <div>
                     <ion-button size="large" type="submit" color='secondary' [disabled]="form.invalid" expand="block">Submit</ion-button>

@@ -7,33 +7,31 @@
 </ion-header> -->
 
 <ion-content class="background">
-    <div id="back">
-        <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
-    </div>
     <div id="container1">
         <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
     </div>
     <ion-card>
-        <form #form="ngForm" (ngSubmit)="register(form)"><br><br><br>
+        <div id="back">
+            <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
+        </div>
+        <form #form="ngForm" (ngSubmit)="register(form)">
             <ion-card-title>
                 <div text-center>
                     <h3>Login !</h3>
                 </div>
             </ion-card-title>
             <ion-card-content>
-                <div padding class="container">
+                <div padding>
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
-                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel
-                            required email></ion-input>
+                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel required email></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched">
                         <ion-text color="danger">Email is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel
-                            required></ion-input>
+                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
                         <ion-text color="danger">Password is incorrect.</ion-text>
