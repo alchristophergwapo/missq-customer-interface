@@ -1,0 +1,40 @@
+#sub {
+    color: blue;
+}
+
+#background {
+    --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
+    // border-bottom-left-radius: 50%;
+    width: 100%;
+    // height: 10%;
+}
+
+ion-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    border-radius: 5%;
+    background: rgba(white, 0.5);
+}
+
+@media (max-width: 968.98px) {
+    ion-col {
+        width: 100%;
+        // margin-left: 10%;
+        // margin-right: 10%;
+    }
+}
+
+@media (max-width: 698.98px) {
+    ion-col {
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+}
+
+div {
+    margin: 10%;
+}
