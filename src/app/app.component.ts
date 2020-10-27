@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -10,38 +11,64 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Place Order',
-      url: '/folder/Place Order',
-      icon: 'mail'
-    },
-    {
-      title: 'Workforce',
-      url: '/folder/Workforce',
-      icon: 'paper-plane'
-    },
-    {
-      title: 'Finance',
-      url: '/folder/Finance',
-      icon: 'wallet-outline'
-    },
-    {
-      title: 'Settings',
-      url: '/folder/Settings',
-      icon: 'settings-outline'
-    },
-    
-  ];
-
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private actionSheetController: ActionSheetController
   ) {
     this.initializeApp();
   }
+
+  onClickNav(event) {
+    
+    event.preventDefault();
+
+    event.target.parentElement.classList.add("active");
+
+    var activeElement = document.getElementsByClassName("active");
+    
+    for (var index = 0; index < activeElement.length; index++) {
+
+      if (activeElement[index].id !== event.target.parentElement.id) {
+        activeElement[index].classList.remove("active");
+      } 
+    }
+
+  };
+
+  async clickChatSupport() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Chat Support',
+      buttons: [{
+        text: 'Live Chat',
+        role: 'destructive',
+        icon: 'chatbubbles-outline',
+        cssClass: 'chat',
+        handler: () => {
+          console.log('Live Chat');
+        }
+      },
+      {
+        text: 'Email Us',
+        icon: 'mail-outline',
+        cssClass: 'mail',
+        handler: () => {
+          console.log('Email Chat');
+        }
+      },
+      {
+        text: 'FAQ',
+        icon: 'help-circle-outline',
+        cssClass: 'help',
+        handler: () => {
+          console.log('Frequently Ask Questions');  
+        }
+      }]
+    });
+    await actionSheet.present();
+  };
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -51,9 +78,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+    
   }
 }
