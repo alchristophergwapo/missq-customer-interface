@@ -10,7 +10,15 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },  {
+    path: 'workforce',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule)
+  },
+  {
+    path: 'workforce',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule)
   }
+
 ];
 
 @NgModule({

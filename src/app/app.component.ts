@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
       url: '/folder/Settings',
       icon: 'settings-outline'
     },
-    
   ];
 
   constructor(
