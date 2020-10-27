@@ -229,4 +229,27 @@
 
     --ion-card-background: #1e1e1e;
   }
+
+}
+
+.chat {
+  ion-icon {
+      --color:  rgba(21, 160, 224) !important;
+  }
+}
+
+.mail {
+  ion-icon {
+      --color:  rgba(21, 160, 224) !important;
+  }
+}
+
+.help {
+  ion-icon {
+      --color:  rgba(21, 160, 224) !important;
+  }
+}
+
+.action-sheet-title.sc-ion-action-sheet-md {
+  text-transform: uppercase;
 }

@@ -26,15 +26,19 @@ ion-note {
     margin-left: 120px;
     top: 90px;
     font-size: 15px;
-    color: var(--ion-color-medium-shade);
+    color: rgba(21, 160, 224) !important;
+    font-weight: 300;
 }
 
 @media (max-width: 968.98px) {
     ion-note {
-        font-size: 13px;
+        font-size: 12px;
     }
     ion-list-header span {
         font-size: 20px;
+    }
+    ion-item ion-label {
+        font-size: 14px;
     }
 }
 
@@ -50,10 +54,16 @@ ion-item div {
     padding: 15px;
 }
 
-ion-item ion-icon {
+ion-item div ion-icon {
     position: absolute;
     font-size: 25px;
     top: 11px;
+    // --color: #15a0e0;
+}
+
+ion-item.item:hover div{
+    background-color: rgba(21, 160, 224) !important;
+    color: white !important;
 }
 
 ion-item ion-label {
@@ -61,7 +71,3 @@ ion-item ion-label {
     margin-left: 60px;
 }
 
-ion-item.item:hover div {
-    background-color: rgba(21, 160, 224) !important;
-    color: white;
-}

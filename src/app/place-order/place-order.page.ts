@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./place-order.page.scss'],
 })
 export class PlaceOrderPage implements OnInit {
-
+  
+  segmentModel = "nanny";
   constructor() { }
 
   ngOnInit() {
+  }
+
+  segmentChanged(event){
+    // console.log(this.segmentModel);
+    
+    // console.log(event);
   }
 
 }
