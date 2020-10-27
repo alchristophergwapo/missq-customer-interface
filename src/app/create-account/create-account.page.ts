@@ -26,6 +26,7 @@ export class CreateAccountPage implements OnInit {
 
   register(myForm: FormsModule) {
     this.isSubmitted = true;
+    console.log(this.data);
     console.log('Form');
     console.log(myForm);
   }
