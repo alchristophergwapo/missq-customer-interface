@@ -8,8 +8,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WorkforcePage{
   
+  segmentModel = "ideal";
+
   ideal = ['Nanay', 'Nonoy', 'Nini'];
 
   banned = ['Aquino', 'Roxas', 'Pnoy', 'Estrada'];
 
+ 
+  test() {
+    console.log(" You're here.");
+  }
+  constructor(){}
+
+  ngOnInit(){
+
+  }
+
+  segmentChanged(event){
+
+  }
 }

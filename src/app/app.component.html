@@ -6,32 +6,55 @@
                     <ion-list-header>
                         <ion-img src="../assets/images/msqlogo.png"></ion-img><span>Ms.Q Associates</span>
                     </ion-list-header>
-                    <ion-note>We serve at your pleasure</ion-note>
+                    <ion-note>"We serve at your pleasure"</ion-note>
+
 
                     <ion-menu-toggle auto-hide="false">
-                        <!-- <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-                            <ion-icon slot="start" [name]="p.icon" [name]="p.icon"></ion-icon>
-                            <ion-label>{{ p.title }}</ion-label>
-                        </ion-item> -->
-                        <button ion-item routerDirection="root" [routerLink]="['/folder/Place Order']">
-                            <ion-icon name="mail" item-start></ion-icon>Place Order
-                        </button>
-                        <br>
-                        <button ion-item routerDirection="root" [routerLink]="['/workforce']">
-                            <ion-icon name="paper-plane" item-start></ion-icon>Workforce
-                        </button>
-                        <br>
-                        <button ion-item routerDirection="root" [routerLink]="['/folder/Finance']">
-                            <ion-icon name="wallet-outline" item-start></ion-icon>Finance
-                        </button>
-                        <br>
-                        <button ion-item routerDirection="root" [routerLink]="['/folder/Settings']">
-                            <ion-icon name="settings-outline" item-start></ion-icon>Settings
-                        </button>
+                        <ion-item routerLink="place-order" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="place-order">
+                                <ion-icon slot="start" name="bag-add"></ion-icon>
+                                <ion-label>Place Order</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item routerLink="workforce" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="workforce">
+                                <ion-icon slot="start" name="build"></ion-icon>
+                                <ion-label>Workforce</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item routerLink="finance" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="finance">
+                                <ion-icon slot="start" name="wallet"></ion-icon>
+                                <ion-label>Finance</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item routerLink="settings" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="settings">
+                                <ion-icon slot="start" name="settings-sharp"></ion-icon>
+                                <ion-label>Settings</ion-label>
+                            </div>
+                        </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
-
             </ion-content>
+            <ion-footer>
+                <ion-toolbar>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item lines="none" (click)="clickChatSupport()">
+                            <div>
+                                <ion-icon name="help-circle-outline"></ion-icon>
+                                <ion-label>Chat Support</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <div>
+                                <ion-icon name="share-social-outline"></ion-icon>
+                                <ion-label>Share to Friends</ion-label>
+                            </div>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-toolbar>
+            </ion-footer>
         </ion-menu>
         <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>

@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar color="light">
     <ion-card>
-      <ion-segment color="white" scrollable="true" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
+      <ion-segment value="ideal" color="white" scrollable="true" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
         <ion-segment-button value="ideal">
           <ion-label>Ideal</ion-label>
         </ion-segment-button>
@@ -28,9 +28,14 @@
 
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let item of ideal">
-          {{item}}
-        </ion-item>
+        <ion-item-sliding *ngFor="let item of ideal">
+          <ion-item>
+            {{item}}
+          </ion-item>
+          <ion-item-options side="end" (click)="test()">
+            <ion-icon class="del" name="trash"></ion-icon>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -41,9 +46,14 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let item of banned">
-          {{item}}
-        </ion-item>
+        <ion-item-sliding *ngFor="let item of banned">
+          <ion-item>
+            {{item}}
+          </ion-item>
+          <ion-item-options side="end" (click)="test()">
+            <ion-icon class="del" name="trash"></ion-icon>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
     </ion-card-content>
   </ion-card>
