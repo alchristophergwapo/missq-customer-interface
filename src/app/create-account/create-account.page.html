@@ -73,7 +73,7 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
-                        <ion-input name="picture" type="file" #picCtrl="ngModel" placeholder="Picture(Selfie)" ngModel required>
+                        <ion-input name="picture" type="file" #picCtrl="ngModel" [(ngModel)]="data.selpic" placeholder="Picture(Selfie)" ngModel required>
                         </ion-input>
                     </ion-item>
                     <!-- <ion-label *ngIf="!picCtrl.valid && picCtrl.touched">

@@ -20,15 +20,16 @@ export class CreateAccountPage implements OnInit {
       email: '',
       date: '',
       password: '',
-      cpassword: ''
+      cpassword: '',
+      selpic: ''
     };
   }
 
   register(myForm: FormsModule) {
     this.isSubmitted = true;
     console.log(this.data);
-    console.log('Form');
-    console.log(myForm);
+    // console.log('Form');
+    // console.log(myForm);
   }
 
   noSubmit(e) {

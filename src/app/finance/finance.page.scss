@@ -1,7 +1,3 @@
-#sub {
-    color: blue;
-}
-
 #background {
     --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
     // border-bottom-left-radius: 50%;
@@ -12,10 +8,10 @@
 ion-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
-    border-radius: 5%;
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 1%;
     background: rgba(white, 0.5);
 }
 
@@ -37,4 +33,110 @@ ion-card {
 
 div {
     margin: 10%;
+}
+
+$font-color: #A2A2A2;
+$primary-color: #63B7E6;
+#sec {
+    font-family: 'Raleway', sans-serif;
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+    word-wrap: break-word;
+    iom-card-title {
+        font-weight: 200;
+        font-size: 30px;
+        color: $primary-color;
+    }
+    ion-content {
+        margin: 0;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        list-style: none;
+        ion-card {
+            padding: 40px;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            transition: box-shadow .3s;
+            &:hover {
+                box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            }
+            &:hover span {
+                color: $primary-color;
+            }
+            &:hover ion-card-subtitle {
+                color: #555;
+                font-weight: 200px;
+            }
+            &:hover p {
+                color: #555;
+                font-weight: 200px;
+            }
+            &:hover ion-card-content {
+                color: #555;
+                font-weight: 200px;
+            }
+            &:hover ion-card-title {
+                color: $primary-color;
+            }
+            &:hover ion-card-title:after {
+                width: 25px;
+            }
+            span {
+                font-size: 3em;
+                display: block;
+                transition: color .3s;
+                color: $font-color;
+                &:before,
+                &:after {
+                    position: static;
+                }
+            }
+            ion-card-title {
+                color: darken($font-color, 20%);
+                display: inline-block;
+                font-size: 24px;
+                font-weight: 100;
+                transition: color .3s;
+                &:after {
+                    content: '';
+                    position: relative;
+                    left: 50%;
+                    top: 5px;
+                    transform: translateX(-50%);
+                    display: block;
+                    width: 40px;
+                    height: 1px;
+                    background: darken($font-color, 20%);
+                    transition: width .5s;
+                }
+            }
+            ion-card-subtitle {
+                color: $font-color;
+                text-align: center;
+                text-indent: 1em;
+                font-size: 16px;
+                line-height: 26px;
+                transition: color .3s;
+            }
+            ion-card-content {
+                text-align: center;
+                font-size: 18px;
+                color: $font-color;
+                text-indent: 1em;
+                line-height: 26px;
+                transition: color .3s;
+            }
+            p {
+                text-align: center;
+                color: $font-color;
+                text-indent: 1em;
+                font-size: 16px;
+                line-height: 26px;
+                transition: color .3s;
+            }
+        }
+    }
 }
