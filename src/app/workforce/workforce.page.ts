@@ -8,5 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WorkforcePage{
   
-  items = ['Nanay', 'Nonoy', 'Nini'];
+  ideal = ['Nanay', 'Nonoy', 'Nini'];
+
+  banned = ['Aquino', 'Roxas', 'Pnoy', 'Estrada'];
+
 }
