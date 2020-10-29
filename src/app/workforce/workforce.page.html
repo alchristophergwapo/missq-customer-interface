@@ -28,12 +28,12 @@
 
     <ion-card-content>
       <ion-list>
-        <ion-item-sliding *ngFor="let item of ideal">
+        <ion-item-sliding *ngFor="let item of ideal; let i = index">
           <ion-item>
             {{item}}
           </ion-item>
-          <ion-item-options side="end" (click)="test()">
-            <ion-icon class="del" name="trash"></ion-icon>
+          <ion-item-options side="end" >
+            <ion-icon class="del" (click)="dltIdeal(i)" name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
@@ -46,12 +46,12 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item-sliding *ngFor="let item of banned">
+        <ion-item-sliding *ngFor="let item of banned; let i = index">
           <ion-item>
             {{item}}
           </ion-item>
-          <ion-item-options side="end" (click)="test()">
-            <ion-icon class="del" name="trash"></ion-icon>
+          <ion-item-options side="end" >
+            <ion-icon class="del" (click)="dltBanned(i)" name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>

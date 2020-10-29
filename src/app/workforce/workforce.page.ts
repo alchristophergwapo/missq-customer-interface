@@ -15,8 +15,14 @@ export class WorkforcePage{
   banned = ['Aquino', 'Roxas', 'Pnoy', 'Estrada'];
 
  
-  test() {
-    console.log(" You're here.");
+  dltIdeal(i) {
+    console.log(" Ideal deleted.");
+    this.ideal.splice(i,1);
+  }
+
+  dltBanned(i) {
+    console.log(" Banned deleted.");
+    this.banned.splice(i,1);
   }
   constructor(){}
 
