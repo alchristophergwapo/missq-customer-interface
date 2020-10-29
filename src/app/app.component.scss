@@ -61,7 +61,7 @@ ion-item div ion-icon {
     // --color: #15a0e0;
 }
 
-ion-item.item:hover div{
+ion-item.item:hover div {
     background-color: rgba(21, 160, 224) !important;
     color: white !important;
 }
@@ -71,3 +71,6 @@ ion-item ion-label {
     margin-left: 60px;
 }
 
+ion-app {
+    overflow: hidden;
+}
