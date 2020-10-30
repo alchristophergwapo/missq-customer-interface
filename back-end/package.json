@@ -1,0 +1,28 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "Live chat server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchristophergwapo/missq-interface.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "socket.io"
+  ],
+  "author": "Christopher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alchristophergwapo/missq-interface/issues"
+  },
+  "homepage": "https://github.com/alchristophergwapo/missq-interface#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
