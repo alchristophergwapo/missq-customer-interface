@@ -1,0 +1,101 @@
+ion-content.background {
+    --background: url(../../assets/images/Conference.png) 0 0/100% 43% no-repeat;
+}
+
+#header_logo {
+    background-color: white;
+    border-radius: 60%;
+    padding: 8px;
+    width: 130px;
+    height: 120px;
+    border: 4px solid #22bbea8f;
+}
+
+#container {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 47%;
+    transform: translateY(-50%);
+}
+
+#container1 {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 80%;
+    transform: translateY(-50%);
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+#container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+}
+
+#container a {
+    text-decoration: none;
+}
+
+// #container1 {
+//     margin: 400px;
+// }
+#title {
+    color: black;
+    font-size: 500px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.divider {
+    display: flex;
+    &:before,
+    &:after {
+        content: "";
+        flex: 1;
+    }
+}
+
+.line {
+    align-items: center;
+    margin: 1em -1em;
+    color: #cccccc;
+    &:before,
+    &:after {
+        height: 1px;
+        margin: 0 1em;
+    }
+}
+
+.one-line {
+    &:before,
+    &:after {
+        background: #cccccc;
+    }
+}
+
+.auth-form ion-grid,
+.auth-form ion-row {
+    height: 100%;
+    justify-content: center;
+}
+
+.already {
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#btnCreate {
+    // background-color: rgba(21, 160, 224);
+    color: white;
+}

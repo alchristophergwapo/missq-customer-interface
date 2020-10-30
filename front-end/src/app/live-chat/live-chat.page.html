@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Live Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="close-btn" >
+      <ion-icon name="close" routerLink="/place-order"></ion-icon>
+    </div>
+    <div class="preload">Today</div>
+    <div class="greating-msg">
+      <div class="start">
+        <p class="heading">Chat Started</p>
+        <span class="sub-heading">{{ time | date :'shortTime'}}</span>
+        <div class="msg">
+          <p class="msg-title">Thank you for contacting  MissQ Associates. Please wait for a moment while we get you connected to the next available live chat agent.</p>
+          <span class="msg-subtitle">{{time | date : 'shortTime'}}</span>
+        </div>
+      </div>
+    </div>
+    <img class="user" src="" alt="">
+    <div class="msg-detail">
+      <div class="mgs-info">
+        <p>Agent</p>
+      </div>
+      <div class="msg-content">
+        <span class="triangle">Content</span>
+        <p class="line-breaker"></p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+    <ion-input placeholder="Type your message here"></ion-input>
+    <ion-icon name="send"></ion-icon>
+  </ion-footer>

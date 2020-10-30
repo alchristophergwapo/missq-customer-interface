@@ -1,0 +1,92 @@
+ion-title {
+    margin-left: 10%;
+}
+
+#back {
+    text-align: center;
+}
+
+#header_logo {
+    background-color: white;
+    border-radius: 60%;
+    padding: 8px;
+    width: 130px;
+    height: 120px;
+    border: 4px solid #22bbea8f;
+}
+
+#container1 {
+    text-align: center;
+    position: fixed;
+    left: 60%;
+    right: 0;
+    top: 10%;
+    transform: translateY(-50%);
+}
+
+ion-content.background {
+    --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
+    border-bottom-left-radius: 70%;
+}
+
+form {
+    text-align: center;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+
+ion-card-title {
+    font-family: cursive;
+    color: black;
+    // font-size: 40px;
+    // -webkit-text-stroke: 1px white;
+    // -webkit-text-fill-color: rgb(21, 160, 224);
+}
+
+ion-card {
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+    // background-color: #f2f2f2;
+    // opacity: 50px;
+    // left: 0;
+    // right: 0;
+    // position: absolute;
+    float: center;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 968.98px) {
+    ion-card {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (max-width: 698.98px) {
+    ion-card {
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+}
+
+ion-item {
+    --background: white;
+    --color: black;
+    border-radius: 10px;
+    box-shadow: 3px 3px #808080;
+}
+
+.back {
+    background-color: white;
+    background-color: white;
+    border-radius: 60%;
+    padding: 6px;
+    width: 50px;
+    border: 4px solid #22bbea8f;
+}
