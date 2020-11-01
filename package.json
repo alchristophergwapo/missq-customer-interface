@@ -34,6 +34,7 @@
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-nativegeocoder": "^3.4.1",
     "ng-socket-io": "^0.2.4",
+    "node-sass": "^4.14.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

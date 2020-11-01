@@ -8,7 +8,7 @@ import { LocationSelectPageRoutingModule } from './location-select-routing.modul
 
 import { LocationSelectPage } from './location-select.page';
 
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
@@ -16,9 +16,9 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     IonicModule,
     LocationSelectPageRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDSnAvHoDuxzpn5ct0U0VYmMFTcs7ODnsg'
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyDSnAvHoDuxzpn5ct0U0VYmMFTcs7ODnsg'
+    // })
   ],
   declarations: [LocationSelectPage]
 })
