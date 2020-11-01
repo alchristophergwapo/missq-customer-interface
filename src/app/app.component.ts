@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,14 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class AppComponent implements OnInit {
   
+  dashboard : boolean;
+  currentRoute: string;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private router: Router,
   ) {
     this.initializeApp();
   }
@@ -36,6 +40,17 @@ export class AppComponent implements OnInit {
       } 
     }
 
+    setTimeout(() => {
+      this.currentRoute = window.location.pathname;
+
+      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat') {
+        this.dashboard = false;
+      } else {
+        this.dashboard = true;
+      }
+
+    }, 1000)
+
   };
 
   async clickChatSupport() {
@@ -47,7 +62,8 @@ export class AppComponent implements OnInit {
         icon: 'chatbubbles-outline',
         cssClass: 'chat',
         handler: () => {
-          console.log('Live Chat');
+          this.router.navigateByUrl('live-chat');
+          this.dashboard = false;
         }
       },
       {
@@ -75,6 +91,12 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.currentRoute = window.location.pathname;
+    if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat') {
+      this.dashboard = false;
+    } else {
+      this.dashboard = true;
+    }
   }
 
   ngOnInit() {
