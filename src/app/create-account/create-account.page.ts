@@ -21,7 +21,8 @@ export class CreateAccountPage implements OnInit {
       date: '',
       password: '',
       cpassword: '',
-      selpic: ''
+      selpic: '',
+      idpic: ''
     };
   }
 
