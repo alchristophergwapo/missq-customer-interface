@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormControl, FormGroup } from '@angular/forms';
+import { FormsModule, FormControl, FormGroup, NgForm } from '@angular/forms';
 
 
 @Component({
@@ -22,20 +22,46 @@ export class CreateAccountPage implements OnInit {
       password: '',
       cpassword: '',
       selpic: '',
-      idpic: ''
+      idpic: '',
+      idnum: ''
     };
   }
 
   register(myForm: FormsModule) {
     this.isSubmitted = true;
     console.log(this.data);
-    // console.log('Form');
-    // console.log(myForm);
+    console.log('Form');
+    console.log(myForm);
   }
 
   noSubmit(e) {
     e.preventDefault();
   }
+
+  loadImageFromDevice(event) {
+
+    const file = event.target.files[0];
+  
+    const reader = new FileReader();
+  
+    reader.readAsArrayBuffer(file);
+  
+    reader.onload = () => {
+  
+      // get the blob of the image:
+      let blob: Blob = new Blob([new Uint8Array((reader.result as ArrayBuffer))]);
+  
+      // create blobURL, such that we could use it in an image element:
+      let blobURL: string = URL.createObjectURL(blob);
+  
+    };
+  
+    reader.onerror = (error) => {
+  
+      //handle errors
+  
+    };
+  };
 
   ngOnInit() {
   }

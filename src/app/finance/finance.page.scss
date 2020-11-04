@@ -227,12 +227,11 @@ ion-content {
 
 .inner {
     -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
-    transform: translateY(-65%) translateX(-10%) translateZ(50px) scale(0.94);
+    transform: translateY(-50%) translateX(-10%) translateZ(50px) scale(0.80);
     position: absolute;
     top: 50%;
     left: 0;
     width: 100%;
-    padding: 2rem;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     outline: 1px solid transparent;

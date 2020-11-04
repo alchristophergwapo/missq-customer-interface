@@ -7,14 +7,15 @@
 </ion-header> -->
 
 <ion-content class="background">
-    <div id="container1">
+    <!-- <div id="container1">
         <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
-    </div>
+    </div> -->
     <ion-card>
         <div id="back">
             <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
         </div>
         <form #form="ngForm" (ngSubmit)="register(form)">
+            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png">
             <ion-card-title>
                 <div text-center>
                     <h3>Login !</h3>

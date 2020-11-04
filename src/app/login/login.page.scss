@@ -48,7 +48,7 @@ ion-card {
     // position: fixed;
     // left: 0;
     // right: 0;
-    top: 15%;
+    top: 3%;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
     background: rgba(255, 255, 255, 0.5);
@@ -92,4 +92,7 @@ ion-item {
     padding: 6px;
     width: 55px;
     border: 4px solid #22bbea8f;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
