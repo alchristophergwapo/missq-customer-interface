@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.currentRoute = window.location.pathname;
 
-      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat') {
+      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
         this.dashboard = false;
       } else {
         this.dashboard = true;
@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
       this.splashScreen.hide();
     });
     this.currentRoute = window.location.pathname;
-    if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat') {
+    if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings' ) {
       this.dashboard = false;
     } else {
       this.dashboard = true;

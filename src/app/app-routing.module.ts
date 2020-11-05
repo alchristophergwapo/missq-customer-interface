@@ -40,7 +40,11 @@ const routes: Routes = [
     path: 'place-order/location-select',
     loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule)
 
+  },  {
+    path: 'live-chat',
+    loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule)
   }
+
 
 ];
 

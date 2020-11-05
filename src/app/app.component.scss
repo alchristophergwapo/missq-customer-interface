@@ -26,7 +26,7 @@ ion-note {
     margin-left: 120px;
     top: 90px;
     font-size: 15px;
-    color: rgba(21, 160, 224) !important;
+    color: rgba(21, 160, 224, .5) !important;
     font-weight: 300;
 }
 
@@ -62,7 +62,7 @@ ion-item div ion-icon {
 }
 
 ion-item.item:hover div{
-    background-color: rgba(21, 160, 224) !important;
+    background-color: rgba(21, 160, 224, .5) !important;
     color: white !important;
 }
 
