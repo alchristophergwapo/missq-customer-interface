@@ -11,8 +11,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx'
+
+import { HttpClientModule } from '@angular/common/http';
+
+import { IonicStorageModule } from '@ionic/storage';
+
+import { AuthGuardService as AuthGuard } from "../app/api/services/auth_guard/auth-guard.service";
+import { AuthService } from "../app/api/services/auth/auth.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,12 +28,15 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
-    NativeGeocoder,
+    AuthGuard,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormControl, FormGroup } from '@angular/forms';
 
+import { AuthService } from '../api/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -12,27 +14,15 @@ export class CreateAccountPage implements OnInit {
   data: any;
   isSubmitted = false;
 
-  constructor() {
-    this.data = {
-      name: '',
-      address: '',
-      phone: '',
-      email: '',
-      date: '',
-      password: '',
-      cpassword: ''
-    };
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  register(myForm: FormsModule) {
+  register(form) {
     this.isSubmitted = true;
-    console.log(this.data);
-    console.log('Form');
-    console.log(myForm);
-  }
-
-  noSubmit(e) {
-    e.preventDefault();
+    this.authService.register(form.value).subscribe((response) => {
+      if (response.user) {
+        this.router.navigateByUrl('login');
+      }
+    });
   }
 
   ngOnInit() {

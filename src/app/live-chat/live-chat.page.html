@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="container">
-    <div class="close-btn" >
+    <div class="close-btn">
       <ion-icon name="close" routerLink="/place-order"></ion-icon>
     </div>
     <div class="preload">Today</div>
@@ -15,7 +15,8 @@
         <p class="heading">Chat Started</p>
         <span class="sub-heading">{{ time | date :'shortTime'}}</span>
         <div class="msg">
-          <p class="msg-title">Thank you for contacting  MissQ Associates. Please wait for a moment while we get you connected to the next available live chat agent.</p>
+          <p class="msg-title">Thank you for contacting MissQ Associates. Please wait for a moment while we get you
+            connected to the next available live chat agent.</p>
           <span class="msg-subtitle">{{time | date : 'shortTime'}}</span>
         </div>
       </div>
@@ -35,6 +36,6 @@
 </ion-content>
 
 <ion-footer>
-    <ion-input placeholder="Type your message here"></ion-input>
-    <ion-icon name="send" class="send-icon"></ion-icon>
-  </ion-footer>
+  <ion-input placeholder="Type your message here"></ion-input>
+  <ion-icon name="send" class="send-icon"></ion-icon>
+</ion-footer>

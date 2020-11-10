@@ -1,20 +1,30 @@
-let app = require('express')();
-let http = require('http').Server(app);
-let io = require('socket.io')(http);
+"use strict";
+const  express  =  require('express');
+const  bodyParser  =  require('body-parser');
+const cors = require('cors')
+const mongoose = require('mongoose');
 
-io.on('connection', (socket) => {
-    socket.on('disconnect', function() {
+require('dotenv').config();
 
-    });
+const  app  =  express();
+app.use(cors())
 
-    socket.on('add-message', (message) => {
-        io.emit('message', {text: message.text, from: socket.nickname, created: new Date()})
-    });
+app.use(bodyParser.urlencoded({ extended:  true }));
+app.use(bodyParser.json());
 
+const uri = "mongodb://127.0.0.1/missqassociates";
+
+mongoose.connect(uri, {useUnifiedTopology: true,useNewUrlParser: true, useCreateIndex: true }).then(() => {
+    console.log("Connection to database is established!")
+}).catch((error) => {
+    console.log("Error",error);
 });
 
-var port = process.env.PORT || 3001;
- 
-http.listen(port, function(){
-   console.log('listening in http://localhost:' + port);
-});
+const authentication = require('./controllers/authentication');
+
+app.use('/authenticate', authentication);
+
+const  port  =  process.env.PORT  ||  3000;
+const  server  =  app.listen(port, () => {
+    console.log('Server listening at http://localhost:'  +  port);
+}); 

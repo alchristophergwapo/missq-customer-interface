@@ -1,19 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon class="back" slot="start" name="arrow-back" routerLink="/place-order" routerDirection="root"></ion-icon>
-    <input type="text" class="native-input sc-ion-input-ios" (keydown.enter)="$event.preventDefault()"
-      placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+    <ion-title>Select Location</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
 <ion-content>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
-  </agm-map>
-
-  <!-- <h5>Address: {{location}}</h5> -->
-  <div>Latitude: {{latitude}}</div>
-  <div>Longitude: {{longitude}}</div>
-
+  <input style="width: 100%; height: 50px" type="text" id="pac-input" class="controls" placeholder="Search Location">
+  <div id="maps"></div>
 </ion-content>
