@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
 
 
 @Component({
@@ -11,58 +12,31 @@ export class CreateAccountPage implements OnInit {
 
   data: any;
   isSubmitted = false;
+  form: FormGroup = new FormGroup({});
 
-  constructor() {
-    this.data = {
-      name: '',
-      address: '',
-      phone: '',
-      email: '',
-      date: '',
-      password: '',
-      cpassword: '',
-      selpic: '',
-      idpic: '',
-      idnum: ''
-    };
-  }
+  constructor() {}
 
   register(myForm: FormsModule) {
     this.isSubmitted = true;
-    console.log(this.data);
-    console.log('Form');
     console.log(myForm);
   }
-
   noSubmit(e) {
     e.preventDefault();
   }
-
   loadImageFromDevice(event) {
-
     const file = event.target.files[0];
-  
     const reader = new FileReader();
-  
     reader.readAsArrayBuffer(file);
-  
     reader.onload = () => {
-  
       // get the blob of the image:
       let blob: Blob = new Blob([new Uint8Array((reader.result as ArrayBuffer))]);
-  
       // create blobURL, such that we could use it in an image element:
       let blobURL: string = URL.createObjectURL(blob);
-  
     };
-  
     reader.onerror = (error) => {
-  
       //handle errors
-  
     };
   };
-
   ngOnInit() {
   }
 
