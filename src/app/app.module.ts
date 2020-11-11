@@ -13,6 +13,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ValidateEqualModule } from 'ng-validate-equal';
 
+import { ServicesService } from './services.service';
+import { HttpClientModule } from '@angular/common/http';
+
+// import { CountryCodeSelectComponent } from './country-code-select.component'
+// import { FilterPipe } from './filter.pipe';
+// import { ComparePasswordDirective } from './directive/compare-directive/compare-password.directive';
+
 @NgModule({
   declarations: [AppComponent, ConfirmedValidatorDirective],
   entryComponents: [],
@@ -23,8 +30,10 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     FormsModule,
     ReactiveFormsModule,
     ValidateEqualModule,
+    HttpClientModule,
   ],
   providers: [
+    ServicesService,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

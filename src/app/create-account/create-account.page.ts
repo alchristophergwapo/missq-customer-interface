@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormGroup, FormBuilder } from '@angular/forms';
-import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
+import { ServicesService } from '../services.service';
+import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CountryCodes } from '../countryCodeModel';
+// import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
 
 
 @Component({
@@ -9,12 +11,37 @@ import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
   styleUrls: ['./create-account.page.scss'],
 })
 export class CreateAccountPage implements OnInit {
-
-  data: any;
+ public user: User;
   isSubmitted = false;
-  form: FormGroup = new FormGroup({});
 
-  constructor() {}
+  constructor(private dataService: ServicesService) {}
+
+  ngOnInit() {
+    this.user = {  
+      name: '',
+      address: '',
+      phone: 0,
+      email: '',
+      birth_date: '',
+      password: '',
+      confirm: '',
+      picture: '',
+      id_image: '',
+      id_number: 0  
+  };
+    return this.dataService.getData().subscribe(data => {
+      console.log(data)
+      this.criteriaList = data
+      data.forEach(per => {
+        // this.percentList.push(per.percentage)
+        // this.total();
+        console.log(per.dial_code);
+      });
+      // // console.log(this.percentList)
+    }) 
+  }
+  criteriaList: Array<CountryCodes> = [];
+  // form: FormGroup = new FormGroup({});
 
   register(myForm: FormsModule) {
     this.isSubmitted = true;
@@ -37,7 +64,16 @@ export class CreateAccountPage implements OnInit {
       //handle errors
     };
   };
-  ngOnInit() {
-  }
-
+}
+export interface User {
+  name: string,
+  address: string,
+  phone: number,
+  email: string,
+  birth_date: string,
+  password: string,
+  confirm: string,
+  picture: string,
+  id_image: string,
+  id_number: number
 }
