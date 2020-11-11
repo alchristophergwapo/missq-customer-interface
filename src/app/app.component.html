@@ -10,6 +10,12 @@
 
 
                     <ion-menu-toggle auto-hide="false">
+                        <ion-item routerLink="profile" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="profile">
+                                <ion-label>{{ user.name }}</ion-label>
+                                <ion-icon class="prof" name="pencil"></ion-icon>
+                            </div>
+                        </ion-item>
                         <ion-item routerLink="place-order" routerDirection="root" lines="none">
                             <div (click)="onClickNav($event)" id="place-order">
                                 <ion-icon slot="start" name="bag-add"></ion-icon>
@@ -58,4 +64,4 @@
         </ion-menu>
         <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
-</ion-app> 
+</ion-app>

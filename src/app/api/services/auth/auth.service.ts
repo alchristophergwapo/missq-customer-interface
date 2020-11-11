@@ -54,8 +54,8 @@ export class AuthService {
   register(user: User): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/register`, user).pipe(
       tap(async (res: AuthResponse) => {
-        if (res.user) {
-          this.authSubject.next(true);
+        if (res) {
+          this.authSubject.next(res);
         }
       }));
   };

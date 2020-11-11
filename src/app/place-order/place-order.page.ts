@@ -14,9 +14,6 @@ export class PlaceOrderPage implements OnInit {
   }
 
   segmentChanged(event){
-    // console.log(this.segmentModel);
-    
-    // console.log(event);
   }
 
 }

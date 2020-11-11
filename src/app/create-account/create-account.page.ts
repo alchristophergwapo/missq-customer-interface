@@ -19,7 +19,7 @@ export class CreateAccountPage implements OnInit {
   register(form) {
     this.isSubmitted = true;
     this.authService.register(form.value).subscribe((response) => {
-      if (response.user) {
+      if (response) {
         this.router.navigateByUrl('login');
       }
     });

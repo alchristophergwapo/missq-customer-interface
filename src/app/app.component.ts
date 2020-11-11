@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   
   dashboard : boolean;
   currentRoute: string;
+  user: any;
   
   constructor(
     private platform: Platform,
@@ -43,16 +44,16 @@ export class AppComponent implements OnInit {
       }
     }
 
-    setTimeout(() => {
-      this.currentRoute = window.location.pathname;
+    // setTimeout(() => {
+    //   this.currentRoute = window.location.pathname;
 
-      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
-        this.dashboard = false;
-      } else {
-        this.dashboard = true;
-      }
+    //   if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
+    //     this.dashboard = false;
+    //   } else {
+    //     this.dashboard = true;
+    //   }
 
-    }, 1000)
+    // }, 300)
 
   };
 
@@ -97,25 +98,26 @@ export class AppComponent implements OnInit {
       this.authenticationService.authSubject.subscribe(state => {
         if (state) {
           this.router.navigate(['place-order']);
+          this.user = state.user;
         } else {
           this.router.navigate(['home']);
         }
       });
     });
-    this.currentRoute = window.location.pathname;
-    if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings' ) {
-      this.dashboard = false;
-    } else {
-      this.dashboard = true;
-    }
+    // this.currentRoute = window.location.pathname;
+    // if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings' ) {
+    //   this.dashboard = false;
+    // } else {
+    //   this.dashboard = true;
+    // }
   }
 
   ngOnInit() {
-    this.currentRoute = window.location.pathname;
-    if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat') {
-      this.dashboard = false;
-    } else {
-      this.dashboard = true;
-    }
+    // this.currentRoute = window.location.pathname;
+    // if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
+    //   this.dashboard = false;
+    // } else {
+    //   this.dashboard = true;
+    // }
   }
 }

@@ -23,28 +23,39 @@ const routes: Routes = [
   },
   {
     path: 'place-order',
-    loadChildren: () => import('./place-order/place-order.module').then( m => m.PlaceOrderPageModule), canActivate: [AuthGuardService]
+    loadChildren: () => import('./place-order/place-order.module').then( m => m.PlaceOrderPageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'workforce',
-    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule), canActivate: [AuthGuardService]
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'finance',
-    loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule), canActivate: [AuthGuardService]
+    loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule), canActivate: [AuthGuardService]
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'place-order/location-select',
-    loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule),canActivate: [AuthGuardService]
+    loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule),
+    canActivate: [AuthGuardService]
 
   },
   {
     path: 'live-chat',
-    loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule), canActivate: [AuthGuardService]
+    loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule), 
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuardService]
   }
 
 

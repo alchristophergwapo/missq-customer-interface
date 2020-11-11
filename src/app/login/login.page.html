@@ -1,18 +1,12 @@
-<!-- <ion-header>
-    <ion-toolbar>
-        <img id="back" height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
-        <img alt="logo" id="header_logo" height="50" float-left src="assets/images/msqlogo.png">&nbsp;&nbsp;&nbsp;&nbsp;
-        <ion-title>Ms.Q Associates</ion-title>
-    </ion-toolbar>
-</ion-header> -->
-
 <ion-content class="background">
-    <div id="container1">
-        <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
-    </div>
     <ion-card>
         <div id="back">
-            <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
+            <!-- <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']"> -->
+            <ion-icon name="arrow-back" [routerLink]="['/home']"></ion-icon>
+        </div>
+
+        <div id="container1">
+            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
         </div>
         <form #form="ngForm" (ngSubmit)="login(form)">
             <ion-card-title>
@@ -23,28 +17,22 @@
             <ion-card-content>
                 <div padding>
                     <ion-item>
-                        <ion-icon name="mail-sharp"></ion-icon>&nbsp;
-                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel required email></ion-input>
+                        <ion-icon name="mail"></ion-icon>&nbsp;
+                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel
+                            required email></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched">
                         <ion-text color="danger">Email is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
-                        <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel required></ion-input>
+                        <ion-icon name="key"></ion-icon>&nbsp;
+                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel
+                            required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
                         <ion-text color="danger">Password is incorrect.</ion-text>
                     </ion-label>
                     <br>
-                    <!-- <ion-item>
-                        <ion-icon name="key-sharp"></ion-icon>&nbsp;
-                        <ion-input name="confirm" type="password" #cpassCtrl="ngModel" placeholder="Confirm Password" ngModel required>
-                        </ion-input>
-                    </ion-item>
-                    <ion-label *ngIf="!cpassCtrl.valid && cpassCtrl.touched">
-                        <ion-text color="danger">Password is incorrect.</ion-text>
-                    </ion-label> -->
                 </div><br>
                 <div>
                     <ion-button size="large" color='secondary' type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
