@@ -10,7 +10,7 @@ export class WorkforcePage{
   
   segmentModel = "ideal";
 
-  ideal = ['Nanay', 'Nonoy', 'Nini'];
+  ideal = [];
 
   banned = ['Aquino', 'Roxas', 'Pnoy', 'Estrada'];
 

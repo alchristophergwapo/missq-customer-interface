@@ -26,7 +26,7 @@
       <ion-card-title>Ideal</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content *ngIf="ideal.length > 0">
       <ion-list>
         <ion-item-sliding *ngFor="let item of ideal; let i = index">
           <ion-item>
@@ -38,6 +38,7 @@
         </ion-item-sliding>
       </ion-list>
     </ion-card-content>
+    <p *ngIf="ideal.length <= 0">No ideal worker.</p>
   </ion-card>
 
   <ion-card *ngIf="segmentModel === 'banned'">
