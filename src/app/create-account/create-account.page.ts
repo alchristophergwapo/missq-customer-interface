@@ -11,8 +11,11 @@ import { CountryCodes } from '../countryCodeModel';
   styleUrls: ['./create-account.page.scss'],
 })
 export class CreateAccountPage implements OnInit {
- public user: User;
+
+  public user: User;
   isSubmitted = false;
+  dataList: Array<CountryCodes> = [];
+
 
   constructor(private dataService: ServicesService) {}
 
@@ -20,7 +23,7 @@ export class CreateAccountPage implements OnInit {
     this.user = {  
       name: '',
       address: '',
-      phone: 0,
+      phone: '',
       email: '',
       birth_date: '',
       password: '',
@@ -31,16 +34,15 @@ export class CreateAccountPage implements OnInit {
   };
     return this.dataService.getData().subscribe(data => {
       console.log(data)
-      this.criteriaList = data
+      this.dataList = data
       data.forEach(per => {
         // this.percentList.push(per.percentage)
         // this.total();
-        console.log(per.dial_code);
+        // console.log(per.dial_code);
       });
       // // console.log(this.percentList)
     }) 
   }
-  criteriaList: Array<CountryCodes> = [];
   // form: FormGroup = new FormGroup({});
 
   register(myForm: FormsModule) {
@@ -68,7 +70,7 @@ export class CreateAccountPage implements OnInit {
 export interface User {
   name: string,
   address: string,
-  phone: number,
+  phone: string,
   email: string,
   birth_date: string,
   password: string,
