@@ -25,6 +25,7 @@ const authentication = require('./controllers/authentication');
 app.use('/authenticate', authentication);
 
 const  port  =  process.env.PORT  ||  3000;
-const  server  =  app.listen(port, () => {
+
+app.listen(port, () => {
     console.log('Server listening at http://localhost:'  +  port);
 }); 

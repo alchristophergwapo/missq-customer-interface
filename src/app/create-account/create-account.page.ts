@@ -49,10 +49,11 @@ export class CreateAccountPage implements OnInit {
     this.isSubmitted = true;
     this.authService.register(form.value).subscribe((response) => {
       if (response) {
-        console.log(response)
+        this.router.navigateByUrl('login');
       }
     });
   }
+  
   noSubmit(e) {
     e.preventDefault();
   }
@@ -71,15 +72,5 @@ export class CreateAccountPage implements OnInit {
     };
   };
 }
-export interface User {
-  name: string,
-  address: string,
-  phone: string,
-  email: string,
-  birth_date: string,
-  password: string,
-  confirm: string,
-  picture: string,
-  id_image: string,
-  id_number: number
+
 }

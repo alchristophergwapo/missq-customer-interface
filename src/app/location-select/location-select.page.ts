@@ -5,9 +5,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 declare var google: any;
 
 @Component({
-  selector: 'app-location-select',
-  templateUrl: './location-select.page.html',
-  styleUrls: ['./location-select.page.scss'],
+    selector: 'app-location-select',
+    templateUrl: './location-select.page.html',
+    styleUrls: ['./location-select.page.scss'],
 })
 export class LocationSelectPage implements OnInit {
 
@@ -98,7 +98,6 @@ export class LocationSelectPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

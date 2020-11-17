@@ -15,7 +15,7 @@ let User = new Schema({
 		type: Number,
 		required: true,
 	},
-	email :{
+	email:{
 		unique: true,
 		type: String,
 		required: true

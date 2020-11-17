@@ -26,6 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import { AuthGuardService as AuthGuard } from "../app/api/services/auth_guard/auth-guard.service";
+import { AuthService } from "../app/api/services/auth/auth.service";
+
 @NgModule({
   declarations: [AppComponent, ConfirmedValidatorDirective],
   entryComponents: [],
@@ -44,6 +47,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     Geolocation,
+    AuthGuard,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
