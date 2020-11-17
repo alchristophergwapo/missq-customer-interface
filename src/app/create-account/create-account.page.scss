@@ -24,6 +24,13 @@ ion-title {
     // transform: translateY(-50%);
 }
 
+@media (max-width: 767.98px){
+    #container1 {
+        left: 38%;
+        right: 38%;
+    }
+}
+
 ion-content.background {
     --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
     border-bottom-left-radius: 70%;
@@ -38,7 +45,7 @@ form {
 }
 
 ion-card-title {
-    font-family: cursive;
+    // font-family: cursive;
     color: black;
     // font-size: 40px;
     // -webkit-text-stroke: 1px white;

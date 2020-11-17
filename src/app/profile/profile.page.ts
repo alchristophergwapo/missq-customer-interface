@@ -13,11 +13,10 @@ export class ProfilePage implements OnInit {
   user: any;
 
   constructor(private app: AppComponent) {
-    app.dashboard = true;
+    this.user = app.user;
   }
 
   ngOnInit() {
-    this.user = this.app.user;
   }
 
 }

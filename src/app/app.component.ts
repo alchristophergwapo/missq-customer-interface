@@ -90,6 +90,14 @@ export class AppComponent implements OnInit {
     await actionSheet.present();
   };
 
+  setDashboard(bool) {
+    if (bool) {
+      this.dashboard = true;
+    } else {
+      this.dashboard = false;
+    }
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -104,20 +112,8 @@ export class AppComponent implements OnInit {
         }
       });
     });
-    // this.currentRoute = window.location.pathname;
-    // if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings' ) {
-    //   this.dashboard = false;
-    // } else {
-    //   this.dashboard = true;
-    // }
   }
 
   ngOnInit() {
-    // this.currentRoute = window.location.pathname;
-    // if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
-    //   this.dashboard = false;
-    // } else {
-    //   this.dashboard = true;
-    // }
   }
 }

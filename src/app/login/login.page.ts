@@ -12,7 +12,18 @@ import { AppComponent } from '../app.component';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController, private dash: AppComponent) { }
+  name: string;
+  password: string;
+
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private alertCtrl: AlertController, 
+    private dash: AppComponent
+  ) { 
+    this.name = 'testc@gmail.com';
+    this.password = "testc";
+  }
 
   login(form) {
     // console.log(form.value);
@@ -24,9 +35,9 @@ export class LoginPage implements OnInit {
         const alert = this.alertCtrl.create({
           header: 'Login Failed',
           message: 'Wrong credentials!',
-          buttons: ['Ok'] 
+          buttons: ['Ok']
         }).then(alert => alert.present());
-        ;  
+        ;
       }
     });
   }
