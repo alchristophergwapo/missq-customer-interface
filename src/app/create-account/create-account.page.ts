@@ -4,6 +4,8 @@ import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@a
 import { CountryCodes } from '../countryCodeModel';
 // import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
 
+import { AuthService } from '../api/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -16,8 +18,7 @@ export class CreateAccountPage implements OnInit {
   isSubmitted = false;
   dataList: Array<CountryCodes> = [];
 
-
-  constructor(private dataService: ServicesService) {}
+  constructor(private dataService: ServicesService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.user = {  
@@ -43,11 +44,14 @@ export class CreateAccountPage implements OnInit {
       // // console.log(this.percentList)
     }) 
   }
-  // form: FormGroup = new FormGroup({});
 
-  register(myForm: FormsModule) {
+  register(form) {
     this.isSubmitted = true;
-    console.log(myForm);
+    this.authService.register(form.value).subscribe((response) => {
+      if (response) {
+        console.log(response)
+      }
+    });
   }
   noSubmit(e) {
     e.preventDefault();

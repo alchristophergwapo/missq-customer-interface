@@ -20,6 +20,12 @@ import { HttpClientModule } from '@angular/common/http';
 // import { FilterPipe } from './filter.pipe';
 // import { ComparePasswordDirective } from './directive/compare-directive/compare-password.directive';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx'
+
+import { HttpClientModule } from '@angular/common/http';
+
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent, ConfirmedValidatorDirective],
   entryComponents: [],
@@ -31,11 +37,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     ValidateEqualModule,
     HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     ServicesService,
     StatusBar,
     SplashScreen,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

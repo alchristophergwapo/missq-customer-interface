@@ -14,8 +14,7 @@
         <div id="back">
             <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
         </div>
-        <form #form="ngForm" (ngSubmit)="register(form)">
-            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png">
+        <form #form="ngForm" (ngSubmit)="login(form)">
             <ion-card-title>
                 <div text-center>
                     <h3>Login !</h3>
@@ -38,14 +37,14 @@
                         <ion-text color="danger">Password is incorrect.</ion-text>
                     </ion-label>
                     <br>
-                    <ion-item>
+                    <!-- <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
                         <ion-input name="confirm" type="password" #cpassCtrl="ngModel" placeholder="Confirm Password" ngModel required>
                         </ion-input>
                     </ion-item>
                     <ion-label *ngIf="!cpassCtrl.valid && cpassCtrl.touched">
                         <ion-text color="danger">Password is incorrect.</ion-text>
-                    </ion-label>
+                    </ion-label> -->
                 </div><br>
                 <div>
                     <ion-button size="large" color='secondary' type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
