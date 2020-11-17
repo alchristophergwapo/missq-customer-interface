@@ -23,14 +23,14 @@ export class CreateAccountPage implements OnInit {
     this.user = {  
       name: '',
       address: '',
-      phone: '',
+      phone: null,
       email: '',
-      birth_date: '',
+      birth_date: new Date("01/10/2020"),
       password: '',
       confirm: '',
       picture: '',
       id_image: '',
-      id_number: 0  
+      id_number: null  
   };
     return this.dataService.getData().subscribe(data => {
       console.log(data)
@@ -44,10 +44,10 @@ export class CreateAccountPage implements OnInit {
     }) 
   }
   // form: FormGroup = new FormGroup({});
-
   register(myForm: FormsModule) {
     this.isSubmitted = true;
     console.log(myForm);
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.user));
   }
   noSubmit(e) {
     e.preventDefault();
@@ -70,9 +70,9 @@ export class CreateAccountPage implements OnInit {
 export interface User {
   name: string,
   address: string,
-  phone: string,
+  phone: number,
   email: string,
-  birth_date: string,
+  birth_date: Date,
   password: string,
   confirm: string,
   picture: string,
