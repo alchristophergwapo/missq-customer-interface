@@ -2,10 +2,6 @@ ion-title {
     margin-left: 10%;
 }
 
-#back {
-    text-align: center;
-}
-
 #header_logo {
     background-color: white;
     border-radius: 60%;
@@ -48,11 +44,6 @@ ion-card {
     margin-left: 30%;
     margin-right: 30%;
     width: 40%;
-    // background-color: #f2f2f2;
-    // opacity: 50px;
-    // left: 0;
-    // right: 0;
-    // position: absolute;
     float: center;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
@@ -78,7 +69,7 @@ ion-card {
 ion-item {
     --background: white;
     --color: black;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 3px 3px #808080;
 }
 
@@ -89,4 +80,7 @@ ion-item {
     padding: 6px;
     width: 50px;
     border: 4px solid #22bbea8f;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
