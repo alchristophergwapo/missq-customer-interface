@@ -20,6 +20,11 @@ import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 
 
+import { Geolocation } from '@ionic-native/geolocation/ngx'
+
+
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -31,11 +36,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     ValidateEqualModule,
     HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     ServicesService,
     StatusBar,
     SplashScreen,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
