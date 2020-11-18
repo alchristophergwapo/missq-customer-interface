@@ -6,6 +6,7 @@ import { CountryCodes } from '../countryCodeModel';
 
 import { AuthService } from '../api/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../api/models/user';
 
 @Component({
   selector: 'app-create-account',
@@ -27,12 +28,12 @@ export class CreateAccountPage implements OnInit {
       code: '',
       phone: null,
       email: '',
-      birth_date: new Date("01/10/2020"),
+      birth_date: null,
       password: '',
       confirm: '',
       picture: '',
       id_image: '',
-      id_number: null  
+      id_number: null
   };
     return this.dataService.getData().subscribe(data => {
       console.log(data)
@@ -52,10 +53,11 @@ export class CreateAccountPage implements OnInit {
     this.isSubmitted = true;
     this.authService.register(form.value).subscribe((response) => {
       if (response) {
-        console.log(response)
+        this.router.navigateByUrl('login');
       }
     });
   }
+  
   noSubmit(e) {
     e.preventDefault();
   }
@@ -73,17 +75,4 @@ export class CreateAccountPage implements OnInit {
       //handle errors
     };
   };
-}
-export interface User {
-  name: string,
-  address: string,
-  code: string,
-  phone: number,
-  email: string,
-  birth_date: Date,
-  password: string,
-  confirm: string,
-  picture: string,
-  id_image: string,
-  id_number: number
 }

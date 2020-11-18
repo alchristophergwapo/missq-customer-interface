@@ -19,11 +19,13 @@ import { ValidateEqualModule } from 'ng-validate-equal';
 import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { Geolocation } from '@ionic-native/geolocation/ngx'
 
-
 import { IonicStorageModule } from '@ionic/storage';
+
+import { AuthGuardService as AuthGuard } from "../app/api/services/auth_guard/auth-guard.service";
+import { AuthService } from "../app/api/services/auth/auth.service";
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +45,9 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     Geolocation,
+    NativeGeocoder,
+    AuthGuard,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

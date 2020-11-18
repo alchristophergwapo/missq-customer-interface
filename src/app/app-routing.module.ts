@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './api/services/auth_guard/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -22,27 +23,39 @@ const routes: Routes = [
   },
   {
     path: 'place-order',
-    loadChildren: () => import('./place-order/place-order.module').then( m => m.PlaceOrderPageModule)
+    loadChildren: () => import('./place-order/place-order.module').then( m => m.PlaceOrderPageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'workforce',
-    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule)
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'finance',
-    loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule)
+    loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule), 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'place-order/location-select',
-    loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule)
+    loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule),
+    canActivate: [AuthGuardService]
 
-  },  {
+  },
+  {
     path: 'live-chat',
-    loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule)
+    loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule), 
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuardService]
   }
 
 

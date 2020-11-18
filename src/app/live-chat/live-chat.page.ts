@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveChatPage implements OnInit {
 
+  time: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.time = new Date();
   }
 
 }

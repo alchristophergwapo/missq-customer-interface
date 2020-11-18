@@ -1,10 +1,13 @@
 <ion-content class="background">
     <ion-card>
         <div class="back">
-            <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']">
+            <!-- <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']"> -->
+            <ion-icon name="arrow-back" [routerLink]="['/home']"></ion-icon>
+        </div>
+        <div id="container1">
+            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
         </div>
         <form #form="ngForm" novalidate (ngSubmit)="register(form); form.reset()" novalidate><br>
-            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png">
             <ion-card-title>
                 <div text-center>
                     <h3>Create Your Account!</h3>
@@ -15,6 +18,7 @@
                     <ion-item>
                         &nbsp;
                         <ion-icon name="person-circle-sharp"></ion-icon>&nbsp;
+
                         <ion-input name="name" [(ngModel)]='user.name' type="text" #nameCtrl="ngModel" placeholder=" Full Name" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!nameCtrl.valid && nameCtrl.touched && nameCtrl.errors?.required">

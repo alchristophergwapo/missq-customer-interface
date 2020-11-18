@@ -5,19 +5,21 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 declare var google: any;
 
 @Component({
-  selector: 'app-location-select',
-  templateUrl: './location-select.page.html',
-  styleUrls: ['./location-select.page.scss'],
+    selector: 'app-location-select',
+    templateUrl: './location-select.page.html',
+    styleUrls: ['./location-select.page.scss'],
 })
 export class LocationSelectPage implements OnInit {
 
-  @ViewChild('map', { static: true })
+  @ViewChild('maps', { static: true })
   mapRef: ElementRef;
 
   latitude: any;
   longitude: any;
   public static lat;
   public static lon;
+
+  myLocation: any;
 
   constructor(
     public navCtrl: NavController,
@@ -41,32 +43,39 @@ export class LocationSelectPage implements OnInit {
     var map = new google.maps.Map(document.getElementById('maps'), {
       center: location,
       zoom: 13,
-      mapTypeId: 'roadmap'
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
     });
 
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
 
-    map.addListener('bouds_changed', function() {
+    map.addListener('bounds_changed', () => {
       searchBox.setBounds(map.getBounds());
     });
 
     var markers = [];
-    searchBox.addListener('place_changed', function() {
+    searchBox.addListener('places_changed', () => {
       var places = searchBox.getPlaces();
       if (places.length == 0) {
         return;
       }
+
+      // console.log( "On searchbox listener: ", places);
 
       markers.forEach(function(marker) {
         marker.setMap(null);
       });
 
       markers = [];
+
       var bounds = new google.maps.LatLngBounds();
+
       places.forEach(function(place){
-        LocationSelectPage.lat = place.geometry.viewport.Ya.i;
-        LocationSelectPage.lon = place.geometry.viewport.Ua.i;
+
+        console.log(place);
+        // LocationSelectPage.lat = place.geometry.viewport.Ya.i;
+        // LocationSelectPage.lon = place.geometry.viewport.Ua.i;
+
         if (!place.geometry) {
           console.log('No geometry');
           return;
@@ -82,7 +91,6 @@ export class LocationSelectPage implements OnInit {
 
         markers.push(new google.maps.Marker({
           map: map,
-          icon: icon,
           title: place.name,
           position: place.geometry.location
         }));
@@ -98,7 +106,6 @@ export class LocationSelectPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

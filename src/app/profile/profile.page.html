@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Account Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-icon name="logo-`{{logo}}`"></ion-icon>
+    <ion-label>{{ user.name }}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="call"></ion-icon>
+    <ion-label>{{ user.phone }}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="mail"></ion-icon>
+    <ion-label>{{ user.email }}</ion-label>
+  </ion-item>
+</ion-content>
