@@ -7,8 +7,17 @@ ion-segment {
     height: 80px;
 }
 
+ion-segment-button.s1, ion-segment-button.s2,
+ion-segment-button.s3, ion-segment-button.s4 {
+    border-right: 1px solid rgba(21, 160, 224);
+}
+
 ion-toolbar ion-button {
     margin-left: 4px;
+}
+
+ion-card-header {
+    text-align: center;
 }
 
 .nanny ion-icon {

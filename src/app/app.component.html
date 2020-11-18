@@ -1,6 +1,6 @@
 <ion-app>
     <ion-split-pane contentId="main-content">
-        <ion-menu contentId="main-content" type="overlay">
+        <ion-menu contentId="main-content" type="overlay" *ngIf="dashboard == true">
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-list-header>
@@ -10,6 +10,12 @@
 
 
                     <ion-menu-toggle auto-hide="false">
+                        <ion-item routerLink="profile" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="profile">
+                                <ion-label>{{ user.name }}</ion-label>
+                                <ion-icon class="prof" name="pencil"></ion-icon>
+                            </div>
+                        </ion-item>
                         <ion-item routerLink="place-order" routerDirection="root" lines="none">
                             <div (click)="onClickNav($event)" id="place-order">
                                 <ion-icon slot="start" name="bag-add"></ion-icon>

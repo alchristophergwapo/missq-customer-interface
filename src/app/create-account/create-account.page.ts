@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormControl, FormGroup } from '@angular/forms';
+import { ServicesService } from '../services.service';
+import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { CountryCodes } from '../countryCodeModel';
+// import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
 
+import { AuthService } from '../api/services/auth/auth.service';
+import { Router } from '@angular/router';
+import { User } from '../api/models/user';
 
 @Component({
   selector: 'app-create-account',
@@ -9,33 +15,64 @@ import { FormsModule, FormControl, FormGroup } from '@angular/forms';
 })
 export class CreateAccountPage implements OnInit {
 
-  data: any;
+  public user: User;
   isSubmitted = false;
+  dataList: Array<CountryCodes> = [];
 
-  constructor() {
-    this.data = {
+  constructor(private dataService: ServicesService, private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.user = {  
       name: '',
       address: '',
-      phone: '',
+      code: '',
+      phone: null,
       email: '',
-      date: '',
+      birth_date: null,
       password: '',
-      cpassword: ''
-    };
+      confirm: '',
+      picture: '',
+      id_image: '',
+      id_number: null
+  };
+    return this.dataService.getData().subscribe(data => {
+      console.log(data)
+      this.dataList = data
+      data.forEach(per => {
+        // this.percentList.push(per.percentage)
+        // this.total();
+        // console.log(per.dial_code);
+      });
+      // // console.log(this.percentList)
+    }) 
   }
+  // form: FormGroup = new FormGroup({});
 
-  register(myForm: FormsModule) {
+
+  register(form) {
     this.isSubmitted = true;
-    console.log(this.data);
-    console.log('Form');
-    console.log(myForm);
+    this.authService.register(form.value).subscribe((response) => {
+      if (response) {
+        this.router.navigateByUrl('login');
+      }
+    });
   }
-
+  
   noSubmit(e) {
     e.preventDefault();
   }
-
-  ngOnInit() {
-  }
-
+  loadImageFromDevice(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => {
+      // get the blob of the image:
+      let blob: Blob = new Blob([new Uint8Array((reader.result as ArrayBuffer))]);
+      // create blobURL, such that we could use it in an image element:
+      let blobURL: string = URL.createObjectURL(blob);
+    };
+    reader.onerror = (error) => {
+      //handle errors
+    };
+  };
 }
