@@ -2,7 +2,7 @@
 const  express  =  require('express');
 const  bodyParser  =  require('body-parser');
 const cors = require('cors')
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -20,13 +20,13 @@ app.use(bodyParser.json());
 //     console.log("Error",error);
 // });
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://msqassociates:msqassociates@123@cluster0.uc6o6.mongodb.net/MsQAssociates?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
+const uri = "mongodb+srv://msqassociates:sunz8lyoztRAkVIw@cluster0.uc6o6.mongodb.net/MsQAssociates?retryWrites=true&w=majority";
+
+mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true }).then(() => {
+    console.log('Connected to database!');
+    
+}).catch((err) => {
+    console.log("Error: ", err)
 });
 
 const authentication = require('./controllers/authentication');

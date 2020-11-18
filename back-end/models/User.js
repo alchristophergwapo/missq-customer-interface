@@ -36,7 +36,7 @@ let User = new Schema({
         type: Number
     }
 },{
-		collection: 'User'
+		collection: 'Customers'
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('Customers', User);
