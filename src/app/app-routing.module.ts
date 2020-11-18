@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: 'place-order/location-select',
     loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule)
 
+  },
+  {
+    path: 'ideal/:id',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule)
   }
 
 ];
@@ -47,7 +52,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })
