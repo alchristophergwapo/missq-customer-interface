@@ -1,9 +1,7 @@
 {
   "name": "missq_customer_interface",
   "integrations": {
-    "capacitor": {
-      "enabled": false
-    },
+    "capacitor": {},
     "cordova": {}
   },
   "type": "angular"

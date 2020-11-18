@@ -14,6 +14,7 @@ export class ProfilePage implements OnInit {
 
   constructor(private app: AppComponent) {
     this.user = app.user;
+    console.log("On profile: ", this.user);
   }
 
   ngOnInit() {

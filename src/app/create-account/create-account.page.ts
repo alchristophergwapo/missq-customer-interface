@@ -6,6 +6,7 @@ import { CountryCodes } from '../countryCodeModel';
 
 import { AuthService } from '../api/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../api/models/user';
 
 @Component({
   selector: 'app-create-account',
@@ -24,14 +25,14 @@ export class CreateAccountPage implements OnInit {
     this.user = {  
       name: '',
       address: '',
-      phone: '',
+      phone: null,
       email: '',
-      birth_date: '',
+      birth_date: null,
       password: '',
       confirm: '',
       picture: '',
       id_image: '',
-      id_number: 0  
+      id_number: null
   };
     return this.dataService.getData().subscribe(data => {
       console.log(data)
@@ -73,4 +74,3 @@ export class CreateAccountPage implements OnInit {
   };
 }
 
-}
