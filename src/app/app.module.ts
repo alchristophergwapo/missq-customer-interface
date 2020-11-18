@@ -22,12 +22,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx'
 
-import { HttpClientModule } from '@angular/common/http';
-
 import { IonicStorageModule } from '@ionic/storage';
 
 import { AuthGuardService as AuthGuard } from "../app/api/services/auth_guard/auth-guard.service";
 import { AuthService } from "../app/api/services/auth/auth.service";
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [AppComponent, ConfirmedValidatorDirective],
@@ -47,6 +46,7 @@ import { AuthService } from "../app/api/services/auth/auth.service";
     StatusBar,
     SplashScreen,
     Geolocation,
+    NativeGeocoder,
     AuthGuard,
     AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

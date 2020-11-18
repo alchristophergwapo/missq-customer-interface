@@ -18,7 +18,7 @@
                 <div padding>
                     <ion-item>
                         <ion-icon name="mail"></ion-icon>&nbsp;
-                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel
+                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" [ngModel]="name"
                             required email></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched">
@@ -26,7 +26,7 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key"></ion-icon>&nbsp;
-                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" ngModel
+                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" [ngModel]="password"
                             required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">

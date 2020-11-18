@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate{
     return this.isAuthenticated.authSubject.pipe(
       take(1),
       map(user => {
-        console.log("Can activate: ", user);
+        // console.log("Can activate: ", user);
         if (!user) {
           this.alertControl.create({
             header: 'Unauthorized',

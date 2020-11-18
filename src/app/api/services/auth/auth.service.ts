@@ -65,7 +65,7 @@ export class AuthService {
       take(1),
 
       switchMap(token => {
-        console.log("Auth Service token in login: ", token);
+        // console.log("Auth Service token in login: ", token);
         this.authSubject.next(token);
 
         let storageObservable = from(this.storage.set(TOKEN_KEY, token));

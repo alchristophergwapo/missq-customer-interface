@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
     "@auth0/angular-jwt": "^5.0.1",
+    "@capacitor/android": "^2.4.2",
     "@capacitor/core": "2.4.2",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/geolocation": "^5.29.0",
@@ -31,8 +32,10 @@
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.3.1",
     "@types/google-maps": "^3.2.2",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-nativegeocoder": "^3.4.1",
+    "mongodb": "^3.6.3",
     "ng-validate-equal": "^1.0.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
@@ -52,6 +55,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "cordova-android": "^9.0.0",
+    "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
@@ -80,10 +84,12 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-nativegeocoder": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

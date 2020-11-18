@@ -12,12 +12,21 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended:  true }));
 app.use(bodyParser.json());
 
-const uri = "mongodb://127.0.0.1/missqassociates";
+// const uri = "mongodb://127.0.0.1/missqassociates";
 
-mongoose.connect(uri, {useUnifiedTopology: true,useNewUrlParser: true, useCreateIndex: true }).then(() => {
-    console.log("Connection to database is established!")
-}).catch((error) => {
-    console.log("Error",error);
+// mongoose.connect(uri, {useUnifiedTopology: true,useNewUrlParser: true, useCreateIndex: true }).then(() => {
+//     console.log("Connection to database is established!")
+// }).catch((error) => {
+//     console.log("Error",error);
+// });
+
+const uri = "mongodb+srv://msqassociates:sunz8lyoztRAkVIw@cluster0.uc6o6.mongodb.net/MsQAssociates?retryWrites=true&w=majority";
+
+mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true }).then(() => {
+    console.log('Connected to database!');
+    
+}).catch((err) => {
+    console.log("Error: ", err)
 });
 
 const authentication = require('./controllers/authentication');
