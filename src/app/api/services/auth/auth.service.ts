@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
-  AUTH_SERVER_ADDRESS: string = 'http://localhost:3000/authenticate';
+  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/authenticate';
   authSubject = new BehaviorSubject(false);
 
   constructor(

@@ -24,6 +24,7 @@ export class CreateAccountPage implements OnInit {
     this.user = {  
       name: '',
       address: '',
+      code: '',
       phone: null,
       email: '',
       birth_date: new Date("01/10/2020"),
@@ -76,6 +77,7 @@ export class CreateAccountPage implements OnInit {
 export interface User {
   name: string,
   address: string,
+  code: string,
   phone: number,
   email: string,
   birth_date: Date,

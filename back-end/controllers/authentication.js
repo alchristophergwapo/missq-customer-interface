@@ -8,8 +8,18 @@ const SECRET_KEY = "secretkey23456";
 const User = require('../models/User');
 
 routes.route('/register').post((request, response) => {
-    account = new User(request.body);
+    let pass = bcrypt.hashSync(request.body.password)
 
+    let account = new User({
+        name: request.body.name,
+        address: request.body.address,
+        phone: request.body.phone,
+        email: request.body.email,
+        password: pass,
+        picture: request.body.picture,
+        id_image: request.body.id_image,
+        id_number: request.body.id_number
+    });
     account.save().then((user) => {
         response.status(200).status({ 'status': 200 });
         console.log(user);
