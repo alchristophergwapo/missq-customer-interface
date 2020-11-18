@@ -32,6 +32,21 @@
                         <ion-text color="danger">Address is required</ion-text>
                     </ion-label><br>
                     <ion-item>
+                        <!-- <div class="item row">
+                            <div class="col"> -->
+                        <ion-icon name="call-sharp"></ion-icon>&nbsp;
+                        <ion-select name="code" [(ngModel)]='user.code' type="text" #codeCtrl="ngModel" placeholder="Country Code" ngModel required>
+                            <ion-select-option *ngFor="let per of dataList">{{per.dial_code}}</ion-select-option>
+                        </ion-select>
+                        <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel" placeholder="Phone Number" ngModel required number></ion-input>
+                    </ion-item>
+                    <ion-label *ngIf="!codeCtrl.valid && codeCtrl.touched && codeCtrl.errors?.required">
+                        <ion-text color="danger">Country Code is required</ion-text>
+                    </ion-label><br>
+                    <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
+                        <ion-text color="danger">Phone Number is required</ion-text>
+                    </ion-label><br>
+                    <!-- <ion-item>
                         <ion-select>
                             <ion-select-option *ngFor="let per of dataList">({{per.name}}) {{per.dial_code}}</ion-select-option>
                         </ion-select>
@@ -42,7 +57,7 @@
                     </ion-item>
                     <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
                         <ion-text color="danger">Phone Number is required</ion-text>
-                    </ion-label><br>
+                    </ion-label><br> -->
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
                         <ion-input name="email" [(ngModel)]='user.email' type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" ngModel required email></ion-input>
@@ -59,27 +74,24 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input name="password" [(ngModel)]='user.password' compare-password="confirm" type="password" #password="ngModel" placeholder="Password" ngModel required></ion-input>
+                        <ion-input name="password" [(ngModel)]='user.password' compare-password="confirm" type="password" #password="ngModel" [ngClass]="{ 'is-invalid': form.submitted && password.invalid}" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            ngModel minlength="6" required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!password.valid && password.touched && password.errors?.required">
                         <ion-text color="danger">Password is required</ion-text>
-                    </ion-label><br>
+                    </ion-label>
+                    <ion-label color="danger" *ngIf="password.errors?.minlength">Password must be at least 6 characters</ion-label><br>
                     <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
-                        <ion-input name="confirm" [(ngModel)]='user.confirm' compare-password="password" type="password" #confirm="ngModel" placeholder="Confirm Password" ngModel required>
+                        <ion-input name="confirm" [(ngModel)]='user.confirm' mustMatch="password" type="password" #confirm="ngModel" [ngClass]="{ 'is-invalid': form.submitted && confirm.invalid}" placeholder="Confirm Password" pattern="{{password.value}}" ngModel required>
                         </ion-input>
-                        <span class="text-danger" *ngIf="confirm.dirty && confirm.errors && confirm.errors.required">Password is required </span>
-                        <span class="text-danger" *ngIf="confirm.dirty && ((password.errors && password.errors.compare) || (confirm.errors && confirm.errors.compare)) && !confirm.errors.required">Password Doesn't match</span>
-                    </ion-item><br>
-
-                    <!-- <ion-label *ngIf="!confirm.valid && confirm.touched && confirm.errors?.required">
-                        <ion-text color="danger">Password is required.</ion-text>
-                    </ion-label>
-                    <ion-text *ngIf="(confirm.dirty || confirm.touched) && confirm.invalid">
-                        <p class="warning-text" *ngIf="confirm.hasError('notEqual') && confirm.valid">
-                            Passwords Don't Match
-                        </p>
-                    </ion-text><br> -->
+                    </ion-item>
+                    <ion-label *ngIf="!confirm.valid && confirm.touched && confirm.errors?.required">
+                        <ion-text color="danger">Confirm Password is required</ion-text>
+                    </ion-label><br>
+                    <!-- <ion-label *ngIf="confirm.errors?.mustMatch">
+                        <ion-text color="danger">Password must match</ion-text>
+                    </ion-label><br> -->
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-label slot="end">Picture(Selfie)</ion-label>

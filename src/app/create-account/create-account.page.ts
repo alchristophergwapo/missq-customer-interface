@@ -25,6 +25,7 @@ export class CreateAccountPage implements OnInit {
     this.user = {  
       name: '',
       address: '',
+      code: '',
       phone: null,
       email: '',
       birth_date: null,
@@ -45,6 +46,8 @@ export class CreateAccountPage implements OnInit {
       // // console.log(this.percentList)
     }) 
   }
+  // form: FormGroup = new FormGroup({});
+
 
   register(form) {
     this.isSubmitted = true;
@@ -73,4 +76,3 @@ export class CreateAccountPage implements OnInit {
     };
   };
 }
-
