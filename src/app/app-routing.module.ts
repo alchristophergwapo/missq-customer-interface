@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './api/services/auth_guard/auth-guard.service';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -48,6 +49,11 @@ const routes: Routes = [
 
   },
   {
+    path: 'ideal/:id',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'live-chat',
     loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule), 
     canActivate: [AuthGuardService]
@@ -61,9 +67,10 @@ const routes: Routes = [
 
 ];
 
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })
