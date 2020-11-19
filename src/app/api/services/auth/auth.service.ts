@@ -20,7 +20,7 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
 
   public user: Observable<any>;
-  AUTH_SERVER_ADDRESS: string = 'http://localhost:3000/authenticate';
+  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/authenticate';
   authSubject = new BehaviorSubject(null);
 
   constructor(

@@ -51,6 +51,7 @@ export class CreateAccountPage implements OnInit {
 
   register(form) {
     this.isSubmitted = true;
+    // console.log(form)
     this.authService.register(form.value).subscribe((response) => {
       if (response) {
         this.router.navigateByUrl('login');
