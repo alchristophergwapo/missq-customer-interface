@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../api/services/auth/auth.service";
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { AppComponent } from '../app.component';
 
 @Component({
