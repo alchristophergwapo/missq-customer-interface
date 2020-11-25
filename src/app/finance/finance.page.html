@@ -20,7 +20,7 @@
         </div>
     </ion-card><br><br>
     <ion-toolbar>
-        <ion-segment value="cash-in" color="tertiary" value="cash-in" [(ngModel)]="segmentModel" (ionChange)="segmentOnChange($event)">
+        <ion-segment value="cash-in" color="secondary" value="cash-in" [(ngModel)]="segmentModel" (ionChange)="segmentOnChange($event)">
             <ion-segment-button value="cash-in">
                 <img id="background" src="assets/images/cash-in.png" />
                 <ion-label>Cash-In</ion-label>
@@ -32,13 +32,21 @@
         </ion-segment>
     </ion-toolbar>
     <ion-card class="card1" *ngIf="segmentModel ==='cash-in'">
-        <!-- <ion-toolbar>
-            Cash-In
-        </ion-toolbar> -->
+        <ion-card-header color="secondary">
+            <ion-card-title>Cash-In</ion-card-title>
+        </ion-card-header>
+        <ion-content>
+            <ion-card id="gcash">
+                <label>GCash</label>
+            </ion-card>
+            <!-- <ion-card id="paypal">
+                <label>PayPal</label>
+            </ion-card> -->
+        </ion-content>
     </ion-card>
     <ion-card class="card1" *ngIf="segmentModel ==='promo'">
-        <!-- <ion-toolbar>
-            Promo Credits
-        </ion-toolbar> -->
+        <ion-card-header color="secondary">
+            <ion-card-title>Promo Credits</ion-card-title>
+        </ion-card-header>
     </ion-card>
 </ion-content>
