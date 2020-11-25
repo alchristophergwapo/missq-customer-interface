@@ -13,8 +13,10 @@ routes.route('/register').post((request, response) => {
     let account = new User({
         name: request.body.name,
         address: request.body.address,
+        code: request.body.code,
         phone: request.body.phone,
         email: request.body.email,
+        birth_date: request.body.birth_date,
         password: pass,
         picture: request.body.picture,
         id_image: request.body.id_image,
@@ -34,6 +36,7 @@ routes.route('/register').post((request, response) => {
 
 routes.route('/login').post((req, res) => {
 
+    // console.log(req.body);
     User.findOne({ email: req.body.email }).then((user) => {
         // console.log(user);
 

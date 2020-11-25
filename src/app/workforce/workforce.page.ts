@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { WorkforceService } from '../workforce.service';
+import { WebRequestService } from 'src/app/api/services/workforce/web-request.service';
+import { Ideal } from '../api/models/workforce/ideal';
+
 
 @Component({
   selector: 'app-workforce',
@@ -9,30 +11,33 @@ import { WorkforceService } from '../workforce.service';
 })
 export class WorkforcePage{
   
-  segmentModel = "ideal";
+  segmentModel : "ideals";
 
-  ideals: any;
+  public ideals: Ideal;
 
   banned = ['Aquino', 'Roxas', 'Pnoy', 'Estrada'];
 
  
-  dltIdeal(i) {
-    console.log(" Ideal deleted.");
-    this.ideals.splice(i,1);
-  }
+  // dltIdeal(i) {
+  //   console.log(" Ideal deleted.");
+  //   this.ideals.splice(i,1);
+  // }
 
   dltBanned(i) {
     console.log(" Banned deleted.");
     this.banned.splice(i,1);
   }
-  constructor(private workforceService : WorkforceService, private route : ActivatedRoute){}
+  constructor(
+    private webRequestService: WebRequestService, 
+    private route : ActivatedRoute
+    ){}
 
   ngOnInit(){
     this.route.params.subscribe((params: Params) => {
-      console.log(params);
+      // console.log(params);
     });
 
-    this.workforceService.getList().subscribe((ideals : any[]) => {
+    this.webRequestService.get().subscribe((ideals : Ideal) => {
       this.ideals = ideals;
       console.log(ideals);
     });
@@ -44,14 +49,14 @@ export class WorkforcePage{
   getList() {
     
   }
-  createList() {
-    this.workforceService.createList('Another testing.').subscribe((response : any) => {
+  postList(i) {
+    this.webRequestService.post(i).subscribe((response : any) => {
       console.log(response);
     });
   }
 
   dltList(ids) {
-    this.workforceService.deleteList(ids).subscribe((response : any) => {
+    this.webRequestService.delete(ids.id).subscribe((response : any) => {
       console.log(response);
       console.log(ids);
       console.log("Delete List");

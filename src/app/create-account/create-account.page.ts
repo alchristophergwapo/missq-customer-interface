@@ -56,6 +56,7 @@ export class CreateAccountPage implements OnInit {
         this.router.navigateByUrl('login');
       }
     });
+    // console.log(form)
   }
   
   noSubmit(e) {
