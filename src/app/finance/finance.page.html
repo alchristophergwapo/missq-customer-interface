@@ -10,7 +10,7 @@
 <ion-content>
     <ion-card>
         <nav>
-            <img class="voucher" id="background" src="assets/images/voucher.png" />
+            <img class="voucher" src="assets/images/voucher.png" />
             <!-- <svg class="arrow" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272"/></svg> -->
             PHP
         </nav>
@@ -19,21 +19,26 @@
             <p>Prepaid Account Balance</p>
         </div>
     </ion-card><br><br>
-    <ion-card class="card1">
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <div>
-                        <h2>
-                            <img id="background" src="assets/images/cash-in.png" /><br>Cash-In</h2>
-                    </div>
-                </ion-col>
-                <ion-col>
-                    <div>
-                        <h2><img id="background" src="assets/images/voucher.png" /><br>Promo Credits</h2>
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+    <ion-toolbar>
+        <ion-segment value="cash-in" color="tertiary" value="cash-in" [(ngModel)]="segmentModel" (ionChange)="segmentOnChange($event)">
+            <ion-segment-button value="cash-in">
+                <img id="background" src="assets/images/cash-in.png" />
+                <ion-label>Cash-In</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="promo">
+                <img id="background" src="assets/images/voucher.png" />
+                <ion-label>Promo Credits</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-card class="card1" *ngIf="segmentModel ==='cash-in'">
+        <!-- <ion-toolbar>
+            Cash-In
+        </ion-toolbar> -->
+    </ion-card>
+    <ion-card class="card1" *ngIf="segmentModel ==='promo'">
+        <!-- <ion-toolbar>
+            Promo Credits
+        </ion-toolbar> -->
     </ion-card>
 </ion-content>
