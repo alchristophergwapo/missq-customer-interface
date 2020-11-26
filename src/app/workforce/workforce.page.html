@@ -11,7 +11,7 @@
   <ion-toolbar color="light">
     <ion-card>
       <ion-segment value="ideals" color="white" scrollable="true" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="ideals">
+        <ion-segment-button value="workforceIdeals">
           <ion-label>Ideal</ion-label>
         </ion-segment-button>
         <ion-segment-button value="banned">
@@ -21,7 +21,7 @@
     </ion-card>
   </ion-toolbar>
 
-  <ion-card *ngIf="segmentModel === 'ideals'">
+  <ion-card *ngIf="segmentModel === 'workforceIdeals'">
     <ion-card-header color="secondary">
       <ion-card-title>Ideal</ion-card-title>
     </ion-card-header>
@@ -33,7 +33,7 @@
             {{item.title}}
           </ion-item>
           <ion-item-options side="end" >
-            <ion-icon class="del" (click)="dltList(item.value)" name="trash"></ion-icon>
+            <ion-icon class="del" (click)="dltList(item._id)" name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>

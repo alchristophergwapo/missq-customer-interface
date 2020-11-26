@@ -11,7 +11,7 @@ import { Ideal } from '../api/models/workforce/ideal';
 })
 export class WorkforcePage{
   
-  segmentModel : "ideals";
+  segmentModel:"workforceIdeals";
 
   public ideals: Ideal;
 
@@ -39,7 +39,7 @@ export class WorkforcePage{
 
     this.webRequestService.get().subscribe((ideals : Ideal) => {
       this.ideals = ideals;
-      console.log(ideals);
+      // console.log(ideals);
     });
   }
 
@@ -56,10 +56,8 @@ export class WorkforcePage{
   }
 
   dltList(ids) {
-    this.webRequestService.delete(ids.id).subscribe((response : any) => {
-      console.log(response);
-      console.log(ids);
-      console.log("Delete List");
+    this.webRequestService.deleteWork(ids).subscribe((response : any) => {
+
     });
   }
 }

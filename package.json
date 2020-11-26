@@ -32,6 +32,7 @@
     "@ionic/storage": "^2.3.1",
     "@types/google-maps": "^3.2.2",
     "angularx-social-login": "^3.4.1",
+    "body-parser": "^1.19.0",
     "cordova-browser": "6.0.0",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-nativegeocoder": "^3.4.1",

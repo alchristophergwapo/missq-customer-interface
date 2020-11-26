@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class WebRequestService {
 
-  public uri: Observable<Ideal>;
+  public uri: Observable<any>;
   readonly ROOT_URL;
   errorMsg: string;
   
@@ -32,8 +32,10 @@ export class WebRequestService {
      return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
    }
 
-   delete(id:Ideal):Observable<any> {
-    return this.http.delete(`${this.ROOT_URL}/ideal/${id}` )
+   deleteWork(uri):Observable<any> {
+    console.log("URL:"+`${this.ROOT_URL}/ideal/${uri}`);
+    this.route.navigate(['/workforce/ideal']);
+    return this.http.delete(`${this.ROOT_URL}/ideal/${uri}`)
     .pipe(
       catchError(error => {
         this.errorMsg = error.message;
@@ -41,5 +43,9 @@ export class WebRequestService {
         })
       );
    }
+
+  reRoute()  {
+    this.route.navigate(['/ideal/:id']);
+}
 
 }

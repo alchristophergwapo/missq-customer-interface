@@ -49,6 +49,11 @@ const routes: Routes = [
 
   },
   {
+    path: 'workforce/ideal',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'ideal/:id',
     loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule),
     canActivate: [AuthGuardService]
