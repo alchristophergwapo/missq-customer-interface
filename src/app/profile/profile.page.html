@@ -1,26 +1,30 @@
-<ion-card>
-  <ion-card-content>
-    <hr><hr>
-  <!-- <ion-label class='accountInfo'>Account Information</ion-label> -->
-    <nobr class = 'close' ><ion-icon name="arrow-back" [routerLink]="['/place-order']"></ion-icon></nobr> 
-    <h1><img height="50" float-left src="assets/images/msqlogo.png">Account Information</h1>
-    <ion-row>
-      <ion-col col-4>
-        <ion-label class="user"><img src="https://tse2.mm.bing.net/th?id=OIP.4iLqWG6iAIygCf0Y1Tu7OQHaEo&pid=Api&P=0&w=247&h=155" id = 'userimage' alt=""><br><h6 class="username">{{ user.name }}</h6></ion-label>
-      </ion-col>
-      <nobr class="verticalLine">
-      </nobr>
+<ion-content class="background">
+  <ion-card>
+    <ion-card-content>
+    <!-- <ion-label class='accountInfo'>Account Information</ion-label> -->
+    <!-- <div class = 'header'>  -->
+        <nobr class = 'close' ><ion-icon name="arrow-back" [routerLink]="['/place-order']"></ion-icon></nobr> 
+        <h1><img height="50" float-left src="assets/images/msqlogo.png">Account Information</h1>
+        <ion-row>
+          <ion-col col-4>
+            <ion-label class="user"><img src="https://c-sf.smule.com/rs-s24/arr/1e/86/5b77981a-1e1d-4b4e-ac7a-a677ab173ec8_256.jpg" id = 'userimage' alt=""><br><h6 class="username">{{ user.name }}</h6></ion-label>
+          </ion-col>
+    <!-- </div> -->
+        <nobr class="verticalLine">
+        </nobr>
 
-        <!-- get the user.image to change the image above -->
-        <ion-col col-4 id = 'info'>
-            <ion-label><h6 class = 'name'> <nobr> Email : </nobr>  {{ user.email }}</h6> </ion-label>
-            <br>
-            <ion-label><h6 class = 'name'><nobr>Phone Number :  </nobr>{{ user.phone }}</h6></ion-label><br>
-            <ion-label><h6 class = 'name'><nobr>Address :  </nobr>{{ user.address }}</h6></ion-label><br>
-            <ion-label><h6 class = 'name'><nobr>Country Code :  </nobr>{{ user.code}}</h6></ion-label><br>
-            <ion-label><h6 class = 'name'><nobr>Birthday :  </nobr>{{ user.birthday }}</h6></ion-label><br>
-            <ion-label><h6 class = 'name'><nobr>ID Number :  </nobr>{{ user.id }}</h6></ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-card-content>
-</ion-card>
+          <!-- get the user.image to change the image above -->
+          <ion-col col-4 id = 'info'>
+              <ion-label><h6 class = 'name'> <nobr> Email : </nobr>  {{ user.email }}</h6> </ion-label>
+              <br>
+              <ion-label><h6 class = 'name'><nobr>Phone Number :  </nobr>{{ user.phone }}</h6></ion-label><br>
+              <ion-label><h6 class = 'name'><nobr>Address :  </nobr>{{ user.address }}</h6></ion-label><br>
+              <ion-label><h6 class = 'name'><nobr>Country Code :  </nobr>{{ user.code}}</h6></ion-label><br>
+              <ion-label><h6 class = 'name'><nobr>Birthday :  </nobr>{{ user.birthday }}</h6></ion-label><br>
+              <ion-label><h6 class = 'name'><nobr>ID Number :  </nobr>{{ user.id }}</h6></ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

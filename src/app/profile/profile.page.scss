@@ -29,7 +29,7 @@ ion-row{
     margin-top: 3%;
     margin-left: 2%;
     text-align: justify;
-    color: rgb(29, 50, 59);
+    color:rgb(5, 56, 80);
 }
 ion-label.user{
     color: rgb(29, 50, 59);
@@ -45,9 +45,10 @@ ion-label.user{
 }
 .username{
     // margin-left:42%;
-    font-size: 15px;
+    font-size: 20px;
     padding: 5%;
-    color: rgba(21, 160, 224);
+    color:rgb(5, 56, 80);
+    font-weight: bold;
 }
 ion-label.accountInfo{
     text-align: center;
@@ -63,8 +64,9 @@ ion-card{
 h1{
     text-align: center;
     margin-bottom: 5%;
-    font-family:  Arial, Helvetica, sans-serif;
-    color:rgba(21, 160, 224);
+    font-family:  "Comic Sans MS", cursive, sans-serif;
+    color:rgb(5, 56, 80);
+    font-size: 30px;
 }
 nobr{
     text-transform:  uppercase;
@@ -82,3 +84,10 @@ nobr.close{
     text-align: center;
     margin-left: 5%;
   }
+// .header{
+//     background-color: lavenderblush;
+// }
+.background{
+    --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
+
+}
