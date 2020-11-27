@@ -1,18 +1,14 @@
 const mongoose = require('mongoose');
 
 const BannedSchema = new mongoose.Schema({
-    title : {
+    name : {
         type: String,
         required: true,
         minlength: 1,
         trim: true,
-    },
-    _idealId : {
-        type: mongoose.Types.ObjectId,
-        required:true,
     }
+}, {
+    collection: 'workforce-banned'
 });
 
-const Banned = mongoose.model('Banned', BannedSchema);
-
-module.exports = { Banned };
+module.exports = mongoose.model('workforce-banned', BannedSchema);

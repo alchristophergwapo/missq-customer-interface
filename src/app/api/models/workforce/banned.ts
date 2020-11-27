@@ -1,3 +1,3 @@
 export interface Banned{
-    title : string
+    name : string
 }

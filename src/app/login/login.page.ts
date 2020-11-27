@@ -21,8 +21,8 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController, 
     private dash: AppComponent
   ) { 
-    this.name = '';
-    this.password = "";
+    this.name = 'chu@gmail.com';
+    this.password = "M@chuy012";
   }
 
   login(form) {

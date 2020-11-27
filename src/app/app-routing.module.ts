@@ -59,6 +59,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'workforce/banned',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'banned/:id',
+    loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'live-chat',
     loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule), 
     canActivate: [AuthGuardService]

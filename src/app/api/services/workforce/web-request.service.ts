@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 
 import { Ideal } from '../../models/workforce/ideal';
+import {} from '../../models/workforce/banned';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -20,18 +21,25 @@ export class WebRequestService {
     this.ROOT_URL = 'http://localhost:8080/workforce';
    }
 
-   get():Observable<any> {
+   //Get service of ideal
+   getWorkforceIdeal():Observable<any> {
     return this.http.get(`${this.ROOT_URL}/ideal`);
    }
 
-   post(uri:Ideal):Observable<any> {
-    return this.http.post(`${this.ROOT_URL}/ideal`, uri);
+   //Get service of banned
+   getWorkforceBanned():Observable<any> {
+     return this.http.get(`${this.ROOT_URL}/banned`);
    }
 
-   patch(uri:string, payload:Object) {
-     return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
-   }
+  //  post(uri:Ideal):Observable<any> {
+  //   return this.http.post(`${this.ROOT_URL}/ideal`, uri);
+  //  }
 
+  //  patch(uri:string, payload:Object) {
+  //    return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
+  //  }
+  
+   //Delete service of ideal
    deleteWork(uri):Observable<any> {
     console.log("URL:"+`${this.ROOT_URL}/ideal/${uri}`);
     this.route.navigate(['/workforce/ideal']);
@@ -42,6 +50,18 @@ export class WebRequestService {
         return of([]);
         })
       );
+   }
+
+   //Delete servce of banned
+   deleteWorkforceBanned(uri) {
+     this.route.navigate(['/workforce/banned']);
+    return this.http.delete(`${this.ROOT_URL}/banned/${uri}`)
+    .pipe(
+      catchError(error => {
+        this.errorMsg = error.message;
+        return of ([]);
+      })
+    );
    }
 
   reRoute()  {

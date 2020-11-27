@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { WebRequestService } from 'src/app/api/services/workforce/web-request.service';
 import { Ideal } from '../api/models/workforce/ideal';
+import { Banned } from '../api/models/workforce/banned';
 
 
 @Component({
@@ -11,52 +12,46 @@ import { Ideal } from '../api/models/workforce/ideal';
 })
 export class WorkforcePage{
   
-  segmentModel:"workforceIdeals";
+  segmentModel="workforceIdeals";
 
   public ideals: Ideal;
+  
+  public banned: Banned;
 
-  banned = ['Aquino', 'Roxas', 'Pnoy', 'Estrada'];
-
- 
-  // dltIdeal(i) {
-  //   console.log(" Ideal deleted.");
-  //   this.ideals.splice(i,1);
-  // }
-
-  dltBanned(i) {
-    console.log(" Banned deleted.");
-    this.banned.splice(i,1);
-  }
+  
   constructor(
     private webRequestService: WebRequestService, 
     private route : ActivatedRoute
     ){}
 
   ngOnInit(){
-    this.route.params.subscribe((params: Params) => {
-      // console.log(params);
-    });
 
-    this.webRequestService.get().subscribe((ideals : Ideal) => {
+    //For displaying of ideals list
+    this.webRequestService.getWorkforceIdeal().subscribe((ideals : Ideal) => {
       this.ideals = ideals;
       // console.log(ideals);
+    });
+
+    //For displaying of banned list
+    this.webRequestService.getWorkforceBanned().subscribe((banned : Banned) => {
+      this.banned = banned;
+      // console.log(banned);
     });
   }
 
   segmentChanged(event){
   }
 
-  getList() {
-    
-  }
-  postList(i) {
-    this.webRequestService.post(i).subscribe((response : any) => {
-      console.log(response);
+  //Function for deleting data from ideal by an id.
+  dltList(ids) {
+    this.webRequestService.deleteWork(ids).subscribe((response : any) => {
+
     });
   }
 
-  dltList(ids) {
-    this.webRequestService.deleteWork(ids).subscribe((response : any) => {
+  //Function for deleting data from banned by an id.
+  dltBanned(ids) {
+    this.webRequestService.deleteWorkforceBanned(ids).subscribe((response : any) => {
 
     });
   }

@@ -2,9 +2,6 @@ const express = require('express');
 const app = express();
 const routes = express.Router();
 const ObjectId = require('mongodb').ObjectID;
-// const port = 3000
-
-// const { mongoose } = require('./db/mongoose');
 
 const bodyParser = require('body-parser');
 
@@ -17,29 +14,7 @@ const Banned = require('../models/workforce/Banned');
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// CORS HEADER MIDDLEWARE
-// app.use(function(req, res, next) {
-//     res.setHeader('Access-Control-Allow-Origin','*'); //http://localhost:3000,
-// 	res.setHeader('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT,PATCH, DELETE');
-// 	res.setHeader('Access-Control-Allow-Headers','*');
-// 	res.setHeader('Access-Control-Allow-Credentials','true');
-//     next();
-//   });
-
-
-routes.route('/ideal').post((req, res) => {
-    let title = req.body.title;
-
-    let newIdeal = new Ideal({
-        title
-    });
-
-    newIdeal.save().then((idealDoc) => {
-        res.send(idealDoc);
-    });
-});
-
-//Display lists
+//Display ideal lists
 routes.route('/ideal').get((req, res) => {
     Ideal.find().then((ideals) => {
         res.send(ideals);
@@ -48,10 +23,19 @@ routes.route('/ideal').get((req, res) => {
     })
 });
 
+//Display banned lists
+routes.route('/banned').get((req, res) => {
+    Banned.find().then((banned) => {
+        res.send(banned);
+    }).catch((e) => {
+        res.send(e);
+    })
+});
 
-//Delete By Using Req.Params
+
+//Delete ideal By Using Req.Params
 routes.route('/ideal/:id').delete((req, res) => {
-    Ideal.deleteOne({ _id:req.params.id}).then(
+    Ideal.deleteOne({ _id: req.params.id}).then(
         () => {
             res.status(200).json({
                 message: 'Deleted!'
@@ -61,6 +45,23 @@ routes.route('/ideal/:id').delete((req, res) => {
         (error) => {
             res.status(400).json({
                 error: error
+            });
+        }
+    );
+});
+
+//Dalete banned By Using Req.Params
+routes.route('/banned/:id').delete((req, res) => {
+    Banned.deleteOne({_id: req.params.id}).then(
+        () => {
+            res.status(200).json({
+                message: 'Deleted!'
+            });
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error:error
             });
         }
     );
@@ -87,7 +88,17 @@ routes.route('/ideal/:id').delete((req, res) => {
 
 // });
 
+// routes.route('/ideal').post((req, res) => {
+//     let title = req.body.title;
 
+//     let newIdeal = new Ideal({
+//         title
+//     });
+
+//     newIdeal.save().then((idealDoc) => {
+//         res.send(idealDoc);
+//     });
+// });
 
     // app.get('/workforce/ideal', (req,res) => {
     //     // res.send("You've reached this far.");
