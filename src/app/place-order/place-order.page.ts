@@ -1,85 +1,173 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from "@ionic-native/native-geocoder/ngx";
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Platform } from '@ionic/angular';
+import { Component, OnInit } from "@angular/core";
+import {
+  NativeGeocoder,
+  NativeGeocoderOptions,
+  NativeGeocoderResult
+} from "@ionic-native/native-geocoder/ngx";
+import { AlertController, IonSlides } from "@ionic/angular";
+import { Router } from "@angular/router";
+import { BehaviorSubject, Observable } from "rxjs";
+import { switchMap, map } from "rxjs/operators";
+
+// import { LocationSelectPage } from "../location-select/location-select.page";
 
 declare var google: any;
 
 @Component({
-  selector: 'app-place-order',
-  templateUrl: './place-order.page.html',
-  styleUrls: ['./place-order.page.scss'],
+  selector: "app-place-order",
+  templateUrl: "./place-order.page.html",
+  styleUrls: ["./place-order.page.scss"]
 })
 export class PlaceOrderPage implements OnInit {
-  
-  segmentModel = "nanny";
+  // @ViewChild('nanny-s-location') locationInput: ElementRef;
 
-  userLocation;
-  userCity;
-  lat;
-  lng;
-  location;
-  latLngResult;
-  userLocationFromLatLng;
+  segmentModel = "Nanny";
 
-  constructor(private geo: Geolocation, private geoCoder: NativeGeocoder, private platform: Platform, public zone: NgZone) { 
-    this.initializeApp();
+  // @ViewChild(IonSlides) slides: IonSlides;
+
+  nanny: any = [
+    {
+      MediaUrl: "../../assets/images/nanny.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/nanny1.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/nanny2.jpeg"
+    }
+  ];
+  housekeeping: any = [
+    {
+      MediaUrl: "../../assets/images/housekeeping.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/housekeeping1.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/housekeeping2.jpg"
+    }
+  ];
+  tutor: any = [
+    {
+      MediaUrl: "../../assets/images/tutor.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/tutor1.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/tutor2.jpg"
+    }
+  ];
+  massage: any = [
+    {
+      MediaUrl: "../../assets/images/massage.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/massage1.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/massage2.jpg"
+    }
+  ];
+  haircut: any = [
+    {
+      MediaUrl: "../../assets/images/haircut.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/haircut1.jpg",
+    },
+    {
+      MediaUrl: "../../assets/images/haircut2.jpg"
+    }
+  ];
+
+  mySlideOptions = {
+    pager: true
+  };
+
+  costs: any = {
+    Nanny: 84,
+    Housekeeping: 93,
+    Tutor_Cum_Nanny: 150,
+    Massage_Therapist: 500,
+    Haircut: 100
+  };
+
+  totalCost: number;
+
+  bookedData: Observable<any>;
+  booked = new BehaviorSubject(null);
+
+  constructor(private alertCtrl: AlertController, private router: Router) {
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.getMyLocation();
+  async bookService() {
+    const alert = await this.alertCtrl.create({
+      header: this.segmentModel,
+      subHeader: "Please fill up the needed information!",
+      inputs: [
+        {
+          name: "hours",
+          placeholder: "Hours of service",
+          type: "number"
+        },
+        {
+          name: "notes",
+          placeholder: "Notes",
+          type: "textarea"
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: data => {}
+        },
+        {
+          text: "Next",
+          handler: data => {
+            this.totalCost = this.costs[this.segmentModel] * data.hours;
+            if (data.hours && data.notes) {
+              this.booked.next(data);
+              if (this.booked.value) {
+                console.log(this.booked);
+
+                this.router.navigateByUrl("place-order/location-select");
+              }
+            } else {
+              this.inputError();
+            }
+          }
+        }
+      ]
     });
+    await alert.present();
   }
 
-  getMyLocation() {
-    this.geo.getCurrentPosition().then((response)=> {
-
-    }).catch((error) =>{
-      console.log('Error', error);
+  async inputError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: "my-custom-class",
+      header: "Error!",
+      message: "Please fill up the needed information.",
+      buttons: [
+        {
+          text: "OK",
+          handler: () => {
+            this.bookService();
+          }
+        }
+      ]
     });
-    
+
+    await alert.present();
   }
-
-  // async getGeoLocation(lat: number, lng: number, type?) {
-  //   let geocoder = await new google.maps.Geocoder();
-  //   let latlng = await new google.maps.LatLng(lat, lng);
-  //   let request = {latLng: latlng};
-
-  //   await geocoder.geocode(request, (results, status) => {
-  //     if (status = google.maps.GeocoderStatus.OK) {
-  //       let result = results[0];
-  //       this.zone.run(() => {
-  //         if (result != null) {
-  //           this.userCity = result.formatted_address;
-  //           if (type === 'reverseGeocode') {
-  //             this.latLngResult = result.formatted_address;
-  //           }
-  //         }
-  //       })
-
-  //     }
-  //   });
-  // }
-
-  // reverseGeocode(lat, lng) {
-  //   if (this.platform.is('cordova')) {
-  //     let options: NativeGeocoderOptions = {
-  //       useLocale: true,
-  //       maxResults: 5
-  //     };
-  //     this.geoCoder.reverseGeocode(lat, lng, options)
-  //       .then((result: NativeGeocoderResult[]) => this.userLocationFromLatLng = result[0])
-  //       .catch((error: any) => console.log(error));
-  //   } else {
-  //     this.getGeoLocation(lat, lng, 'reverseGeocode');
-  //   }
-  // }
 
   ngOnInit() {
+    if (!this.totalCost) {
+      this.totalCost = this.costs[this.segmentModel];
+    }
   }
 
-  segmentChanged(event){
+  segmentChanged(event) {
   }
-
 }

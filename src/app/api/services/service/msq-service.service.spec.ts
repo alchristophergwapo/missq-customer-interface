@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NannyService } from './nanny.service';
+import { MsqServiceService } from './msq-service.service';
 
-describe('NannyService', () => {
-  let service: NannyService;
+describe('MsqServiceService', () => {
+  let service: MsqServiceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NannyService);
+    service = TestBed.inject(MsqServiceService);
   });
 
   it('should be created', () => {

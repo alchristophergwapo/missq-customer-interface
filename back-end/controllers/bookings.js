@@ -1,14 +1,14 @@
 const express = require('express');
 const routes = express.Router();
 
-const Nanny = require('../models/Nanny');
+const Booking = require('../models/Booking');
 
-routes.route('/post-job').post((request, response) => {
-    let nanny = new Nanny(request.body);
-    console.log(nanny);
+routes.route('/book_service').post((request, response) => {
+    let booking = new Booking(request.body);
+    console.log(booking);
 
-    nanny.save().then((nanny) => {
-        console.log("nanny", nanny);
+    booking.save().then((booked) => {
+        console.log("booking", booked);
         response.status(200).send({'status': 200});
     }).catch((error)=>{
         console.log(error);

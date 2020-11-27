@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Nanny = new Schema({
-    work: {
+let Booking = new Schema({
+    service_booking: {
         type: String,
         required: true
     },
-    location: {
+    service_location: {
         type: String,
         required: true
     },
@@ -17,10 +17,14 @@ let Nanny = new Schema({
     notes: {
         type: String,
         required: true
+    },
+    phone: {
+        type: String,
+        required: true
     }
 }, {
-    collection: 'nanny-job-posting'
+    collection: 'msq_service_bookings'
 }
 );
 
-module.exports = mongoose.model(Nanny)
+module.exports = mongoose.model("Booking",Booking)
