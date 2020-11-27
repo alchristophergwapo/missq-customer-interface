@@ -24,6 +24,10 @@ let User = new Schema({
         type: String,
         required: true
     },
+    birth_date: {
+        type: Date,
+        required: true,
+    },
     password: {
         type: String,
         required: true,

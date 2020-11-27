@@ -62,7 +62,12 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'promotions-news',
+    loadChildren: () => import('./promotions-news/promotions-news.module').then( m => m.PromotionsNewsPageModule)
   }
+
 
 
 ];

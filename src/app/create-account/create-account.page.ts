@@ -58,6 +58,7 @@ export class CreateAccountPage implements OnInit {
   // form: FormGroup = new FormGroup({});
 
   register(form) {
+    this.isSubmitted = true;
     this.authService.register(form.value).subscribe(response => {
       if (response) {
         this.isSubmitted = true;

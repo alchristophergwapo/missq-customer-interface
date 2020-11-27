@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancePage implements OnInit {
 
+  segmentModel: "cash-in";
   constructor() { }
 
   ngOnInit() {
   }
 
+  segmentOnChange(event){
+  }
 }

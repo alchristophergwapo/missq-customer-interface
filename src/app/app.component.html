@@ -34,6 +34,12 @@
                                 <ion-label>Finance</ion-label>
                             </div>
                         </ion-item>
+                        <ion-item routerLink="promotions-news" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="promotions-news">
+                                <ion-icon slot="start" name="newspaper"></ion-icon>
+                                <ion-label>Promotions/News</ion-label>
+                            </div>
+                        </ion-item>
                         <ion-item routerLink="settings" routerDirection="root" lines="none">
                             <div (click)="onClickNav($event)" id="settings">
                                 <ion-icon slot="start" name="settings-sharp"></ion-icon>
