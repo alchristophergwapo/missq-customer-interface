@@ -20,9 +20,9 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
 
   public user: Observable<any>;
-  AUTH_SERVER_ADDRESS: string = 'http://localhost:3000/authenticate';
+  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/authenticate';
   authSubject = new BehaviorSubject(null);
-
+  
   constructor(
     private httpClient: HttpClient,
     private storage: Storage,
@@ -65,7 +65,7 @@ export class AuthService {
       take(1),
 
       switchMap(token => {
-        // console.log("Auth Service token in login: ", token);
+        console.log("Auth Service token in login: ", token);
         this.authSubject.next(token);
 
         let storageObservable = from(this.storage.set(TOKEN_KEY, token));
@@ -81,7 +81,7 @@ export class AuthService {
 
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
-      this.router.navigateByUrl('place-order');
+      this.router.navigateByUrl('home');
       this.authSubject.next(null);
     });
   };

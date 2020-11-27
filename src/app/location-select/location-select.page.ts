@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { NavController } from "@ionic/angular";
+import { Observable } from 'rxjs';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { PlaceOrderPage } from '../place-order/place-order.page';
+import { Router } from "@angular/router";
 
 declare var google: any;
 
@@ -21,11 +23,16 @@ export class LocationSelectPage implements OnInit {
 
   myLocation: any;
 
+  data: any;
+
   constructor(
-    public navCtrl: NavController,
-    public geo: Geolocation
+    private geo: Geolocation,
+    private router: Router,
+    private pl: PlaceOrderPage
   ) {
     this.getGeoLocation();
+    
+    
   }
 
   getGeoLocation() {
@@ -56,11 +63,10 @@ export class LocationSelectPage implements OnInit {
     var markers = [];
     searchBox.addListener('places_changed', () => {
       var places = searchBox.getPlaces();
+      
       if (places.length == 0) {
         return;
       }
-
-      // console.log( "On searchbox listener: ", places);
 
       markers.forEach(function(marker) {
         marker.setMap(null);
@@ -71,8 +77,7 @@ export class LocationSelectPage implements OnInit {
       var bounds = new google.maps.LatLngBounds();
 
       places.forEach(function(place){
-
-        console.log(place);
+        
         // LocationSelectPage.lat = place.geometry.viewport.Ya.i;
         // LocationSelectPage.lon = place.geometry.viewport.Ua.i;
 
@@ -80,14 +85,6 @@ export class LocationSelectPage implements OnInit {
           console.log('No geometry');
           return;
         }
-
-        var icon = {
-          url: place.icon,
-          size: new google.maps.Size(72,71),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(17,34),
-          scaledSize: new google.maps.Size(25,25)
-        };
 
         markers.push(new google.maps.Marker({
           map: map,
@@ -99,13 +96,24 @@ export class LocationSelectPage implements OnInit {
           bounds.union(place.geometry.viewport);
         } else {
           bounds.extend(place.geometry.location);
-        }
+        };
+        
       });
 
       map.fitBounds(bounds);
+      
     });
   }
 
-  ngOnInit() {}
+  getInputValue(): Observable<string> {
+    console.log(this.myLocation);
+    
+    return this.myLocation;
+  }
+
+  ngOnInit() {
+    // console.log(this.pl.booked);
+    
+  }
 
 }

@@ -10,9 +10,9 @@
 
 
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item routerLink="profile" routerDirection="root" lines="none">
+                        <ion-item routerLink="profile" routerDirection="root" lines="none" *ngIf="user">
                             <div (click)="onClickNav($event)" id="profile">
-                                <ion-label>{{ user.name }}</ion-label>
+                                <ion-label class="user">{{ user.name }}</ion-label>
                                 <ion-icon class="prof" name="pencil"></ion-icon>
                             </div>
                         </ion-item>
