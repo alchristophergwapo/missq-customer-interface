@@ -27,7 +27,7 @@ import { AuthGuardService as AuthGuard } from "../app/api/services/auth_guard/au
 import { AuthService } from "../app/api/services/auth/auth.service";
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],

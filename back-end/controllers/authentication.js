@@ -14,6 +14,7 @@ routes.route('/register').post((request, response) => {
         name: request.body.name,
         address: request.body.address,
         phone: request.body.phone,
+        code: request.body.code,
         email: request.body.email,
         password: pass,
         picture: request.body.picture,
