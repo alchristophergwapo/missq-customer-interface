@@ -39,7 +39,6 @@ routes.route('/login').post((req, res) => {
 
     User.findOne({ email: req.body.email }).then((user) => {
         // console.log(user);
-
         const expiresIn = 24 * 60 * 60;
         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
             expiresIn: expiresIn
@@ -57,6 +56,21 @@ routes.route('/login').post((req, res) => {
         } else {
             res.status(400).send({ 'status': 400 });
         }
+    }).catch(error => {
+        console.log('Error ', error)
+    });
+});
+
+routes.route('/profile').post((req, res) =>{
+    console.log('nisulod sa backend.')
+
+    var item = {
+        phone : req.body.phone
+    }
+    // var update = User.updateOne({_id: "5fb5d66bd0e42226fcb0b128"}, {$set : {'phone' : '12345'}})
+    User.updateOne({_id: "5fb5d66bd0e42226fcb0b128"}, {$set : {'phone' : '12345'}}).then((res) =>{
+        console.log('contact info username :  ' + JSON.stringify(res))
+        response.status(200).send({ "user": user, "access_token": accessToken, "expires_in": expiresIn, "status": 200 });
     }).catch(error => {
         console.log('Error ', error)
     });

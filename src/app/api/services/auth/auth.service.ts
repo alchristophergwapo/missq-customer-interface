@@ -59,6 +59,14 @@ export class AuthService {
         }
       }));
   };
+  
+  // updateContact info in profile (ayaw katingala di ni mowork hahah)
+  updateContactInfo(user : User){
+    console.log('nisud sa auth service.')
+    console.log(user)
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/profile`, user)
+  }
+  // until here
 
   login(user: User): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/login`, user).pipe(
@@ -67,11 +75,9 @@ export class AuthService {
       switchMap(token => {
         // console.log("Auth Service token in login: ", token);
         this.authSubject.next(token);
-
         let storageObservable = from(this.storage.set(TOKEN_KEY, token));
         return storageObservable;
       })
-
     );
   };
 

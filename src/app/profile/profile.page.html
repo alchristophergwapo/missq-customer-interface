@@ -11,7 +11,8 @@
         <ion-col col-4 id = 'info'>
           <ion-label><h6 class = 'name'><nobr>ID Number :  </nobr>{{ user.id }}</h6></ion-label><br>
           <ion-label><h6 class = 'name'> <nobr> Email : </nobr>  {{ user.email }}</h6> </ion-label><br>
-          <ion-label><h6 class = 'name'><nobr>Phone Number :  </nobr>{{ user.phone }}</h6></ion-label><br>
+          <ion-label><h6 class = 'name'><nobr>Phone Number :  </nobr>{{ user.phone }}  <ion-icon class = 'editIcon' name="create" ></ion-icon>
+          </h6></ion-label><br>
           <ion-label><h6 class = 'name'><nobr>Address :  </nobr>{{ user.address }}</h6></ion-label><br>
           <ion-label><h6 class = 'name'><nobr>Country Code :  </nobr>{{ user.code}}</h6></ion-label><br>
           <ion-label><h6 class = 'name'><nobr>Birthday :  </nobr>{{ user.birthday }}</h6></ion-label>
@@ -19,5 +20,20 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
+  <form #form="ngForm" (ngSubmit)="updateContactInfo(form)"> 
+    <ion-item>
+      <ion-icon name="create"></ion-icon>&nbsp;
+      <ion-input name="phone" type="Number" [ngModel]="Number"
+          ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="id" type="text" [ngModel]="user.email"
+     ></ion-input>
+    </ion-item>
+    <div>
+      <ion-button size="large" color='secondary' type="submit" expand="block">Update phone number</ion-button>
+  </div>
+  </form>
+
 </ion-content>
 
