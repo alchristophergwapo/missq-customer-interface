@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../api/services/auth/auth.service';
 import { AppComponent } from '../app.component';
+import {ModalController} from '@ionic/angular';
+import {ModalpopupPage} from '../modalpopup/modalpopup.page'
 
 // added today
 import { Router } from '@angular/router';
@@ -22,18 +24,17 @@ export class ProfilePage implements OnInit {
 
   constructor(private authService: AuthService, 
     private router: Router, 
-    private alertCtrl: AlertController,private app: AppComponent) {
+    private alertCtrl: AlertController,private app: AppComponent, private modalController:ModalController) {
     this.user = app.user;
     console.log("On profile: ", this.user);
   }
 
-  updateContactInfo(form){
-    this.authService.updateContactInfo(form.value).subscribe((response) => {
-      if (response) {
-        // this.router.navigateByUrl('/profile');
-        console.log('nice nisud na')
-      }
-    });
+
+  OpenModal()
+  {
+    this.modalController.create({component:ModalpopupPage}).then((modalElement)=> {
+      modalElement.present();
+    })
   }
 
   ngOnInit() {

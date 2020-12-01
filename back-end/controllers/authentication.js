@@ -28,7 +28,7 @@ routes.route('/register').post((request, response) => {
         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
             expiresIn: expiresIn
         });
-        response.status(200).send({ "user": user, "access_token": accessToken, "expires_in": expiresIn, "status": 200 });
+        re.status(200).send({ "user": user, "access_token": accessToken, "expires_in": expiresIn, "status": 200 });
     }).catch((error) => {
         console.log("Error => ", error);
         response.status(400).send("Failed to store to database!", error.body);
@@ -68,9 +68,9 @@ routes.route('/profile').post((req, res) =>{
         phone : req.body.phone
     }
     // var update = User.updateOne({_id: "5fb5d66bd0e42226fcb0b128"}, {$set : {'phone' : '12345'}})
-    User.updateOne({_id: "5fb5d66bd0e42226fcb0b128"}, {$set : {'phone' : '12345'}}).then((res) =>{
+    User.updateOne({_id: "5fb5d66bd0e42226fcb0b128"}, {$set : {'phone': req.body.phone}}).then((res) =>{
         console.log('contact info username :  ' + JSON.stringify(res))
-        response.status(200).send({ "user": user, "access_token": accessToken, "expires_in": expiresIn, "status": 200 });
+        res.status(200).send({ "user": user, "access_token": accessToken, "expires_in": expiresIn, "status": 200 });
     }).catch(error => {
         console.log('Error ', error)
     });
