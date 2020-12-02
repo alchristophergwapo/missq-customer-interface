@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.app.dashboard = false;
     this.authenticationService.authSubject.subscribe(state => {
+      
       if (state) {
         this.router.navigate(['place-order']);
       } else {

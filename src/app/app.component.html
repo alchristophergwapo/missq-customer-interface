@@ -1,6 +1,6 @@
 <ion-app>
     <ion-split-pane contentId="main-content">
-        <ion-menu contentId="main-content" type="overlay" *ngIf="dashboard == true">
+        <ion-menu contentId="main-content" type="overlay" *ngIf="dashboard === true">
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-list-header>
@@ -32,6 +32,12 @@
                             <div (click)="onClickNav($event)" id="finance">
                                 <ion-icon slot="start" name="wallet"></ion-icon>
                                 <ion-label>Finance</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item routerLink="bookings" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="bookings">
+                                <ion-icon slot="start" name="calendar"></ion-icon>
+                                <ion-label>Bookings</ion-label>
                             </div>
                         </ion-item>
                         <ion-item routerLink="promotions-news" routerDirection="root" lines="none">

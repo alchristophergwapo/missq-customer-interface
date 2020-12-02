@@ -27,7 +27,7 @@ export class CreateAccountPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.user = {
@@ -47,7 +47,6 @@ export class CreateAccountPage implements OnInit {
     fetch('assets/country-code.json').then(async res => {
       let result = await res.json();
       this.dataList = result.data;
-      console.log(this.dataList);
       
     })
   }

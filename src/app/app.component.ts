@@ -44,17 +44,6 @@ export class AppComponent implements OnInit {
       }
     }
 
-    // setTimeout(() => {
-    //   this.currentRoute = window.location.pathname;
-
-      // if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
-      //   this.dashboard = false;
-      // } else {
-      //   this.dashboard = true;
-      // }
-
-    // }, 300)
-
   };
 
   async clickChatSupport() {
@@ -106,9 +95,8 @@ export class AppComponent implements OnInit {
       this.authenticationService.authSubject.subscribe(state => {
         if (state) {
           this.router.navigate(['place-order']);
-          this.user = state.user;
         } else {
-          this.router.navigate(['home']);
+          // this.router.navigate(['home']);
         }
       });
 
