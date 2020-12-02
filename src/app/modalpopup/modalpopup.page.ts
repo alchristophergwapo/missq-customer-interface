@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular'
 import { AuthService } from '../api/services/auth/auth.service';
 import { Router } from '@angular/router';
+// import { AppComponent } from '../app.component';
 
 
 
@@ -12,7 +13,14 @@ import { Router } from '@angular/router';
 })
 export class ModalpopupPage implements OnInit {
 
-  constructor(private modalController:ModalController, private authService:AuthService, private router:Router) { }
+  user:any;
+
+  constructor(private modalController:ModalController, private authService:AuthService, private router:Router,
+    //  private app : AppComponent
+     ) { 
+
+    // this.user=app.user
+  }
 
   ngOnInit() {
   }
