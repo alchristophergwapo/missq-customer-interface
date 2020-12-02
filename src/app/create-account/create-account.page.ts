@@ -44,10 +44,9 @@ export class CreateAccountPage implements OnInit {
       id_number: null
     };
 
-    fetch('app/create-account/country-code.json').then(async res => {
+    fetch('assets/country-code.json').then(async res => {
       let result = await res.json();
       this.dataList = result.data;
-      console.log(this.dataList);
       
     })
   }
