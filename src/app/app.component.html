@@ -34,6 +34,12 @@
                                 <ion-label>Finance</ion-label>
                             </div>
                         </ion-item>
+                        <ion-item routerLink="bookings" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="bookings">
+                                <ion-icon slot="start" name="calendar"></ion-icon>
+                                <ion-label>Bookings</ion-label>
+                            </div>
+                        </ion-item>
                         <ion-item routerLink="promotions-news" routerDirection="root" lines="none">
                             <div (click)="onClickNav($event)" id="promotions-news">
                                 <ion-icon slot="start" name="newspaper"></ion-icon>

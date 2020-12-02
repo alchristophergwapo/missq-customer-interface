@@ -27,7 +27,7 @@ export class CreateAccountPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.user = {

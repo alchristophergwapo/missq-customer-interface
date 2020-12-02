@@ -140,5 +140,8 @@ export class LocationSelectPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.data = JSON.parse(params.bookedData);
     });
+
+    console.log(this.app.user);
+    
   }
 }
