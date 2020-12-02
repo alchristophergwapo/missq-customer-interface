@@ -67,6 +67,10 @@ const routes: Routes = [
     path: 'bookings',
     loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule),
     // canActivate: [AuthGuardService]
+  },
+  {
+    path: 'promotions-news',
+    loadChildren: () => import('./promotions-news/promotions-news.module').then( m => m.PromotionsNewsPageModule)
   }
 
 

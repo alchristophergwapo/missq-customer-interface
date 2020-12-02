@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../api/services/auth/auth.service';
+import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthService, private router: Router, private app: AppComponent) { }
 
   ngOnInit() {
+    this.app.dashboard = false;
+    this.authenticationService.authSubject.subscribe(state => {
+      if (state) {
+        this.router.navigate(['place-order']);
+      } else {
+        this.router.navigate(['home']);
+      }
+    });
   }
 
 }
