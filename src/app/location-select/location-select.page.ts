@@ -121,6 +121,7 @@ export class LocationSelectPage implements OnInit {
       service_location: this.service_location,
       cost: this.data.cost,
       notes: this.data.notes,
+      status: "Pending",
       author: this.app.user
     };
 
