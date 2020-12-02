@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { MsqService } from '../api/services/service/msq-service.service';
 
 @Component({
   selector: 'app-bookings',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingsPage implements OnInit {
 
-  constructor() { }
+  bookings: any;
+
+  constructor(private app: AppComponent, private msqService: MsqService) { }
 
   ngOnInit() {
+    this.msqService.getMyBookings(this.app.user._id).subscribe(response => {
+      console.log(response);
+    });
   }
 
 }

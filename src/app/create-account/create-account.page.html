@@ -18,7 +18,6 @@
                     <ion-item>
                         &nbsp;
                         <ion-icon name="person-circle-sharp"></ion-icon>&nbsp;
-
                         <ion-input name="name" [(ngModel)]='user.name' type="text" #nameCtrl="ngModel" placeholder=" Full Name" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!nameCtrl.valid && nameCtrl.touched && nameCtrl.errors?.required">
