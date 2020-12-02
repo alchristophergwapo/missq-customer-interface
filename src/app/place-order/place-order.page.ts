@@ -179,9 +179,7 @@ export class PlaceOrderPage implements OnInit {
       this.totalCost = this.descriptions[this.segmentModel];
     }
 
-    this.msqService.getMyBookings(this.app.user._id).subscribe(response => {
-      console.log(response);
-    });
+    
   }
 
   segmentChanged(event) {

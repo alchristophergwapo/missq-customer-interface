@@ -105,10 +105,10 @@ export class AppComponent implements OnInit {
 
       this.authenticationService.authSubject.subscribe(state => {
         if (state) {
-          this.router.navigate(['place-order']);
-          this.user = state.user;
+          // this.router.navigate(['place-order']);
+          // this.user = state.user;
         } else {
-          this.router.navigate(['home']);
+          // this.router.navigate(['home']);
         }
       });
 
