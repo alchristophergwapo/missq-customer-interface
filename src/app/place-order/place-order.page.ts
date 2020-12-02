@@ -4,16 +4,10 @@ import {
   NativeGeocoderOptions,
   NativeGeocoderResult
 } from "@ionic-native/native-geocoder/ngx";
-import { AlertController, IonSlides } from "@ionic/angular";
+import { AlertController } from "@ionic/angular";
 import { Router, NavigationExtras } from "@angular/router";
-import { BehaviorSubject, Observable } from "rxjs";
-import { switchMap, map } from "rxjs/operators";
 import { MsqService } from "../api/services/service/msq-service.service";
-import { AppComponent } from '../app.component';
-
-// import { LocationSelectPage } from "../location-select/location-select.page";
-
-declare var google: any;
+import { AuthService } from '../api/services/auth/auth.service';
 
 @Component({
   selector: "app-place-order",
@@ -101,7 +95,7 @@ export class PlaceOrderPage implements OnInit {
     private alertCtrl: AlertController,
     private router: Router,
     private msqService: MsqService,
-    private app: AppComponent
+    private authService: AuthService
   ) {}
 
   async bookService() {
@@ -178,8 +172,10 @@ export class PlaceOrderPage implements OnInit {
     if (!this.totalCost) {
       this.totalCost = this.descriptions[this.segmentModel];
     }
-
+    console.log(this.authService.user);
     
+    this.msqService.getMyBookings(this.authService.user._id).subscribe(response => {
+    });
   }
 
   segmentChanged(event) {
