@@ -7,34 +7,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Place Order</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
   <ion-toolbar color="light">
     <ion-card>
       <ion-segment
-        value="nanny"
-        color="white"
+        value="Nanny"
+        color="success"
         scrollable="true"
         [(ngModel)]="segmentModel"
-        (ionChange)="segmentChanged($event)"
+        class="segment"
       >
         <ion-segment-button value="Nanny" class="s1">
+          <img class="icon" src="assets/icon/babysitter.png" alt="Flat Icon">
           <ion-label>Nanny</ion-label>
         </ion-segment-button>
         <ion-segment-button value="Housekeeping" class="s2">
+          <img class="icon" src="assets/icon/housekeeping.png" alt="Flat Icon">
           <ion-label>Housekeeping</ion-label>
         </ion-segment-button>
         <ion-segment-button value="Tutor Cum Nanny" class="s3">
+          <img class="icon" src="assets/icon/tutor.png" alt="Flat Icon">
           <ion-label>Tutor Cum Nanny</ion-label>
         </ion-segment-button>
         <ion-segment-button value="Massage Therapist" class="s4">
+          <img class="icon" src="assets/icon/massage.png" alt="Flat Icon">
           <ion-label>Massage Therapist</ion-label>
         </ion-segment-button>
         <ion-segment-button value="Haircut" class="s5">
+          <img class="icon" src="assets/icon/haircut.png" alt="Flat Icon">
           <ion-label>Haircut</ion-label>
         </ion-segment-button>
       </ion-segment>
@@ -63,7 +63,7 @@
 
         <ion-card-content>
           <h1>Nanny Service</h1>
-          <h2>Starts at &#8369;84/hr</h2>
+          <h2>Starts at &#8369;{{descriptions.Nanny}}/hr</h2>
           <br />
           <div>
             Keep close to Nature's heart... and break clear away, once in
@@ -72,6 +72,7 @@
           </div>
         </ion-card-content>
       </ion-card>
+      <br><br><br>
       <ion-footer>
         <ion-button class="btn" (click)="bookService()">Book Nanny</ion-button>
       </ion-footer>
@@ -100,7 +101,7 @@
 
         <ion-card-content>
           <h1>Housekeeping Service</h1>
-          <h2>Starts at &#8369;{{costs.Housekeeping}}/hr</h2>
+          <h2>Starts at &#8369;{{descriptions.Housekeeping}}/hr</h2>
           <br />
           <div>
             Keep close to Nature's heart... and break clear away, once in
@@ -137,7 +138,7 @@
 
         <ion-card-content>
           <h1>Tutor Cum Nanny Service</h1>
-          <h2>Starts at &#8369;{{costs.Tutor_Cum_Nanny}}/hr</h2>
+          <h2>Starts at &#8369;{{descriptions.Tutor_Cum_Nanny}}/hr</h2>
           <br />
           <div>
             Keep close to Nature's heart... and break clear away, once in
@@ -174,7 +175,7 @@
 
         <ion-card-content>
           <h1>Massage Therapist Service</h1>
-          <h2>Starts at &#8369;{{costs.Massage_Therapist}} for a 1-hour long massage.</h2>
+          <h2>Starts at &#8369;{{descriptions.Massage_Therapist}} for a 1-hour long massage.</h2>
           <br />
           <div>
             Keep close to Nature's heart... and break clear away, once in
@@ -211,7 +212,7 @@
 
         <ion-card-content>
           <h1>Haircut Service</h1>
-          <h2>Starts at &#8369;{{costs.Haircut}}/hr</h2>
+          <h2>Starts at &#8369;{{descriptions.Haircut}}</h2>
           <br />
           <div>
             Keep close to Nature's heart... and break clear away, once in

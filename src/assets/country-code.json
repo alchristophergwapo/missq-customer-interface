@@ -1,13 +1,14 @@
 {
-    "data": [{
+    "data": [
+        {
+            "name": "Philippines",
+            "dial_code": "+63",
+            "code": "PH"
+        },
+        {
             "name": "Afghanistan",
             "dial_code": "+93",
             "code": "AF"
-        },
-        {
-            "name": "Aland Islands",
-            "dial_code": "+358",
-            "code": "AX"
         },
         {
             "name": "Albania",
@@ -20,34 +21,14 @@
             "code": "DZ"
         },
         {
-            "name": "AmericanSamoa",
-            "dial_code": "+1 684",
-            "code": "AS"
-        },
-        {
-            "name": "Andorra",
-            "dial_code": "+376",
-            "code": "AD"
-        },
-        {
             "name": "Angola",
             "dial_code": "+244",
             "code": "AO"
         },
         {
-            "name": "Anguilla",
-            "dial_code": "+1 264",
-            "code": "AI"
-        },
-        {
             "name": "Antarctica",
             "dial_code": "+672",
             "code": "AQ"
-        },
-        {
-            "name": "Antigua and Barbuda",
-            "dial_code": "+1268",
-            "code": "AG"
         },
         {
             "name": "Argentina",
@@ -60,11 +41,6 @@
             "code": "AM"
         },
         {
-            "name": "Aruba",
-            "dial_code": "+297",
-            "code": "AW"
-        },
-        {
             "name": "Australia",
             "dial_code": "+61",
             "code": "AU"
@@ -73,11 +49,6 @@
             "name": "Austria",
             "dial_code": "+43",
             "code": "AT"
-        },
-        {
-            "name": "Azerbaijan",
-            "dial_code": "+994",
-            "code": "AZ"
         },
         {
             "name": "Bahamas",
@@ -95,11 +66,6 @@
             "code": "BD"
         },
         {
-            "name": "Barbados",
-            "dial_code": "+1 246",
-            "code": "BB"
-        },
-        {
             "name": "Belarus",
             "dial_code": "+375",
             "code": "BY"
@@ -108,41 +74,6 @@
             "name": "Belgium",
             "dial_code": "+32",
             "code": "BE"
-        },
-        {
-            "name": "Belize",
-            "dial_code": "+501",
-            "code": "BZ"
-        },
-        {
-            "name": "Benin",
-            "dial_code": "+229",
-            "code": "BJ"
-        },
-        {
-            "name": "Bermuda",
-            "dial_code": "+1 441",
-            "code": "BM"
-        },
-        {
-            "name": "Bhutan",
-            "dial_code": "+975",
-            "code": "BT"
-        },
-        {
-            "name": "Bolivia, Plurinational State of",
-            "dial_code": "+591",
-            "code": "BO"
-        },
-        {
-            "name": "Bosnia and Herzegovina",
-            "dial_code": "+387",
-            "code": "BA"
-        },
-        {
-            "name": "Botswana",
-            "dial_code": "+267",
-            "code": "BW"
         },
         {
             "name": "Brazil",
@@ -163,16 +94,6 @@
             "name": "Bulgaria",
             "dial_code": "+359",
             "code": "BG"
-        },
-        {
-            "name": "Burkina Faso",
-            "dial_code": "+226",
-            "code": "BF"
-        },
-        {
-            "name": "Burundi",
-            "dial_code": "+257",
-            "code": "BI"
         },
         {
             "name": "Cambodia",
@@ -290,11 +211,6 @@
             "code": "DK"
         },
         {
-            "name": "Djibouti",
-            "dial_code": "+253",
-            "code": "DJ"
-        },
-        {
             "name": "Dominica",
             "dial_code": "+1 767",
             "code": "DM"
@@ -313,21 +229,6 @@
             "name": "Egypt",
             "dial_code": "+20",
             "code": "EG"
-        },
-        {
-            "name": "El Salvador",
-            "dial_code": "+503",
-            "code": "SV"
-        },
-        {
-            "name": "Equatorial Guinea",
-            "dial_code": "+240",
-            "code": "GQ"
-        },
-        {
-            "name": "Eritrea",
-            "dial_code": "+291",
-            "code": "ER"
         },
         {
             "name": "Estonia",
@@ -850,11 +751,6 @@
             "code": "PE"
         },
         {
-            "name": "Philippines",
-            "dial_code": "+63",
-            "code": "PH"
-        },
-        {
             "name": "Pitcairn",
             "dial_code": "+872",
             "code": "PN"
@@ -1005,134 +901,14 @@
             "code": "ZA"
         },
         {
-            "name": "South Georgia and the South Sandwich Islands",
-            "dial_code": "+500",
-            "code": "GS"
-        },
-        {
-            "name": "Spain",
-            "dial_code": "+34",
-            "code": "ES"
-        },
-        {
-            "name": "Sri Lanka",
-            "dial_code": "+94",
-            "code": "LK"
-        },
-        {
-            "name": "Sudan",
-            "dial_code": "+249",
-            "code": "SD"
-        },
-        {
-            "name": "Suriname",
-            "dial_code": "+597",
-            "code": "SR"
-        },
-        {
-            "name": "Svalbard and Jan Mayen",
-            "dial_code": "+47",
-            "code": "SJ"
-        },
-        {
-            "name": "Swaziland",
-            "dial_code": "+268",
-            "code": "SZ"
-        },
-        {
-            "name": "Sweden",
-            "dial_code": "+46",
-            "code": "SE"
-        },
-        {
-            "name": "Switzerland",
-            "dial_code": "+41",
-            "code": "CH"
-        },
-        {
-            "name": "Syrian Arab Republic",
-            "dial_code": "+963",
-            "code": "SY"
-        },
-        {
             "name": "Taiwan",
             "dial_code": "+886",
             "code": "TW"
         },
         {
-            "name": "Tajikistan",
-            "dial_code": "+992",
-            "code": "TJ"
-        },
-        {
-            "name": "Tanzania, United Republic of Tanzania",
-            "dial_code": "+255",
-            "code": "TZ"
-        },
-        {
             "name": "Thailand",
             "dial_code": "+66",
             "code": "TH"
-        },
-        {
-            "name": "Timor-Leste",
-            "dial_code": "+670",
-            "code": "TL"
-        },
-        {
-            "name": "Togo",
-            "dial_code": "+228",
-            "code": "TG"
-        },
-        {
-            "name": "Tokelau",
-            "dial_code": "+690",
-            "code": "TK"
-        },
-        {
-            "name": "Tonga",
-            "dial_code": "+676",
-            "code": "TO"
-        },
-        {
-            "name": "Trinidad and Tobago",
-            "dial_code": "+1 868",
-            "code": "TT"
-        },
-        {
-            "name": "Tunisia",
-            "dial_code": "+216",
-            "code": "TN"
-        },
-        {
-            "name": "Turkey",
-            "dial_code": "+90",
-            "code": "TR"
-        },
-        {
-            "name": "Turkmenistan",
-            "dial_code": "+993",
-            "code": "TM"
-        },
-        {
-            "name": "Turks and Caicos Islands",
-            "dial_code": "+1 649",
-            "code": "TC"
-        },
-        {
-            "name": "Tuvalu",
-            "dial_code": "+688",
-            "code": "TV"
-        },
-        {
-            "name": "Uganda",
-            "dial_code": "+256",
-            "code": "UG"
-        },
-        {
-            "name": "Ukraine",
-            "dial_code": "+380",
-            "code": "UA"
         },
         {
             "name": "United Arab Emirates",
@@ -1148,21 +924,6 @@
             "name": "United States",
             "dial_code": "+1",
             "code": "US"
-        },
-        {
-            "name": "Uruguay",
-            "dial_code": "+598",
-            "code": "UY"
-        },
-        {
-            "name": "Uzbekistan",
-            "dial_code": "+998",
-            "code": "UZ"
-        },
-        {
-            "name": "Vanuatu",
-            "dial_code": "+678",
-            "code": "VU"
         },
         {
             "name": "Venezuela, Bolivarian Republic of Venezuela",
@@ -1183,26 +944,7 @@
             "name": "Virgin Islands, U.S.",
             "dial_code": "+1 340",
             "code": "VI"
-        },
-        {
-            "name": "Wallis and Futuna",
-            "dial_code": "+681",
-            "code": "WF"
-        },
-        {
-            "name": "Yemen",
-            "dial_code": "+967",
-            "code": "YE"
-        },
-        {
-            "name": "Zambia",
-            "dial_code": "+260",
-            "code": "ZM"
-        },
-        {
-            "name": "Zimbabwe",
-            "dial_code": "+263",
-            "code": "ZW"
         }
+        
     ]
 }

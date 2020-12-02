@@ -5,9 +5,11 @@ import {
   NativeGeocoderResult
 } from "@ionic-native/native-geocoder/ngx";
 import { AlertController, IonSlides } from "@ionic/angular";
-import { Router } from "@angular/router";
+import { Router, NavigationExtras } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { switchMap, map } from "rxjs/operators";
+import { MsqService } from "../api/services/service/msq-service.service";
+import { AppComponent } from '../app.component';
 
 // import { LocationSelectPage } from "../location-select/location-select.page";
 
@@ -27,10 +29,10 @@ export class PlaceOrderPage implements OnInit {
 
   nanny: any = [
     {
-      MediaUrl: "../../assets/images/nanny.jpg",
+      MediaUrl: "../../assets/images/nanny.jpg"
     },
     {
-      MediaUrl: "../../assets/images/nanny1.jpg",
+      MediaUrl: "../../assets/images/nanny1.jpg"
     },
     {
       MediaUrl: "../../assets/images/nanny2.jpeg"
@@ -38,10 +40,10 @@ export class PlaceOrderPage implements OnInit {
   ];
   housekeeping: any = [
     {
-      MediaUrl: "../../assets/images/housekeeping.jpg",
+      MediaUrl: "../../assets/images/housekeeping.jpg"
     },
     {
-      MediaUrl: "../../assets/images/housekeeping1.jpg",
+      MediaUrl: "../../assets/images/housekeeping1.jpg"
     },
     {
       MediaUrl: "../../assets/images/housekeeping2.jpg"
@@ -49,10 +51,10 @@ export class PlaceOrderPage implements OnInit {
   ];
   tutor: any = [
     {
-      MediaUrl: "../../assets/images/tutor.jpg",
+      MediaUrl: "../../assets/images/tutor.jpg"
     },
     {
-      MediaUrl: "../../assets/images/tutor1.jpg",
+      MediaUrl: "../../assets/images/tutor1.jpg"
     },
     {
       MediaUrl: "../../assets/images/tutor2.jpg"
@@ -60,10 +62,10 @@ export class PlaceOrderPage implements OnInit {
   ];
   massage: any = [
     {
-      MediaUrl: "../../assets/images/massage.jpg",
+      MediaUrl: "../../assets/images/massage.jpg"
     },
     {
-      MediaUrl: "../../assets/images/massage1.jpg",
+      MediaUrl: "../../assets/images/massage1.jpg"
     },
     {
       MediaUrl: "../../assets/images/massage2.jpg"
@@ -71,10 +73,10 @@ export class PlaceOrderPage implements OnInit {
   ];
   haircut: any = [
     {
-      MediaUrl: "../../assets/images/haircut.jpg",
+      MediaUrl: "../../assets/images/haircut.jpg"
     },
     {
-      MediaUrl: "../../assets/images/haircut1.jpg",
+      MediaUrl: "../../assets/images/haircut1.jpg"
     },
     {
       MediaUrl: "../../assets/images/haircut2.jpg"
@@ -85,7 +87,7 @@ export class PlaceOrderPage implements OnInit {
     pager: true
   };
 
-  costs: any = {
+  descriptions: any = {
     Nanny: 84,
     Housekeeping: 93,
     Tutor_Cum_Nanny: 150,
@@ -95,11 +97,12 @@ export class PlaceOrderPage implements OnInit {
 
   totalCost: number;
 
-  bookedData: Observable<any>;
-  booked = new BehaviorSubject(null);
-
-  constructor(private alertCtrl: AlertController, private router: Router) {
-  }
+  constructor(
+    private alertCtrl: AlertController,
+    private router: Router,
+    private msqService: MsqService,
+    private app: AppComponent
+  ) {}
 
   async bookService() {
     const alert = await this.alertCtrl.create({
@@ -126,14 +129,23 @@ export class PlaceOrderPage implements OnInit {
         {
           text: "Next",
           handler: data => {
-            this.totalCost = this.costs[this.segmentModel] * data.hours;
             if (data.hours && data.notes) {
-              this.booked.next(data);
-              if (this.booked.value) {
-                console.log(this.booked);
-
-                this.router.navigateByUrl("place-order/location-select");
-              }
+              this.totalCost =
+                this.descriptions[this.segmentModel] * data.hours;
+              const params = {
+                service_booking: this.segmentModel,
+                cost: this.totalCost,
+                notes: data.notes
+              };
+              let navigationExtras: NavigationExtras = {
+                queryParams: {
+                  bookedData: JSON.stringify(params)
+                }
+              };
+              this.router.navigate(
+                ["place-order/location-select"],
+                navigationExtras
+              );
             } else {
               this.inputError();
             }
@@ -164,10 +176,15 @@ export class PlaceOrderPage implements OnInit {
 
   ngOnInit() {
     if (!this.totalCost) {
-      this.totalCost = this.costs[this.segmentModel];
+      this.totalCost = this.descriptions[this.segmentModel];
     }
+
+    this.msqService.getMyBookings(this.app.user._id).subscribe(response => {
+      console.log(response);
+    });
   }
 
   segmentChanged(event) {
+    this.segmentModel = event;
   }
 }

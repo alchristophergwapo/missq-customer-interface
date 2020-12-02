@@ -29,4 +29,13 @@ export class MsqService{
     )
   }
 
+  getMyBookings(id): Observable<any> {
+    
+    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}/bookings/${id}`).pipe(
+      tap(async (response) => {
+        this.booked= response;
+      })
+    );
+  }
+
 }

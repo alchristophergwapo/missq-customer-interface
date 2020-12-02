@@ -52,6 +52,7 @@ import { MsqService } from './api/services/service/msq-service.service';
     AuthService,
     MsqService,
     PlaceOrderPage,
+    AppComponent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
