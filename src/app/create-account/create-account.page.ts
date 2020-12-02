@@ -19,10 +19,15 @@ export class CreateAccountPage implements OnInit {
   isSubmitted = false;
   dataList: Array<CountryCodes> = [];
 
-  constructor(private dataService: ServicesService, private authService: AuthService, private router: Router) {}
+  // password: string = 'password';
+  // passwordIcon: boolean = false;
+
+
+
+  constructor(private dataService: ServicesService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.user = {  
+    this.user = {
       name: '',
       address: '',
       code: '',
@@ -34,7 +39,7 @@ export class CreateAccountPage implements OnInit {
       picture: '',
       id_image: '',
       id_number: null
-  };
+    };
     return this.dataService.getData().subscribe(data => {
       console.log(data)
       this.dataList = data
@@ -44,10 +49,14 @@ export class CreateAccountPage implements OnInit {
         // console.log(per.dial_code);
       });
       // // console.log(this.percentList)
-    }) 
+    })
   }
   // form: FormGroup = new FormGroup({});
+  // hideShowPassword() {
+  //   if(){
 
+  //   }
+  // }
 
   register(form) {
     this.isSubmitted = true;
@@ -58,7 +67,7 @@ export class CreateAccountPage implements OnInit {
       }
     });
   }
-  
+
   noSubmit(e) {
     e.preventDefault();
   }

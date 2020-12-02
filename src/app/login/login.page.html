@@ -25,11 +25,12 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key"></ion-icon>&nbsp;
-                        <ion-input name="password" type="password" #passCtrl="ngModel" placeholder="Password" [ngModel]="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></ion-input>
+                        <ion-input [type]="passwordType" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></ion-input>
+                        <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
                     </ion-item>
-                    <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
+                    <!-- <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
                         <ion-text color="danger">Password is incorrect.</ion-text>
-                    </ion-label>
+                    </ion-label> -->
                     <br>
                 </div><br>
                 <div>

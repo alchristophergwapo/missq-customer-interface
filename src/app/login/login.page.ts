@@ -12,17 +12,31 @@ import { AppComponent } from '../app.component';
 })
 export class LoginPage implements OnInit {
 
-  name: string;
-  password: string;
+  // name: string;
+  // password: string;
+
+passwordType: string = 'password';
+eye: boolean = false;
 
   constructor(
     private authService: AuthService, 
     private router: Router, 
     private alertCtrl: AlertController, 
     private dash: AppComponent
-  ) { 
-    this.name = 'testc@gmail.com';
-    this.password = "testc";
+  ) 
+  { 
+    // this.name = 'testc@gmail.com';
+    // this.password = "testc";
+  }
+
+  public hideShowPassword(){
+    if(this.eye){
+      this.eye = false;
+      this.passwordType = 'password';
+    }else{
+      this.eye = true;
+      this.passwordType = 'password';
+    }
   }
 
   login(form) {
