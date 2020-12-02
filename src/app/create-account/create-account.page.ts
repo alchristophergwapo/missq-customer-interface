@@ -24,6 +24,11 @@ export class CreateAccountPage implements OnInit {
   isSubmitted = false;
   dataList: Array<CountryCodes> = [];
 
+  public type = 'password';
+  public type1 = 'password';
+  public showPass = false;
+  public showPass1 = false;
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -47,10 +52,25 @@ export class CreateAccountPage implements OnInit {
     fetch('assets/country-code.json').then(async res => {
       let result = await res.json();
       this.dataList = result.data;
-      
+
     })
   }
-
+  showPassword() {
+    this.showPass = !this.showPass;
+    if (this.showPass) {
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
+  }
+  showPasswordConfirm() {
+    this.showPass1 = !this.showPass1;
+    if (this.showPass1) {
+      this.type1 = 'text';
+    } else {
+      this.type1 = 'password';
+    }
+  }
   register(form) {
     this.isSubmitted = true;
     this.authService.register(form.value).subscribe(response => {
