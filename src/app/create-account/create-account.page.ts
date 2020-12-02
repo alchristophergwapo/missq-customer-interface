@@ -7,8 +7,8 @@ import {
   FormControl,
   Validators
 } from "@angular/forms";
-import { CountryCodes } from "../countryCodeModel";
 // import { ConfirmedValidatorDirective } from '../confirmed-validators.directive';
+import { CountryCodes } from "../countryCodeModel";
 
 import { AuthService } from "../api/services/auth/auth.service";
 import { Router } from "@angular/router";
@@ -25,7 +25,6 @@ export class CreateAccountPage implements OnInit {
   dataList: Array<CountryCodes> = [];
 
   constructor(
-    private dataService: ServicesService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -44,12 +43,14 @@ export class CreateAccountPage implements OnInit {
       id_image: "",
       id_number: null
     };
-    fetch('assets/country-code.json').then(async res => {
+
+    fetch('app/create-account/country-code.json').then(async res => {
       let result = await res.json();
       this.dataList = result.data;
+      console.log(this.dataList);
+      
     })
   }
-  // form: FormGroup = new FormGroup({});
 
   register(form) {
     this.isSubmitted = true;

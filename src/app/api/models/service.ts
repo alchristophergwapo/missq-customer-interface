@@ -3,5 +3,4 @@ export interface Service {
     service_location: string,
     cost: number,
     notes: string,
-    phone: string
 }
