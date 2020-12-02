@@ -12,11 +12,11 @@ import { AppComponent } from '../app.component';
 })
 export class LoginPage implements OnInit {
 
-  // name: string;
-  // password: string;
+  public type = 'password';
+  public showPass = false;
 
-passwordType: string = 'password';
-eye: boolean = false;
+// passwordType: string = 'password';
+// eye: boolean = false;
 
   constructor(
     private authService: AuthService, 
@@ -25,20 +25,28 @@ eye: boolean = false;
     private dash: AppComponent
   ) 
   { 
-    // this.name = 'testc@gmail.com';
-    // this.password = "testc";
+    // this.name = 'geneva1@gmail.com';
+    // this.password = "jhenRivas1999";
   }
 
-  public hideShowPassword(){
-    if(this.eye){
-      this.eye = false;
-      this.passwordType = 'password';
-    }else{
-      this.eye = true;
-      this.passwordType = 'password';
-    }
+  // public hideShowPassword(){
+  //   if(this.eye){
+  //     this.eye = false;
+  //     this.passwordType = 'password';
+  //   }else{
+  //     this.eye = true;
+  //     this.passwordType = 'password';
+  //   }
+  // }
+  
+  showPassword() {
+     this.showPass = !this.showPass;
+     if(this.showPass){
+       this.type = 'text';
+     } else {
+       this.type = 'password';
+     }
   }
-
   login(form) {
     // console.log(form.value);
     this.authService.login(form.value).subscribe(res => {
