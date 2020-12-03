@@ -174,8 +174,8 @@ export class PlaceOrderPage implements OnInit {
     }
     console.log(this.authService.user);
     
-    this.msqService.getMyBookings(this.authService.user._id).subscribe(response => {
-    });
+    // this.msqService.getMyBookings(this.authService.user._id).subscribe(response => {
+    // });
   }
 
   segmentChanged(event) {

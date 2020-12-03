@@ -75,7 +75,7 @@ export class AuthService {
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.router.navigateByUrl('home');
-      this.authSubject.next(null);
+      // this.authSubject.next(null);
     });
   };
 

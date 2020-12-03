@@ -24,9 +24,14 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private actionSheetController: ActionSheetController,
     private router: Router,
-    private authenticationService: AuthService
+    private authenticationService: AuthService,
   ) {
     this.initializeApp();
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    console.log(this.authenticationService.user);
   }
 
   onClickNav(event) {
