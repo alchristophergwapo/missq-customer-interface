@@ -19,8 +19,4 @@ routes.route("/book_service").post(async (request, response) => {
   await author.save();
 });
 
-routes.route("/bookings/:name").get((request, response) => {
-  Customers.find({ _id: request.params.name }).populate("bookings");
-});
-
 module.exports = routes;
