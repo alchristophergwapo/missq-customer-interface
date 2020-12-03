@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Customers = require('./User');
 
 let Booking = new Schema(
   {
@@ -20,13 +19,18 @@ let Booking = new Schema(
       type: String,
       required: true
     },
+    schedule: {
+      type: Date,
+      required: true
+    },
     status: {
         type: String,
         required: true
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Customers
+      ref: 'Customers',
+      required: true
     }
   },
   {

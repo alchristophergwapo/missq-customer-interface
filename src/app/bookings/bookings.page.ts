@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { MsqService } from '../api/services/service/msq-service.service';
+import { AuthService } from '../api/services/auth/auth.service';
 
 @Component({
   selector: 'app-bookings',
@@ -11,27 +12,12 @@ export class BookingsPage implements OnInit {
 
   bookings: any;
 
-  constructor(private app: AppComponent, private msqService: MsqService) { }
-  
-  ngOnInit(){
-    // this.bookingSubmit()
-  }
+  constructor(private authService: AuthService) { }
 
-  bookingSubmit() {
-    this.bookings = {
-      service_bookings: "",
-      houseOfService: "",
-      notes: "",
-      location: "",
-    };
-    // fetch().then(async res => {
-    //   let result = await res.json();
-    //   this.bookings = result.data;
-      
-    // })
-    this.msqService.getMyBookings(this.app.user._id).subscribe(response => {
-      console.log(response);
-    });
+  ngOnInit() {
+    this.bookings = this.authService.user;
+    console.log("On bookings page ts: ", this.bookings);
+    
   }
 
 }

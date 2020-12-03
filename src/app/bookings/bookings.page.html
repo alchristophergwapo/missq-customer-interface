@@ -75,18 +75,21 @@
         <p>Payment Status:</p>
       </div>
       <div class="column1">
-        <ion-card>
-          <ion-card-content>
-            <div class="col-1-left">
-            </div>
-            <div class="col-1-mid">
-
-            </div>
-            <div class="col-1-right">
-              <ion-icon name="arrow-forward"> </ion-icon>
-            </div>
-          </ion-card-content>
-        </ion-card>
+        <div *ngFor="let b of bookings">
+            <ion-card>
+                <ion-card-content>
+                  <div class="col-1-left">
+                    <div *ngIf="b.schedule">{{b.schedule}}</div>
+                  </div>
+                  <div class="col-1-mid">
+                    {{b.service_booking}}
+                  </div>
+                  <div class="col-1-right">
+                    <ion-icon name="arrow-forward"> </ion-icon>
+                  </div>
+                </ion-card-content>
+            </ion-card>
+        </div>
       </div>
     </div>
   </div>

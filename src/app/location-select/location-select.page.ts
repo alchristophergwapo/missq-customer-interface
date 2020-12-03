@@ -1,10 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
-import { Observable } from "rxjs";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
-import { PlaceOrderPage } from "../place-order/place-order.page";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MsqService } from "../api/services/service/msq-service.service";
-import { AppComponent } from "../app.component";
+import { AuthService } from '../api/services/auth/auth.service';
+import { AlertController } from '@ionic/angular';
 
 declare var google: any;
 
@@ -16,6 +15,7 @@ declare var google: any;
 export class LocationSelectPage implements OnInit {
   @ViewChild("maps", { static: true })
   mapRef: ElementRef;
+  public app;
 
   latitude: any;
   longitude: any;
@@ -26,15 +26,33 @@ export class LocationSelectPage implements OnInit {
 
   data: any;
   service_location: any;
+  user: any;
+
 
   constructor(
     private geo: Geolocation,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private service: MsqService,
-    private app: AppComponent
+    private authService: AuthService,
+    private alertCtrl: AlertController
   ) {
     this.getGeoLocation();
+    this.user = authService.user;
+    console.log("On constructor: ", this.user);
+
+  }
+
+  ngOnInit() {
+    this.service_location = "";
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.data = JSON.parse(params.bookedData);
+    });
+
+
+    this.user = this.authService.user;
+    console.log("On ngOnInit() : ", this.user);
+
   }
 
   getGeoLocation() {
@@ -73,7 +91,7 @@ export class LocationSelectPage implements OnInit {
         return;
       }
 
-      markers.forEach(function(marker) {
+      markers.forEach(function (marker) {
         marker.setMap(null);
       });
 
@@ -81,7 +99,7 @@ export class LocationSelectPage implements OnInit {
 
       var bounds = new google.maps.LatLngBounds();
 
-      places.forEach(function(place) {
+      places.forEach(function (place) {
         // LocationSelectPage.lat = place.geometry.viewport.Ya.i;
         // LocationSelectPage.lon = place.geometry.viewport.Ua.i;
 
@@ -109,39 +127,71 @@ export class LocationSelectPage implements OnInit {
     });
   }
 
-  bookServiceNow() {
-    try {
-      // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
-    } catch (error) {
-      console.log(error);
-      
-    }
-    const serviceData = {
-      service_booking: this.data.service_booking,
-      service_location: this.service_location,
-      cost: this.data.cost,
-      notes: this.data.notes,
-      status: "Pending",
-      author: this.app.user
-    };
+  // bookServiceNow() {
+  //   try {
+  //     // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
+  //   } catch (error) {
+  //     console.log(error);
 
-    console.log(serviceData);
-    
+  //   }
+
+  // }
+  async proceedAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Scheduled Date',
+      inputs: [
+        {
+          name: 'schedule',
+          type: 'datetime-local',
+          cssClass: 'schedule'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Book now',
+          cssClass: 'book-now',
+          handler: input => {
+            try {
+              this.service_location = <HTMLInputElement>document.getElementById('pac-input');
+            } catch (error) {
+              console.log(error);
+
+            }
+
+            const datas = {
+              service_booking: this.data.service_booking,
+              service_location: this.service_location,
+              cost: this.data.cost,
+              notes: this.data.notes,
+              schedule: input.schedule,
+              status: "Pending",
+              author: this.user
+            };
+
+            this.bookServiceNow(datas);
+          }
+        }
+      ]
+    })
+
+    await alert.present();
+  }
+  bookServiceNow(serviceData) {
+
     this.service.bookNow(serviceData).subscribe(response => {
-      console.log("Response",response);
+      console.log("Response", response);
       if (response) {
         this.router.navigateByUrl('/place-order');
       }
-    });
+      const serviceData = {
+        service_booking: this.data.service_booking,
+        service_location: this.service_location,
+        cost: this.data.cost,
+        notes: this.data.notes,
+        status: "Pending",
+        author: this.app.user
+      };
+    })
   }
 
-  ngOnInit() {
-    this.service_location = "";
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.data = JSON.parse(params.bookedData);
-    });
-
-    console.log(this.app.user);
-    
-  }
 }
