@@ -14,9 +14,9 @@ export class BookingsPage implements OnInit {
   constructor(private app: AppComponent, private msqService: MsqService) { }
 
   ngOnInit() {
-    this.msqService.getMyBookings(this.app.user._id).subscribe(response => {
-      console.log(response);
-    });
+    // this.msqService.getMyBookings().subscribe(response => {
+    //   console.log(response);
+    // });
   }
 
 }

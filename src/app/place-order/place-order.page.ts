@@ -84,8 +84,8 @@ export class PlaceOrderPage implements OnInit {
   descriptions: any = {
     Nanny: 84,
     Housekeeping: 93,
-    Tutor_Cum_Nanny: 150,
-    Massage_Therapist: 500,
+    TutorCumNanny: 150,
+    MassageTherapist: 500,
     Haircut: 100
   };
 
@@ -94,8 +94,8 @@ export class PlaceOrderPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private router: Router,
-    private msqService: MsqService,
-    private authService: AuthService
+    // private msqService: MsqService,
+    // private authService: AuthService
   ) {}
 
   async bookService() {
@@ -172,10 +172,7 @@ export class PlaceOrderPage implements OnInit {
     if (!this.totalCost) {
       this.totalCost = this.descriptions[this.segmentModel];
     }
-    console.log(this.authService.user);
     
-    this.msqService.getMyBookings(this.authService.user._id).subscribe(response => {
-    });
   }
 
   segmentChanged(event) {

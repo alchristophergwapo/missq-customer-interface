@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ActionSheetController } from '@ionic/angular';
 import {Router } from '@angular/router';
 import { AuthService } from './api/services/auth/auth.service';
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: 'app-root',
@@ -24,9 +25,11 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private actionSheetController: ActionSheetController,
     private router: Router,
-    private authenticationService: AuthService
+    private authService: AuthService,
+    private storage: Storage
   ) {
     this.initializeApp();
+    this.user = authService.user
   }
 
   onClickNav(event) {
@@ -92,11 +95,11 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.authenticationService.authSubject.subscribe(state => {
+      this.authService.authSubject.subscribe(state => {
         if (state) {
           this.router.navigate(['place-order']);
         } else {
-          // this.router.navigate(['home']);
+          this.router.navigate(['home']);
         }
       });
 
@@ -111,5 +114,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.storage.get('jwt-token').then(res=> {
+      this.user = res.user
+    })
   }
 }

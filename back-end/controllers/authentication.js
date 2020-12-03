@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const SECRET_KEY = "secretkey23456";
 
-const User = require('../models/User');
+const Customer = require('../models/User');
 
 routes.route('/register').post((request, response) => {
     let pass = bcrypt.hashSync(request.body.password)
@@ -21,7 +21,8 @@ routes.route('/register').post((request, response) => {
         password: pass,
         picture: request.body.picture,
         id_image: request.body.id_image,
-        id_number: request.body.id_number
+        id_number: request.body.id_number,
+        bookings: []
     });
 
     account.save().then((user) => {
@@ -38,8 +39,7 @@ routes.route('/register').post((request, response) => {
 
 routes.route('/login').post((req, res) => {
 
-    User.findOne({ email: req.body.email }).then((user) => {
-        // console.log(user);
+    Customer.findOne({ email: req.body.email }).populate({path: 'bookings', select: '*'}).then((user) => {
 
         const expiresIn = 24 * 60 * 60;
         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {

@@ -38,7 +38,6 @@ export class AuthService {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         this.authSubject.next(true);
-        // console.log("On auth service loadStoredeToken(): ", res);
         this.user = res.user;
       }
     })
@@ -59,7 +58,8 @@ export class AuthService {
 
       switchMap(token => {
         console.log("Auth Service token in login: ", token);
-        this.authSubject.next(token);
+        this.authSubject.next(true);
+        this.user = token.user;
 
         let storageObservable = from(this.storage.set(TOKEN_KEY, token));
         return storageObservable;
@@ -69,13 +69,19 @@ export class AuthService {
   };
 
   getUser() {
-    return this.authSubject.getValue();
+    this.storage.get(TOKEN_KEY).then(res => {
+      if (res) {
+        return res.user;
+      } else {
+        return null;
+      }
+    })
   }
 
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.router.navigateByUrl('home');
-      this.authSubject.next(null);
+      this.authSubject.next(false);
     });
   };
 

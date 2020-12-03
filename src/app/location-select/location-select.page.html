@@ -8,5 +8,7 @@
 
 <ion-content>
   <div #maps id="maps"></div>
-  <ion-button class="book-now" type="submit" *ngIf="service_location" (click)=bookServiceNow()>Book Now</ion-button>
+  <div class="buttons" *ngIf="service_location">
+    <ion-button class="book-now" type="submit" (click)=proceedAlert()>Next</ion-button>
+  </div>
 </ion-content>
