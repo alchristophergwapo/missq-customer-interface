@@ -12,8 +12,23 @@ export class BookingsPage implements OnInit {
   bookings: any;
 
   constructor(private app: AppComponent, private msqService: MsqService) { }
+  
+  ngOnInit(){
+    // this.bookingSubmit()
+  }
 
-  ngOnInit() {
+  bookingSubmit() {
+    this.bookings = {
+      service_bookings: "",
+      houseOfService: "",
+      notes: "",
+      location: "",
+    };
+    // fetch().then(async res => {
+    //   let result = await res.json();
+    //   this.bookings = result.data;
+      
+    // })
     this.msqService.getMyBookings(this.app.user._id).subscribe(response => {
       console.log(response);
     });

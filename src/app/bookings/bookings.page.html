@@ -29,16 +29,18 @@
             </div>
           </ion-card-content>
         </ion-card>
-        <table>
-            <tr>
-              <th>Booking Date</th>
-              <th>Booking Time</th>
-              <th>Booking Status</th>
+        <table *ngFor="let b of bookings">
+            <tr > 
+              <th>Service Bookings</th>
+              <th>House of Service</th>
+              <th>Notes</th>
+              <th>Location</th>
             </tr>
             <tr>
-              <td>December 25, 2020</td>
-              <td>12:30</td>
-              <td>Pending</td>
+              <td>{{b.service_bookings}}</td>
+              <td>{{b.houseOfService}}</td>
+              <td>{{b.notes}}</td>
+              <td>{{b.location}}</td>
             </tr>
           </table>
         <table>

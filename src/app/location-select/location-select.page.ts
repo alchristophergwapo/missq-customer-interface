@@ -111,7 +111,7 @@ export class LocationSelectPage implements OnInit {
 
   bookServiceNow() {
     try {
-      this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
+      // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
     } catch (error) {
       console.log(error);
       

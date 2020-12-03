@@ -20,13 +20,13 @@ declare var google: any;
   templateUrl: "./place-order.page.html",
   styleUrls: ["./place-order.page.scss"]
 })
+
 export class PlaceOrderPage implements OnInit {
   // @ViewChild('nanny-s-location') locationInput: ElementRef;
 
   segmentModel = "Nanny";
 
   // @ViewChild(IonSlides) slides: IonSlides;
-
   nanny: any = [
     {
       MediaUrl: "../../assets/images/nanny.jpg"
