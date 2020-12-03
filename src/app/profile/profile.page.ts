@@ -24,8 +24,9 @@ export class ProfilePage implements OnInit {
 
   OpenModal()
   {
-    this.modalController.create({component:ModalpopupPage}).then((modalElement)=> {
-      modalElement.present();
+    this.modalController.create({component:ModalpopupPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
+    
+      modalElement.present(); 
     })
   }
 
