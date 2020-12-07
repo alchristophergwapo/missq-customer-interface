@@ -3,7 +3,7 @@
     <ion-card-content>
         <nobr class = 'close' ><ion-icon name="arrow-back" [routerLink]="['/place-order']"></ion-icon></nobr> 
         <h1><img height="50" float-left src="assets/images/msqlogo.png">Account Information</h1>
-        <div id = 'info'>
+        <div id = 'info'> <hr>
           <ion-label class="user" ><img src="{{ user.picture}}" id = 'userimage' alt="" class="center"><br><h6 class="username" >{{ user.name }}</h6></ion-label>
           <ion-label><h6 class = 'name'><nobr>ID Number :  </nobr>{{ user.id }}</h6></ion-label><br>
           <ion-label><h6 class = 'name'> <nobr> Email : </nobr>  {{ user.email }}</h6> </ion-label><br>
