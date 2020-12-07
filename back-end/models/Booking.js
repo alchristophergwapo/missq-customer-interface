@@ -1,30 +1,41 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Booking = new Schema({
+let Booking = new Schema(
+  {
     service_booking: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     service_location: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     cost: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true
     },
     notes: {
+      type: String,
+      required: true
+    },
+    schedule: {
+      type: Date,
+      required: true
+    },
+    status: {
         type: String,
         required: true
     },
-    phone: {
-        type: String,
-        required: true
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Customers',
+      required: true
     }
-}, {
-    collection: 'msq_service_bookings'
-}
+  },
+  {
+    timestamps: true
+  }
 );
 
-module.exports = mongoose.model("Booking",Booking)
+module.exports = mongoose.model("Bookings", Booking);

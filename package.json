@@ -23,7 +23,7 @@
     "@capacitor/android": "^2.4.2",
     "@capacitor/core": "2.4.2",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/geolocation": "^5.29.0",
+    "@ionic-native/geolocation": "^5.30.0",
     "@ionic-native/native-geocoder": "^5.29.0",
     "@ionic-native/network": "^5.29.0",
     "@ionic-native/paypal": "^5.30.0",
@@ -92,5 +92,14 @@
       "android",
       "browser"
     ]
+  },
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchristophergwapo/missq-customer-interface.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alchristophergwapo/missq-customer-interface/issues"
   }
 }
