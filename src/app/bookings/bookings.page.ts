@@ -15,8 +15,9 @@ export class BookingsPage implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.bookings = this.authService.user.bookings;
-    console.log("On bookings page ts: ", this.bookings);
+    const userBookings = this.authService.user;
+
+    this.bookings = userBookings['bookings']
     
   }
 

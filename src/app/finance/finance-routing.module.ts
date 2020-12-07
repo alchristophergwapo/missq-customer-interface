@@ -5,7 +5,7 @@ import { FinancePage } from './finance.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'members',
     component: FinancePage
   }
 ];

@@ -105,11 +105,11 @@ export class AppComponent implements OnInit {
 
       this.currentRoute = window.location.pathname;
 
-      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
-        this.dashboard = false;
-      } else {
-        this.dashboard = true;
-      }
+      // if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
+      //   this.dashboard = false;
+      // } else {
+      //   this.dashboard = true;
+      // }
     });
   }
 

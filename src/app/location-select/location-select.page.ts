@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { MsqService } from "../api/services/service/msq-service.service";
 import { AuthService } from '../api/services/auth/auth.service';
 import { AlertController } from '@ionic/angular';
+import { DatePipe } from '@angular/common';
 
 declare var google: any;
 
@@ -129,7 +130,7 @@ export class LocationSelectPage implements OnInit {
           cssClass: 'book-now',
           handler: input => {
             try {
-              this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
+              // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
             } catch (error) {
               console.log(error);
               
@@ -145,7 +146,14 @@ export class LocationSelectPage implements OnInit {
               author: this.user
             };
 
-            this.bookServiceNow(datas);
+            let pipe = new DatePipe('en-US');
+            let date = new Date()
+            let todayDate = pipe.transform(date,"YYYY-MM-ddTHH:mm")
+            if (todayDate == input.schedule || pipe.transform(input.schedule,"YYYY-MM-dd") < pipe.transform(date,"YYYY-MM-dd")) {
+              true
+            } else {
+              this.bookServiceNow(datas);
+            }
           }
         }
       ]
@@ -172,7 +180,7 @@ export class LocationSelectPage implements OnInit {
 
     
     this.user = this.authService.user;
-    console.log("On ngOnInit() : ",this.user);
+    
     
   }
 }

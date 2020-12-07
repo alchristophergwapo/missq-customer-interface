@@ -8,6 +8,7 @@ import { AlertController } from "@ionic/angular";
 import { Router, NavigationExtras } from "@angular/router";
 import { MsqService } from "../api/services/service/msq-service.service";
 import { AuthService } from '../api/services/auth/auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: "app-place-order",
