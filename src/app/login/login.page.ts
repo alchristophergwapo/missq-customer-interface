@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
     private dash: AppComponent
   ) { 
     this.name = 'toper@gmail.com';
-    this.password = "Toper123";
+    this.password = "Toper@2020";
   }
 
   login(form) {

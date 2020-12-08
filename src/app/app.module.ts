@@ -22,12 +22,14 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 
 import { AuthGuardService as AuthGuard } from "./api/services/auth_guard/auth-guard.service";
 import { AuthService } from "./api/services/auth/auth.service";
 import { PlaceOrderPage } from "./place-order/place-order.page";
 import { MsqService } from './api/services/service/msq-service.service';
+import { Camera } from '@ionic-native/camera/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,8 +38,8 @@ import { MsqService } from './api/services/service/msq-service.service';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     ValidateEqualModule,
     HttpClientModule,
     IonicStorageModule.forRoot()
@@ -53,6 +55,8 @@ import { MsqService } from './api/services/service/msq-service.service';
     MsqService,
     PlaceOrderPage,
     AppComponent,
+    Camera,
+    FileTransfer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

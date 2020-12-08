@@ -9,7 +9,9 @@ import { AppComponent } from '../app.component';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private authService: AuthService, private app: AppComponent) {
+  user: any;
+
+  constructor(private authService: AuthService) {
   }
 
   logout() {
@@ -17,7 +19,8 @@ export class SettingsPage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.user = this.authService.user;
+    console.log(this.user);
   }
 
 }
