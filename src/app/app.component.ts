@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
+  logout() {
+    this.authService.logout();
+    console.log(this.authenticationService.user);
+  }
+
   onClickNav(event) {
 
     event.preventDefault();

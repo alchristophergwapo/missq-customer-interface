@@ -163,7 +163,6 @@ export class LocationSelectPage implements OnInit {
   }
 
   bookServiceNow(serviceData) {
-    
     this.service.bookNow(serviceData).subscribe(response => {
       console.log("Response",response);
       if (response) {

@@ -83,7 +83,13 @@
                             type="password" #password="ngModel"
                             [ngClass]="{ 'is-invalid': form.submitted && password.invalid}" placeholder="Password"
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel minlength="6" required
-                            (ionInput)="validatePassword($event)"></ion-input>
+                            (ionInput)="validatePassword($event)" (ionBlur)="onBlur($event)"></ion-input>
+                        <button class="btnEye" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+                                <ion-icon name="eye" style="font-size:25px;"></ion-icon>
+                             </button>
+                        <button class="btnEye" *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+                                <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
+                             </button>
                     </ion-item><br>
                     <ion-label *ngIf="!password.valid && password.touched && password.errors?.required">
                         <ion-text color="danger">Password is required</ion-text>
@@ -102,8 +108,14 @@
                         <ion-input name="confirm" [(ngModel)]='user.confirm' mustMatch="password" type="password"
                             #confirm="ngModel" [ngClass]="{ 'is-invalid': form.submitted && confirm.invalid}"
                             placeholder="Confirm Password" pattern="{{password.value}}" ngModel required
-                            (ionInput)="confirmPassword($event)" (ionBlur)="onBlur($event)">
+                            (ionInput)="confirmPassword($event)">
                         </ion-input>
+                        <button class="btnEye" *ngIf="!showPass1" ion-button clear color="dark" type="button" item-right (click)="showPasswordConfirm()"> 
+                            <ion-icon name="eye" style="font-size:25px;"></ion-icon>
+                         </button>
+                        <button class="btnEye" *ngIf="showPass1" ion-button clear color="dark" type="button" item-right (click)="showPasswordConfirm()"> 
+                            <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
+                         </button>
                     </ion-item>
                     <ion-label *ngIf="!confirm.valid && confirm.touched && confirm.errors?.required">
                         <ion-text color="danger">Confirm Password is required</ion-text>

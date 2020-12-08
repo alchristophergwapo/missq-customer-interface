@@ -39,6 +39,11 @@ export class CreateAccountPage implements OnInit {
     mediaType: this.camera.MediaType.PICTURE
   }
 
+  public type = 'password';
+  public type1 = 'password';
+  public showPass = false;
+  public showPass1 = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -68,6 +73,23 @@ export class CreateAccountPage implements OnInit {
       this.dataList = result.data;
 
     })
+  }
+  
+  showPassword() {
+    this.showPass = !this.showPass;
+    if (this.showPass) {
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
+  }
+  showPasswordConfirm() {
+    this.showPass1 = !this.showPass1;
+    if (this.showPass1) {
+      this.type1 = 'text';
+    } else {
+      this.type1 = 'password';
+    }
   }
 
   async register(form) {

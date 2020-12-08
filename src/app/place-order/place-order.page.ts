@@ -173,7 +173,6 @@ export class PlaceOrderPage implements OnInit {
     if (!this.totalCost) {
       this.totalCost = this.descriptions[this.segmentModel];
     }
-    
   }
 
   segmentChanged(event) {

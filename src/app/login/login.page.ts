@@ -12,8 +12,13 @@ import { AppComponent } from '../app.component';
 })
 export class LoginPage implements OnInit {
 
+ public type = 'password';
+  public showPass = false;
   name: string;
   password: string;
+
+// passwordType: string = 'password';
+// eye: boolean = false;
 
   constructor(
     private authService: AuthService, 
@@ -25,6 +30,24 @@ export class LoginPage implements OnInit {
     this.password = "Toper@2020";
   }
 
+  // public hideShowPassword(){
+  //   if(this.eye){
+  //     this.eye = false;
+  //     this.passwordType = 'password';
+  //   }else{
+  //     this.eye = true;
+  //     this.passwordType = 'password';
+  //   }
+  // }
+  
+  showPassword() {
+     this.showPass = !this.showPass;
+     if(this.showPass){
+       this.type = 'text';
+     } else {
+       this.type = 'password';
+     }
+  }
   login(form) {
     // console.log(form.value);
     this.authService.login(form.value).subscribe(res => {

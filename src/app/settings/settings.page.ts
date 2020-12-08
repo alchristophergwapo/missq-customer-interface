@@ -14,9 +14,11 @@ export class SettingsPage implements OnInit {
   constructor(private authService: AuthService) {
   }
 
-  logout() {
-    this.authService.logout();
-  }
+  // logout() {
+  //   this.authService.logout();
+  //   console.log(this.authService.user);
+    
+  // }
 
   ngOnInit() {
     this.user = this.authService.user;
