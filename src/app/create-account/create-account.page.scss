@@ -29,7 +29,7 @@ ion-content.background {
 
 form {
     margin-top: 20px;
-    text-align: center;
+    // text-align: center;
     left: 0;
     right: 0;
     padding: 10px;
@@ -86,4 +86,44 @@ ion-item ion-icon {
     padding: 6px;
     font-size: 40px;
     font-weight: bold;
+}
+
+#message {
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+@media (max-width: 767.98px) {
+    #message p {
+        font-size: 13px;
+    }
+}
+
+.valid {
+    color: green;
+  }
+  
+  .valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+  }
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
 }

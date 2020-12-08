@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
       this.currentRoute = window.location.pathname;
 
       this.storage.get('jwt-token').then(res=> {
-        if (res.user) {
+        if (res) {
           this.user = res.user
         }
       })
@@ -114,9 +114,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.storage.get('jwt-token').then(res=> {
-      if (res.user) {
+      if (res) {
         this.user = res.user
       }
-    })
+    });
+
+    this.setDashboard(true);
   }
 }

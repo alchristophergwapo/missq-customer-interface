@@ -8,8 +8,10 @@ import { User } from "../api/models/user";
 import { Camera, CameraOptions, PictureSourceType } from "@ionic-native/camera/ngx";
 import { FilePath } from "@ionic-native/file-path/ngx";
 import { File } from "@ionic-native/file/ngx";
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { WebView } from "@ionic-native/ionic-webview/ngx";
-import { Platform, ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 const STORAGE_KEY = 'my_images';
 
@@ -22,19 +24,28 @@ export class CreateAccountPage implements OnInit {
   public user: User;
   isSubmitted = false;
   dataList: Array<CountryCodes> = [];
+  selfie: any;
+  idPic: any;
+
+  capturedSnapURL: string;
+  passwordMatch: Boolean = null;
+
   images: Array<any> = [];
+
+  cameraOptions: CameraOptions = {
+    quality: 20,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private camera: Camera,
-    private platform: Platform,
-    private filePath: FilePath,
-    private file: File,
     private toastController: ToastController,
-    private storage: Storage,
-    private ref: ChangeDetectorRef,
-    private webView: WebView
+    private loadingController: LoadingController,
+    private camera: Camera,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -55,94 +66,30 @@ export class CreateAccountPage implements OnInit {
     fetch('assets/country-code.json').then(async res => {
       let result = await res.json();
       this.dataList = result.data;
-      
+
     })
   }
 
-  register(form) {
-    this.isSubmitted = true;
-    this.authService.register(form.value).subscribe(response => {
-      if (response) {
-        this.isSubmitted = true;
-        this.router.navigateByUrl("login");
-      }
+  async register(form) {
+    const loading = await this.loadingController.create({
+      message: 'Creating account...',
     });
+    await loading.present();
+
+    // form.value['picture'] = this.selfie;
+    // form.value['id_image'] = this.idPic;
+
+    // console.log("Updated form: ", form.value);
+
+    // this.authService.register(form.value, { picture: this.selfie, id_image: this.idPic }, { picture: this.selfie, id_image: this.idPic }).subscribe(response => {
+    //   if (response) {
+    //     this.isSubmitted = true;
+    //     this.router.navigateByUrl("login");
+    //   }
+    // });
   }
 
-  takePicture(sourceType: PictureSourceType) {
-    var options: CameraOptions = {
-      quality: 100,
-      sourceType: sourceType,
-      saveToPhotoAlbum: false,
-      correctOrientation: true
-    }
-
-    this.camera.getPicture(options).then(imagePath => {
-      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filePath.resolveNativePath(imagePath)
-          .then(filePath=>{
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName())
-          })
-      } else {
-        let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName())
-      }
-    });
-  }
-
-  copyFileToLocalDir(namePath, currentName, newFileName) {
-    this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(success => {
-        this.updateStoredImages(newFileName);
-    }, error => {
-        this.presentToast('Error while storing file.');
-    });
-  }
-
-  createFileName() {
-    var d = new Date(),
-        n = d.getTime(),
-        newFileName = n + '.jpg';
-    return newFileName;
-  }
-
-  updateStoredImages(newFileName) {
-    this.storage.get(STORAGE_KEY).then(images => {
-      let arr = JSON.parse(images);
-        if (!arr) {
-            let newImages = [name];
-            this.storage.set(STORAGE_KEY, JSON.stringify(newImages));
-        } else {
-            arr.push(name);
-            this.storage.set(STORAGE_KEY, JSON.stringify(arr));
-        }
- 
-        let filePath = this.file.dataDirectory + name;
-        let resPath = this.pathForImage(filePath);
- 
-        let newEntry = {
-            name: name,
-            path: resPath,
-            filePath: filePath
-        };
- 
-        this.images = [newEntry, ...this.images];
-        this.ref.detectChanges();
-    })
-  }
-
-  pathForImage(img) {
-    if (img === null) {
-      return '';
-    } else {
-      let converted = this.webView.convertFileSrc(img);
-      return converted;
-    }
-  }
-
-  async presentToast(text){
+  async presentToast(text) {
     const toast = await this.toastController.create({
       message: text,
       position: 'bottom',
@@ -152,13 +99,33 @@ export class CreateAccountPage implements OnInit {
     toast.present();
   }
 
-  copyFile(namePath, currentName, newFileName) {}
-
   noSubmit(e) {
     e.preventDefault();
   }
-  loadImageFromDevice(event) {
-    const file = event.target.files[0];
+
+  loadImageFromDevice(event, type) {
+    if (event.target.files.length == 0) {
+      console.log("No file selected!");
+      return
+    }
+    let file = event.target.files[0];
+    if (type == 'selfie') {
+      this.selfie = file;
+      // if (this.platform.is('cordova')) {
+      //   this.camera.getPicture(this.cameraOptions).then((imageData) => {
+      //     let image = 'data:image/jpeg;base64,' + imageData;
+      //     this.capturedSnapURL = image;
+      //     console.log(image);
+
+      //   }, (err) => {
+
+      //     console.log(err);
+      //     // Handle error
+      //   });
+      // }
+    } else {
+      this.idPic = file;
+    }
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
@@ -170,5 +137,73 @@ export class CreateAccountPage implements OnInit {
     reader.onerror = error => {
       //handle errors
     };
+  }
+
+  confirmPassword(event) {
+    const password = this.user.password;
+    console.log(password);
+
+    if (event.target.value == password) {
+      this.passwordMatch = true;
+    } else {
+      this.passwordMatch = false;
+    }
+  }
+
+  validatePassword(event) {
+    const password = {
+      length: 6,
+      uppercase: /[A-Z]/g,
+      lowercase: /[a-z]/g,
+      number: /[0-9 ]/g
+    }
+
+    document.getElementById("message").style.display = "block";
+
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+    // Validate lowercase letters
+    if (event.target.value.match(password.lowercase)) {
+      
+      letter.classList.remove("invalid");
+      letter.classList.add("valid");
+    } else {
+      letter.classList.remove("valid");
+      letter.classList.add("invalid");
+    }
+
+    // Validate capital letters
+    if (event.target.value.match(password.uppercase)) {
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+    }
+
+    // Validate numbers
+    if (event.target.value.match(password.number)) {
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+    }
+
+    // Validate length
+    if (event.target.value.length >= password.length) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+    }
+  }
+
+  onBlur(event) {
+    document.getElementById("message").style.display = "none"; 
   }
 }

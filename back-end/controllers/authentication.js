@@ -7,44 +7,68 @@ const SECRET_KEY = "secretkey23456";
 
 const Customer = require("../models/User");
 
+const multer = require('multer');
+
+const DIR = '../public/images';
+
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, DIR);
+	},
+	filename: (req, file, cb) => {
+		cb(null, Date.now() + '-' + file.fieldname)
+	}
+});
+
+var upload = multer({
+	storage: storage,
+	fileFilter: (req, file, cb) => {
+		if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+			cb(null, true);
+		} else {
+			cb(null, false);
+			return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+		}
+	}
+});
+
 routes.route("/register").post((request, response) => {
+  // upload.single('picture', response=>{
+  //   console.log(response);
+  // });
+  // upload.single('id_image');
+
+  const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
+
   let pass = bcrypt.hashSync(request.body.password);
 
-  let account = new User({
-    name: request.body.name,
-    address: request.body.address,
-    code: request.body.code,
-    phone: request.body.phone,
-    code: request.body.code,
-    email: request.body.email,
-    birth_date: request.body.birth_date,
-    password: pass,
-    picture: request.body.picture,
-    id_image: request.body.id_image,
-    id_number: request.body.id_number,
-    bookings: []
-  });
+  let account = new Customer(request.body);
 
-  account
-    .save()
-    .then(user => {
-      const expiresIn = 24 * 60 * 60;
-      const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
-        expiresIn: expiresIn
-      });
-      response
-        .status(200)
-        .send({
-          user: user,
-          access_token: accessToken,
-          expires_in: expiresIn,
-          status: 200
-        });
-    })
-    .catch(error => {
-      console.log("Error => ", error);
-      response.status(400).send("Failed to store to database!", error.body);
-    });
+  // account['password'] = pass;
+  // account['picture'] = url + Date.now() + '-' +request.body.picture;
+  // account['id_image'] = url + Date.now() + '-' +request.body.id_image;
+  console.log(request.file);
+
+  // account
+  //   .save()
+  //   .then(user => {
+  //     const expiresIn = 24 * 60 * 60;
+  //     const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
+  //       expiresIn: expiresIn
+  //     });
+  //     response
+  //       .status(200)
+  //       .json({
+  //         user: user,
+  //         access_token: accessToken,
+  //         expires_in: expiresIn,
+  //         status: 200
+  //       });
+  //   })
+  //   .catch(error => {
+  //     console.log("Error => ", error);
+  //     response.status(400).send("Failed to store to database!", error.body);
+  //   });
 });
 
 routes.route("/login").post((req, res) => {
