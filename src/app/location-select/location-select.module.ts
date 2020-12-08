@@ -8,8 +8,6 @@ import { LocationSelectPageRoutingModule } from './location-select-routing.modul
 
 import { LocationSelectPage } from './location-select.page';
 
-import { GoogleMapComponent } from "../google-map/google-map.component";
-
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +15,6 @@ import { GoogleMapComponent } from "../google-map/google-map.component";
     IonicModule,
     LocationSelectPageRoutingModule,
   ],
-  declarations: [LocationSelectPage,
-    GoogleMapComponent]
+  declarations: [LocationSelectPage]
 })
 export class LocationSelectPageModule {}

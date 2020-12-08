@@ -25,10 +25,9 @@ export class LoginPage implements OnInit {
     private router: Router, 
     private alertCtrl: AlertController, 
     private dash: AppComponent
-  ) 
-  { 
-    this.name = 'geneva1@gmail.com';
-    this.password = "jhenRivas1999";
+  ) { 
+    this.name = 'toper@gmail.com';
+    this.password = "Toper@2020";
   }
 
   // public hideShowPassword(){

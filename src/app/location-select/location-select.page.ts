@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
-import { Observable } from "rxjs";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
-import { PlaceOrderPage } from "../place-order/place-order.page";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MsqService } from "../api/services/service/msq-service.service";
-import { AppComponent } from "../app.component";
+import { AuthService } from '../api/services/auth/auth.service';
+import { AlertController } from '@ionic/angular';
+import { DatePipe } from '@angular/common';
 
 declare var google: any;
 
@@ -26,15 +26,20 @@ export class LocationSelectPage implements OnInit {
 
   data: any;
   service_location: any;
+  user: any;
 
   constructor(
     private geo: Geolocation,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private service: MsqService,
-    private app: AppComponent
+    private authService: AuthService,
+    private alertCtrl: AlertController
   ) {
     this.getGeoLocation();
+    this.user = authService.user;
+    console.log("On constructor: ",this.user);
+    
   }
 
   getGeoLocation() {
@@ -109,24 +114,55 @@ export class LocationSelectPage implements OnInit {
     });
   }
 
-  bookServiceNow() {
-    try {
-      // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
-    } catch (error) {
-      console.log(error);
-      
-    }
-    const serviceData = {
-      service_booking: this.data.service_booking,
-      service_location: this.service_location,
-      cost: this.data.cost,
-      notes: this.data.notes,
-      status: "Pending",
-      author: this.app.user
-    };
+  async proceedAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Scheduled Date',
+      inputs: [
+        {
+          name: 'schedule',
+          type: 'datetime-local',
+          cssClass: 'schedule'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Book now',
+          cssClass: 'book-now',
+          handler: input => {
+            try {
+              // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
+            } catch (error) {
+              console.log(error);
+              
+            }
+            
+            const datas = {
+              service_booking: this.data.service_booking,
+              service_location: this.service_location,
+              cost: this.data.cost,
+              notes: this.data.notes,
+              schedule: input.schedule,
+              status: "Pending",
+              author: this.user
+            };
 
-    console.log(serviceData);
-    
+            let pipe = new DatePipe('en-US');
+            let date = new Date()
+            let todayDate = pipe.transform(date,"YYYY-MM-ddTHH:mm")
+            if (todayDate == input.schedule || pipe.transform(input.schedule,"YYYY-MM-dd") < pipe.transform(date,"YYYY-MM-dd")) {
+              true
+            } else {
+              this.bookServiceNow(datas);
+            }
+          }
+        }
+      ]
+    })
+
+    await alert.present();
+  }
+
+  bookServiceNow(serviceData) {
     this.service.bookNow(serviceData).subscribe(response => {
       console.log("Response",response);
       if (response) {
@@ -141,7 +177,9 @@ export class LocationSelectPage implements OnInit {
       this.data = JSON.parse(params.bookedData);
     });
 
-    console.log(this.app.user);
+    
+    this.user = this.authService.user;
+    
     
   }
 }

@@ -42,9 +42,17 @@ let User = new Schema({
     },
     id_number: {
         type: Number
-    }
-}, {
-    collection: 'Customers'
+    },
+    
 });
+
+User.virtual('bookings', {
+    ref: 'Bookings',
+    localField: '_id',
+    foreignField: 'author',
+ });
+ 
+ User.set('toObject', { virtuals: true });
+ User.set('toJSON', { virtuals: true });
 
 module.exports = mongo.model('Customers', User);
