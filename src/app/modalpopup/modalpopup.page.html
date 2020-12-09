@@ -1,17 +1,26 @@
-<ion-content color = 'danger'>
+<ion-content>
   <ion-item>
   </ion-item>
   <form #form="ngForm" (ngSubmit)="updateContactInfo(form)"> 
     <ion-item>
-      <ion-icon name="create"></ion-icon>&nbsp;
-      <ion-input name="phone" type="Number" [ngModel]="Number"></ion-input>
+      <ion-input name="name" type="text" [ngModel]="text"><nobr>name :  </nobr>Solatorio</ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="id" type="text" [ngModel]="user.email"
+      <ion-input name="phone" type="Number" [ngModel]="Number"><nobr>Phone :  </nobr>3423432</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="address" type="text" [ngModel]="text" ><nobr>Address :  </nobr>Irish</ion-input><br>
+    </ion-item>
+   
+    <ion-item>
+      <ion-input name="email" type="email" [ngModel]="text"><nobr>Email :  </nobr>Rufo</ion-input><br>
+    </ion-item>
+    <ion-item>
+      <ion-input name="id" type="email" [ngModel]="user.email"
      ></ion-input>
     </ion-item>
     <div>
-      <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update phone number</ion-button>
+      <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
     </div>
   </form>
 </ion-content>
