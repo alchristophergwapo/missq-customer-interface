@@ -72,24 +72,26 @@
     left: 0;
     width: 25%;
     height: 100%;
-    background: yellow;
+    background: white;
+    border: 1px solid black;
 }
 .col-1-mid {
     position: absolute;
     top: 0;
     left: 25%;
-    width: 65%;
+    width: 75%;
     height: 100%;
-    background: black;
+    background: white;
+    border: 1px solid black;
 }
-.col-1-right {
-    position: absolute;
-    top: 0%;
-    right: 0;
-    width: 10%;
-    height: 100%;
-    background: skyblue;
-}
+// .col-1-right {
+//     position: absolute;
+//     top: 0%;
+//     right: 0;
+//     width: 10%;
+//     height: 100%;
+//     background: skyblue;
+// }
 .col-2-left {
     position: absolute;
     top: 0;

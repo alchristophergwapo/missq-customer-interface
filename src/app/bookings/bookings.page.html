@@ -29,32 +29,30 @@
             </div>
           </ion-card-content>
         </ion-card>
-        <table *ngFor="let b of bookings">
-            <tr > 
-              <th>Service Bookings</th>
-              <th>House of Service</th>
-              <th>Notes</th>
-              <th>Location</th>
-            </tr>
-            <tr>
-              <td>{{b.service_bookings}}</td>
-              <td>{{b.houseOfService}}</td>
-              <td>{{b.notes}}</td>
-              <td>{{b.location}}</td>
-            </tr>
-          </table>
-        <table>
+        <table *ngFor="let bk of bookings">
           <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Unit Price</th>
-            <th>Amount</th>
+            <th>Service Bookings</th>
+            <th>Date</th>
+            <th>Notes</th>
+            <th>Location</th>
           </tr>
           <tr>
-            <td>1.Haircut</td>
-            <td>50 pesos</td>
-            <td>x1</td>
-            <td>1000</td>
+            <td>{{bk.service_booking}}</td>
+            <td>{{bk.schedule}}</td>
+            <td>{{bk.notes}}</td>
+            <td>{{bk.service_location}}</td>
+          </tr>
+        </table>
+        <table *ngFor="let bt of bookings">
+          <tr>
+            <th>Item</th>
+            <th>Hours of Service</th>
+            <th>Cost</th>
+          </tr>
+          <tr>
+            <td>{{bt.service_booking}}</td>
+            <td>{{bt.schedule}}</td>
+            <td>{{bt.cost}}</td>
           </tr>
           <tr>
             <td></td>
@@ -68,27 +66,28 @@
         <br>
         <label for="payment">Payment Method:</label>
         <select name="payment" id="payment">
-            <option value="gcash">Gcash</option>
-            <option value="paymaya">PayMaya</option>
-            <option value="creditcard">Credit Card</option>
+          <option value="gcash">Gcash</option>
+          <option value="paymaya">PayMaya</option>
+          <option value="creditcard">Credit Card</option>
         </select>
         <p>Payment Status:</p>
       </div>
-      <div class="column1">
+      <div class="column1" *ngIf="bookings">
         <div *ngFor="let b of bookings">
-            <ion-card>
-                <ion-card-content>
-                  <div class="col-1-left">
-                    <div *ngIf="b.schedule">{{b.schedule}}</div>
-                  </div>
-                  <div class="col-1-mid">
-                    {{b.service_booking}}
-                  </div>
-                  <div class="col-1-right">
+          <ion-card>
+            <ion-card-content>
+              <div class="col-1-left">
+                <div>{{b.schedule}}</div>
+                <!-- <div *ngIf="b.schedule">{{b.schedule}}</div> -->
+              </div>
+              <div class="col-1-mid">
+                {{b.service_booking}}
+              </div>
+              <!-- <div class="col-1-right">
                     <ion-icon name="arrow-forward"> </ion-icon>
-                  </div>
-                </ion-card-content>
-            </ion-card>
+                  </div> -->
+            </ion-card-content>
+          </ion-card>
         </div>
       </div>
     </div>
