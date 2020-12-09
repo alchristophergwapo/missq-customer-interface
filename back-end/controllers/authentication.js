@@ -37,6 +37,7 @@ routes.route('/register').post((request, response) => {
 });
 
 routes.route('/login').post((req, res) => {
+    console.log(req.body);
 
     User.findOne({ email: req.body.email }).then((user) => {
         // console.log(user);
@@ -57,6 +58,7 @@ routes.route('/login').post((req, res) => {
 
         } else {
             res.status(400).send({ 'status': 400 });
+            // return res.status(400).json({ error: "User with this email already exists." });
         }
     }).catch(error => {
         console.log('Error ', error)

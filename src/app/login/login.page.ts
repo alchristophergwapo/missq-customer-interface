@@ -27,8 +27,8 @@ export class LoginPage implements OnInit {
     private dash: AppComponent
   ) 
   { 
-    this.name = 'geneva1@gmail.com';
-    this.password = "jhenRivas1999";
+    this.name = 'genevaxoxorivas99@gmail.com';
+    this.password = "jhenRivas_1999";
   }
 
   // public hideShowPassword(){
