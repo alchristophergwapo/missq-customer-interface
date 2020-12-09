@@ -6,8 +6,8 @@
         </div>
         <div id="container1">
             <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
-        </div>
-        <form #form="ngForm" novalidate (ngSubmit)="register(form); form.reset()" novalidate><br>
+        </div><br>
+        <form #form="ngForm" (ngSubmit)="register(form)" novalidate><br><br>
             <ion-card-title>
                 <div text-center>
                     <h3>Create Your Account!</h3>
@@ -73,24 +73,30 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input name="password" type="{{type}}" [(ngModel)]='user.password' compare-password="confirm" type="password" #password="ngModel" [ngClass]="{ 'is-invalid': form.submitted && password.invalid}" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            ngModel minlength="6" required></ion-input>
+                        <ion-input name="password" [(ngModel)]='user.password' compare-password="confirm" type="{{type}}" #password="ngModel" [ngClass]="{ 'is-invalid': form.submitted && password.invalid}" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            ngModel minlength="6" required (ionInput)="validatePassword($event)" (ionBlur)="onBlur($event)"></ion-input>
                         <button class="btnEye" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
                                 <ion-icon name="eye" style="font-size:25px;"></ion-icon>
                              </button>
                         <button class="btnEye" *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
                                 <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
                              </button>
-                        <!-- <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
-                    </ion-item>
+                    </ion-item><br>
                     <ion-label *ngIf="!password.valid && password.touched && password.errors?.required">
                         <ion-text color="danger">Password is required</ion-text>
                     </ion-label>
-                    <ion-label color="danger" *ngIf="password.errors?.minlength">Password must be at least 6 characters</ion-label><br>
+                    <div id="message">
+                        <h3>Password must contain the following:</h3>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>6 characters</b></p>
+                    </div>
+                    <!-- <ion-label color="danger" *ngIf="password.errors?.minlength">Password must be at least 6 characters
+                    </ion-label> -->
                     <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
-                        <ion-input name="confirm" type="{{type1}}" [(ngModel)]='user.confirm' mustMatch="password" type="password" #confirm="ngModel" [ngClass]="{ 'is-invalid': form.submitted && confirm.invalid}" placeholder="Confirm Password" pattern="{{password.value}}" ngModel
-                            required>
+                        <ion-input name="confirm" [(ngModel)]='user.confirm' mustMatch="password" type="{{type1}}" #confirm="ngModel" [ngClass]="{ 'is-invalid': form.submitted && confirm.invalid}" placeholder="Confirm Password" pattern="{{password.value}}" ngModel required (ionInput)="confirmPassword($event)">
                         </ion-input>
                         <button class="btnEye" *ngIf="!showPass1" ion-button clear color="dark" type="button" item-right (click)="showPasswordConfirm()"> 
                             <ion-icon name="eye" style="font-size:25px;"></ion-icon>
@@ -102,13 +108,16 @@
                     <ion-label *ngIf="!confirm.valid && confirm.touched && confirm.errors?.required">
                         <ion-text color="danger">Confirm Password is required</ion-text>
                     </ion-label><br>
-                    <!-- <ion-label *ngIf="confirm.errors?.mustMatch">
+                    <ion-label *ngIf="passwordMatch == false">
                         <ion-text color="danger">Password must match</ion-text>
-                    </ion-label><br> -->
+                    </ion-label><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-label slot="end">Picture(Selfie)</ion-label>
-                        <ion-input name="picture" [(ngModel)]='user.picture' type="file" (change)="loadImageFromDevice($event)" id="file-input" accept="image/png, image/jpeg" name="picture" #picCtrl="ngModel" ngModel required></ion-input>
+                        <ion-input name="picture" [(ngModel)]='user.picture' type="file" (change)="loadImageFromDevice($event, 'selfie')" id="file-input" accept="image/png, image/jpeg" name="picture" #picCtrl="ngModel" ngModel required>
+                        </ion-input>
+                        <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">
+                        <img [src]="capturedSnapURL" /> -->
                     </ion-item><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
@@ -125,7 +134,8 @@
                     </ion-label><br>
                 </div><br>
                 <div>
-                    <ion-button size="large" type="submit" color='secondary' [disabled]="form.invalid" expand="block">Submit</ion-button>
+                    <ion-button size="large" type="submit" color='secondary' [disabled]="form.invalid" expand="block">
+                        Submit</ion-button>
                 </div>
             </ion-card-content>
         </form>

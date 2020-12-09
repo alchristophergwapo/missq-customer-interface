@@ -41,7 +41,9 @@
                 <div>
                     <ion-button size="large" color='secondary' type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
                 </div><br>
-                <ion-text href="http://www.google.com">Forgot Password?</ion-text>
+                <a [routerLink]="['/forgot-password']">
+                    <ion-text h>Forgot Password?</ion-text>
+                </a>
             </ion-card-content>
         </form>
     </ion-card>

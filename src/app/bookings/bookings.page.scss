@@ -37,7 +37,7 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 97%;
-    height: 100vh;
+    height: 128vh;
     position: absolute;
 }
 
@@ -52,7 +52,7 @@
 .column1 {
     position: absolute;
     width: 65%;
-    height: 100vh;
+    height: 125vh;
     margin: 15px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -66,12 +66,16 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+ion-card {
+    height: 10vh;
+}
+
 .col-1-left {
     position: absolute;
     top: 0;
     left: 0;
     width: 25%;
-    height: 100%;
+    height: 10vh;
     background: yellow;
 }
 .col-1-mid {
@@ -79,7 +83,7 @@
     top: 0;
     left: 25%;
     width: 65%;
-    height: 100%;
+    height: 10vh;
     background: black;
 }
 .col-1-right {
@@ -87,7 +91,7 @@
     top: 0%;
     right: 0;
     width: 10%;
-    height: 100%;
+    height: 10vh;
     background: skyblue;
 }
 .col-2-left {

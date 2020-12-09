@@ -12,7 +12,7 @@ import { AppComponent } from '../app.component';
 })
 export class LoginPage implements OnInit {
 
- public type = 'password';
+  public type = 'password';
   public showPass = false;
   name: string;
   password: string;
@@ -30,16 +30,6 @@ export class LoginPage implements OnInit {
     this.name = 'genevaxoxorivas99@gmail.com';
     this.password = "jhenRivas_1999";
   }
-
-  // public hideShowPassword(){
-  //   if(this.eye){
-  //     this.eye = false;
-  //     this.passwordType = 'password';
-  //   }else{
-  //     this.eye = true;
-  //     this.passwordType = 'password';
-  //   }
-  // }
   
   showPassword() {
      this.showPass = !this.showPass;
