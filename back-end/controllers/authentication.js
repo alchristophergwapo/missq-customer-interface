@@ -15,6 +15,7 @@ routes.route('/register').post((request, response) => {
         address: request.body.address,
         code: request.body.code,
         phone: request.body.phone,
+        code: request.body.code,
         email: request.body.email,
         birth_date: request.body.birth_date,
         password: pass,
@@ -22,6 +23,7 @@ routes.route('/register').post((request, response) => {
         id_image: request.body.id_image,
         id_number: request.body.id_number
     });
+
     account.save().then((user) => {
         const expiresIn = 24 * 60 * 60;
         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {

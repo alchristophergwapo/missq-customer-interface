@@ -31,6 +31,7 @@
         <ion-item-sliding *ngFor="let worker of ideals; let i = index">
           <ion-item>
             {{worker.name}}
+            <ion-icon class="back" name="arrow-dropleft"></ion-icon>
           </ion-item>
           <ion-item-options side="end" >
             <ion-icon class="del" (click)="dltList(worker._id)" name="trash"></ion-icon>

@@ -25,27 +25,27 @@ const routes: Routes = [
   {
     path: 'place-order',
     loadChildren: () => import('./place-order/place-order.module').then( m => m.PlaceOrderPageModule), 
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'workforce',
     loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule), 
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'finance',
     loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule), 
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule), 
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'place-order/location-select',
     loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule),
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
 
   },
   {
@@ -56,7 +56,7 @@ const routes: Routes = [
   {
     path: 'ideal/:id',
     loadChildren: () => import('./workforce/workforce.module').then( m => m.WorkforcePageModule),
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'workforce/banned',
@@ -71,13 +71,27 @@ const routes: Routes = [
   {
     path: 'live-chat',
     loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule), 
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
-    canActivate: [AuthGuardService]
+    // canActivate: [AuthGuardService]
+  },
+  {
+    path: 'bookings',
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule),
+    // canActivate: [AuthGuardService]
+  },
+  {
+    path: 'promotions-news',
+    loadChildren: () => import('./promotions-news/promotions-news.module').then( m => m.PromotionsNewsPageModule)
+  },  {
+    path: 'share-to',
+    loadChildren: () => import('./share-to/share-to.module').then( m => m.ShareToPageModule)
   }
+
+
 
 
 ];

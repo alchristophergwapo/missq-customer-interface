@@ -22,10 +22,11 @@ mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true }).then((
 });
 
 const authentication = require('./controllers/authentication');
+const msq_service = require('./controllers/bookings');
 const workforce = require('./controllers/workforce');
 
-
 app.use('/authenticate', authentication);
+app.use('/msq_service', msq_service);
 app.use('/workforce', workforce);
 
 const port = process.env.PORT || 8080;

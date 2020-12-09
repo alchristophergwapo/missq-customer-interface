@@ -14,7 +14,7 @@ import { AuthService } from './api/services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
   
-  dashboard : boolean;
+  dashboard : boolean = true;
   currentRoute: string;
   user: any;
   
@@ -43,17 +43,6 @@ export class AppComponent implements OnInit {
         activeElement[index].classList.remove("active");
       }
     }
-
-    // setTimeout(() => {
-    //   this.currentRoute = window.location.pathname;
-
-    //   if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
-    //     this.dashboard = false;
-    //   } else {
-    //     this.dashboard = true;
-    //   }
-
-    // }, 300)
 
   };
 
@@ -106,11 +95,18 @@ export class AppComponent implements OnInit {
       this.authenticationService.authSubject.subscribe(state => {
         if (state) {
           this.router.navigate(['place-order']);
-          this.user = state.user;
         } else {
-          this.router.navigate(['home']);
+          // this.router.navigate(['home']);
         }
       });
+
+      this.currentRoute = window.location.pathname;
+
+      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
+        this.dashboard = false;
+      } else {
+        this.dashboard = true;
+      }
     });
   }
 

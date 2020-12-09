@@ -21,41 +21,34 @@ export class AuthService {
 
   public user: Observable<any>;
   AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/authenticate';
-  authSubject = new BehaviorSubject(null);
-
+  authSubject = new BehaviorSubject(false);
+  
   constructor(
     private httpClient: HttpClient,
     private storage: Storage,
     private platform: Platform,
     private router: Router,
   ) { 
-    this.loadStoredToken();
+    this.platform.ready().then(() => {
+      this.loadStoredToken();
+    });
   };
 
   loadStoredToken() {
-    let platformObservable = from(this.platform.ready());
-
-    this.user = platformObservable.pipe(
-      switchMap(() => {
-        return from(this.storage.get(TOKEN_KEY));
-      }),
-      map(token => {
-        if (token) {
-          let decoded = helper.decodeToken(token);
-          this.authSubject.next(decoded);
-          return true;
-        } else {
-          return null;
-        }
-      })
-    );
+    this.storage.get(TOKEN_KEY).then(res => {
+      if (res) {
+        this.authSubject.next(true);
+        // console.log("On auth service loadStoredeToken(): ", res);
+        this.user = res.user;
+      }
+    })
   }
 
   register(user: User): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/register`, user).pipe(
       tap(async (res: AuthResponse) => {
         if (res) {
-          this.authSubject.next(res);
+          this.authSubject.next(true);
         }
       }));
   };
@@ -65,7 +58,7 @@ export class AuthService {
       take(1),
 
       switchMap(token => {
-        // console.log("Auth Service token in login: ", token);
+        console.log("Auth Service token in login: ", token);
         this.authSubject.next(token);
 
         let storageObservable = from(this.storage.set(TOKEN_KEY, token));
@@ -81,7 +74,7 @@ export class AuthService {
 
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
-      this.router.navigateByUrl('place-order');
+      this.router.navigateByUrl('home');
       this.authSubject.next(null);
     });
   };

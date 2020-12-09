@@ -7,80 +7,45 @@
     </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content id="sec"> -->
-<!-- <ion-header collapse="condense">
-    <ion-toolbar>
-        <ion-title size="large">Finance</ion-title>
-    </ion-toolbar>
-</ion-header><br><br> -->
-<ion-content fullscreen id="sec">
-    <ion-card>
-        <div>
-            <img id="background" src="assets/images/Conference.png" />
+<ion-content>
+    <ion-card class="balance">
+        <nav>
+            <img class="voucher" src="assets/images/voucher.png" />
+            <!-- <svg class="arrow" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272"/></svg> -->
+            PHP
+        </nav>
+        <div class="description">
+            <h1>₱0</h1>
+            <p>Prepaid Account Balance</p>
         </div>
-        <ion-card-header>
-            <ion-card-title><b>Miss Q Associates</b></ion-card-title><br>
-            <ion-card-subtitle>"We serve at your pleasure"</ion-card-subtitle>
-            <p><i> Address: B22 L28 Deca 5, Lapu-Lapu City</i></p>
-        </ion-card-header>
-        <ion-card-content>
-            WE create and deliver high-impact solutions that enable our clients to achieve their business goals increase flexibility, agility, cost effectiveness and enhance their competitiveness. Ms Q offer a wide range of expert services including contract and
-            project recruitment assessment and selection, training, HR services, business process outsourcing and recruitment outsourcing.
-        </ion-card-content>
-    </ion-card><br>
-    <ion-card>
-        <div>
-            <img id="background" src="assets/images/Conference.png" />
-        </div>
-        <ion-card-header>
-            <ion-card-title><b>Miss Q Associates</b></ion-card-title>
-            <ion-card-subtitle>"We serve at your pleasure"</ion-card-subtitle>
-            <p><i> Address: B22 L28 Deca 5, Lapu-Lapu City</i></p>
-        </ion-card-header>
-        <ion-card-content>
-            Our purpose is to help people get the career tailored-fit to their education, experiences and needs with ease. We make sure our affiliate companies get the best team for their respective industry smoothly.
-        </ion-card-content>
     </ion-card><br><br>
-    <div class="wrapper">
-        <div class="cols">
-            <div class="col" ontouchstart="this.classList.toggle('hover');">
-                <div class="container">
-                    <div class="front" style="background-image: url(assets/images/Conference.png)">
-                        <div class="inner">
-                            <p>Miss Q. Associates</p>
-                            <span>"We serve at your pleasure."</span>
-                        </div>
-                    </div>
-                    <div class="back">
-                        <div class="inner">
-                            <p>We believe that progressive client partnerships are grounded in performance.</p>
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="#">
-                                        <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <ion-icon name="logo-twitter"></ion-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <ion-toolbar>
+        <ion-segment value="cash-in" color="secondary" value="cash-in" [(ngModel)]="segmentModel" (ionChange)="segmentOnChange($event)">
+            <ion-segment-button value="cash-in">
+                <img id="background" src="assets/images/cash-in.png" />
+                <ion-label>Cash-In</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="promo">
+                <img id="background" src="assets/images/voucher.png" />
+                <ion-label>Promo Credits</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+    <ion-card class="card1" *ngIf="segmentModel ==='cash-in'">
+        <ion-card-header color="secondary">
+            <ion-card-title>Cash-In</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <img class="gcash" src="assets/images/gcash.png" alt=""><br>
+            <!-- </ion-card-content> -->
+            <!-- <ion-card-content class="paypal"> -->
+            <img class="paypal" src="assets/images/paypal.png" alt="">
+        </ion-card-content>
+    </ion-card>
+    <ion-card class="card1" *ngIf="segmentModel ==='promo'">
+        <ion-card-header color="secondary">
+            <ion-card-title>Promo Credits</ion-card-title>
+        </ion-card-header>
+    </ion-card><br><br>
 </ion-content>
-<!-- </ion-content> -->

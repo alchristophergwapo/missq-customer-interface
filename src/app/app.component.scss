@@ -61,6 +61,10 @@ ion-item div ion-icon {
     // --color: #15a0e0;
 }
 
+ion-item div ion-label.user {
+    margin-left: 0;
+}
+
 ion-item div .prof {
     position: absolute;
     top: 50%;

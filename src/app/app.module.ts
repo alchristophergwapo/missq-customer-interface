@@ -10,8 +10,6 @@ import {
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ValidateEqualModule } from 'ng-validate-equal';
@@ -20,13 +18,16 @@ import { ServicesService } from './services.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx'
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { AuthGuardService as AuthGuard } from "../app/api/services/auth_guard/auth-guard.service";
-import { AuthService } from "../app/api/services/auth/auth.service";
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-
+import { AuthGuardService as AuthGuard } from "./api/services/auth_guard/auth-guard.service";
+import { AuthService } from "./api/services/auth/auth.service";
+import { PlaceOrderPage } from "./place-order/place-order.page";
+import { MsqService } from './api/services/service/msq-service.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +50,9 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     NativeGeocoder,
     AuthGuard,
     AuthService,
+    MsqService,
+    PlaceOrderPage,
+    AppComponent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

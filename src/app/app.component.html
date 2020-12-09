@@ -1,6 +1,6 @@
 <ion-app>
     <ion-split-pane contentId="main-content">
-        <ion-menu contentId="main-content" type="overlay" *ngIf="dashboard == true">
+        <ion-menu contentId="main-content" type="overlay" *ngIf="dashboard === true">
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-list-header>
@@ -10,9 +10,9 @@
 
 
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item routerLink="profile" routerDirection="root" lines="none">
+                        <ion-item routerLink="profile" routerDirection="root" lines="none" *ngIf="user">
                             <div (click)="onClickNav($event)" id="profile">
-                                <ion-label>{{ user.name }}</ion-label>
+                                <ion-label class="user">{{ user.name }}</ion-label>
                                 <ion-icon class="prof" name="pencil"></ion-icon>
                             </div>
                         </ion-item>
@@ -34,6 +34,18 @@
                                 <ion-label>Finance</ion-label>
                             </div>
                         </ion-item>
+                        <ion-item routerLink="bookings" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="bookings">
+                                <ion-icon slot="start" name="calendar"></ion-icon>
+                                <ion-label>Bookings</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item routerLink="promotions-news" routerDirection="root" lines="none">
+                            <div (click)="onClickNav($event)" id="promotions-news">
+                                <ion-icon slot="start" name="newspaper"></ion-icon>
+                                <ion-label>Promotions/News</ion-label>
+                            </div>
+                        </ion-item>
                         <ion-item routerLink="settings" routerDirection="root" lines="none">
                             <div (click)="onClickNav($event)" id="settings">
                                 <ion-icon slot="start" name="settings-sharp"></ion-icon>
@@ -52,7 +64,7 @@
                                 <ion-label>Chat Support</ion-label>
                             </div>
                         </ion-item>
-                        <ion-item lines="none">
+                        <ion-item routerLink="share-to" routerDirection="root" lines="none">
                             <div>
                                 <ion-icon name="share-social-outline"></ion-icon>
                                 <ion-label>Share to Friends</ion-label>
