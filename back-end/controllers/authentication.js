@@ -2,6 +2,7 @@ const express = require("express");
 const routes = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const SECRET_KEY = "secretkey23456";
 
@@ -98,6 +99,7 @@ routes.route("/login").post((req, res) => {
                     res
                         .status(400)
                         .send({ error: "Password doesn't match!", status: 400 });
+                    // res.flash('error', " Password doesn't match!")
                 }
             } else {
                 res.status(400).send({ status: 400 });
@@ -107,5 +109,14 @@ routes.route("/login").post((req, res) => {
             console.log("Error ", error);
         });
 });
+
+routes.route("/forgot-password").get((req, res) => {
+    res.render('forgot-password');
+});
+
+routes.route("/forgot-password").post((req, res) => {
+
+});
+
 
 module.exports = routes;

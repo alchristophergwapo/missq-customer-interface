@@ -38,12 +38,6 @@ export class ForgotPasswordPage implements OnInit {
       id_image: "",
       id_number: null
     };
-
-    fetch('assets/country-code.json').then(async res => {
-      let result = await res.json();
-      this.dataList = result.data;
-
-    })
   }
 
   noSubmit(e) {
