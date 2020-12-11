@@ -1,0 +1,7 @@
+{
+  "name": "missq-customer-interface",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

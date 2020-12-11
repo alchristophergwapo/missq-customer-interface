@@ -1,0 +1,89 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+      <ion-menu contentId="main-content" type="overlay" *ngIf="dashboard == true">
+          <ion-content>
+              
+              <!-- <ion-header > -->
+                  <div class="header">
+                      <ion-img src="../assets/images/msqlogo.png"></ion-img>
+                      <ion-title>Ms.Q Associates</ion-title>
+                      <ion-note>"We serve at your pleasure"</ion-note>
+                  </div>
+              <!-- </ion-header> -->
+
+              <ion-list id="inbox-list">
+
+                  <ion-menu-toggle auto-hide="false">
+                      <ion-item routerLink="profile" routerDirection="root" lines="none" *ngIf="user">
+                          <div (click)="onClickNav($event)" id="profile">
+                              <ion-label class="user">{{ user.name }}</ion-label>
+                              <ion-icon class="prof" name="pencil"></ion-icon>
+                          </div>
+                      </ion-item>
+                      <ion-item routerLink="place-order" routerDirection="root" lines="none">
+                          <div (click)="onClickNav($event)" id="place-order">
+                              <ion-icon slot="start" name="bag-add"></ion-icon>
+                              <ion-label>Place Order</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item routerLink="workforce" routerDirection="root" lines="none">
+                          <div (click)="onClickNav($event)" id="workforce">
+                              <ion-icon slot="start" name="build"></ion-icon>
+                              <ion-label>Workforce</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item routerLink="finance" routerDirection="root" lines="none">
+                          <div (click)="onClickNav($event)" id="finance">
+                              <ion-icon slot="start" name="wallet"></ion-icon>
+                              <ion-label>Finance</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item routerLink="bookings" routerDirection="root" lines="none">
+                          <div (click)="onClickNav($event)" id="bookings">
+                              <ion-icon slot="start" name="calendar"></ion-icon>
+                              <ion-label>Bookings</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item routerLink="promotions-news" routerDirection="root" lines="none">
+                          <div (click)="onClickNav($event)" id="promotions-news">
+                              <ion-icon slot="start" name="newspaper"></ion-icon>
+                              <ion-label>Promotions/News</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item routerLink="settings" routerDirection="root" lines="none">
+                          <div (click)="onClickNav($event)" id="settings">
+                              <ion-icon slot="start" name="settings-sharp"></ion-icon>
+                              <ion-label>Settings</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item lines="none">
+                          <div (click)="logout()">
+                              <ion-icon name="log-out-outline"></ion-icon>
+                              <ion-label>Logout</ion-label>
+                          </div>
+                      </ion-item>
+                  </ion-menu-toggle>
+              </ion-list>
+          </ion-content>
+          <ion-footer>
+              <ion-toolbar>
+                  <ion-menu-toggle auto-hide="false">
+                      <ion-item lines="none" (click)="clickChatSupport()">
+                          <div>
+                              <ion-icon name="help-circle-outline"></ion-icon>
+                              <ion-label>Chat Support</ion-label>
+                          </div>
+                      </ion-item>
+                      <ion-item lines="none">
+                          <div>
+                              <ion-icon name="share-social-outline"></ion-icon>
+                              <ion-label>Share to Friends</ion-label>
+                          </div>
+                      </ion-item>
+                  </ion-menu-toggle>
+              </ion-toolbar>
+          </ion-footer>
+      </ion-menu>
+      <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
