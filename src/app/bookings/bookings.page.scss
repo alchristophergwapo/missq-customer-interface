@@ -54,30 +54,30 @@ ion-card {
     background: white;
     // border: 1px solid black;
 }
-// .col-1-right {
+// // .col-1-right {
+// //     position: absolute;
+// //     top: 0%;
+// //     right: 0;
+// //     width: 10%;
+// //     height: 100%;
+// //     background: skyblue;
+// // }
+// .col-2-left {
 //     position: absolute;
-//     top: 0%;
-//     right: 0;
-//     width: 10%;
+//     top: 0;
+//     left: 0;
+//     width: 50%;
 //     height: 100%;
-//     background: skyblue;
+//     // background: gray;
 // }
-.col-2-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    // background: gray;
-}
-.col-2-right {
-    position: absolute;
-    top: 0;
-    left:50%;
-    width: 50%;
-    height: 100%;
-    // background: skyblue;
-}
+// .col-2-right {
+//     position: absolute;
+//     top: 0;
+//     left:50%;
+//     width: 50%;
+//     height: 100%;
+//     // background: skyblue;
+// }
 ion-icon {
     margin: 10% 25% 25% 40%;
 }
@@ -151,10 +151,5 @@ tr:nth-child(even) {
 @media (max-width: 767.98px) {
     .column1 {
         width: 100%;
-    }
-    
-    .column2 {  
-        width: 100%;
-        position: relative;
     }
 }

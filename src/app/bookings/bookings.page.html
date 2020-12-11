@@ -9,8 +9,8 @@
 
 <ion-content>
 
-  <div class="container">
-    <div class="head">
+  <!-- <div class="container"> -->
+    <!-- <div class="head">
       <ion-input>Filter</ion-input>
     </div>
     <div class="content">
@@ -63,8 +63,8 @@
           <option value="creditcard">Credit Card</option>
         </select>
         <p>Payment Status:</p>
-      </div>
-      <div class="column1" *ngIf="bookings">
+      </div> -->
+      <div class="container">
         <div *ngFor="let b of bookings">
           <ion-card (click)="openModal()">
             <ion-card-content>
@@ -72,13 +72,15 @@
                 <div>{{b.schedule}}</div>
               </div>
               <div class="col-1-mid">
-                {{b.service_booking}}
+                <p>SERVICE BOOKING: {{b.service_booking}}</p>
+                <p> COST: {{b.cost}}</p>
+                <p>LOCATION: {{b.service_location}}</p>
               </div>
             </ion-card-content>
           </ion-card>
         </div>
       </div>
-    </div>
-  </div>
+    <!-- </div> -->
+  <!-- </div> -->
 
 </ion-content>

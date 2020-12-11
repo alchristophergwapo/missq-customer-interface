@@ -9,51 +9,49 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <div class="container">
-  <img>
-  <!-- <h1>Sample</h1> -->
-  <ion-card>
-    <ion-card-content>
-      <div class="col-2-left" *ngIf="user">
-        <p>{{user.email}}</p>
+  <div class="container" *ngIf="user">
+    <img src="{{user.picture}}"/>
+    <ion-card>
+      <ion-card-content>
+        <div class="col-2-left" *ngIf="user">
+          <p>{{user.email}}</p>
+        </div>
+        <div class="col-2-right" *ngIf="user">
+          <p>{{user.phone}}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <table>
+      <div class="row header">
+        <th>
+          <div class="col1" *ngIf="user">Service Booking</div>
+        </th>
+        <th>
+          <div class="col1">Schedule</div>
+        </th>
+        <th>
+          <div class="col1">Notes</div>
+        </th>
+        <th>
+          <div class="col1">Location</div>
+        </th>
+        <th>
+          <div class="col1"></div>
       </div>
-      <div class="col-2-right" *ngIf="user">
-        <p>{{user.phone}}</p>
+      <div class="row">
+        <td>
+          <div class="col1" *ngIf="bookings">{{bookings.service_booking}}</div>
+        </td>
+        <td>
+          <div class="col1">{{user.schedule}}</div>
+        </td>
+        <td>
+          <div class="col1">{{user.notes}}</div>
+        </td>
+        <td>
+          <div class="col1">{{user.service_location}}</div>
+        </td>
       </div>
-
-    </ion-card-content>
-  </ion-card>
-  <table>
-    <div class="row header">
-      <th>
-        <div class="col1">Service Booking</div>
-      </th>
-      <th>
-        <div class="col1">Schedule</div>
-      </th>
-      <th>
-        <div class="col1">Notes</div>
-      </th>
-      <th>
-        <div class="col1">Location</div>
-      </th>
-      <th>
-        <div class="col1"></div>
-    </div>
-    <div class="row" *ngIf="user">
-      <td>
-        <div class="col1">{{user.service_booking}}</div>
-      </td>
-      <td>
-        <div class="col1">{{user.schedule}}</div>
-      </td>
-      <td>
-        <div class="col1">{{user.notes}}</div>
-      </td>
-      <td>
-        <div class="col1">{{user.service_location}}</div>
-      </td>
-    </div>
-  </table>
-</div>
+    </table>
+  </div>
 </ion-content>
