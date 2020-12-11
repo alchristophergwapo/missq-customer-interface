@@ -1,0 +1,164 @@
+ion-toolbar {
+    --background: rgba(21, 160, 224, 0.5) !important;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
+* {
+    box-sizing: border-box;
+}
+
+@media (max-width: 968.98px) {
+    ion-card {
+        width: 100%;
+    }
+}
+
+// @media (max-width: 767.98px) {
+//     ion-card {
+//         width: 94%;
+//         margin-left: 3%;
+//         margin-right: 3%;
+//     }
+// }
+ion-content {
+    background: #aedaa6;
+    font-family: "Raleway";
+    ion-card {
+        width: 80%;
+        height: 30%;
+        position: absolute;
+        background: white;
+        margin: 0 auto;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transition: all 0.3s;
+        &:hover {
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        nav {
+            width: 100%;
+            color: #727272;
+            text-transform: uppercase;
+            padding: 20px;
+            border-bottom: 2px solid #efefef;
+            font-size: 12px;
+            img.voucher {
+                height: 24px;
+                width: 24px;
+                float: right;
+                margin-top: -3px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                &:hover {
+                    fill: red;
+                }
+            }
+            svg.arrow {
+                float: left;
+                height: 15px;
+                width: 15px;
+                margin-right: 10px;
+            }
+        }
+        .description {
+            padding: 10px;
+            float: center;
+            text-align: center;
+            //     width: 55%;
+            //     height: auto;
+            //     border-left: 2px solid #efefef;
+            //     h1 {
+            //         color: #515151;
+            //         font-weight: 300;
+            //         padding-top: 15px;
+            //         margin: 0;
+            //         font-size: 30px;
+            //         font-weight: 300;
+            //     }
+            //     h2 {
+            //         color: #515151;
+            //         margin: 0;
+            //         text-transform: uppercase;
+            //         font-weight: 500;
+            //     }
+            //     h4 {
+            //         margin: 0;
+            //         color: #727272;
+            //         // text-transform: uppercase;
+            //         font-weight: 500;
+            //         font-size: 12px
+            //     }
+        }
+    }
+    ion-toolbar {
+        width: 90%;
+        // height: 30%;
+        position: absolute;
+        background: white;
+        margin: 0 auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transition: all 0.3s;
+        &:hover {
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    }
+    // ion-card-content {
+    //     position: absolute;
+    //     bottom: 10%;
+    ion-card.card1 {
+        width: 90%;
+        height: 50%;
+        // position: absolute;
+        background: white;
+        // margin: 0 auto;
+        top: 85%;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transition: all 0.3s;
+        &:hover {
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .gcash {
+            background-color: white;
+            border-radius: 60%;
+            padding: 8px;
+            width: 130px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        .paypal {
+            background-color: white;
+            border-radius: 60%;
+            padding: 8px;
+            width: 130px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+#background {
+    height: 40px;
+    width: 40px;
+}
+
+ion-segment-button:hover {
+    background-color: rgba(21, 160, 224, 0.5) !important;
+    border-radius: 50px;
+}
+
+ion-card-title {
+    text-align: center;
+}
+
+ion-segment {
+    display: flex;
+    height: 100px;
+}
