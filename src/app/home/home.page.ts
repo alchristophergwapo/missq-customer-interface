@@ -3,6 +3,8 @@ import { AuthService } from '../api/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -11,6 +13,8 @@ import { AppComponent } from '../app.component';
 export class HomePage implements OnInit {
 
   constructor(private authenticationService: AuthService, private router: Router, private app: AppComponent) { }
+
+  
 
   ngOnInit() {
     this.app.dashboard = false;

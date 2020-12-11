@@ -43,16 +43,14 @@ let User = new Schema({
     id_number: {
         type: Number
     },
-    
 });
 
 User.virtual('bookings', {
-    ref: 'Bookings', //The Model to use
-    localField: '_id', //Find in Model, where localField 
-    foreignField: 'author', // is equal to foreignField
+    ref: 'Bookings',
+    localField: '_id',
+    foreignField: 'author',
  });
  
- // Set Object and Json property to true. Default is set to false
  User.set('toObject', { virtuals: true });
  User.set('toJSON', { virtuals: true });
 

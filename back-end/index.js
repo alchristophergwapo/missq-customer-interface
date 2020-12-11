@@ -27,6 +27,8 @@ const msq_service = require('./controllers/bookings');
 app.use('/authenticate', authentication);
 app.use('/msq_service', msq_service);
 
+app.use('/public', express.static('public'));
+
 const port = process.env.PORT || 8080;
 const server = app.listen(port, () => {
     console.log('Server listening at http://localhost:' + port);

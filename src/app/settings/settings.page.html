@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-buttons slot="end">
+        <!-- <ion-buttons slot="end">
             <ion-button (click)="logout()">Logout</ion-button>
             <ion-icon name="log-out-outline"></ion-icon>
+        </ion-buttons> -->
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>Settings</ion-title>
     </ion-toolbar>
@@ -26,11 +29,11 @@
             </ion-item>
             <ion-item>
                 <ion-icon name="globe-outline"></ion-icon>
-                <ion-label>Cebu</ion-label>
+                <ion-label>{{ user.address }}</ion-label>
             </ion-item>
         </div>
 
-        <div>
+        <!-- <div>
             <ion-toolbar>
                 <ion-title>Order Features</ion-title>
             </ion-toolbar>
@@ -42,7 +45,7 @@
             <ion-note>Delivery requires recepient to sign</ion-note>
             <ion-toolbar>
                 <ion-title>
-                    <p>BILLING <span>example.123@gmail.com</span></p>
+                    <p>BILLING <span>{{ user.email }}</span></p>
                 </ion-title>
                 <ion-buttons slot="end">
                     <ion-button>Edit</ion-button>
@@ -53,7 +56,7 @@
                 <ion-label>Receive E-Receipts</ion-label>
                 <ion-toggle checked></ion-toggle>
             </ion-item>
-        </div>
+        </div> -->
         <div>
             <ion-toolbar>
                 <ion-title>Support</ion-title>

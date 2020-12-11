@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
 import { AuthResponse } from '../../authentication/auth-response';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
-import { take, map, switchMap } from "rxjs/operators";
+import { take, switchMap } from "rxjs/operators";
 import { Platform } from '@ionic/angular';
+
+import { FileTransfer, FileTransferObject, FileUploadOptions } from "@ionic-native/file-transfer/ngx";
 
 const helper = new JwtHelperService();
 const TOKEN_KEY = 'jwt-token';
@@ -20,7 +22,7 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
 
   public user: Observable<any>;
-  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/authenticate';
+  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
   authSubject = new BehaviorSubject(false);
   
   constructor(
@@ -28,6 +30,7 @@ export class AuthService {
     private storage: Storage,
     private platform: Platform,
     private router: Router,
+    private transfer: FileTransfer
   ) { 
     this.platform.ready().then(() => {
       this.loadStoredToken();
@@ -43,8 +46,22 @@ export class AuthService {
     })
   }
 
-  register(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/register`, user).pipe(
+  register(user: User, img, desc): Observable<AuthResponse> {
+    let url = this.AUTH_SERVER_ADDRESS + 'authenticate/register'
+    // File for Upload
+    var targetPath = img;
+ 
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: { 'desc': desc }
+    };
+ 
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    fileTransfer.upload(targetPath, url, options);
+
+    return this.httpClient.post<AuthResponse>(url, user).pipe(
       tap(async (res: AuthResponse) => {
         if (res) {
           this.authSubject.next(true);
@@ -53,7 +70,7 @@ export class AuthService {
   };
 
   login(user: User): Observable<any> {
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/login`, user).pipe(
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user).pipe(
       take(1),
 
       switchMap(token => {
@@ -88,5 +105,4 @@ export class AuthService {
   isLoggedIn() {
     return this.authSubject.value;
   };
-
 }

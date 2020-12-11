@@ -29,7 +29,12 @@ export class AppComponent implements OnInit {
     private storage: Storage
   ) {
     this.initializeApp();
-    this.user = authService.user
+  }
+
+  logout() {
+    this.authService.logout();
+    // console.log(this.authenticationService.user);
+    console.log(this.authService.user)
   }
 
   onClickNav(event) {
@@ -105,17 +110,21 @@ export class AppComponent implements OnInit {
 
       this.currentRoute = window.location.pathname;
 
-      if (this.currentRoute == '/home' || this.currentRoute == '/create-account' || this.currentRoute == '/login' || this.currentRoute == '/live-chat' || this.currentRoute == '/settings') {
-        this.dashboard = false;
-      } else {
-        this.dashboard = true;
-      }
+      this.storage.get('jwt-token').then(res=> {
+        if (res) {
+          this.user = res.user
+        }
+      })
     });
   }
 
   ngOnInit() {
     this.storage.get('jwt-token').then(res=> {
-      this.user = res.user
-    })
+      if (res) {
+        this.user = res.user
+      }
+    });
+
+    this.setDashboard(true);
   }
 }

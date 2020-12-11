@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LocationSelectPageRoutingModule } from './location-select-routing.module';
+import { SecondPageRoutingModule } from './second-routing.module';
 
-import { LocationSelectPage } from './location-select.page';
+import { SecondPage } from './second.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocationSelectPageRoutingModule,
+    SecondPageRoutingModule
   ],
-  declarations: [LocationSelectPage]
+  declarations: [SecondPage]
 })
-export class LocationSelectPageModule {}
+export class SecondPageModule {}

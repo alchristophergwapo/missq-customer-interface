@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LocationSelectPageRoutingModule } from './location-select-routing.module';
+import { LogoutPageRoutingModule } from './logout-routing.module';
 
-import { LocationSelectPage } from './location-select.page';
+import { LogoutPage } from './logout.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocationSelectPageRoutingModule,
+    LogoutPageRoutingModule
   ],
-  declarations: [LocationSelectPage]
+  declarations: [LogoutPage]
 })
-export class LocationSelectPageModule {}
+export class LogoutPageModule {}

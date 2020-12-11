@@ -1,14 +1,12 @@
 <ion-app>
     <ion-split-pane contentId="main-content">
-        <ion-menu contentId="main-content" type="overlay">
+        <ion-menu contentId="main-content" type="overlay" *ngIf="user || dashboard">
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-list-header>
                         <ion-img src="../assets/images/msqlogo.png"></ion-img><span>Ms.Q Associates</span>
                     </ion-list-header>
                     <ion-note>"We serve at your pleasure"</ion-note>
-
-
                     <ion-menu-toggle auto-hide="false">
                         <ion-item routerLink="profile" routerDirection="root" lines="none" *ngIf="user">
                             <div (click)="onClickNav($event)" id="profile">
@@ -50,6 +48,12 @@
                             <div (click)="onClickNav($event)" id="settings">
                                 <ion-icon slot="start" name="settings-sharp"></ion-icon>
                                 <ion-label>Settings</ion-label>
+                            </div>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <div (click)="logout()">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                                <ion-label>Logout</ion-label>
                             </div>
                         </ion-item>
                     </ion-menu-toggle>

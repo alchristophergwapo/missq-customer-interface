@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+// import { AppComponent } from '../app.component';
+
 import { AppComponent } from '../app.component';
 import { MsqService } from '../api/services/service/msq-service.service';
 import { AuthService } from '../api/services/auth/auth.service';
+
+import { ModalController } from '@ionic/angular';
+import { SecondPage } from '../modals/second/second.page';
 
 @Component({
   selector: 'app-bookings',
@@ -10,9 +15,22 @@ import { AuthService } from '../api/services/auth/auth.service';
 })
 export class BookingsPage implements OnInit {
 
-  bookings: any;
+  bookings: any;  
+  user: any;
 
-  constructor(private authService: AuthService) { }
+
+  constructor(private app: AppComponent, private authService: AuthService, private modalController:ModalController) {
+    this.user = app.user;
+    console.log("On profile: ", this.user);
+  }
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: SecondPage
+    });
+    return await modal.present();
+  }
+
+  
 
   ngOnInit() {
     if (this.authService.user['bookings']) {

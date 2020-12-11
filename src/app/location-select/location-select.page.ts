@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { MsqService } from "../api/services/service/msq-service.service";
 import { AuthService } from '../api/services/auth/auth.service';
 import { AlertController } from '@ionic/angular';
+import {DatePipe} from '@angular/common';
 
 declare var google: any;
 
@@ -40,18 +41,6 @@ export class LocationSelectPage implements OnInit {
     this.getGeoLocation();
     this.user = authService.user;
     console.log("On constructor: ", this.user);
-
-  }
-
-  ngOnInit() {
-    this.service_location = "";
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.data = JSON.parse(params.bookedData);
-    });
-
-
-    this.user = this.authService.user;
-    console.log("On ngOnInit() : ", this.user);
 
   }
 
@@ -168,7 +157,14 @@ export class LocationSelectPage implements OnInit {
               author: this.user
             };
 
-            this.bookServiceNow(datas);
+            let pipe = new DatePipe('en-US');
+            let date = new Date()
+            let todayDate = pipe.transform(date,"YYYY-MM-ddTHH:mm")
+            if (todayDate == input.schedule || pipe.transform(input.schedule,"YYYY-MM-dd") < pipe.transform(date,"YYYY-MM-dd")) {
+              true
+            } else {
+              this.bookServiceNow(datas);
+            }
           }
         }
       ]
@@ -177,7 +173,6 @@ export class LocationSelectPage implements OnInit {
     await alert.present();
   }
   bookServiceNow(serviceData) {
-
     this.service.bookNow(serviceData).subscribe(response => {
       console.log("Response", response);
       if (response) {
@@ -193,5 +188,14 @@ export class LocationSelectPage implements OnInit {
       };
     })
   }
-
+  ngOnInit() {
+    this.service_location = "";
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.data = JSON.parse(params.bookedData);
+    });
+    
+    this.user = this.authService.user;
+    
+    
+  }
 }

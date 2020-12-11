@@ -71,12 +71,17 @@ const routes: Routes = [
   {
     path: 'promotions-news',
     loadChildren: () => import('./promotions-news/promotions-news.module').then( m => m.PromotionsNewsPageModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
+
+  },  {
+    path: 'second',
+    loadChildren: () => import('./modals/second/second.module').then( m => m.SecondPageModule)
   }
 
-
-
 ];
-
 
 @NgModule({
   imports: [
