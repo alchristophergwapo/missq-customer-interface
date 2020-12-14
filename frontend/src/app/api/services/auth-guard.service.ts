@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './auth.service';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { take, map } from 'rxjs/operators';
