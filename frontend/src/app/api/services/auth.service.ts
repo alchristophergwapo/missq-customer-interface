@@ -64,6 +64,12 @@ export class AuthService {
     );
   };
 
+  updateContactInfo(user : User){
+    console.log('nisud sa auth service.')
+    console.log(user)
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/profile`, user)
+  }
+
   getUser() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {

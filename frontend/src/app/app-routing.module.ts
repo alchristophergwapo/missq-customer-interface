@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './api/services/auth-guard.service';
 
+
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
   {
     path: '',
     redirectTo: 'home',
@@ -14,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'create-account',
-    loadChildren: () => import('./create-acount/create-acount.module').then( m => m.CreateAcountPageModule)
+    loadChildren: () => import('./create-account/create-account.module').then( m => m.CreateAccountPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'login',
@@ -59,7 +60,9 @@ const routes: Routes = [
     path: 'bookings',
     loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule),
     canActivate: [AuthGuardService]
+
   },
+
 ];
 
 @NgModule({
