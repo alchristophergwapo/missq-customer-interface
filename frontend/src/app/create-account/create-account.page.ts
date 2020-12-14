@@ -11,7 +11,7 @@ import { PhotoService } from '../api/services/photo.service';
   templateUrl: './create-acount.page.html',
   styleUrls: ['./create-acount.page.scss'],
 })
-export class CreateAcountPage implements OnInit {
+export class CreateAccountPage implements OnInit {
 
   public user: User;
   isSubmitted = false;
