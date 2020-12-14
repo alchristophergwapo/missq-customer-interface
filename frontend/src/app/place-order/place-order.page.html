@@ -1,210 +1,210 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Place Order</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Place Order</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-toolbar color="light">
-  <ion-card>
-    <ion-segment
-      value="Nanny"
-      color="secondary"
-      scrollable="true"
-      [(ngModel)]="segmentModel"
-      class="segment"
+  <ion-toolbar color="light">
+    <ion-card>
+      <ion-segment
+        value="Nanny"
+        color="success"
+        scrollable="true"
+        [(ngModel)]="segmentModel"
+        class="segment"
+      >
+        <ion-segment-button value="Nanny" class="s1">
+          <img class="icon" src="assets/icon/babysitter.png" alt="Flat Icon">
+          <ion-label>Nanny</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Housekeeping" class="s2">
+          <img class="icon" src="assets/icon/housekeeping.png" alt="Flat Icon">
+          <ion-label>Housekeeping</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="TutorCumNanny" class="s3">
+          <img class="icon" src="assets/icon/tutor.png" alt="Flat Icon">
+          <ion-label>Tutor Cum Nanny</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="MassageTherapist" class="s4">
+          <img class="icon" src="assets/icon/massage.png" alt="Flat Icon">
+          <ion-label>Massage Therapist</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Haircut" class="s5">
+          <img class="icon" src="assets/icon/haircut.png" alt="Flat Icon">
+          <ion-label>Haircut</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-card>
+  </ion-toolbar>
+
+    <!-- Nanny Segment -->
+    <div *ngIf="segmentModel === 'Nanny'">
+        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+            <ion-slides [options]="mySlideOptions">
+                <ion-slide *ngFor="let n of nanny; let i = index">
+                    <img [src]="n.MediaUrl" />
+                    <div class="slide-label">{{ i + 1 }}&#47;{{ nanny.length }}</div>
+                </ion-slide>
+            </ion-slides>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>
+                        Description
+                    </ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <h1>Nanny Service</h1>
+                    <h2>Starts at &#8369;{{descriptions.Nanny}}/hr</h2>
+                    <br />
+                    <div>
+                        Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                    </div>
+                </ion-card-content>
+            </ion-card>
+            <br><br><br>
+            <ion-footer>
+                <ion-button class="btn" (click)="bookService()">Book Nanny</ion-button>
+            </ion-footer>
+        </form>
+    </div>
+
+    <!-- Housekeeping Segment -->
+    <div *ngIf="segmentModel === 'Housekeeping'">
+        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+            <ion-slides [options]="mySlideOptions">
+                <ion-slide *ngFor="let h of housekeeping; let i = index">
+                    <img [src]="h.MediaUrl" />
+                    <div class="slide-label">{{ i + 1 }}&#47;{{ housekeeping.length }}</div>
+                </ion-slide>
+            </ion-slides>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>
+                        Description
+                    </ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <h1>Housekeeping Service</h1>
+                    <h2>Starts at &#8369;{{descriptions.Housekeeping}}/hr</h2>
+                    <br />
+                    <div>
+                        Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                    </div>
+                </ion-card-content>
+            </ion-card>
+            <ion-footer>
+                <ion-button class="btn" (click)="bookService()">Book Housekeeping</ion-button>
+            </ion-footer>
+        </form>
+    </div>
+  <!-- Tutor Cum Nanny Segment -->
+  <div *ngIf="segmentModel === 'TutorCumNanny'">
+    <form
+      #form="ngForm"
+      novalidate
+      (ngSubmit)="bookNow(form, 'Nanny'); form.reset()"
     >
-      <ion-segment-button value="Nanny" class="s1">
-        <img class="icon" src="assets/icon/babysitter.png" alt="Flat Icon">
-        <ion-label>Nanny</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Housekeeping" class="s2">
-        <img class="icon" src="assets/icon/housekeeping.png" alt="Flat Icon">
-        <ion-label>Housekeeping</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="TutorCumNanny" class="s3">
-        <img class="icon" src="assets/icon/tutor.png" alt="Flat Icon">
-        <ion-label>Tutor Cum Nanny</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="MassageTherapist" class="s4">
-        <img class="icon" src="assets/icon/massage.png" alt="Flat Icon">
-        <ion-label>Massage Therapist</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Haircut" class="s5">
-        <img class="icon" src="assets/icon/haircut.png" alt="Flat Icon">
-        <ion-label>Haircut</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-card>
-</ion-toolbar>
+      <ion-slides [options]="mySlideOptions">
+        <ion-slide *ngFor="let tcn of tutor; let i = index">
+          <img [src]="tcn.MediaUrl" />
+          <div class="slide-label">{{ i + 1 }}&#47;{{ tutor.length }}</div>
+        </ion-slide>
+      </ion-slides>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Description
+          </ion-card-title>
+        </ion-card-header>
 
-  <!-- Nanny Segment -->
-  <div *ngIf="segmentModel === 'Nanny'">
-      <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
-          <ion-slides [options]="mySlideOptions">
-              <ion-slide *ngFor="let n of nanny; let i = index">
-                  <img [src]="n.MediaUrl" />
-                  <div class="slide-label">{{ i + 1 }}&#47;{{ nanny.length }}</div>
-              </ion-slide>
-          </ion-slides>
-          <ion-card>
-              <ion-card-header>
-                  <ion-card-title>
-                      Description
-                  </ion-card-title>
-              </ion-card-header>
-
-              <ion-card-content>
-                  <h1>Nanny Service</h1>
-                  <h2>Starts at &#8369;{{descriptions.Nanny}}/hr</h2>
-                  <br />
-                  <div>
-                      Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
-                  </div>
-              </ion-card-content>
-          </ion-card>
-          <br><br><br>
-          <ion-footer>
-              <ion-button class="btn" (click)="bookService()">Book Nanny</ion-button>
-          </ion-footer>
-      </form>
+        <ion-card-content>
+          <h1>Tutor Cum Nanny Service</h1>
+          <h2>Starts at &#8369;{{descriptions.TutorCumNanny}}/hr</h2>
+          <br />
+          <div>
+            Keep close to Nature's heart... and break clear away, once in
+            awhile, and climb a mountain or spend a week in the woods. Wash your
+            spirit clean.
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-footer>
+        <ion-button class="btn" (click)="bookService()">Book Tutor Cum Nanny</ion-button>
+      </ion-footer>
+    </form>
   </div>
 
-  <!-- Housekeeping Segment -->
-  <div *ngIf="segmentModel === 'Housekeeping'">
-      <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
-          <ion-slides [options]="mySlideOptions">
-              <ion-slide *ngFor="let h of housekeeping; let i = index">
-                  <img [src]="h.MediaUrl" />
-                  <div class="slide-label">{{ i + 1 }}&#47;{{ housekeeping.length }}</div>
-              </ion-slide>
-          </ion-slides>
-          <ion-card>
-              <ion-card-header>
-                  <ion-card-title>
-                      Description
-                  </ion-card-title>
-              </ion-card-header>
+  <!-- Massage Therapist Segment -->
+  <div *ngIf="segmentModel === 'MassageTherapist'">
+    <form
+      #form="ngForm"
+      novalidate
+      (ngSubmit)="bookNow(form, 'Nanny'); form.reset()"
+    >
+      <ion-slides>
+        <ion-slide *ngFor="let mt of massage; let i = index">
+          <img [src]="mt.MediaUrl" />
+          <div class="slide-label">{{ i + 1 }}&#47;{{ massage.length }}</div>
+        </ion-slide>
+      </ion-slides>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Description
+          </ion-card-title>
+        </ion-card-header>
 
-              <ion-card-content>
-                  <h1>Housekeeping Service</h1>
-                  <h2>Starts at &#8369;{{descriptions.Housekeeping}}/hr</h2>
-                  <br />
-                  <div>
-                      Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
-                  </div>
-              </ion-card-content>
-          </ion-card>
-          <ion-footer>
-              <ion-button class="btn" (click)="bookService()">Book Housekeeping</ion-button>
-          </ion-footer>
-      </form>
+        <ion-card-content>
+          <h1>Massage Therapist Service</h1>
+          <h2>Starts at &#8369;{{descriptions.MassageTherapist}} for a 1-hour long massage.</h2>
+          <br />
+          <div>
+            Keep close to Nature's heart... and break clear away, once in
+            awhile, and climb a mountain or spend a week in the woods. Wash your
+            spirit clean.
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-footer>
+        <ion-button class="btn" (click)="bookService()">Book Massage Therapist</ion-button>
+      </ion-footer>
+    </form>
   </div>
-<!-- Tutor Cum Nanny Segment -->
-<div *ngIf="segmentModel === 'TutorCumNanny'">
-  <form
-    #form="ngForm"
-    novalidate
-    (ngSubmit)="bookNow(form, 'Nanny'); form.reset()"
-  >
-    <ion-slides [options]="mySlideOptions">
-      <ion-slide *ngFor="let tcn of tutor; let i = index">
-        <img [src]="tcn.MediaUrl" />
-        <div class="slide-label">{{ i + 1 }}&#47;{{ tutor.length }}</div>
-      </ion-slide>
-    </ion-slides>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          Description
-        </ion-card-title>
-      </ion-card-header>
 
-      <ion-card-content>
-        <h1>Tutor Cum Nanny Service</h1>
-        <h2>Starts at &#8369;{{descriptions.TutorCumNanny}}/hr</h2>
-        <br />
-        <div>
-          Keep close to Nature's heart... and break clear away, once in
-          awhile, and climb a mountain or spend a week in the woods. Wash your
-          spirit clean.
-        </div>
-      </ion-card-content>
-    </ion-card>
-    <ion-footer>
-      <ion-button class="btn" (click)="bookService()">Book Tutor Cum Nanny</ion-button>
-    </ion-footer>
-  </form>
-</div>
+    <!-- Haircut Segment -->
+    <div *ngIf="segmentModel === 'Haircut'">
+        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+            <ion-slides [options]="mySlideOptions">
+                <ion-slide *ngFor="let h of haircut; let i = index">
+                    <img [src]="h.MediaUrl" />
+                    <div class="slide-label">{{ i + 1 }}&#47;{{ haircut.length }}</div>
+                </ion-slide>
+            </ion-slides>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>
+                        Description
+                    </ion-card-title>
+                </ion-card-header>
 
-<!-- Massage Therapist Segment -->
-<div *ngIf="segmentModel === 'MassageTherapist'">
-  <form
-    #form="ngForm"
-    novalidate
-    (ngSubmit)="bookNow(form, 'Nanny'); form.reset()"
-  >
-    <ion-slides>
-      <ion-slide *ngFor="let mt of massage; let i = index">
-        <img [src]="mt.MediaUrl" />
-        <div class="slide-label">{{ i + 1 }}&#47;{{ massage.length }}</div>
-      </ion-slide>
-    </ion-slides>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          Description
-        </ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <h1>Massage Therapist Service</h1>
-        <h2>Starts at &#8369;{{descriptions.MassageTherapist}} for a 1-hour long massage.</h2>
-        <br />
-        <div>
-          Keep close to Nature's heart... and break clear away, once in
-          awhile, and climb a mountain or spend a week in the woods. Wash your
-          spirit clean.
-        </div>
-      </ion-card-content>
-    </ion-card>
-    <ion-footer>
-      <ion-button class="btn" (click)="bookService()">Book Massage Therapist</ion-button>
-    </ion-footer>
-  </form>
-</div>
-
-  <!-- Haircut Segment -->
-  <div *ngIf="segmentModel === 'Haircut'">
-      <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
-          <ion-slides [options]="mySlideOptions">
-              <ion-slide *ngFor="let h of haircut; let i = index">
-                  <img [src]="h.MediaUrl" />
-                  <div class="slide-label">{{ i + 1 }}&#47;{{ haircut.length }}</div>
-              </ion-slide>
-          </ion-slides>
-          <ion-card>
-              <ion-card-header>
-                  <ion-card-title>
-                      Description
-                  </ion-card-title>
-              </ion-card-header>
-
-              <ion-card-content>
-                  <h1>Haircut Service</h1>
-                  <h2>Starts at &#8369;{{descriptions.Haircut}}</h2>
-                  <br />
-                  <div>
-                      Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
-                  </div>
-              </ion-card-content>
-          </ion-card>
-          <ion-footer>
-              <ion-button class="btn" (click)="bookService()">Book Haircut</ion-button>
-          </ion-footer>
-      </form>
-  </div>
+                <ion-card-content>
+                    <h1>Haircut Service</h1>
+                    <h2>Starts at &#8369;{{descriptions.Haircut}}</h2>
+                    <br />
+                    <div>
+                        Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                    </div>
+                </ion-card-content>
+            </ion-card>
+            <ion-footer>
+                <ion-button class="btn" (click)="bookService()">Book Haircut</ion-button>
+            </ion-footer>
+        </form>
+    </div>
 </ion-content>

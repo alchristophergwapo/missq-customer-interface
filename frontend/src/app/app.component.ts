@@ -52,7 +52,6 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
-    console.log(this.authService.user);
   }
 
   onClickNav(event) {
