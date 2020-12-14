@@ -18,7 +18,7 @@
                 <div padding>
                     <ion-item>
                         <ion-icon name="mail"></ion-icon>&nbsp;
-                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" [ngModel]="name" required email></ion-input>
+                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" [ngModel]="name" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required email></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched">
                         <ion-text color="danger">Email is not valid</ion-text>
@@ -40,7 +40,10 @@
                 </div><br>
                 <div>
                     <ion-button size="large" color='secondary' type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
-                </div>
+                </div><br>
+                <a [routerLink]="['/forgot-password']">
+                    <ion-text h>Forgot Password?</ion-text>
+                </a>
             </ion-card-content>
         </form>
     </ion-card>

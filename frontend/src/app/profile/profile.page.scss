@@ -7,14 +7,15 @@ ion-icon {
 // ion-item ion-label {
 //     margin-right: 60px;
 // }
-#userimage{
+#userimage {
     // margin-left: 20px;
     // border-radius: 50%;
     height: 350px;
     width: 350px;
     // margin-top: 20%;
 }
-ion-row{
+
+ion-row {
     width: 800px;
     height: 500px;
     text-align: left;
@@ -23,70 +24,80 @@ ion-row{
     // margin-right: auto;
     // width: 70%;
     margin-bottom: 3%;
-
 }
-#info{
+
+#info {
     margin-top: 3%;
     margin-left: 2%;
     text-align: justify;
-    color:rgb(5, 56, 80);
+    color: rgb(5, 56, 80);
 }
-ion-label.user{
+
+ion-label.user {
     color: rgb(29, 50, 59);
     font-weight: bold;
-    text-transform:  uppercase;
+    text-transform: uppercase;
     text-align: center;
     padding: 2%;
     // margin-left:25%;
 }
-.name{  
-   font-size: 14px;
-   padding: 10px;
+
+.name {
+    font-size: 14px;
+    padding: 10px;
 }
-.username{
+
+.username {
     // margin-left:42%;
     font-size: 20px;
     padding: 5%;
-    color:rgb(5, 56, 80);
+    color: rgb(5, 56, 80);
     font-weight: bold;
 }
-ion-label.accountInfo{
+
+ion-label.accountInfo {
     text-align: center;
     font-size: 30px;
     // padding: 2%;
 }
-ion-card{
+
+ion-card {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
     height: auto;
 }
-h1{
+
+h1 {
     text-align: center;
     margin-bottom: 5%;
-    font-family:  "Comic Sans MS", cursive, sans-serif;
-    color:rgb(5, 56, 80);
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: rgb(5, 56, 80);
     font-size: 30px;
 }
-nobr{
-    text-transform:  uppercase;
+
+nobr {
+    text-transform: uppercase;
 }
-nobr.close{
-    margin-left: 96%;
-    font-size: 30px;
-    padding-top: 30px;
+
+nobr.close {
+    margin-right: 96%;
+    font-size: 50px;
+    padding-top: 15px;
 }
+
 .verticalLine {
-    border-left:  1px solid #2c3038;
+    border-left: 1px solid #2c3038;
     border-bottom: 2%;
     height: 400px;
     width: .5px;
     text-align: center;
     margin-left: 5%;
-  }
+}
+
 // .header{
 //     background-color: lavenderblush;
 // }
-.background{
+.background {
     --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
 }
