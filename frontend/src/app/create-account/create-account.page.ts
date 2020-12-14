@@ -8,10 +8,10 @@ import { PhotoService } from '../api/services/photo.service';
 
 @Component({
   selector: 'app-create-acount',
-  templateUrl: './create-acount.page.html',
-  styleUrls: ['./create-acount.page.scss'],
+  templateUrl: './create-account.page.html',
+  styleUrls: ['./create-account.page.scss'],
 })
-export class CreateAccountPage implements OnInit {
+export class CreateAcountPage implements OnInit {
 
   public user: User;
   isSubmitted = false;
