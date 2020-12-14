@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Platform, NavParams } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { Storage } from "@ionic/storage";
+import { ActionSheetController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ActionSheetController } from '@ionic/angular';
-import {Router } from '@angular/router';
-import { AuthService } from './api/services/auth/auth.service';
-import { Storage } from "@ionic/storage";
+import { Router } from '@angular/router';
+import { AuthService } from './api/services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit {
-  
+export class AppComponent {
   dashboard : boolean = true;
   currentRoute: string;
   user: any;
@@ -30,10 +27,32 @@ export class AppComponent implements OnInit {
   ) {
     this.initializeApp();
   }
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+      this.authService.authSubject.subscribe(state => {
+        if (state) {
+          this.router.navigate(['place-order']);
+        } else {
+          this.router.navigate(['home']);
+        }
+      });
+
+      this.currentRoute = window.location.pathname;
+
+      this.storage.get('jwt-token').then(res=> {
+        if (res) {
+          this.user = res.user
+        }
+      })
+    });
+  }
 
   logout() {
     this.authService.logout();
-    console.log(this.authenticationService.user);
+    console.log(this.authService.user);
   }
 
   onClickNav(event) {
@@ -94,36 +113,12 @@ export class AppComponent implements OnInit {
     }
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-
-      this.authService.authSubject.subscribe(state => {
-        if (state) {
-          this.router.navigate(['place-order']);
-        } else {
-          this.router.navigate(['home']);
-        }
-      });
-
-      this.currentRoute = window.location.pathname;
-
-      this.storage.get('jwt-token').then(res=> {
-        if (res) {
-          this.user = res.user
-        }
-      })
-    });
-  }
-
   ngOnInit() {
     this.storage.get('jwt-token').then(res=> {
       if (res) {
         this.user = res.user
       }
     });
-
     this.setDashboard(true);
   }
 }

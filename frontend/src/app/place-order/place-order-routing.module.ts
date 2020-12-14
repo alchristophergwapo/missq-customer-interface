@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PlaceOrderPage
+  },
+  {
+    path: 'location-select',
+    loadChildren: () => import('./location-select/location-select.module').then( m => m.LocationSelectPageModule)
   }
 ];
 

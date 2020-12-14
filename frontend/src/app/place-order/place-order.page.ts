@@ -1,22 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  NativeGeocoder,
-  NativeGeocoderOptions,
-  NativeGeocoderResult
-} from "@ionic-native/native-geocoder/ngx";
-import { AlertController } from "@ionic/angular";
-import { Router, NavigationExtras } from "@angular/router";
-import { MsqService } from "../api/services/service/msq-service.service";
-import { AuthService } from '../api/services/auth/auth.service';
-import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { AppComponent } from '../app.component';
 
 @Component({
-  selector: "app-place-order",
-  templateUrl: "./place-order.page.html",
-  styleUrls: ["./place-order.page.scss"]
+  selector: 'app-place-order',
+  templateUrl: './place-order.page.html',
+  styleUrls: ['./place-order.page.scss'],
 })
 export class PlaceOrderPage implements OnInit {
-  // @ViewChild('nanny-s-location') locationInput: ElementRef;
 
   segmentModel = "Nanny";
 
@@ -95,6 +87,7 @@ export class PlaceOrderPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private router: Router,
+    private app: AppComponent
     // private msqService: MsqService,
     // private authService: AuthService
   ) {}
@@ -173,9 +166,12 @@ export class PlaceOrderPage implements OnInit {
     if (!this.totalCost) {
       this.totalCost = this.descriptions[this.segmentModel];
     }
+
+    this.app.dashboard = true;
   }
 
   segmentChanged(event) {
     this.segmentModel = event;
   }
+
 }

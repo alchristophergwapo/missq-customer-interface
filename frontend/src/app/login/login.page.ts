@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../api/services/auth/auth.service";
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { waitForAsync } from '@angular/core/testing';
+import { AuthService } from '../api/services/auth.service';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -12,20 +11,17 @@ import { AppComponent } from '../app.component';
 })
 export class LoginPage implements OnInit {
 
- public type = 'password';
+  public type = 'password';
   public showPass = false;
   name: string;
   password: string;
 
-// passwordType: string = 'password';
-// eye: boolean = false;
-
   constructor(
-    private authService: AuthService, 
-    private router: Router, 
-    private alertCtrl: AlertController, 
+    private authService: AuthService,
+    private router: Router,
+    private alertCtrl: AlertController,
     private dash: AppComponent
-  ) { 
+  ) {
     this.name = 'toper@gmail.com';
     this.password = "Toper@2020";
   }
@@ -39,14 +35,14 @@ export class LoginPage implements OnInit {
   //     this.passwordType = 'password';
   //   }
   // }
-  
+
   showPassword() {
-     this.showPass = !this.showPass;
-     if(this.showPass){
-       this.type = 'text';
-     } else {
-       this.type = 'password';
-     }
+    this.showPass = !this.showPass;
+    if (this.showPass) {
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
   }
   login(form) {
     // console.log(form.value);

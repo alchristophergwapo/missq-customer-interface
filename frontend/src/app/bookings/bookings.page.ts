@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { MsqService } from '../api/services/service/msq-service.service';
-import { AuthService } from '../api/services/auth/auth.service';
+import { AuthService } from '../api/services/auth.service';
 
 @Component({
   selector: 'app-bookings',

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../api/services/auth/auth.service';
-import { AppComponent } from '../app.component';
+import { AuthService } from '../api/services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -14,11 +13,11 @@ export class SettingsPage implements OnInit {
   constructor(private authService: AuthService) {
   }
 
-  // logout() {
-  //   this.authService.logout();
-  //   console.log(this.authService.user);
+  logout() {
+    this.authService.logout();
+    console.log(this.authService.user);
     
-  // }
+  }
 
   ngOnInit() {
     this.user = this.authService.user;

@@ -6,15 +6,33 @@ ion-item.active div {
     background-color: rgba(0, 0, 0, .3);
 }
 
-ion-list-header {
+.header {
+    // position: relative;
+    // overflow: hidden;
     margin-bottom: 30px;
 }
 
-ion-list-header span {
-    font-size: 26px;
+.header::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -50%;
+        left: -50%;
+        z-index: -1;
+        background: rgba(21, 160, 224, .5) !important;
+        transform: rotate(30deg);
+        border-radius: 40px;
 }
 
-ion-list-header ion-img {
+.header ion-title {
+    position: absolute;
+    left: 100px;
+    top: 30px;
+    font-size: 18px;
+}
+
+.header ion-img {
     position: relative;
     top: 0;
     width: 100px;
@@ -23,28 +41,16 @@ ion-list-header ion-img {
 
 ion-note {
     position: absolute;
-    margin-left: 120px;
-    top: 90px;
-    font-size: 15px;
+    margin-left: 110px;
+    top: 70px;
+    font-size: 14px;
     color: rgba(21, 160, 224, .5) !important;
     font-weight: 300;
 }
 
-@media (max-width: 968.98px) {
-    ion-note {
-        font-size: 12px;
-    }
-    ion-list-header span {
-        font-size: 20px;
-    }
-    ion-item ion-label {
-        font-size: 14px;
-    }
-}
-
 ion-item {
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    margin-bottom: 8px;
+    // text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-weight: 600;
 }
@@ -85,4 +91,16 @@ ion-item ion-label {
 
 ion-app {
     overflow: hidden;
+}
+
+@media (max-width: 968.98px) {
+    ion-note {
+        font-size: 13px;
+    }
+    .header ion-item span {
+        font-size: 20px;
+    }
+    ion-item ion-label {
+        font-size: 14px;
+    }
 }
