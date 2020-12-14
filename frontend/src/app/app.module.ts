@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ModalpopupPageModule} from './modalpopup/modalpopup.module';
 
 import {
   GoogleLoginProvider,
@@ -42,7 +43,8 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
     FormsModule,
     ValidateEqualModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ModalpopupPageModule
   ],
   providers: [
     ServicesService,

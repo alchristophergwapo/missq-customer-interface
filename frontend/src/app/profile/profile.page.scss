@@ -2,20 +2,24 @@ ion-icon {
     color: rgba(21, 160, 224) !important;
     font-weight: bold;
     font-size: 25px;
+    .editIcon{
+        color: black;
+    }
 }
 
 // ion-item ion-label {
 //     margin-right: 60px;
 // }
-#userimage {
-    // margin-left: 20px;
-    // border-radius: 50%;
-    height: 350px;
-    width: 350px;
+#userimage{
+    margin-left: 20%;
+    margin-right: 20%;
+    // border-radius: 15%;
+    height: 150px;
+    width: 60%;
     // margin-top: 20%;
 }
 
-ion-row {
+ion-row{
     width: 800px;
     height: 500px;
     text-align: left;
@@ -68,7 +72,23 @@ ion-card {
     height: auto;
 }
 
-h1 {
+@media (max-width: 968.98px) {
+    ion-card {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (max-width: 698.98px) {
+    ion-card {
+        width: 94%;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+}
+
+h1{
     text-align: center;
     margin-bottom: 5%;
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -100,4 +120,6 @@ nobr.close {
 // }
 .background {
     --background: url(../../assets/images/Conference.png) 0 0/100% 100% no-repeat;
+
 }
+
