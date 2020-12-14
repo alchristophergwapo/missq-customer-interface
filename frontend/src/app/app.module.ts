@@ -24,10 +24,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { IonicStorageModule, Storage } from '@ionic/storage';
 
-import { AuthGuardService as AuthGuard } from "./api/services/auth_guard/auth-guard.service";
-import { AuthService } from "./api/services/auth/auth.service";
+import { AuthGuardService as AuthGuard } from "./api/services/auth-guard.service";
+import { AuthService } from "./api/services/auth.service";
 import { PlaceOrderPage } from "./place-order/place-order.page";
-import { MsqService } from './api/services/service/msq-service.service';
+import { MsqService } from './api/services/msq-service.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 

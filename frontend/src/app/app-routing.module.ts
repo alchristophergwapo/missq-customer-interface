@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'live-chat',
-    loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule)
+    loadChildren: () => import('../../../live-chat/live-chat.module').then( m => m.LiveChatPageModule)
   },
   {
     path: 'finance',
