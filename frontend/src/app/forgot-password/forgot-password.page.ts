@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../api/models/user";
+import { ForgotPasswordService } from '../api/services/forgot-password.service';
 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -22,7 +24,15 @@ export class ForgotPasswordPage implements OnInit {
   public showPass = false;
   public showPass1 = false;
 
-  constructor() { }
+  email: string = '';
+  code: string = '';
+
+  forgotUserData: any;
+
+  constructor(
+    private forgotPass: ForgotPasswordService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.user = {
@@ -42,6 +52,53 @@ export class ForgotPasswordPage implements OnInit {
 
   noSubmit(e) {
     e.preventDefault();
+  }
+
+  async sendPassResetCode(form) {
+
+    this.forgotPass.requestPassResetCode(form.value).subscribe(response => {
+      console.log(response);
+      
+      if (response.status == 200) {
+        console.log(response);
+        this.forgotUserData = response.user;
+        this.emailCard = false;
+        this.codeCard = true;
+
+      }
+    })
+  }
+
+  async checkCode(form) {
+
+    console.log(form.value);
+    
+
+    let formData = {
+      customer: this.forgotUserData,
+      code: form.value.code
+    }
+
+    this.forgotPass.checkCode(formData).subscribe((response) => {
+      if (response.status == 200) {
+        this.codeCard = false;
+        this.newPass = true;
+      }
+    })
+  }
+
+  async updatePassword(form) {
+
+    const data = {
+      _id: this.forgotUserData._id,
+      password: form.value.password
+    }
+
+    this.forgotPass.updatePassword(data).subscribe((response) => {
+      if (response.status == 200) {
+        this.router.navigateByUrl('login');
+      }
+    })
   }
 
   async register(form) {
@@ -73,11 +130,6 @@ export class ForgotPasswordPage implements OnInit {
     } else {
       this.type1 = 'password';
     }
-  }
-
-  sendEmail(form1) {
-    this.emailCard = false;
-    this.codeCard = true;
   }
 
   sendCode(form2) {

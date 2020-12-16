@@ -12,12 +12,13 @@ export class PhotoService {
   public photos: Photo[] = [];
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
+  public photo: Photo
 
   constructor(platform: Platform) {
     this.platform = platform;
   }
 
-  public async addNewToGallery() {
+  public async addNewToGallery(){
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
@@ -25,18 +26,28 @@ export class PhotoService {
       quality: 100
     });
 
+    // console.log("Captured Photo: ", capturedPhoto);
+    
+
     const savedImageFile = await this.savePicture(capturedPhoto);
-    this.photos.unshift(savedImageFile);
+    
+    this.photos.unshift[0] = savedImageFile;
+    this.photo = savedImageFile;
 
     Storage.set({
       key: this.PHOTO_STORAGE,
       value: JSON.stringify(this.photos)
     });
+
+    return this.photo;
   }
 
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
+
+    console.log(base64Data);
+    
 
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';

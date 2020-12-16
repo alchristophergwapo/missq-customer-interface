@@ -60,8 +60,11 @@ const routes: Routes = [
     path: 'bookings',
     loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule),
     canActivate: [AuthGuardService]
-
   },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+  }
 
 ];
 
