@@ -25,37 +25,16 @@ routes.route('/request_code').post((request, response) => {
 
             customer.save().then(cust => {
                 console.log(cust.resetPasswordExpires);
-
+                
+                const codeGenerated = cryptoRandomString({ length: 10, type: 'alphanumeric' });
+                
                 if (cust.resetPasswordExpires == Date.now()) {
-
-                    let newPassResetCode = new PasswordReset({
-                        code: codeGenerated,
-                        customer: customer,
-                        availabe: true
-                    })
+                    
+                    let newPassResetCode = generateCode(codeGenerated);
 
                     newPassResetCode.save().then((code) => {
                         if (code) {
-
-                            const codeGenerated = cryptoRandomString({ length: 10, type: 'alphanumeric' });
-
-                            const transporter = nodemailer.createTransport({
-                                service: 'gmail',
-                                auth: {
-                                    user: 'msqintern0@gmail.com',
-                                    pass: 'msqassociates'
-                                }
-                            })
-
-                            const mailOptions = {
-                                from: 'msqintern0@gmail.com',
-                                to: 'christopher.alonzo@student.passerellesnumeriques.org',
-                                subject: 'Code for Password Reset',
-                                text: 'You are receiving this is because you (or someone does) have requested the reset of the password or your account. \n\n'
-                                    + 'Please enter the following code to complete the process within one hour if receiving this: \n'
-                                    + `${codeGenerated}\n\n`
-                                    + 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-                            }
+                            let transporter = sendEmail(codeGenerated);
 
                             transporter.sendMail(mailOptions, (err, res) => {
                                 if (err) {
@@ -64,38 +43,14 @@ routes.route('/request_code').post((request, response) => {
                                     response.status(200).send({ 'status': 200, 'message': 'We have sent a code to ' + request.body.email + '. Please check your email.', 'user': customer })
                                 }
                             })
+                            
                         } else {
                             response.status(400).send({ 'status': 400 });
                         }
                     })
                 } else {
-                    // let code = Code.findOne({
-                    //     where: {
-                    //         customer: request.body.customer
-                    //     }
-                    // })
 
-                    // console.log(code);
-                    
-                    const transporter = nodemailer.createTransport({
-                        service: 'gmail',
-                        secure: false,
-                        auth: {
-                            user: 'msqintern0@gmail.com',
-                            pass: 'msqassociates'
-                        }
-                    })
-
-                    const mailOptions = {
-                        from: 'msqintern0@gmail.com',
-                        // to: 'geneva.rivas@student.passerellesnumeriques.org',
-                        to: 'christopher.alonzo@student.passerellesnumeriques.org',
-                        subject: 'Code for Password Reset',
-                        text: 'You are receiving this is because you (or someone does) have requested the reset of the password or your account. \n\n'
-                            + 'Please enter the following code to complete the process within one hour if receiving this: \n'
-                            + `${code}\n\n`
-                            + 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-                    }
+                    let transporter = sendEmail(codeGenerated)
 
                     transporter.sendMail(mailOptions, (err, res) => {
                         if (err) {
@@ -109,7 +64,7 @@ routes.route('/request_code').post((request, response) => {
 
         } else {
             console.log(customer);
-            
+
         }
 
     })
@@ -159,5 +114,40 @@ routes.post('/update_password/', (request, response) => {
         }
     })
 })
+
+
+generateCode = (codeGenerated) => {
+
+    let newPassResetCode = new PasswordReset({
+        code: codeGenerated,
+        customer: customer,
+        availabe: true
+    })
+
+    return newPassResetCode;
+
+}
+
+sendEmail = (codeGenerated) => {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'msqintern0@gmail.com',
+            pass: 'msqassociates'
+        }
+    })
+
+    const mailOptions = {
+        from: 'msqintern0@gmail.com',
+        to: 'christopher.alonzo@student.passerellesnumeriques.org',
+        subject: 'Code for Password Reset',
+        text: 'You are receiving this is because you (or someone does) have requested the reset of the password or your account. \n\n'
+            + 'Please enter the following code to complete the process within one hour if receiving this: \n'
+            + `${codeGenerated}\n\n`
+            + 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+    }
+
+    return transporter;
+}
 
 module.exports = routes
