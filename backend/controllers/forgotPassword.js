@@ -22,7 +22,7 @@ const from = 'MsQ Associates';
 const to = '639458562899';
 const text = 'You are receiving this is because you (or someone does) have requested the reset of the password or your account.                 \n\n'
             + 'Please enter the following code to complete the process within one hour if receiving this: \n'
-            + `${code}\n\n`
+            + `${codeToSend}\n\n`
             + 'If you did not request this, please ignore this SMS and your password will remain unchanged.\n';
 
 
@@ -80,7 +80,7 @@ routes.route('/request_code').post((request, response) => {
                         const sendMail = sendEmail(codeToSend)
 
                         nexmo.message.sendSms(from, to, text);
-                        
+
                         if (!sendMail && sendMail != null)
                             response.status(400).send({ 'status': 400, 'message': `We can't send the code to the your email.` });
                         else
