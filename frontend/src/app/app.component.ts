@@ -27,6 +27,7 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -42,9 +43,9 @@ export class AppComponent {
 
       this.currentRoute = window.location.pathname;
 
-      this.storage.get('jwt-token').then(res=> {
+      this.storage.get('jwt-token').then(async res=> {
         if (res) {
-          this.user = res.user
+          this.user = await res.user
         }
       })
     });

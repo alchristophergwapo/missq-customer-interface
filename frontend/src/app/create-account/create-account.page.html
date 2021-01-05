@@ -63,7 +63,7 @@
                   </ion-label><br> -->
                   <ion-item>
                       <ion-icon name="mail-sharp"></ion-icon>&nbsp;
-                      <ion-input name="email" [(ngModel)]='user.email' type="email" #emailCtrl="ngModel"
+                      <ion-input name="email" [(ngModel)]='user.email' type="email" #emailCtrl="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                           placeholder="your@gmail.com" ngModel required email></ion-input>
                   </ion-item>
                   <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched && emailCtrl.errors?.required">
@@ -132,7 +132,10 @@
                       </ion-input>
                       <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">
                       <img [src]="capturedSnapURL" /> -->
-                  </ion-item><br>
+                  </ion-item>
+                  <div *ngFor="let p of photoService.photos">
+                    <img [src]="p.webviewPath" alt="" id="img">
+                  </div><br>
                   <ion-item>
                       <ion-icon name="image-sharp"></ion-icon>&nbsp;
                       <ion-label slot="end">Picture(ID)</ion-label>
@@ -156,5 +159,6 @@
               </div>
           </ion-card-content>
       </form>
+
   </ion-card>
 </ion-content>

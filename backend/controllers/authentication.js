@@ -35,6 +35,7 @@ var upload = multer({
 
 routes.post("/register",
     // upload.single('id_image'),
+    upload.single('picture'),
     (request, response, next) => {
 
         console.log(request.file);
@@ -89,7 +90,7 @@ routes.route("/login").post((req, res) => {
                 expiresIn: expiresIn
             });
 
-            console.log(user);
+            console.log('User: ',user);
 
             if (user) {
                 let passMatch = bcrypt.compareSync(req.body.password, user.password);

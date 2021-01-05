@@ -29,6 +29,10 @@ export class AuthService {
     });
   };
 
+  /**
+   * 
+   */ 
+
   loadStoredToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {

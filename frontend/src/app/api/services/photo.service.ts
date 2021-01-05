@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CameraPhoto, CameraResultType, CameraSource, Capacitor,  FilesystemDirectory, Plugins } from '@capacitor/core';
-
+import { CameraPhoto, CameraResultType, CameraSource, Camera as Cam, Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
+import { File, FileEntry } from "@ionic-native/file/ngx";
 import { Platform } from "@ionic/angular";
+import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 
-const { Camera, Filesystem, Storage } = Plugins;
+const { Filesystem, Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -14,32 +15,56 @@ export class PhotoService {
   private platform: Platform;
   public photo: Photo
 
-  constructor(platform: Platform) {
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  };
+
+  constructor(platform: Platform, private file: File, private camera: Camera) {
     this.platform = platform;
   }
 
-  public async addNewToGallery(){
+  public async addNewToGallery() {
+
     // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
-    });
+    if (this.platform.is('cordova')) {
+      this.camera.getPicture(this.options).then((imageData) => {
+        this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
+          entry.file(file => {
+            console.log("File: ", file);
+
+          })
+        })
+      });
+    } else {
+      const capturedPhoto = await Cam.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 100
+      }).then(async (file) => {
+        // console.log('File: ', file);
+        const savedImageFile = await this.savePicture(file);
+
+        console.log(savedImageFile);
+        
+        this.photos.unshift(savedImageFile);
+        this.photo = savedImageFile;
+  
+        Storage.set({
+          key: this.PHOTO_STORAGE,
+          value: JSON.stringify(this.photos)
+        });
+  
+        return this.photo;
+        
+      })
+
+    }
 
     // console.log("Captured Photo: ", capturedPhoto);
-    
 
-    const savedImageFile = await this.savePicture(capturedPhoto);
-    
-    this.photos.unshift[0] = savedImageFile;
-    this.photo = savedImageFile;
-
-    Storage.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos)
-    });
-
-    return this.photo;
   }
 
   private async savePicture(cameraPhoto: CameraPhoto) {
@@ -47,7 +72,7 @@ export class PhotoService {
     const base64Data = await this.readAsBase64(cameraPhoto);
 
     console.log(base64Data);
-    
+
 
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
@@ -106,6 +131,9 @@ export class PhotoService {
     // Retrieve cached photo array data
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
+
+    console.log(this.photos);
+
 
     // Easiest way to detect when running on the web:
     // “when the platform is NOT hybrid, do this”

@@ -34,10 +34,12 @@ export class CreateAcountPage implements OnInit {
     private toastController: ToastController,
     private loadingController: LoadingController,
     private photoService: PhotoService,
-  ) { 
+  ) {
+    console.log(typeof (this.photoService.photos));
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.user = {
       name: "Christopher Alonzo",
       address: "Talamban",
@@ -57,17 +59,19 @@ export class CreateAcountPage implements OnInit {
       this.dataList = result.data;
 
     })
+
+    await this.photoService.loadSaved();
+    
   }
 
   async takeSelfie() {
-    let selfPic = await this.photoService.addNewToGallery();
-    if (selfPic) {
-      this.selfie = selfPic;
+    await this.photoService.addNewToGallery();
+    // this.selfie = this.photoService.photo; 
 
-      console.log(this.selfie.webviewPath);
-      
-      this.user.picture = this.selfie.filepath
-    }
+    // console.log(typeof (this.selfie.webviewPath));
+
+    // this.user.picture = this.selfie.filepath
+
   }
 
   showPassword() {
@@ -88,8 +92,8 @@ export class CreateAcountPage implements OnInit {
   }
 
   async register(form) {
-    
-    this.present();
+
+    await this.present();
 
     form.value.id_image = this.idPic.name;
 
@@ -118,9 +122,9 @@ export class CreateAcountPage implements OnInit {
 
   async dismiss() {
     this.isLoading = false;
-    return await this.loadingController.dismiss().then(() => {
+    return await this.loadingController.dismiss().then(async () => {
       console.log('dismissed')
-      this.presentToast('Account Created!')
+      await this.presentToast('Account Created!')
     });
   }
 
@@ -156,7 +160,7 @@ export class CreateAcountPage implements OnInit {
       // console.log(blobURL);
       this.idPic = file;
       console.log(this.idPic);
-      
+
     };
     reader.onerror = error => {
       //handle errors

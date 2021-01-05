@@ -31,6 +31,7 @@ import { PlaceOrderPage } from "./place-order/place-order.page";
 import { MsqService } from './api/services/msq-service.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { File } from "@ionic-native/file/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -57,6 +58,7 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
     MsqService,
     PlaceOrderPage,
     AppComponent,
+    File,
     Camera,
     FileTransfer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

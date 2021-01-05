@@ -13,7 +13,8 @@ let PasswordReset = new Schema({
         required: true
     },
     available: {
-        type: Boolean
+        type: Boolean,
+        required: true
     },
 },
 {

@@ -54,12 +54,11 @@ export class ForgotPasswordPage implements OnInit {
     e.preventDefault();
   }
 
-  async sendPassResetCode(form) {
+  sendPassResetCode(form) {
 
-    this.forgotPass.requestPassResetCode(form.value).subscribe(response => {
-      console.log(response);
+    this.forgotPass.requestPassResetCode(form.value).subscribe(async response => {
       
-      if (response.status == 200) {
+      if (await response) {
         console.log(response);
         this.forgotUserData = response.user;
         this.emailCard = false;
@@ -88,7 +87,10 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   async updatePassword(form) {
-
+    console.log(form.value);
+    
+    console.log(this.forgotUserData);
+    
     const data = {
       _id: this.forgotUserData._id,
       password: form.value.password
