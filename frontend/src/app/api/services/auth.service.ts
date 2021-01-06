@@ -101,8 +101,12 @@ export class AuthService {
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/profile`, user)
   }
 
-  getUser() {
-    this.storage.get(TOKEN_KEY).then(res => {
+  getAllMessages(): Observable<any> {
+    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
+  }
+
+  getUser(){
+    return this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         return res.user;
       } else {
