@@ -34,11 +34,11 @@ ion-row{
     margin-top: 3%;
     margin-left: 2%;
     text-align: justify;
-    color: rgb(5, 56, 80);
+    color: black;
 }
 
 ion-label.user {
-    color: rgb(29, 50, 59);
+    // color: rgb(29, 50, 59);
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
@@ -49,13 +49,14 @@ ion-label.user {
 .name {
     font-size: 14px;
     padding: 10px;
+    color: black;
 }
 
 .username {
     // margin-left:42%;
-    font-size: 20px;
+    font-size: 15px;
     padding: 5%;
-    color: rgb(5, 56, 80);
+    color: black;
     font-weight: bold;
 }
 
@@ -88,12 +89,12 @@ ion-card {
     }
 }
 
-h1{
+h3{
     text-align: center;
     margin-bottom: 5%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: rgb(5, 56, 80);
-    font-size: 30px;
+    // font-family: "Comic Sans MS", cursive, sans-serif;
+    color: black;
+    font-size: 25px;
 }
 
 nobr {
