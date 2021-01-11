@@ -1,0 +1,26 @@
+<ion-content class="background">
+    <div class="web">
+        <!-- <ion-grid>
+            <ion-row>
+                <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+                    <ion-img [src]="photo.webviewPath"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid> -->
+    </div>
+    <div class="mobile">
+        <div class="mobile-content-header">
+            <img alt="logo" id="header_logo" height="100" float-left src="assets/images/msqlogo.png"><br>
+            <strong id="title">Ms.Q Associates</strong>
+            <p class="tag-line">We serve at your pleasure</p>
+            <br><br><br>
+        </div>
+        <div class="mobile-content">
+            <ion-button [routerLink]="['/create-account']" expand="block" color="secondary">Create Account
+            </ion-button>
+            <span class="divider line one-line">or</span>
+            <span class="already">Already a user?</span>
+            <ion-button id='btnLog' [routerLink]="['/login']" fill="outline" expand="block" color="secondary">Log In</ion-button>
+        </div>
+    </div>
+</ion-content>

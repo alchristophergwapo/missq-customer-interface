@@ -1,0 +1,47 @@
+ion-toolbar ion-bar {
+    height: 80px;
+}
+
+ion-segment{
+    display: flex;
+    height: 80px;
+}
+
+ion-item{
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+}
+
+ion-segment-button:hover{
+    background-color: rgba(21, 160, 224, 0.5);
+    border-radius: 5px;
+}
+
+// ion-segment-button:focus{
+//     background-color:#3dc2ff;   
+//     border-radius: 50px;
+// }
+
+ion-card-title{
+    text-align: center;
+}
+
+.del{
+    color: darkred;
+    font-size: 20px;
+    padding-top: 15px;
+    
+}
+
+.back{
+    color: darkred;
+    font-size: 20px;
+    padding-top: 15px;
+    
+}
+
+p {
+    text-align: center;
+}
+
+

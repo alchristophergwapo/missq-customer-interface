@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="background">
+    <ion-card>
+        <ion-card-content>
+            <nobr class='close'>
+                <ion-icon name="arrow-back" [routerLink]="['/place-order']"></ion-icon>
+            </nobr>
+            <h1><img height="50" float-left src="assets/images/msqlogo.png">Account Information</h1>
+            <ion-row>
+                <ion-col col-4>
+                    <ion-label class="user"><img src="http://localhost:8080/public/images/id.jpg" id='userimage' alt=""><br>
+                        <h6 class="username">{{ user.name }}</h6>
+                    </ion-label>
+                </ion-col>
+                <nobr class="verticalLine"></nobr>
+                <ion-col col-4 id='info'>
+                    <ion-label>
+                        <h6 class='name'>
+                            <nobr>ID Number : </nobr>{{ user.id_number }}</h6>
+                    </ion-label><br>
+                    <ion-label>
+                        <h6 class='name'>
+                            <nobr> Email : </nobr> {{ user.email }}</h6>
+                    </ion-label><br>
+                    <ion-label>
+                        <h6 class='name'>
+                            <nobr>Phone Number : </nobr>{{ user.phone }}</h6>
+                    </ion-label><br>
+                    <ion-label>
+                        <h6 class='name'>
+                            <nobr>Address : </nobr>{{ user.address }}</h6>
+                    </ion-label><br>
+                    <ion-label>
+                        <h6 class='name'>
+                            <nobr>Country Code : </nobr>{{ user.code}}</h6>
+                    </ion-label><br>
+                    <ion-label>
+                        <h6 class='name'>
+                            <nobr>Birthday : </nobr>{{ user.birthday }}</h6>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
