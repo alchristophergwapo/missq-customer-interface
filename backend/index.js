@@ -11,11 +11,11 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const url = "mongodb://127.0.0.1/missqassociates";
+// const url = "mongodb://127.0.0.1/missqassociates";
 
 // const url = "mongodb+srv://msqassociates:sunz8lyoztRAkVIw@cluster0.uc6o6.mongodb.net/MsQAssociates?retryWrites=true&w=majority";
 
-// const uri = "mongodb://msqassociates:sunz8lyoztRAkVIw@cluster0-shard-00-00-zcbag.mongodb.net:27017,cluster0-shard-00-01-zcbag.mongodb.net:27017,cluster0-shard-00-02-xvnqv.mongodb.net:27017/zcbag?ssl=true&replicaSet=Cluster0-shard-0&authSource=test&retryWrites=true&w=majority"
+const url = "mongodb://msqassociates:sunz8lyoztRAkVIw@cluster0-shard-00-00.uc6o6.mongodb.net:27017,cluster0-shard-00-01.uc6o6.mongodb.net:27017,cluster0-shard-00-02.uc6o6.mongodb.net:27017/MsQAssociates?ssl=true&replicaSet=atlas-7q3496-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 const connectionParams = {
 	useUnifiedTopology: true,
@@ -61,3 +61,4 @@ const port = process.env.PORT || 8080;
 const server = app.listen(port, () => {
     console.log('Server listening at http://localhost:' + port);
 });
+0
