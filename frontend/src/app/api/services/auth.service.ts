@@ -55,7 +55,7 @@ export class AuthService {
     formData.append('birth_date', data.birth_date);
     formData.append('password', data.password);
     formData.append('picture', picture);
-    formData.append('id_image', id_image);
+    formData.append('id_image', data.id_image);
     formData.append('id_number', data.id_number);
 
     // debugger

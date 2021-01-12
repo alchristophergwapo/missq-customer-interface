@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CameraPhoto, CameraResultType, CameraSource, Camera as Cam, Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
+import { CameraPhoto, CameraResultType, CameraSource,  Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
 import { File, FileEntry } from "@ionic-native/file/ngx";
 import { Platform } from "@ionic/angular";
-import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 
-const { Filesystem, Storage } = Plugins;
+const { Filesystem, Storage, Camera } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -15,37 +14,20 @@ export class PhotoService {
   private platform: Platform;
   public photo: Photo
 
-  options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  };
 
-  constructor(platform: Platform, private file: File, private camera: Camera) {
+  constructor(platform: Platform, private file: File) {
     this.platform = platform;
   }
 
   public async addNewToGallery() {
-
-    // Take a photo
-    if (this.platform.is('cordova')) {
-      this.camera.getPicture(this.options).then((imageData) => {
-        this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
-          entry.file(file => {
-            console.log("File: ", file);
-
-          })
-        })
-      });
-    } else {
-      const capturedPhoto = await Cam.getPhoto({
+      let photoTaken = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
-        quality: 100
-      }).then(async (file) => {
+        quality: 100,
+      })
+
         // console.log('File: ', file);
-        const savedImageFile = await this.savePicture(file);
+        const savedImageFile = await this.savePicture(photoTaken);
 
         console.log(savedImageFile);
         
@@ -58,10 +40,7 @@ export class PhotoService {
         });
   
         return this.photo;
-        
-      })
 
-    }
 
     // console.log("Captured Photo: ", capturedPhoto);
 

@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Live Chat</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,12 +20,12 @@
         <div class="msg">
           <p class="msg-title">Thank you for contacting MissQ Associates. Please wait for a moment while we get you
             connected to the next available live chat agent.</p>
-          <span class="msg-subtitle">{{time | date : 'shortTime'}}</span>
+          <!-- <span class="msg-subtitle">{{time | date : 'shortTime'}}</span> -->
         </div>
       </div>
-    </div>
+    </div><br><br>
     <img class="user" src="" alt="">
-    <div class="msg-detail">
+    <!-- <div class="msg-detail">
       <div class="mgs-info">
         <p>Agent</p>
       </div>
@@ -30,12 +33,50 @@
         <span class="triangle">Content</span>
         <p class="line-breaker"></p>
       </div>
+    </div> -->
+  </div>
+  <div class="main">
+    <div class="chat-box">
+      <div class="message-area">
+        <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
+          <!-- <div *ngIf="currentUser !== message.user" class="other-user">
+            <p>
+              <label style="color: rgb(85, 85, 85)">{{currentUser}}</label><br>
+              <span style="color: black;">
+                {{message.text}}
+              </span>
+            </p>
+            <label style="margin-left: 5%;font-size: 10px;"> {{message.timeStamp}} </label>
+          </div> -->
+          <!-- *ngIf="currentUser === message.user" -->
+          <div  class="my-message">
+            <p>
+              {{currentUser}}</p><br><br>
+            <p>
+              <span class="name">
+                {{message.text}}
+              </span>
+            </p>
+            <label style="margin-right: 5%;font-size: 10px;"> {{message.timeStamp}} </label>
+          </div>
+
+        </div>
+      </div>
+      <!-- <form (submit)="sendMessage()" #messageForm="ngForm">
+              <textarea type="text" name="message" id="message" [(ngModel)]="message" placeholder="Say something nice...">
+              </textarea>
+              <button class="sent" [disabled]="message===''">
+                      <ion-icon name="send"></ion-icon>
+                  </button>
+          </form> -->
     </div>
   </div>
-
 </ion-content>
-
 <ion-footer>
-  <ion-input placeholder="Type your message here"></ion-input>
-  <ion-icon name="send" class="send-icon"></ion-icon>
+  <form (submit)="sendMessage()" #messageForm="ngForm">
+    <ion-input type="text" name="message" id="message" [(ngModel)]="message" placeholder="Type your message here"></ion-input>
+    <button class="sent" [disabled]="message===''">
+      <ion-icon name="send" class="send-icon"></ion-icon>
+    </button>
+  </form>
 </ion-footer>

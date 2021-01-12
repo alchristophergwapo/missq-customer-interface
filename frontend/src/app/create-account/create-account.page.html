@@ -133,8 +133,8 @@
                       <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">
                       <img [src]="capturedSnapURL" /> -->
                   </ion-item>
-                  <div *ngFor="let p of photoService.photos">
-                    <img [src]="p.webviewPath" alt="" id="img">
+                  <div *ngFor="let p of photoService.photos, let i = index">
+                    <img [src]="p.webviewPath" alt="" id="img" (click)="deleteImage(p,i)">
                   </div><br>
                   <ion-item>
                       <ion-icon name="image-sharp"></ion-icon>&nbsp;
