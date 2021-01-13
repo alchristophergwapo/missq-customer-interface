@@ -30,10 +30,12 @@
       <ion-list>
         <ion-item-sliding *ngFor="let worker of ideals; let i = index">
           <ion-item>
-            {{worker.name}}
-            <ion-icon class="back" name="arrow-dropleft"></ion-icon>
+            <button ion-button full (click)="openModal(); showInfo(worker.ids);">
+              {{worker.name}}
+              <ion-icon class="back" name="arrow-dropleft"></ion-icon>
+            </button>
           </ion-item>
-          <ion-item-options side="end" >
+          <ion-item-options side="end">
             <ion-icon class="del" (click)="dltList(worker._id)" name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
@@ -52,8 +54,8 @@
           <ion-item>
             {{worker.name}}
           </ion-item>
-          <ion-item-options side="end" >
-            <ion-icon class="del" (click)="dltBanned(worker._id)"   name="trash"></ion-icon>
+          <ion-item-options side="end">
+            <ion-icon class="del" (click)="dltBanned(worker._id)" name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
