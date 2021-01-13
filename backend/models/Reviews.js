@@ -11,7 +11,7 @@ let Reviews = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: User,
     }],
-    author: {
+    artisan: {
         type: mongoose.Schema.Types.ObjectId,
         ref: Artisan,
     }
