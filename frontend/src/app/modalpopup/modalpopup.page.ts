@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular'
 import { AuthService } from '../api/services/auth.service';
 import { Router } from '@angular/router';
-// import { AppComponent } from '../app.component';
+import { AppComponent } from '../app.component';
 
 
 
@@ -16,10 +16,10 @@ export class ModalpopupPage implements OnInit {
   user:any;
 
   constructor(private modalController:ModalController, private authService:AuthService, private router:Router,
-    //  private app : AppComponent
+     private app : AppComponent
      ) { 
-
-    // this.user=app.user
+    this.user = app.user;
+    console.log("Naa sa profile: ", this.user);
   }
 
   ngOnInit() {
@@ -36,6 +36,10 @@ export class ModalpopupPage implements OnInit {
         console.log('nice nisud na')
       }
     });
+    console.log("maoy sulod sa form ", form.value);
+  }
+  getUser(){
+    
   }
 
 }

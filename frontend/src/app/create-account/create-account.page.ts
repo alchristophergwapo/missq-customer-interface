@@ -74,6 +74,10 @@ export class CreateAcountPage implements OnInit {
 
   }
 
+  deleteImage(photo, position) {
+    this.photoService.deletePicture(photo, position);
+  }
+
   showPassword() {
     this.showPass = !this.showPass;
     if (this.showPass) {

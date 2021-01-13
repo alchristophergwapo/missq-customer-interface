@@ -119,6 +119,18 @@ routes.route("/login").post((req, res) => {
         });
 });
 
+routes.route("/profile").post((req, res)=>{
+    var data = {
+        name : req.body.name,
+        address: req.body.address,
+        phone: req.body.phone,
+        email:req.body.email
+    }
+    Customer.update({email : req.body.OriginalEmail},{ $set : {data}});
+})
+
+
+
 // routes.route("/forgot-password").get((req, res) => {
 //     res.render('forgot-password');
 // });

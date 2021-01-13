@@ -14,18 +14,23 @@ export class ProfilePage implements OnInit {
   user: any;
   isUpdated = false;
 
-
   constructor(
-    private app: AppComponent, private modalController:ModalController) {
+    private app: AppComponent, private modalController:ModalController, ) {
     this.user = app.user;
     console.log("On profile: ", this.user);
   }
 
 
-  OpenModal()
-  {
-    this.modalController.create({component:ModalpopupPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
+  // OpenModal()
+  // {
+  //   this.modalController.create({component:ModalpopupPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
     
+  //     modalElement.present(); 
+  //   })
+  // }
+
+  editProfile(){
+    this.modalController.create({component:ModalpopupPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
       modalElement.present(); 
     })
   }

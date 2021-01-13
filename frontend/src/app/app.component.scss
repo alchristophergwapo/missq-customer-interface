@@ -41,7 +41,7 @@ ion-item.active div {
 
 ion-note {
     position: absolute;
-    margin-left: 110px;
+    margin-left: 35%;
     top: 70px;
     font-size: 14px;
     color: rgba(21, 160, 224, .5) !important;
@@ -95,7 +95,8 @@ ion-app {
 
 @media (max-width: 968.98px) {
     ion-note {
-        font-size: 13px;
+        font-size: 15px;
+        text-align: right;
     }
     .header ion-item span {
         font-size: 20px;
@@ -104,3 +105,18 @@ ion-app {
         font-size: 14px;
     }
 }
+ion-img{
+    height: 50%;
+    width: 50%;
+}
+strong{
+    font-size: 17px;
+    margin-left: 0;
+    // font-weight: 500;
+    // color: rgba(21, 160, 224, .5)
+    // text-align: right;
+}
+// ion-note{
+//     font-size: 13px;
+//     margin-left: 30%;
+// }
