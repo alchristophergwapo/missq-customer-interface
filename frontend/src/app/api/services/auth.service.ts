@@ -102,7 +102,7 @@ export class AuthService {
   }
 
   getAllMessages(): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
+    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/allMessages`);
   }
 
   getUser(){

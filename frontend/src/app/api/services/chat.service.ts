@@ -17,9 +17,10 @@ export class ChatService {
     // this.channel = pusher.subscribe('chat');
 
     this.channel = pusher.subscribe('my-channel');
-    this.channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
+    // this.channel.bind('my-event', function(data) {
+    //   // alert(JSON.stringify(data));
+    //   // alert('Received my-event with message: ' + data.message);
+    // });
   }
   channel;
 

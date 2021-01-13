@@ -24,7 +24,7 @@ pusher.trigger("my-channel", "my-event", {
     message: "hello world"
 });
 
-// var messages = [];
+var messages = [];
 
 // app.post('/messages', (req, res) => {
 //     messages.push(req.body);
@@ -57,6 +57,7 @@ app.use((req, res, next) => {
 });
 
 app.post('/messages', (req, res) => {
+    messages.push(req.body);
     const { body } = req;
     const { text, id } = body;
     const result = sentiment.analyze(text);
