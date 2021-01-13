@@ -35,6 +35,47 @@ ion-toolbar {
 //     float:right;
 // }
 
+.head{
+    font-size: 24px;    
+    text-align: center;
+}
+
+.btnfil1{
+    margin-right:10%;
+    margin-left: 5%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: red;
+
+}
+
+.btnfil2{
+    margin-right:10%;
+    margin-left: 5%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: blue;
+
+}
+
+.btnfil3{
+    margin-right:10%;
+    margin-left: 5%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: green;
+
+}
+
 .container {
     margin: 40px 20px 20px 20px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -145,11 +186,24 @@ tr:nth-child(even) {
 }
 .btn {
     border:1px solid black;
-    margin-left:50%;
+    margin-top:  10%;
+    margin-left:65%;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: blue;
 }
 .btn1 {
-    border:1px solid black;
     margin-right:10%;
+    margin-left: 5%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: red;
 }
 @media (max-width: 767.98px) {
     .column1 {
@@ -160,4 +214,4 @@ tr:nth-child(even) {
         width: 100%;
         position: relative;
     }
-}
+} 
