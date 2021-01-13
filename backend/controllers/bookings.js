@@ -13,7 +13,6 @@ routes.route("/book_service").post(async(request, response) => {
 
     author.bookings.push(booking);
 
-
     response.status(200)
         .send({ status: 200, bookings: author.bookings });
 

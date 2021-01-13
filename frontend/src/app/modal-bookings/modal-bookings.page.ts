@@ -19,17 +19,15 @@ export class ModalBookingsPage implements OnInit {
     
     this.user = app.user;
   }
-    
-  // ngOnInit() {
-  // }
-  ngOnInit() {
+
+  ngOnInit() 
+  {
 
     const userBookings = this.authService.user;
 
     this.bookings = userBookings['bookings']
     
   }
-
 
   closeModal()
   {
