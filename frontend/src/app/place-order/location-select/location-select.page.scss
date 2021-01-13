@@ -1,0 +1,41 @@
+ion-icon.back {
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+@media (max-width: 968.98px) {
+    ion-icon.back {
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+}
+
+ion-toolbar {
+    margin-right: 30px;
+}
+
+.controls {
+    width: 95%;
+    border: none;
+    padding: 5px;
+    border-bottom: 1.5px solid rgba(21, 160, 224, 1);
+}
+
+.controls:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgba(48, 181, 243, 1);
+}
+
+#maps {
+    height: 100% !important;
+}
+
+.book-now {
+    position: absolute;
+    bottom: 0%;
+    width: 90vw;
+    margin-right: 5vw;
+    margin-left: 5vw;
+}

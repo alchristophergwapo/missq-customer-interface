@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Bookings</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container">
+
+        <button ion-button icon-only (click)="closeModal()">
+                <!-- <ion-icon ios="ios-close"></ion-icon> -->
+                <ion-icon ios="ios-close" md="md-close"></ion-icon>
+                    <!-- <ion-icon item-right name="ios-close-outline"></ion-icon>  -->
+                </button>
+        <div class="head">
+            <ion-input>Filter</ion-input>
+        </div>
+        <div class="content">
+            <div class="column2">
+                <button class="btn">Edit</button>
+                <button class="btn1">Delete Booking</button>
+                <!-- <img src=> -->
+                <h1>Sample</h1>
+                <ion-card>
+                    <ion-card-content>
+                        <div class="col-2-left">
+                            <ion-input placeholder="email"></ion-input>
+                        </div>
+                        <div class="col-2-right">
+                            <ion-input placeholder="09123456789"></ion-input>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+                <!-- <table *ngFor="let book of bookings"> -->
+                <table>
+                    <tr>
+                        <th>Service Booking</th>
+                        <th>Booking Time</th>
+                        <th>Booking Status</th>
+                    </tr>
+                    <tr *ngFor="let book of bookings;let i = index">
+                        <td>{{book.service_booking}}</td>
+                        <td>{{book.schedule}}</td>
+                        <!-- <button>Show Status</button> -->
+                        <td *ngIf="i != book.status">{{book.status}}</td>
+                        <td *ngIf="i == book.status">{{book.status}} <button>Rating</button></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Location</th>
+                        <th>Cost</th>
+                    </tr>
+                    <tr *ngFor="let booking of bookings;let i = index">
+                        <td>{{booking.service_booking}}</td>
+                        <td>{{booking.service_location}}</td>
+                        <td>{{booking.cost}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            SubTotal
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <br>
+                <label for="payment">Payment Method:</label>
+                <select name="payment" id="payment">
+            <option value="gcash">Gcash</option>
+            <option value="paymaya">PayMaya</option>
+            <option value="creditcard">Credit Card</option>
+        </select>
+                <p>Payment Status:</p>
+            </div>
+        </div>
+    </div>
+</ion-content>

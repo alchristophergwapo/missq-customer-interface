@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon class="back" slot="start" name="arrow-back" routerLink="/place-order" routerDirection="root"></ion-icon>
+    <input type="text" id="pac-input" class="controls" placeholder="Search Location" [(ngModel)]="service_location" name="service_location" autocomplete="service_location" autofocus clear-input>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div #maps id="maps"></div>
+  <div class="buttons" *ngIf="service_location">
+    <ion-button class="book-now" type="submit" (click)=proceedAlert()>Next</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Finance</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="balance">
+        <nav>
+            <img class="voucher" src="assets/images/voucher.png" />
+            <!-- <svg class="arrow" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272"/></svg> -->
+            PHP
+        </nav>
+        <div class="description">
+            <h1>₱0</h1>
+            <p>Prepaid Account Balance</p>
+        </div>
+    </ion-card><br><br>
+    <ion-toolbar>
+        <ion-segment value="cash-in" color="secondary" value="cash-in" [(ngModel)]="segmentModel" (ionChange)="segmentOnChange($event)">
+            <ion-segment-button value="cash-in">
+                <img id="background" src="assets/images/cash-in.png" />
+                <ion-label>Cash-In</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="promo">
+                <img id="background" src="assets/images/voucher.png" />
+                <ion-label>Promo Credits</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+    <ion-card class="card1" *ngIf="segmentModel ==='cash-in'">
+        <ion-card-header color="secondary">
+            <ion-card-title>Cash-In</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <img class="gcash" src="assets/images/gcash.png" alt=""><br>
+            <!-- </ion-card-content> -->
+            <!-- <ion-card-content class="paypal"> -->
+            <img class="paypal" src="assets/images/paypal.png" alt="">
+        </ion-card-content>
+    </ion-card>
+    <ion-card class="card1" *ngIf="segmentModel ==='promo'">
+        <ion-card-header color="secondary">
+            <ion-card-title>Promo Credits</ion-card-title>
+        </ion-card-header>
+    </ion-card><br><br>
+</ion-content>

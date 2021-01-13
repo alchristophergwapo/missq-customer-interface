@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Bookings</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container">
+        <div class="head">
+            <ion-input>Filter</ion-input>
+        </div>
+        <div class="column1">
+            <div *ngFor="let b of bookings">
+                <!-- <div *ngIf="!table" *ngFor="let b of bookings"> -->
+                <ion-card (click)="openModal(i)">
+                    <ion-card-content>
+                        <div class="col-1-left">
+                            <div *ngIf="b.schedule">{{b.schedule}}</div>
+                        </div>
+                        <div class="col-1-mid">
+                            {{b.service_booking}}
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

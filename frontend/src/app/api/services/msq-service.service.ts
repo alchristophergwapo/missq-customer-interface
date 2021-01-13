@@ -1,0 +1,22 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Service } from '../models/service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MsqService {
+
+  public service: Observable<any>;
+  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/msq_service';
+  booked: any;
+
+  constructor(
+    private httpClient: HttpClient,
+  ) { }
+
+  bookNow(service: Service): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/book_service`, service);
+  }
+}
