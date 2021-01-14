@@ -33,7 +33,8 @@ export class LiveChatPage implements OnInit {
   userAccount: string = '';
   public currentUser;
   public time = new Date();
-  public fullTime = this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
+  public fullTime = this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds();
+  today = Date.now();
 
   sendMessage() {
     if (this.message !== '') {
@@ -55,7 +56,7 @@ export class LiveChatPage implements OnInit {
             // The message type is added to distinguish between incoming and outgoingmessages. It also aids with styling of each message type
             type: 'outgoing',
           };
-          // console.log(message);
+          console.log(message);
 
           this.messages = this.messages.concat(message);
           this.message = '';

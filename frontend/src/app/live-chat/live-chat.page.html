@@ -12,7 +12,7 @@
     <div class="close-btn">
       <ion-icon name="close" routerLink="/place-order"></ion-icon>
     </div>
-    <div class="preload">Today</div>
+    <div class="preload">Today: <br> {{today | date}}</div>
     <div class="greating-msg">
       <div class="start">
         <p class="heading">Chat Started</p>
@@ -48,7 +48,6 @@
             </p>
             <label style="margin-left: 5%;font-size: 10px;"> {{message.timeStamp}} </label>
           </div>
-          <!-- *ngIf="currentUser === message.user" -->
           <div *ngIf="currentUser === message.user"  class="my-message">
             <!-- <p>{{currentUser}}</p> -->
             <p>
