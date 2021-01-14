@@ -90,7 +90,7 @@ routes.route("/login").post((req, res) => {
                 expiresIn: expiresIn
             });
 
-            console.log('User: ',user);
+            console.log('User: ', user);
 
             if (user) {
                 let passMatch = bcrypt.compareSync(req.body.password, user.password);

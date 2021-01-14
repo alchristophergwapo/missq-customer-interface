@@ -22,17 +22,8 @@ ion-toolbar {
 
 .column1 {
     position: absolute;
-    width: 65%;
+    width: 95%;
     height: 125vh;
-    margin: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.column2 {
-    position: absolute;
-    right: 0;
-    width: 30%;
-    height: 100vh;
     margin: 15px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -45,7 +36,7 @@ ion-card {
     position: absolute;
     top: 0;
     left: 0;
-    width: 35%;
+    width: 5%;
     height: 10vh;
     background: white;
 }
@@ -59,14 +50,15 @@ ion-card {
     background: white;
 }
 
-// .col-1-right {
-//     position: absolute;
-//     top: 0%;
-//     right: 0;
-//     width: 10%;
-//     height: 10vh;
-//     background: skyblue;
-// }
+.col-1-right {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    width: 10%;
+    height: 10vh;
+    background: white;
+}
+
 .col-2-left {
     position: absolute;
     top: 0;
@@ -126,6 +118,11 @@ tr:nth-child(even) {
 .btn1 {
     border: 1px solid black;
     margin-right: 10%;
+}
+
+button {
+    border: 1px solid black;
+    margin-top: 10%;
 }
 
 @media (max-width: 767.98px) {

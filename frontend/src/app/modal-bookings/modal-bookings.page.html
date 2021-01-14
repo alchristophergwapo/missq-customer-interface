@@ -31,41 +31,28 @@
                         </div>
                     </ion-card-content>
                 </ion-card>
-                <!-- <table *ngFor="let book of bookings"> -->
+
                 <table>
                     <tr>
                         <th>Service Booking</th>
                         <th>Booking Time</th>
                         <th>Booking Status</th>
-                    </tr>
-                    <tr *ngFor="let book of bookings;let i = index">
-                        <td>{{book.service_booking}}</td>
-                        <td>{{book.schedule}}</td>
-                        <td *ngIf="!book.status.includes('Complete')">{{book.status}}</td>
-                        <td *ngIf="book.status.includes('Complete')">{{book.status}}<button>Rating</button></td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <th>Item</th>
-                        <th>Location</th>
                         <th>Cost</th>
                     </tr>
-                    <tr *ngFor="let booking of bookings;let i = index">
-                        <td>{{booking.service_booking}}</td>
-                        <td>{{booking.service_location}}</td>
-                        <td>{{booking.cost}}</td>
-                    </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            SubTotal
-                        </td>
-                        <td></td>
+                        <td>{{service_booking}}</td>
+                        <td>{{schedule}}</td>
+                        <td>{{status}}</td>
+                        <td>{{cost}}</td>
                     </tr>
+                    <!-- <tr *ngFor="let book of bookings">
+                        <td>{{book.service_booking}}</td>
+                        <td>{{book.schedule}}</td>
+                        <td *ngIf="!book.status.includes('Ongoing')">{{book.status}}</td>
+                        <td *ngIf="book.status.includes('Ongoing')">{{book.status}}<button>Rate</button></td>
+                        <td>{{book.cost}}</td>
+                    </tr> -->
                 </table>
-                <br>
                 <label for="payment">Payment Method:</label>
                 <select name="payment" id="payment">
             <option value="gcash">Gcash</option>

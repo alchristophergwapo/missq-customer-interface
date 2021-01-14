@@ -44,11 +44,32 @@ export class BookingsPage implements OnInit {
     this.bookings = userBookings['bookings']
     
   }
-  openModal()
-  {
-    this.modalController.create({component: ModalBookingsPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
-      modalElement.present(); 
 
-    })
+  // openModal(b)
+  // {
+  //   console.log(b)
+  //   this.modalController.create({component: ModalBookingsPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
+  //     modalElement.present(); 
+  //   })
+  // }
+
+
+
+  
+  async passToOrders(b) {
+      const modal = await this.modalController.create({
+        component: ModalBookingsPage,
+        componentProps: {
+          status: b.status, id: b._id, service_booking: b.service_booking,
+          updatedAt: b.updatedAt, service_location: b.service_location,
+          cost: b.cost, notes: b.notes
+        },
+        cssClass: 'setting-modal',
+        backdropDismiss: false,
+      });
+      modal.present();
+    console.log("sdfsdf",b)
+
   }
+
 }

@@ -15,18 +15,21 @@
         <div class="column1">
             <div *ngFor="let b of bookings">
                 <!-- <div *ngIf="!table" *ngFor="let b of bookings"> -->
-                <ion-card (click)="openModal()">
+                <ion-card>
                     <ion-card-content>
                         <div class="col-1-left">
-                            <div *ngIf="b.schedule">{{b.schedule}}</div>
+                            <div>{{b.schedule}}</div>
                         </div>
                         <div class="col-1-mid">
-                            {{b.service_booking}}
+                            <p>{{b.service_booking}}</p>
+                            <p>{{b.service_location}}</p>
+                        </div>
+                        <div class="col-1-right">
+                            <button class="button" (click)="passToOrders(b)">View Details</button>
                         </div>
                     </ion-card-content>
                 </ion-card>
             </div>
         </div>
     </div>
-
 </ion-content>
