@@ -96,9 +96,8 @@ export class AuthService {
   };
 
   updateContactInfo(user: User) {
-    console.log('nisud sa auth service.')
-    console.log(user)
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/profile`, user)
+    console.log('nisud sa auth service.' , user)
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/profile`, user)
   }
 
   getAllMessages(): Observable<any> {

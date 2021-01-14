@@ -11,6 +11,8 @@ const multer = require('multer');
 
 const DIR = '../backend/public/images';
 
+// var ObjectId = require('mongodb').ObjectID;
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, DIR);
@@ -32,6 +34,40 @@ var upload = multer({
         }
     }
 });
+
+routes.route("/profile").post((req, res) => {
+    console.log("irish nisud sa backend for profile update")
+    var data = {
+        name: req.body.name,
+        address: req.body.address,
+        phone: req.body.phone,
+        email: req.body.email
+    }
+    // var result = Customer.find({email: req.body.email})
+    console.log("datas : ", data)
+    console.log("id :: ", req.body.id)
+    Customer.updateOne({ _id: req.body.id }, { $set: data }, { upsert: true }
+        , function (err, res) {
+            console.log("datas in backend", res)
+            if (err) throw err;
+            console.log("error", err);
+        });
+    Customer.findOne({ _id: req.body.id }).then((response, err) => {
+        if (err) {
+            response.status(500).send(err)
+        }
+        const expiresIn = 24 * 60 * 60;
+        const accessToken = jwt.sign({ id: response._id }, SECRET_KEY, {
+            expiresIn: expiresIn
+        });
+        res.status(200).send({
+            user: response,
+            access_token: accessToken,
+            expires_in: expiresIn,
+        });
+    })
+
+})
 
 routes.post("/register",
     // upload.single('id_image'),
@@ -93,9 +129,10 @@ routes.route("/login").post((req, res) => {
             console.log('User: ',user);
 
             if (user) {
+                console.log("nisud dri na part");
                 let passMatch = bcrypt.compareSync(req.body.password, user.password);
-
                 if (passMatch) {
+                    console.log("pass matching password")
                     res
                         .status(200)
                         .send({
@@ -105,6 +142,7 @@ routes.route("/login").post((req, res) => {
                             status: 200
                         });
                 } else {
+                    console.log("password doesn't match!!")
                     res
                         .status(400)
                         .send({ error: "Password doesn't match!", status: 400 });
@@ -119,15 +157,6 @@ routes.route("/login").post((req, res) => {
         });
 });
 
-routes.route("/profile").post((req, res)=>{
-    var data = {
-        name : req.body.name,
-        address: req.body.address,
-        phone: req.body.phone,
-        email:req.body.email
-    }
-    Customer.update({email : req.body.OriginalEmail},{ $set : {data}});
-})
 
 
 

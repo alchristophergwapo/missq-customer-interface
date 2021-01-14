@@ -11,16 +11,16 @@
     <ion-item>
       <ion-input name="address" type="text" [ngModel]="user.address" >Address: </ion-input><br>
     </ion-item>
-   
     <ion-item>
       <ion-input name="email" type="email" [ngModel]="user.email"><nobr>Email: </nobr></ion-input><br>
     </ion-item>
     <ion-item>
       <ion-input name="ID" type="Number" [ngModel]="user.id_number"><nobr>ID: </nobr></ion-input><br>
     </ion-item>
-    <div>
-      <ion-input name="OriginalEmail" type="email" [ngModel]="user.email"><nobr>Email: </nobr></ion-input>
-      <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
-    </div>
+    <ion-item>
+      <ion-input name="id"  type="id" [ngModel]="user.id"><nobr>id: </nobr></ion-input>
+    </ion-item>
+    <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
   </form  >
+  <ion-button size="large" color='Danger' type="Cancel"   (click)='CloseModal()' expand="block">Cancel</ion-button>
 </ion-content>
