@@ -56,55 +56,36 @@ export class BookingsPage implements OnInit {
 
   }
 
-  //Filtered by Status PENDING
-  filteredByPending(items: any[], searchText: any): any[] {
-    console.log(searchText)
-    if (!items) {
-      return this.arryOfStatus = [];
-    }
-    if (!searchText) {
-      return this.arryOfStatus = items;
-    }
-    this.arryOfStatus = items.filter((filtered) => {
-      return filtered.status.toLocaleLowerCase().includes(searchText.toLocaleLowerCase());
-    });
+  // allStatus() {
+  //   this.authService.filteredOngoing(this.arryOfStatus,this.bookings).subscribe(res => {
+  //     console.log(res);
+  //     this.arryOfStatus = res.data;
+  //   })
+  // }
 
-    console.log("Array of STATUS: ", this.arryOfStatus)
+  //Filtered by Status PENDING
+  filteredByPending() {
+    this.authService.filteredOngoing(this.arryOfStatus,this.pending).subscribe(res => {
+      console.log(res);
+      this.arryOfStatus=res.data;
+    })
 
   }
 
   ///Filtered by Status ONGOING
-  filteredByOngoing(items: any[], searchText: any): any[] {
-    console.log(searchText)
-    if (!items) {
-      return this.arryOfStatus = [];
-    }
-    if (!searchText) {
-      return this.arryOfStatus = items;
-    }
-    this.arryOfStatus = items.filter((filtered) => {
-      
-      return filtered.status.toLocaleLowerCase().includes(searchText.toLocaleLowerCase());
-      
-    });
-
-    console.log(this.arryOfStatus)
+  filteredByOngoing(){
+    this.authService.filteredOngoing(this.arryOfStatus,this.ongoing).subscribe(res => {
+      console.log(res);
+      this.arryOfStatus=res.data;
+    })
   }
 
   // //Filtered by Status COMPLETED
-  filteredByCompleted(items: any[], searchText: any): any[] {
-    console.log(searchText)
-    if (!items) {
-      return this.arryOfStatus = [];
-    }
-    if (!searchText) {
-      return this.arryOfStatus = items;
-    }
-    this.arryOfStatus= items.filter((filtered) => {
-      return filtered.status.toLocaleLowerCase().includes(searchText.toLocaleLowerCase());
-    });
-
-    // console.log("Array of STATUS: ", this.arryOfStatusCompleted)
+  filteredByCompleted(){
+    this.authService.filteredOngoing(this.arryOfStatus,this.completed).subscribe(res => {
+      console.log(res);
+      this.arryOfStatus=res.data;
+    })
   }
 
   async passToOrders(b) {
