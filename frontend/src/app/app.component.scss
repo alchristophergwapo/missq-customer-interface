@@ -6,6 +6,23 @@ ion-item.active div {
     background-color: rgba(0, 0, 0, .3);
 }
 
+#company{
+    font-family: fantasy;
+}
+
+#header_logo {
+    background-color: white;
+    border-radius: 60%;
+    padding: 8px;
+    width: 130px;
+    height: 120px;
+    border: 4px solid #22bbea8f;
+}
+
+#head{
+    background: linear-gradient(to bottom left, #33ccff 0%, #0066ff 100%);
+}
+
 .header {
     // position: relative;
     // overflow: hidden;
@@ -41,10 +58,10 @@ ion-item.active div {
 
 ion-note {
     position: absolute;
-    margin-left: 110px;
-    top: 70px;
+    margin-left: 130px;
+    top: 120px;
     font-size: 14px;
-    color: rgba(21, 160, 224, .5) !important;
+    color: white !important;
     font-weight: 300;
 }
 
@@ -103,4 +120,8 @@ ion-app {
     ion-item ion-label {
         font-size: 14px;
     }
+}
+
+#company{
+    font: 35px;
 }

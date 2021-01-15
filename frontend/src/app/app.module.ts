@@ -45,7 +45,7 @@ import { File } from "@ionic-native/file/ngx";
     ValidateEqualModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    ModalpopupPageModule
+    ModalpopupPageModule,
   ],
   providers: [
     ServicesService,
