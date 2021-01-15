@@ -72,7 +72,7 @@ ion-card-title {
     color: black;
     // font-size: 40px;
     // -webkit-text-stroke: 1px white;
-    // -webkit-text-fill-color: rgb(21, 160, 224);
+    // -webkit-text-fill-color: rgba(21, 160, 224);
 }
 
 ion-item {
@@ -85,7 +85,7 @@ ion-item {
 }
 
 ion-item ion-icon {
-    color: rgba(21, 160, 224);
+    color: rgba(21, 160, 224, 1);
 }
 
 #back {
@@ -108,8 +108,4 @@ ion-button {
 
 .btnEye {
     background-color: transparent;
-}
-
-.invalid {
-    color: red;
 }

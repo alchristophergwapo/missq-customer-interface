@@ -85,14 +85,14 @@ routes.route("/login").post((req, res) => {
             select: "service_booking service_location cost notes schedule status"
         })
         .then(user => {
+            const expiresIn = 24 * 60 * 60;
+            const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
+                expiresIn: expiresIn
+            });
+
+            console.log('User: ', user);
 
             if (user) {
-
-                const expiresIn = 24 * 60 * 60;
-                const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
-                    expiresIn: expiresIn
-                });
-
                 let passMatch = bcrypt.compareSync(req.body.password, user.password);
 
                 if (passMatch) {
@@ -105,17 +105,27 @@ routes.route("/login").post((req, res) => {
                             status: 200
                         });
                 } else {
-                    res.send({ message: "Password is incorrect!", status: 400 });
+                    res
+                        .status(400)
+                        .send({ error: "Password doesn't match!", status: 400 });
                     // res.flash('error', " Password doesn't match!")
                 }
             } else {
-                res.send({ status: 404, message: "Invalid credentials!" });
+                res.status(400).send({ status: 400 });
             }
         })
         .catch(error => {
             console.log("Error ", error);
         });
 });
+
+// routes.route("/forgot-password").get((req, res) => {
+//     res.render('forgot-password');
+// });
+
+// routes.route("/forgot-password").post((req, res) => {
+
+// });
 
 
 module.exports = routes;

@@ -1,99 +1,37 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Bookings</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Bookings</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <div class="container">
-    <div class="head">
-      <ion-input><b>Filter</b></ion-input>
-      <button class="btnfil1">Pending</button>
-      <button class="btnfil2">Ongoing</button>
-      <button class="btnfil3">Completed</button>
-    </div>
-    <div class="content">
-      <div class="column2">
-        <button class="btn">Edit</button>
-        <button class="btn1">Delete Booking</button>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRL5O3Q5YuL4CHMBOhPO12VK1PVNXbsjObDw&usqp=CAU">
-        <h1>Sample</h1>
-        <ion-card>
-          <ion-card-content>
-            <div class="col-2-left">
-              <ion-input placeholder="email"><b>Email</b></ion-input>
-            </div>
-            <div class="col-2-right">
-              <ion-input placeholder="09123456789"><b>Phone</b></ion-input>
-            </div>
-          </ion-card-content>
-        </ion-card>
-        <table>
-            <tr>
-              <th>Booking Date</th>
-              <th>Booking Time</th>
-              <th>Booking Status</th>
-            </tr>
-            <tr>
-              <td>December 25, 2020</td>
-              <td>12:30</td>
-              <td>Pending</td>
-            </tr>
-          </table>
-        <table>
-          <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Unit Price</th>
-            <th>Amount</th>
-          </tr>
-          <tr>
-            <td>1.Haircut</td>
-            <td>50 pesos</td>
-            <td>x1</td>
-            <td>1000</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td>
-              SubTotal
-            </td>
-            <td></td>
-          </tr>
-        </table>
-        <br>
-        <label for="payment">Payment Method:</label>
-        <select name="payment" id="payment">
-            <option value="gcash">Gcash</option>
-            <option value="paymaya">PayMaya</option>
-            <option value="creditcard">Credit Card</option>
-        </select>
-        <p>Payment Status:</p>
-      </div>
-      <div class="column1">
-        <div *ngFor="let b of bookings">
-            <ion-card>
-                <ion-card-content>
-                  <div class="col-1-left">
-                    <div *ngIf="b.schedule">{{b.schedule}}</div>
-                  </div>
-                  <div class="col-1-mid">
-                    {{b.service_booking}}
-                  </div>
-                  <div class="col-1-right">
-                    <ion-icon name="arrow-forward"> </ion-icon>
-                  </div>
-                </ion-card-content>
-            </ion-card>
+    <div class="container">
+        <div class="head">
+            <!-- <ion-input>Filter</ion-input> -->
+            <p>Filter: <button (click)="filteredByStatus()">PENDING</button><button>ONGOING</button><button>COMPLETED</button></p>
         </div>
-      </div>
+        <div class="column1">
+            <div *ngFor="let b of bookings">
+                <!-- <div *ngIf="!table" *ngFor="let b of bookings"> -->
+                <ion-card>
+                    <ion-card-content>
+                        <div class="col-1-left">
+                            <div>{{b.schedule}}</div>
+                        </div>
+                        <div class="col-1-mid">
+                            <p>{{b.service_booking}}</p>
+                            <p>{{b.service_location}}</p>
+                        </div>
+                        <div class="col-1-right">
+                            <button class="button" (click)="passToOrders(b)">View Details</button>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
     </div>
   </div>
-
-
 </ion-content>

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Artisan = require('./artisan-model')
+const Artisan = require('./Artisan')
 const User = require('./User')
 
 let Reviews = new mongoose.Schema({
@@ -11,7 +11,7 @@ let Reviews = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: User,
     }],
-    author: {
+    artisan: {
         type: mongoose.Schema.Types.ObjectId,
         ref: Artisan,
     }

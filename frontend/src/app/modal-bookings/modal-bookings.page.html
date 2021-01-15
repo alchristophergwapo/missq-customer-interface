@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Bookings</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container">
+
+        <button ion-button icon-only (click)="closeModal()">
+                <ion-icon ios="ios-close" md="md-close"></ion-icon>
+                </button>
+        <div class="content">
+            <div class="column2">
+                <button class="btn">Edit</button>
+                <button class="btn1">Delete Booking</button>
+                <img src="user.picture">
+                <h1>{{user.name}}</h1>
+                <ion-card>
+                    <ion-card-content>
+                        <p>EMAIL: {{user.email}}</p>
+                        <p>PHONE: {{user.phone}}</p>
+                    </ion-card-content>
+                </ion-card>
+
+                <table>
+                    <tr>
+                        <th>Service Booking</th>
+                        <th>Booking Time</th>
+                        <th>Booking Status</th>
+                        <th>Cost</th>
+                    </tr>
+                    <tr>
+                        <td>{{service_booking}}</td>
+                        <td>{{schedule}}</td>
+                        <td>{{status}}</td>
+                        <td>{{cost}}</td>
+                    </tr>
+                </table>
+                <label for="payment">Payment Method:</label>
+                <select name="payment" id="payment">
+            <option value="gcash">Gcash</option>
+            <option value="paymaya">PayMaya</option>
+            <option value="creditcard">Credit Card</option>
+        </select>
+                <p>Payment Status:</p>
+            </div>
+        </div>
+    </div>
+</ion-content>
