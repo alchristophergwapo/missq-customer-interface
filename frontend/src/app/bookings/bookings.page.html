@@ -11,10 +11,13 @@
     <div class="container">
         <div class="head">
             <!-- <ion-input>Filter</ion-input> -->
-            <p>Filter: <button (click)="filteredByStatus()">PENDING</button><button>ONGOING</button><button>COMPLETED</button></p>
+            <p>Filter:
+                <button (click)="filteredByPending(arryOfStatus, pending)">PENDING</button>
+                <button (click)="filteredByOngoing(arryOfStatus, ongoing)">ONGOING</button>
+                <button (click)="filteredByCompleted(arryOfStatus, completed)">COMPLETED</button></p>
         </div>
         <div class="column1">
-            <div *ngFor="let b of bookings">
+            <div *ngFor="let b of arryOfStatus">
                 <!-- <div *ngIf="!table" *ngFor="let b of bookings"> -->
                 <ion-card>
                     <ion-card-content>
