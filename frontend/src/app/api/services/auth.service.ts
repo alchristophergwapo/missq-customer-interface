@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
@@ -31,7 +31,7 @@ export class AuthService {
 
   /**
    * 
-   */
+   */ 
 
   loadStoredToken() {
     this.storage.get(TOKEN_KEY).then(res => {
@@ -79,22 +79,20 @@ export class AuthService {
     );
   };
 
-  login(user: User) {
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user)
-      .pipe(
-        take(1),
+  login(user: User): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user).pipe(
+      take(1),
 
-        tap(token => {
-          console.log("Auth Service token in login: ", token.type);
-          if (token.status == 200) {
-            this.authSubject.next(true);
-            this.user = token.user;
+      switchMap(token => {
+        console.log("Auth Service token in login: ", token);
+        this.authSubject.next(true);
+        this.user = token.user;
 
-            this.storage.set(TOKEN_KEY, token);
+        let storageObservable = from(this.storage.set(TOKEN_KEY, token));
+        return storageObservable;
+      })
 
-          }
-        })
-      );
+    );
   };
 
   updateContactInfo(user: User) {
@@ -107,7 +105,7 @@ export class AuthService {
     return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
   }
 
-  getUser() {
+  getUser(){
     return this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         return res.user;

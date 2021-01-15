@@ -33,19 +33,21 @@ export class PhotoService {
       this.camera.getPicture(this.options).then((imageData) => {
         this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
           entry.file(file => {
-            console.log("File on addNewToGallery: ", file);
+            console.log("File: ", file);
 
           })
         })
       });
     } else {
-      Cam.getPhoto({
+      const capturedPhoto = await Cam.getPhoto({
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
         quality: 100
       }).then(async (file) => {
-        console.log('File on addNewToGallery: ', file);
+        // console.log('File: ', file);
         const savedImageFile = await this.savePicture(file);
+
+        console.log(savedImageFile);
         
         this.photos.unshift(savedImageFile);
         this.photo = savedImageFile;
@@ -69,6 +71,9 @@ export class PhotoService {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
 
+    console.log(base64Data);
+
+
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({
@@ -76,8 +81,6 @@ export class PhotoService {
       data: base64Data,
       directory: FilesystemDirectory.Data
     });
-
-    console.log("on savePicture(): ", typeof(base64Data));
 
     if (this.platform.is('hybrid')) {
       // Display the new image by rewriting the 'file://' path to HTTP
@@ -128,6 +131,9 @@ export class PhotoService {
     // Retrieve cached photo array data
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
+
+    console.log(this.photos);
+
 
     // Easiest way to detect when running on the web:
     // “when the platform is NOT hybrid, do this”

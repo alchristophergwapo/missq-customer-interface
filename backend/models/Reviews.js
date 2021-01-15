@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Artisan = require('./artisan-model')
+const Artisan = require('./Artisan')
 const User = require('./User')
 
 let Reviews = new mongoose.Schema({

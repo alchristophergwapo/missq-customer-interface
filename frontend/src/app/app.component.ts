@@ -55,18 +55,18 @@ export class AppComponent {
     this.authService.logout();
   }
 
-  async onClickNav(event) {
+  onClickNav(event) {
 
     event.preventDefault();
 
-    await event.target.parentElement.classList.add("active");
+    event.target.parentElement.classList.add("active");
 
     var activeElement = document.getElementsByClassName("active");
 
-    for(var index = 0; index < activeElement.length; index++) {
+    for (var index = 0; index < activeElement.length; index++) {
 
       if (activeElement[index].id !== event.target.parentElement.id) {
-        await activeElement[index].classList.remove("active");
+        activeElement[index].classList.remove("active");
       }
     }
 
@@ -113,12 +113,12 @@ export class AppComponent {
     }
   }
 
-  async ngOnInit() {
-    this.storage.get('jwt-token').then( async res=> {
+  ngOnInit() {
+    this.storage.get('jwt-token').then(res=> {
       if (res) {
-        this.user = await res.user
+        this.user = res.user
       }
     });
-    await this.setDashboard(true);
+    this.setDashboard(true);
   }
 }

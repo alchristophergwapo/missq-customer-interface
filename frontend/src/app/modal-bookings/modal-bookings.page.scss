@@ -1,0 +1,40 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5%;
+}
+
+td,
+th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+button {
+    border: 1px solid black;
+    margin-left: 10%;
+}
+
+.btn {
+    margin-left: 70%;
+}
+
+.btn1 {
+    margin-left: 3%;
+}
+
+// ion-card {
+//     height: 100vh;
+//     width: 30vh;
+//     // overflow-y: hidden;
+// }
+// .container {
+//     height: 100vh;
+//     overflow-y: hidden;
+// }
