@@ -15,23 +15,31 @@
                 </div>
             </ion-card-title>
             <ion-card-content>
+                <div *ngFor="let err of errors">
+                    <p id="length" class="invalid"><b>{{err.message}}</b></p>
+                </div>
                 <div padding>
                     <ion-item>
                         <ion-icon name="mail"></ion-icon>&nbsp;
-                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com" [ngModel]="name" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required email></ion-input>
+                        <ion-input name="email" type="email" #emailCtrl="ngModel" placeholder="your@gmail.com"
+                            [ngModel]="name" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
+                            required email></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched">
                         <ion-text color="danger">Email is not valid</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key"></ion-icon>&nbsp;
-                        <ion-input name="password" type="{{type}}" #passCtrl="ngModel" placeholder="Password" [ngModel]="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></ion-input>
-                        <button class="btnEye" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+                        <ion-input name="password" type="{{type}}" #passCtrl="ngModel" placeholder="Password" [ngModel]="password"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></ion-input>
+                        <button class="btnEye" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right
+                            (click)="showPassword()">
                             <ion-icon name="eye" style="font-size:25px;"></ion-icon>
-                         </button>
-                        <button class="btnEye" *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+                        </button>
+                        <button class="btnEye" *ngIf="showPass" ion-button clear color="dark" type="button" item-right
+                            (click)="showPassword()">
                             <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
-                         </button>
+                        </button>
                     </ion-item>
                     <ion-label *ngIf="!passCtrl.valid && passCtrl.touched">
                         <ion-text color="danger">Password is incorrect.</ion-text>
@@ -41,7 +49,7 @@
                 <div>
                     <ion-button size="large" color='secondary' type="submit" [disabled]="form.invalid" expand="block">Submit</ion-button>
                 </div><br>
-                <a [routerLink]="['/forgot-password']">
+                <a routerLink="/forgot-password">
                     <ion-text h>Forgot Password?</ion-text>
                 </a>
             </ion-card-content>

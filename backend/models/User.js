@@ -39,12 +39,21 @@ let User = new Schema({
     },
     id_image: {
         type: String,
+        required: true
     },
     id_number: {
-        type: Number
+        type: Number,
+        required: true
     },
-    
-});
+    resetPasswordExpires: {
+        type: Date,
+        required: false
+    }
+},
+{
+    collection: 'customers'
+}
+);
 
 User.virtual('bookings', {
     ref: 'Bookings',

@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
   public showPass = false;
   name: string;
   password: string;
+  errors: Array<any> = [];
 
 // passwordType: string = 'password';
 // eye: boolean = false;
@@ -27,8 +28,8 @@ export class LoginPage implements OnInit {
     private dash: AppComponent
   ) 
   { 
-    this.name = 'genevaxoxorivas99@gmail.com';
-    this.password = "jhenRivas_1999";
+    this.name = 'alchristopheroppa0143@gmail.com';
+    this.password = "Toper@3013";
   }
   
   showPassword() {
@@ -39,20 +40,26 @@ export class LoginPage implements OnInit {
        this.type = 'password';
      }
   }
-  login(form) {
+  async login(form) {
     // console.log(form.value);
-    this.authService.login(form.value).subscribe(res => {
-      if (res) {
+    await this.authService.login(form.value).subscribe((res) => {
+      console.log("Result: ", res);
+      
+      if (res.status == 200) {
         this.router.navigateByUrl('/place-order');
         this.dash.dashboard = true;
       } else {
-        const alert = this.alertCtrl.create({
-          header: 'Login Failed',
-          message: 'Wrong credentials!',
-          buttons: ['Ok']
-        }).then(alert => alert.present());
-        ;
+        this.errors.push(res);
+        // const alert = this.alertCtrl.create({
+        //   header: 'Login Failed',
+        //   message: res.error,
+        //   buttons: ['Ok']
+        // }).then(alert => alert.present());
+        // ;
       }
+    }),((error) => {
+      console.log(error);
+      
     });
   }
 

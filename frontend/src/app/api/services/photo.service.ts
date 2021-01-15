@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CameraPhoto, CameraResultType, CameraSource, Capacitor,  FilesystemDirectory, Plugins } from '@capacitor/core';
-
+import { CameraPhoto, CameraResultType, CameraSource, Camera as Cam, Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
+import { File, FileEntry } from "@ionic-native/file/ngx";
 import { Platform } from "@ionic/angular";
+import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 
-const { Camera, Filesystem, Storage } = Plugins;
+const { Filesystem, Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -12,26 +13,56 @@ export class PhotoService {
   public photos: Photo[] = [];
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
+  public photo: Photo
 
-  constructor(platform: Platform) {
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  };
+
+  constructor(platform: Platform, private file: File, private camera: Camera) {
     this.platform = platform;
   }
 
   public async addNewToGallery() {
+
     // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
-    });
+    if (this.platform.is('cordova')) {
+      this.camera.getPicture(this.options).then((imageData) => {
+        this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
+          entry.file(file => {
+            console.log("File on addNewToGallery: ", file);
 
-    const savedImageFile = await this.savePicture(capturedPhoto);
-    this.photos.unshift(savedImageFile);
+          })
+        })
+      });
+    } else {
+      Cam.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 100
+      }).then(async (file) => {
+        console.log('File on addNewToGallery: ', file);
+        const savedImageFile = await this.savePicture(file);
+        
+        this.photos.unshift(savedImageFile);
+        this.photo = savedImageFile;
+  
+        Storage.set({
+          key: this.PHOTO_STORAGE,
+          value: JSON.stringify(this.photos)
+        });
+  
+        return this.photo;
+        
+      })
 
-    Storage.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos)
-    });
+    }
+
+    // console.log("Captured Photo: ", capturedPhoto);
+
   }
 
   private async savePicture(cameraPhoto: CameraPhoto) {
@@ -45,6 +76,8 @@ export class PhotoService {
       data: base64Data,
       directory: FilesystemDirectory.Data
     });
+
+    console.log("on savePicture(): ", typeof(base64Data));
 
     if (this.platform.is('hybrid')) {
       // Display the new image by rewriting the 'file://' path to HTTP

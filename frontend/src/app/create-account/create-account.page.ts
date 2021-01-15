@@ -8,10 +8,10 @@ import { PhotoService } from '../api/services/photo.service';
 
 @Component({
   selector: 'app-create-acount',
-  templateUrl: './create-acount.page.html',
-  styleUrls: ['./create-acount.page.scss'],
+  templateUrl: './create-account.page.html',
+  styleUrls: ['./create-account.page.scss'],
 })
-export class CreateAccountPage implements OnInit {
+export class CreateAcountPage implements OnInit {
 
   public user: User;
   isSubmitted = false;
@@ -26,26 +26,32 @@ export class CreateAccountPage implements OnInit {
   public showPass = false;
   public showPass1 = false;
 
+  isLoading: boolean = null;
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private toastController: ToastController,
-    private photoService: PhotoService
-  ) { }
+    private loadingController: LoadingController,
+    private photoService: PhotoService,
+  ) {
+    console.log(typeof (this.photoService.photos));
 
-  ngOnInit() {
+  }
+
+  async ngOnInit() {
     this.user = {
       name: "Christopher Alonzo",
       address: "Talamban",
-      code: "",
-      phone: null,
+      code: "+63",
+      phone: 9458562899,
       email: "toper@gmail.com",
-      birth_date: null,
+      birth_date: new Date('09/13/1997'),
       password: "Toper@123",
       confirm: "Toper@123",
       picture: "",
       id_image: "",
-      id_number: null
+      id_number: 18106145
     };
 
     fetch('assets/country-code.json').then(async res => {
@@ -53,11 +59,19 @@ export class CreateAccountPage implements OnInit {
       this.dataList = result.data;
 
     })
+
+    await this.photoService.loadSaved();
+    
   }
 
-  takeSelfie() {
-    this.selfie = this.photoService.addNewToGallery();
+  async takeSelfie() {
+    this.selfie = await this.photoService.addNewToGallery();
+    // this.selfie = this.photoService.photo; 
+
     console.log(this.selfie);
+
+    // this.user.picture = this.selfie.filepath
+
   }
 
   showPassword() {
@@ -78,37 +92,39 @@ export class CreateAccountPage implements OnInit {
   }
 
   async register(form) {
-    // const loading = await this.loadingController.create({
-    //   message: 'Creating account...',
-    // });
-    // await loading.present();
-    const formData = new FormData(form);
 
-    // formData.append('name', form.value.name);
-    // formData.append('address', form.value.address);
-    // formData.append('code', form.value.code);
-    // formData.append('phone', form.value.phone);
-    // formData.append('email', form.value.email);
-    // formData.append('birth_date', form.value.birth_date);
-    // formData.append('password', form.value.password);
-    // formData.append('id_number', form.value.id_number);
-    // formData.append('picture', blob, this.selfie);
-    // formData.append('id_image', blob, this.idPic);
+    await this.present();
 
-    // for(let [name, value] of formData) {
-    //    // key1 = value1, then key2 = value2
-    // }
-    // var data = {
-    //   body: formData
-    // }
+    form.value.id_image = this.idPic.name;
 
-    console.log(formData);
-
-    this.authService.register(form.value).subscribe(response => {
+    this.authService.register(form.value, this.idPic, this.selfie).subscribe(response => {
       if (response) {
         this.isSubmitted = true;
+        this.dismiss();
         this.router.navigateByUrl("login");
       }
+    });
+  }
+
+  async present() {
+    this.isLoading = true;
+    return await this.loadingController.create({
+      message: 'Creating account...',
+    }).then(a => {
+      a.present().then(() => {
+        console.log('presented');
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort presenting'));
+        }
+      });
+    });
+  }
+
+  async dismiss() {
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(async () => {
+      console.log('dismissed')
+      await this.presentToast('Account Created!')
     });
   }
 
@@ -131,10 +147,9 @@ export class CreateAccountPage implements OnInit {
       console.log("No file selected!");
       return
     }
-    let file = event.target.files[0];
-    const reader = new FileReader();
+    let file = (event.target as HTMLInputElement).files[0];
 
-    reader.readAsArrayBuffer(file);
+    const reader = new FileReader();
 
     reader.onload = () => {
 
@@ -142,17 +157,16 @@ export class CreateAccountPage implements OnInit {
 
       let blobURL: string = URL.createObjectURL(blob)
 
-      console.log(blobURL);
+      // console.log(blobURL);
+      this.idPic = file;
+      console.log(this.idPic);
 
-      if (type == 'selfie') {
-        this.selfie = file;
-      } else {
-        this.idPic = file;
-      }
     };
     reader.onerror = error => {
       //handle errors
     };
+
+    reader.readAsDataURL(file);
 
   }
 
