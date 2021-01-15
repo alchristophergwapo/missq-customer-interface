@@ -23,19 +23,16 @@ export class ModalBookingsPage implements OnInit {
   // rating: boolean = true;
 
   constructor(private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
-    this.user = app.user;
+    this.user = this.authService.user;
   }
 
   ngOnInit() 
   {
-    console.log("service ",this.service_booking)
+    // console.log("service ",this.service_booking)
 
     const userBookings = this.authService.user;
 
     this.bookings = userBookings['bookings']
-    
-
-    console.log(this.bookings)
     
   }
 

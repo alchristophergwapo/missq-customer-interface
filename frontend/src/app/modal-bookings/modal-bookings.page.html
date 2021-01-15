@@ -8,27 +8,18 @@
     <div class="container">
 
         <button ion-button icon-only (click)="closeModal()">
-                <!-- <ion-icon ios="ios-close"></ion-icon> -->
                 <ion-icon ios="ios-close" md="md-close"></ion-icon>
-                    <!-- <ion-icon item-right name="ios-close-outline"></ion-icon>  -->
                 </button>
-        <div class="head">
-            <ion-input>Filter</ion-input>
-        </div>
         <div class="content">
             <div class="column2">
                 <button class="btn">Edit</button>
                 <button class="btn1">Delete Booking</button>
-                <!-- <img src=> -->
-                <h1>Sample</h1>
+                <img src="user.picture">
+                <h1>{{user.name}}</h1>
                 <ion-card>
                     <ion-card-content>
-                        <div class="col-2-left">
-                            <ion-input placeholder="email"></ion-input>
-                        </div>
-                        <div class="col-2-right">
-                            <ion-input placeholder="09123456789"></ion-input>
-                        </div>
+                        <p>EMAIL: {{user.email}}</p>
+                        <p>PHONE: {{user.phone}}</p>
                     </ion-card-content>
                 </ion-card>
 
@@ -45,13 +36,6 @@
                         <td>{{status}}</td>
                         <td>{{cost}}</td>
                     </tr>
-                    <!-- <tr *ngFor="let book of bookings">
-                        <td>{{book.service_booking}}</td>
-                        <td>{{book.schedule}}</td>
-                        <td *ngIf="!book.status.includes('Ongoing')">{{book.status}}</td>
-                        <td *ngIf="book.status.includes('Ongoing')">{{book.status}}<button>Rate</button></td>
-                        <td>{{book.cost}}</td>
-                    </tr> -->
                 </table>
                 <label for="payment">Payment Method:</label>
                 <select name="payment" id="payment">
