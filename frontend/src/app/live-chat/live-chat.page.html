@@ -41,18 +41,28 @@
         <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
           <div *ngIf="currentUser !== message.user" class="other-user">
             <p>
-              <label style="color: rgb(85, 85, 85)">{{currentUser}}</label><br>
-              <span style="color: black;">
+              <ion-chip>
+                <ion-avatar>
+                  <img src="https://www.thefamouspeople.com/profiles/images/daniel-padilla-3.jpg">
+                </ion-avatar>
+                <label style="color: rgb(85, 85, 85)">{{currentUser}}</label><br>
+              </ion-chip><br><br>
+              &nbsp;&nbsp;<span style="color: black;">
                 {{message.text}}
               </span>
             </p>
             <label style="margin-left: 5%;font-size: 10px;"> {{message.timeStamp}} </label>
           </div>
-          <div *ngIf="currentUser === message.user"  class="my-message">
-            <!-- <p>{{currentUser}}</p> -->
+          <div *ngIf="currentUser === message.user" class="my-message">
             <p>
-              <span class="name">
-                {{currentUser}} : <br> {{message.text}}
+              <ion-chip>
+                <ion-avatar>
+                  <img src="https://www.thefamouspeople.com/profiles/images/daniel-padilla-3.jpg">
+                </ion-avatar>
+                <label style="color: rgb(85, 85, 85)">{{currentUser}}</label><br>
+              </ion-chip><br><br>
+              &nbsp;&nbsp;<span class="name">
+                {{message.text}}
               </span>
             </p>
             <label style="margin-right: 5%;font-size: 12px;"> {{message.timeStamp}} </label>
