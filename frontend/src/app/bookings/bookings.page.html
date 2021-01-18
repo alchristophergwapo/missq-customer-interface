@@ -11,7 +11,10 @@
     <div class="container">
         <div class="head">
             <!-- <ion-input>Filter</ion-input> -->
-            <p>Filter: <button (click)="filteredByStatus()">PENDING</button><button>ONGOING</button><button>COMPLETED</button></p>
+            <p>Filter: </p>
+            <button (click)="filteredByStatus()" class="btnfil1">PENDING</button>
+            <button class="btnfil2">ONGOING</button>
+            <button class="btnfil3">COMPLETED</button>
         </div>
         <div class="column1">
             <div *ngFor="let b of bookings">
@@ -26,12 +29,11 @@
                             <p>{{b.service_location}}</p>
                         </div>
                         <div class="col-1-right">
-                            <button class="button" (click)="passToOrders(b)">View Details</button>
+                            <button class="buttonVD" (click)="passToOrders(b)">View Details</button>
                         </div>
                     </ion-card-content>
                 </ion-card>
             </div>
         </div>
     </div>
-  </div>
 </ion-content>

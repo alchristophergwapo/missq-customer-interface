@@ -5,6 +5,7 @@ ion-toolbar {
 .head{
     font-size: 24px;    
     text-align: center;
+   
 }
 
 .btnfil1{
@@ -44,12 +45,24 @@ ion-toolbar {
 
 }
 
+.buttonVD{
+    margin-right:10%;
+    margin-left: 5%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: green;
+
+}
+
 .container {
     margin: 40px 20px 20px 20px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 97%;
-    height: 128vh;
+    height: 40%;
     position: absolute;
 }
 
@@ -80,7 +93,7 @@ ion-card {
     left: 0;
     width: 5%;
     height: 10vh;
-    background: white;
+    background: pink;
 }
 
 .col-1-mid {
@@ -89,7 +102,7 @@ ion-card {
     left: 25%;
     width: 65%;
     height: 10vh;
-    background: white;
+    background: burlywood;
 }
 
 .col-1-right {
@@ -98,7 +111,7 @@ ion-card {
     right: 0;
     width: 10%;
     height: 10vh;
-    background: white;
+    background: skyblue ;
 }
 
 .col-2-left {
