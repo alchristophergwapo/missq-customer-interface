@@ -15,14 +15,15 @@ export class ModalpopupPage implements OnInit {
   user:any;
 
   constructor(private modalController: ModalController, private authService:AuthService,private storage: Storage, private router:Router) {
-    this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:""}
+    // this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:""}
   }
 
   ngOnInit() {
+    
     console.log("data====",this.authService.getUser())
     this.authService.getUser().then(user => {
       this.user = user;
-      console.log("user _ id :: ", this.user.id)
+      // console.log("user _ id :: ", this.user.id)
     })
   }
 

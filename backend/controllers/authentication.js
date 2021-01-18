@@ -36,35 +36,28 @@ var upload = multer({
 });
 
 routes.route("/profile").post((req, res) => {
-    console.log("irish nisud sa backend for profile update")
-    var data = {
-        name: req.body.name,
-        address: req.body.address,
-        phone: req.body.phone,
-        email: req.body.email
-    }
-    // var result = Customer.find({email: req.body.email})
-    console.log("datas : ", data)
     console.log("id :: ", req.body.id)
-    Customer.updateOne({ _id: req.body.id }, { $set: data }, { upsert: true }
-        , function (err, res) {
-            console.log("datas in backend", res)
-            if (err) throw err;
-            console.log("error", err);
-        });
-    Customer.findOne({ _id: req.body.id }).then((response, err) => {
-        if (err) {
-            response.status(500).send(err)
-        }
-        const expiresIn = 24 * 60 * 60;
-        const accessToken = jwt.sign({ id: response._id }, SECRET_KEY, {
-            expiresIn: expiresIn
-        });
-        res.status(200).send({
-            user: response,
-            access_token: accessToken,
-            expires_in: expiresIn,
-        });
+
+    Customer.findOne({ _id: req.body.id }).then((user) => {
+        user.name = req.body.name;
+        user.address = req.body.address;
+        user.phone = req.body.phone;
+        user.email = req.body.email;
+        user.save().then(updatedUser => {
+            console.log("Updated user: ", updatedUser);
+            if (updatedUser) {
+                const expiresIn = 24 * 60 * 60;
+                const accessToken = jwt.sign({ id: updatedUser._id }, SECRET_KEY, {
+                    expiresIn: expiresIn
+                });
+                res.status(200).send({
+                    user: updatedUser,
+                    access_token: accessToken,
+                    expires_in: expiresIn,
+                });
+            }
+        })
+        
     })
 
 })
@@ -126,11 +119,12 @@ routes.route("/login").post((req, res) => {
                 expiresIn: expiresIn
             });
 
-            console.log('User: ',user);
+
+            console.log('User: ',req.body.email, " :: user.id ni niya :: ", user);
 
             if (user) {
                 console.log("nisud dri na part");
-                let passMatch = bcrypt.compareSync(req.body.password, user.password);
+                let passMatch =  bcrypt.compareSync(req.body.password, user.password);
                 if (passMatch) {
                     console.log("pass matching password")
                     res
