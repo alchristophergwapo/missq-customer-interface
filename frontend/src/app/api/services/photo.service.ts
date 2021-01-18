@@ -47,7 +47,7 @@ export class PhotoService {
         // console.log('File: ', file);
         const savedImageFile = await this.savePicture(file);
 
-        console.log(savedImageFile);
+        console.log("saved file : ",savedImageFile);
         
         this.photos.unshift(savedImageFile);
         this.photo = savedImageFile;
@@ -70,6 +70,7 @@ export class PhotoService {
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
+
 
     console.log(base64Data);
 
@@ -106,7 +107,6 @@ export class PhotoService {
       const file = await Filesystem.readFile({
         path: cameraPhoto.path
       });
-
       return file.data;
     }
     else {
@@ -132,7 +132,7 @@ export class PhotoService {
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
 
-    console.log(this.photos);
+    console.log("these are the photos uploaded: ",this.photos);
 
 
     // Easiest way to detect when running on the web:

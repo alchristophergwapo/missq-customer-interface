@@ -80,6 +80,7 @@ export class AuthService {
   };
 
   login(user: User): Observable<any> {
+    console.log("nisud sa log in function")
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user).pipe(
       take(1),
 
@@ -87,6 +88,7 @@ export class AuthService {
         console.log("Auth Service token in login: ", token);
         this.authSubject.next(true);
         this.user = token.user;
+        console.log("token :: ", TOKEN_KEY)
 
         let storageObservable = from(this.storage.set(TOKEN_KEY, token));
         return storageObservable;
@@ -96,11 +98,23 @@ export class AuthService {
   };
 
   updateContactInfo(user: User) {
-    console.log('nisud sa auth service.')
-    console.log(user)
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}/profile`, user)
-  }
+    console.log('nisud sa auth service.' , user)
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/profile`, user).pipe(
+      take(1),
 
+      switchMap(token => {
+        console.log("Auth Service token in login: ", token);
+        this.authSubject.next(true);
+        this.user = token.user;
+        console.log("token :: ", TOKEN_KEY)
+
+        let storageObservable = from(this.storage.set(TOKEN_KEY, token));
+        return storageObservable;
+      })
+
+    );
+  }
+  
   getAllMessages(): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
   }

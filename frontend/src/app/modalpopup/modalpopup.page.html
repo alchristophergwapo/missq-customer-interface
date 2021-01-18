@@ -3,24 +3,24 @@
   </ion-item>
   <form #form="ngForm" (ngSubmit)="updateContactInfo(form)"> 
     <ion-item>
-      <ion-input name="name" type="text" [ngModel]="text"><nobr>name :  </nobr>Solatorio</ion-input>
+      <ion-input name="name" type="text" [ngModel]="user.name"><nobr>name: </nobr></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="phone" type="Number" [ngModel]="Number"><nobr>Phone :  </nobr>3423432</ion-input>
+      <ion-input name="phone" type="Number" [ngModel]="user.phone"><nobr>Phone:  </nobr></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="address" type="text" [ngModel]="text" ><nobr>Address :  </nobr>Irish</ion-input><br>
-    </ion-item>
-   
-    <ion-item>
-      <ion-input name="email" type="email" [ngModel]="text"><nobr>Email :  </nobr>Rufo</ion-input><br>
+      <ion-input name="address" type="text" [ngModel]="user.address" >Address: </ion-input><br>
     </ion-item>
     <ion-item>
-      <ion-input name="id" type="email" [ngModel]="user.email"
-     ></ion-input>
+      <ion-input name="email" type="email" [ngModel]="user.email"><nobr>Email: </nobr></ion-input><br>
     </ion-item>
-    <div>
-      <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
-    </div>
-  </form>
+    <ion-item>
+      <ion-input name="ID" type="Number" [ngModel]="user.id_number"><nobr>ID: </nobr></ion-input><br>
+    </ion-item>
+    <ion-item>
+      <ion-input name="id"  type="id" [ngModel]="user.id"><nobr>id: </nobr></ion-input>
+    </ion-item>
+    <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
+  </form  >
+  <ion-button size="large" color='Danger' type="Cancel"   (click)='CloseModal()' expand="block">Cancel</ion-button>
 </ion-content>

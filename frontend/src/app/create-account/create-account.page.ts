@@ -41,17 +41,17 @@ export class CreateAcountPage implements OnInit {
 
   async ngOnInit() {
     this.user = {
-      name: "Christopher Alonzo",
+      name: "Irish Rufo ",
       address: "Talamban",
       code: "+63",
-      phone: 9458562899,
-      email: "toper@gmail.com",
-      birth_date: new Date('09/13/1997'),
-      password: "Toper@123",
-      confirm: "Toper@123",
+      phone: 9517871056,
+      email: "irishs.rufo@gmail.com",
+      birth_date: new Date('03/26/2000'),
+      password: "Irish@123",
+      confirm: "Irish@123",
       picture: "",
       id_image: "",
-      id_number: 18106145
+      id_number: 18106242
     };
 
     fetch('assets/country-code.json').then(async res => {
@@ -72,6 +72,10 @@ export class CreateAcountPage implements OnInit {
 
     // this.user.picture = this.selfie.filepath
 
+  }
+
+  deleteImage(photo, position) {
+    this.photoService.deletePicture(photo, position);
   }
 
   showPassword() {
