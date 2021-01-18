@@ -1,4 +1,3 @@
-
 ion-content {
     width: 100%;
 }
@@ -20,7 +19,7 @@ div.mobile {
     height: 100vh;
 }
 
-.mobile-content-header strong{
+.mobile-content-header strong {
     font-size: 40px;
     line-height: 26px;
     font-family: 'Times New Roman', Times, serif;
@@ -69,15 +68,12 @@ ion-button {
     ion-content.background {
         --background: url(../../assets/images/Conference.png) 0 0/100% 43% no-repeat;
     }
-
     div.web {
         width: 0;
     }
-
     div.mobile {
         width: 100%;
     }
-
     .mobile-content-header {
         text-align: center;
         position: fixed;
@@ -86,22 +82,18 @@ ion-button {
         top: 52%;
         transform: translateY(-50%);
     }
-
     .mobile-content-header strong {
         font-size: 35px;
     }
-
     .tag-line {
         width: 60%;
         margin-right: 20%;
         margin-left: 20%;
     }
-
-    #header_logo {   
+    #header_logo {
         border: 4px solid #22bbea8f;
         margin-bottom: 10px;
     }
-
     .mobile-content {
         text-align: center;
         position: fixed;
@@ -112,7 +104,6 @@ ion-button {
         margin-left: 20%;
         margin-right: 20%;
     }
-
     ion-button {
         margin-bottom: 10px;
     }
@@ -159,6 +150,6 @@ ion-button {
 }
 
 #btnCreate {
-    // background-color: rgba(21, 160, 224);
+    // background-color: rgb(21, 160, 224);
     color: white;
 }

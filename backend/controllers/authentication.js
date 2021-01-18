@@ -67,44 +67,44 @@ routes.post("/register",
     upload.single('picture'),
     (request, response, next) => {
 
-        console.log(request.file);
+//         console.log(request.file);
         // return request.body
         // upload.single('picture');
         // upload.single('id_image');
 
         // const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
 
-        // let pass = bcrypt.hashSync(request.body.password);
+        let pass = bcrypt.hashSync(request.body.password);
 
-        // let account = new Customer(request.body);
+        let account = new Customer(request.body);
 
-        // account['password'] = pass;
-        // account['picture'] = Date.now() + '-' + request.body.picture;
-        // account['id_image'] = Date.now() + '-' + request.body.id_image;
-        // console.log(request.file);
+        account['password'] = pass;
+        account['picture'] = Date.now() + '-' + request.body.picture;
+        account['id_image'] = Date.now() + '-' + request.body.id_image;
+//         console.log(request.file);
 
-        // account
-        //     .save()
-        //     .then(user => {
-        //         const expiresIn = 24 * 60 * 60;
-        //         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
-        //             expiresIn: expiresIn
-        //         });
-        //         response
-        //             .status(200)
-        //             .json({
-        //                 user: user,
-        //                 access_token: accessToken,
-        //                 expires_in: expiresIn,
-        //                 status: 200
-        //             });
-        //         console.log('User created: ', user);
+        account
+            .save()
+            .then(user => {
+                const expiresIn = 24 * 60 * 60;
+                const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
+                    expiresIn: expiresIn
+                });
+                response
+                    .status(200)
+                    .json({
+                        user: user,
+                        access_token: accessToken,
+                        expires_in: expiresIn,
+                        status: 200
+                    });
+                console.log('User created: ', user);
 
-        //     })
-        //     .catch(error => {
-        //         console.log("Error => ", error);
-        //         response.status(400).send("Failed to store to database!", error.body);
-        //     });
+            })
+            .catch(error => {
+                console.log("Error => ", error);
+                response.status(400).send("Failed to store to database!", error.body);
+            });
     });
 
 routes.route("/login").post((req, res) => {
@@ -118,9 +118,6 @@ routes.route("/login").post((req, res) => {
             const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
                 expiresIn: expiresIn
             });
-
-
-            console.log('User: ',req.body.email, " :: user.id ni niya :: ", user);
 
             if (user) {
                 console.log("nisud dri na part");
