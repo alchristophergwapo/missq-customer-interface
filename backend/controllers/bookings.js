@@ -5,6 +5,7 @@ const Booking = require("../models/Booking");
 const Customers = require("../models/User");
 
 
+
 routes.route("/book_service").post(async(request, response) => {
     const booking = new Booking(request.body);
 
@@ -38,12 +39,37 @@ routes.route("/filteredOngoing").post((req, res) => {
         arryOfStatus = Filter.filter((filtered) => {
             return filtered.status.toLocaleLowerCase().includes(req.body.data.toLocaleLowerCase());
         });
-        res.status(200).send({ status: 200, message: "OngoingJobs:", data: arryOfStatus })
+        res.status(200).send({ status: 200, message: "Status:", data: arryOfStatus })
     }).catch(error => {
         console.log(error);
 
     })
 });
+
+routes.route("/deleteBookings").delete((req, res) => {
+    console.log("Request: ")
+    Booking.find(req.params.id, (err, data) => {
+            if (err) {
+                return res.status(404).send({ error: err.message });
+
+            } else {
+                console.log(data);
+
+                res.send({ message: "Tungiw successfully deleted" })
+            }
+        })
+        // const index = Booking.find({ _id: req.body.id }, (err, data) => {
+        //     console.log(index);
+        //     if (err) {
+        //         return res.send({ error: err, status: false })
+        //     } else {
+        //         console.log("data " + data);
+
+    //         // return res.send(index.splice(data))
+
+
+    //     }
+})
 
 // exports.filteredOngoing = (req, res) => {
 //     res.send('Testing!')

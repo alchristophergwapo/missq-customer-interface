@@ -34,6 +34,7 @@ mongoose.connect(url, connectionParams).then(() => {
 
 const authentication = require('./controllers/authentication');
 const msq_service = require('./controllers/bookings');
+const msq_bookings = require('./controllers/bookings');
 const forgot_password = require('./controllers/forgotPassword');
 const rate_artisan = require('./controllers/rateArtisan');
 
@@ -41,8 +42,8 @@ const rate_artisan = require('./controllers/rateArtisan');
 app.use('/authenticate', authentication);
 app.use('/msq_service', msq_service);
 app.use('/forgot_password', forgot_password);
-app.use('/reviews', rate_artisan)
-
+app.use('/reviews', rate_artisan);
+app.use('/msq_bookings', msq_bookings);
 app.use('/public', express.static('public'));
 
 // app.post('/filteredOngoing', msq_service.filteredOngoing)
