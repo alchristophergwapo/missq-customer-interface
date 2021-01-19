@@ -105,6 +105,11 @@ export class AuthService {
     return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
   }
 
+  //FILTERED STATUS
+  filteredOngoing(arrays,datas): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}msq_service/filteredOngoing`,{array:arrays,data:datas})
+  }
+
   getUser(){
     return this.storage.get(TOKEN_KEY).then(res => {
       if (res) {

@@ -12,10 +12,14 @@ import { ArtisanReviewService } from '../api/services/artisan-review.service';
   styleUrls: ['./bookings.page.scss'],
 })
 export class BookingsPage implements OnInit {
-
+  pending='Pending';
+  ongoing='Ongoing';
+  completed='Completed';
   bookings: any;
   user: any;
   arryOfStatus = [];
+  // arryOfStatusOngoing = [];
+  // arryOfStatusCompleted = [];
   // public table: boolean = true;
 
   constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
@@ -48,27 +52,41 @@ export class BookingsPage implements OnInit {
     const userBookings = this.authService.user;
 
     this.bookings = userBookings['bookings']
-
-    console.log("dfdfd ", this.bookings)
-
-  }
-
-  //Filtered by Status
-  filteredByStatus(items: any[], searchText: any): any[] {
-    if (!items) {
-      return this.arryOfStatus = [];
-    }
-
-    if (!searchText.target.value) {
-      return this.arryOfStatus = items;
-    }
-
-    this.arryOfStatus = items.filter((filtered) => {
-      return filtered.service_booking.toLocaleLowerCase().includes(searchText.target.value.toLocaleLowerCase());
-    });
+    this.arryOfStatus=this.bookings;                                 
 
   }
 
+  // allStatus() {
+  //   this.authService.filteredOngoing(this.arryOfStatus,this.bookings).subscribe(res => {
+  //     console.log(res);
+  //     this.arryOfStatus = res.data;
+  //   })
+  // }
+
+  //Filtered by Status PENDING
+  filteredByPending() {
+    this.authService.filteredOngoing(this.arryOfStatus,this.pending).subscribe(res => {
+      console.log(res);
+      this.arryOfStatus=res.data;
+    })
+
+  }
+
+  ///Filtered by Status ONGOING
+  filteredByOngoing(){
+    this.authService.filteredOngoing(this.arryOfStatus,this.ongoing).subscribe(res => {
+      console.log(res);
+      this.arryOfStatus=res.data;
+    })
+  }
+
+  // //Filtered by Status COMPLETED
+  filteredByCompleted(){
+    this.authService.filteredOngoing(this.arryOfStatus,this.completed).subscribe(res => {
+      console.log(res);
+      this.arryOfStatus=res.data;
+    })
+  }
 
   async passToOrders(b) {
     const modal = await this.modalController.create({
@@ -82,7 +100,7 @@ export class BookingsPage implements OnInit {
       backdropDismiss: false,
     });
     modal.present();
-
   }
 
 }
+

@@ -33,7 +33,8 @@
                     <tr>
                         <td>{{service_booking}}</td>
                         <td>{{schedule}}</td>
-                        <td>{{status}}</td>
+                        <td *ngIf="!status.includes('Completed')">{{status}}</td>
+                        <td *ngIf="status.includes('Completed')">{{status}} <button>Rate</button></td>
                         <td>{{cost}}</td>
                     </tr>
                 </table>
