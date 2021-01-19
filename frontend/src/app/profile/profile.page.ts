@@ -3,6 +3,7 @@ import { AppComponent } from '../app.component';
 import {ModalController} from '@ionic/angular';
 import {ModalpopupPage} from '../modalpopup/modalpopup.page'
 import { AuthService } from '../api/services/auth.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-profile',
@@ -13,33 +14,32 @@ export class ProfilePage implements OnInit {
 
   logo: string;
   user: any;
-  isUpdated = false;
 
   constructor(
-    private app: AppComponent, private modalController:ModalController, private authService:AuthService ) {
-    this.user = app.user;
-    console.log("On profile: ", this.user);
+     private modalController:ModalController, private authService:AuthService ) {
+
+    this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:"", birth_date: ""}
   }
 
-
-  // OpenModal()
-  // {
-  //   this.modalController.create({component:ModalpopupPage,cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
-    
-  //     modalElement.present(); 
-  //   })
-  // }
+   ngOnInit() {
+      this.authService.getUser().then(user =>{
+      this.user= user;
+    })   
+   }
 
   editProfile() {
     this.modalController.create({component:ModalpopupPage, cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
       modalElement.present(); 
     })
   }
+  updateUser(){ 
+    this.authService.getUser().then(user =>{
+      this.user= user;
+    console.log("update user ni siya char lang huuhuhaha", this.user)
 
-  ngOnInit() {
-    console.log("data====",this.authService.getUser())
-    this.authService.getUser().then(user => {
-      this.user = user;
     })
   }
+  
+
+ 
 }

@@ -28,6 +28,17 @@ export class AppComponent {
     this.initializeApp();
   }
 
+
+  ngOnInit() {  
+    this.storage.get('jwt-token').then(res=> {
+      if (res) {
+        this.user = res.user
+        console.log("user sa app component  ", this.user)
+      }
+    });
+    this.setDashboard(true);
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -56,7 +67,13 @@ export class AppComponent {
   }
 
   onClickNav(event) {
-
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.user = await res.user
+        console.log(res.user)
+      }
+    })
+    
     event.preventDefault();
 
     event.target.parentElement.classList.add("active");
@@ -113,12 +130,5 @@ export class AppComponent {
     }
   }
 
-  ngOnInit() {
-    this.storage.get('jwt-token').then(res=> {
-      if (res) {
-        this.user = res.user
-      }
-    });
-    this.setDashboard(true);
-  }
+
 }
