@@ -6,23 +6,17 @@
 
 <ion-content>
     <div class="container">
-
-        <button ion-button icon-only (click)="closeModal()">
-                <ion-icon ios="ios-close" md="md-close"></ion-icon>
-                </button>
+        <ion-icon name="arrow-back" (click)="closeModal()"></ion-icon>
         <div class="content">
             <div class="column2">
-                <button class="btn">Edit</button>
-                <button class="btn1" (click)="deleteBtn()">Delete Booking</button>
                 <img src="user.picture">
                 <h1>{{user.name}}</h1>
                 <ion-card>
                     <ion-card-content>
-                        <p>EMAIL: {{user.email}}</p>
-                        <p>PHONE: {{user.phone}}</p>
+                        <p class="column">EMAIL: {{user.email}}</p>
+                        <p class="column">PHONE: {{user.phone}}</p>
                     </ion-card-content>
                 </ion-card>
-
                 <table>
                     <tr>
                         <th>Service Booking</th>
