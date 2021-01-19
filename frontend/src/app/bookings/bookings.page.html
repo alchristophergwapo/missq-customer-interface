@@ -10,31 +10,64 @@
 <ion-content>
     <div class="container">
         <div class="head">
-            <!-- <ion-input>Filter</ion-input> -->
-            <p>Filter:
-                <!-- <button (click)="allStatus()">ALL</button> -->
-                <button (click)="filteredByPending()">PENDING</button>
-                <button (click)="filteredByOngoing()">ONGOING</button>
-                <button (click)="filteredByCompleted()">COMPLETED</button>
-            </p>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div><button (click)="filteredByPending()" class="btnfil1">PENDING</button></div>
+                    </ion-col>
+                    <ion-col>
+                        <div><button (click)="filteredByOngoing()" class="btnfil2">ONGOING</button></div>
+                    </ion-col>
+                    <ion-col>
+                        <div><button (click)="filteredByCompleted()" class="btnfil3">COMPLETED</button></div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </div>
         <div class="column1">
             <div *ngFor="let b of arryOfStatus">
                 <!-- <div *ngIf="!table" *ngFor="let b of bookings"> -->
                 <ion-card>
                     <ion-card-content>
+                        <ion-grid>
+                            <ion-row class="row2">
+                                <ion-col>
+                                    <div class="left">
+                                        {{b.schedule}}
+                                    </div>
+                                </ion-col>
+                                <ion-col>
+                                    <div class="mid">
+                                        <p class="title">{{b.service_booking}}</p>
+                                        <p class="location">{{b.service_location}}</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col>
+                                    <div class="buttonVD">
+                                        <h4 (click)="passToOrders(b)">View Details</h4>
+
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+
+                </ion-card>
+
+
+                <!-- <ion-card>
+                    <ion-card-content>
                         <div class="col-1-left">
-                            <div>{{b.schedule}}</div>
+                            {{b.schedule}}
                         </div>
                         <div class="col-1-mid">
                             <p>{{b.service_booking}}</p>
                             <p>{{b.service_location}}</p>
                         </div>
                         <div class="col-1-right">
-                            <button class="button" (click)="passToOrders(b)">View Details</button>
                         </div>
                     </ion-card-content>
-                </ion-card>
+                </ion-card> -->
             </div>
         </div>
     </div>

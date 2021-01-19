@@ -23,18 +23,29 @@ button {
 
 .btn {
     margin-left: 70%;
+    background-color: blue;
 }
 
 .btn1 {
     margin-left: 3%;
+    background-color: red;
+}
+
+.container {
+    background-color: skyblue;
 }
 
 .column {
     float: left;
-  width: 50%;
-  padding: 10px;
-  height: 300px;
+    width: 50%;
+    padding: 10px;
+    height: 300px;
 }
+
+.content {
+    background-color: skyblue;
+}
+
 // ion-card {
 //     height: 100vh;
 //     width: 30vh;

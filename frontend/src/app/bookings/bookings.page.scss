@@ -2,122 +2,137 @@ ion-toolbar {
     --background: rgba(21, 160, 224, 0.5) !important;
 }
 
+
+
 .head{
-    font-size: 24px;    
-    text-align: center;
+    width:100%;
+    // font-size: 24px;    
+    // text-align: center;
+   
+}
+.btnfil1,.btnfil2,.btnfil3{
+    width:100%;
+    border: none;
+    color: white;
+    padding: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    // background-color: red;
+    border-radius: 10px;
+
+
 }
 
 .btnfil1{
-    margin-right:10%;
-    margin-left: 5%;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    font-size: 16px;
-    cursor: pointer;
     background-color: red;
-    
-
 }
 
 .btnfil2{
-    margin-right:10%;
-    margin-left: 5%;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    font-size: 16px;
-    cursor: pointer;
     background-color: blue;
-
 }
 
 .btnfil3{
-    margin-right:10%;
-    margin-left: 5%;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+    background-color: green;;
+}
+h4{
+    text-align: center;
+    top:3%;
+}
+
+.buttonVD{
+    margin-right: -15%;
+    margin-left: 61%;
+    color: black;
+    padding: 6px;
+    margin-top: -7%;
+    height: 13vh;
     font-size: 16px;
+    text-align: center;
     cursor: pointer;
     background-color: green;
 
 }
-
-.container {
-    margin: 40px 20px 20px 20px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    width: 97%;
-    height: 128vh;
-    position: absolute;
+.title,.location{
+    text-align: center;
+    
 }
 
-.container .head {
+
+.head{
     width: 100%;
+    background-color: burlywood;
+ 
 }
 
 .content {
     position: absolute;
     width: 100%;
+  
 }
 
 .column1 {
     position: absolute;
+    top:12%;
+    margin-top: 40px;
     width: 95%;
-    height: 125vh;
-    margin: 15px;
+    height: 120vh;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    // background-color: black;
 }
 
 ion-card {
     height: 10vh;
 }
 
-.col-1-left {
+.left {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 5%;
+    text-align: center;
+    top: -14px;
+    left: -16px;
+    width: 87%;
     height: 10vh;
-    background: white;
+    color: black;
+    background-color:pink;
 }
 
-.col-1-mid {
+.mid {
     position: absolute;
-    top: 0;
-    left: 25%;
-    width: 65%;
+    top: -14px;
+    left: -29%;
+    width: 191%;
     height: 10vh;
-    background: white;
+    background: burlywood;
+    color: black;
 }
 
-.col-1-right {
-    position: absolute;
-    top: 0%;
-    right: 0;
-    width: 10%;
-    height: 10vh;
-    background: white;
-}
+// .right {
+//     margin-left: -279%;
+//     border: none;
+//     height: 9vh;
+//     margin-top: -131%;
+//     color: white;
+//     padding: 15px 32px;
+//     font-size: 16px;
+//     cursor: pointer;
+//     background-color: green;
+// }
 
-.col-2-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    // background: gray;
-}
+// .col-2-left {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 50%;
+//     height: 100%;
+// }
 
-.col-2-right {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    // background: skyblue;
-}
+// .col-2-right {
+//     position: absolute;
+//     top: 0;
+//     left: 50%;
+//     width: 50%;
+//     height: 100%;
+//     // background: skyblue;
+// }
 
 ion-icon {
     margin: 10% 25% 25% 40%;
@@ -179,7 +194,9 @@ tr:nth-child(even) {
 button {
     border: 1px solid black;
     margin-top: 10%;
+   
 }
+
 
 @media (max-width: 767.98px) {
     .column1 {
