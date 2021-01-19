@@ -14,9 +14,11 @@ const TOKEN_KEY = 'jwt-token';
 })
 export class ModalpopupPage implements OnInit {
   user:any;
+  readonly:boolean;
 
   constructor(private modalController: ModalController, private authService:AuthService,private storage: Storage, private router:Router, private profile: ProfilePage, private app: AppComponent) {
     this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:""}
+    this.readonly=true
   }
 
   ngOnInit() {
@@ -32,7 +34,6 @@ export class ModalpopupPage implements OnInit {
     this.modalController.dismiss();
   }
   updateContactInfo(form){
-    // form.value.id = this.user.id
     
     this.authService.updateContactInfo(form.value).subscribe((response) => {
       if (response) {
@@ -42,21 +43,12 @@ export class ModalpopupPage implements OnInit {
         this.app.user = response.user;
         this.app.dashboard = true;
         console.log("Profile user: ", this.profile.user);
-        this.profile.updateUser();
+        this.profile.user = response.user;
         console.log("App Component user: ", this.app.user);
-        
-        // this.authService.getUser()
-        // console.log("user ni siya sa after .ma update : ",  this.authService.getUser());
-        
-        // this.storage.set(TOKEN_KEY, response.access_token);
-        // this.router.navigateByUrl('/profile');
-        // console.log('nice nisud na')
       }
     });
     console.log("maoy sulod sa form ",form);
     
   }
-  // getUser(){
-  // }
 
 }

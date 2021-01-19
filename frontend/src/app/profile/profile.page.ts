@@ -16,22 +16,23 @@ export class ProfilePage implements OnInit {
   user: any;
 
   constructor(
-     private modalController:ModalController, private authService:AuthService ) {
-
+    private modalController:ModalController, private authService:AuthService ) {
     this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:"", birth_date: ""}
   }
 
-   ngOnInit() {
-      this.authService.getUser().then(user =>{
-      this.user= user;
+  ngOnInit() {
+    console.log("every open sa profile ni siya")
+    this.authService.getUser().then(user => {
+      this.user = user;
     })   
-   }
+  }
 
   editProfile() {
     this.modalController.create({component:ModalpopupPage, cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
       modalElement.present(); 
     })
   }
+
   updateUser(){ 
     this.authService.getUser().then(user =>{
       this.user= user;
@@ -39,7 +40,5 @@ export class ProfilePage implements OnInit {
 
     })
   }
-  
 
- 
 }
