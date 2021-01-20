@@ -25,6 +25,7 @@ export class ModalpopupPage implements OnInit {
     console.log("every open sa modal ni siya")
     this.authService.getUser().then(user => {
       this.user = user;
+      this.user.name = user.name;
       // console.log("user _ id :: ", this.user.id)
     })
   }
