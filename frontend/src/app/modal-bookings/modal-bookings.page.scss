@@ -17,38 +17,31 @@ tr:nth-child(even) {
 }
 
 button {
-    border: 1px solid black;
     margin-left: 10%;
+   
 }
 
 .btn {
     margin-left: 70%;
+    height: 30px;
+    font-size: 15px;
+    // border-radius: 10px;
+    color: white;
    background-color: blue;
 }
 
 .btn1 {
     margin-left: 3%;
+    height: 30px;
+    font-size: 15px;
+    // border-radius: 10px;
+    color: white;
     background-color: red;
 
  
 }
 
-
 .container{
     background-color:skyblue;
 }
 
-.content{
-    background-color: skyblue;
-}
-
-
-// ion-card {
-//     height: 100vh;
-//     width: 30vh;
-//     // overflow-y: hidden;
-// }
-// .container {
-//     height: 100vh;
-//     overflow-y: hidden;
-// }

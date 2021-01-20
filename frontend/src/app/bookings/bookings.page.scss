@@ -17,7 +17,6 @@ ion-toolbar {
     padding: 6px;
     font-size: 16px;
     cursor: pointer;
-    // background-color: red;
     border-radius: 10px;
 
 
@@ -34,24 +33,7 @@ ion-toolbar {
 .btnfil3{
     background-color: green;;
 }
-h4{
-    text-align: center;
-    top:3%;
-}
 
-.buttonVD{
-    margin-right: -15%;
-    margin-left: 61%;
-    color: black;
-    padding: 6px;
-    margin-top: -7%;
-    height: 13vh;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    background-color: green;
-
-}
 .title,.location{
     text-align: center;
     
@@ -87,8 +69,8 @@ ion-card {
 .left {
     position: absolute;
     text-align: center;
-    top: -14px;
-    left: -16px;
+    top: -18px;
+    left: -21px;
     width: 87%;
     height: 10vh;
     color: black;
@@ -97,7 +79,7 @@ ion-card {
 
 .mid {
     position: absolute;
-    top: -14px;
+    top: -18px;
     left: -29%;
     width: 191%;
     height: 10vh;
@@ -105,34 +87,23 @@ ion-card {
     color: black;
 }
 
-// .right {
-//     margin-left: -279%;
-//     border: none;
-//     height: 9vh;
-//     margin-top: -131%;
-//     color: white;
-//     padding: 15px 32px;
-//     font-size: 16px;
-//     cursor: pointer;
-//     background-color: green;
-// }
+.buttonVD{
+    margin-right: -15%;
+    margin-left: 61%;
+    color: black;
+    padding: 6px;
+    margin-top: -10%;
+    height: 13vh;
+    font-size: 16px;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    border-right: 10px;
+    background-color: green;
 
-// .col-2-left {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 50%;
-//     height: 100%;
-// }
+}
 
-// .col-2-right {
-//     position: absolute;
-//     top: 0;
-//     left: 50%;
-//     width: 50%;
-//     height: 100%;
-//     // background: skyblue;
-// }
+
 
 ion-icon {
     margin: 10% 25% 25% 40%;
@@ -147,6 +118,17 @@ img {
 
 h1 {
     text-align: center;
+}
+
+h4{
+    text-align: center;
+    top:3%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 table {
