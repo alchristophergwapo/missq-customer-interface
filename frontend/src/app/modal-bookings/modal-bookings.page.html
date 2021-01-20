@@ -16,7 +16,14 @@
                         <p class="column">PHONE: {{user.phone}}</p>
                     </ion-card-content>
                 </ion-card>
-                <table>
+                <div>
+                    <p class="p1">Service Booking: {{service_booking}}</p>
+                    <p class="p1">Booking Time: {{schedule}}</p>
+                    <p class="p1" *ngIf="!status.includes('Completed')">Booking Status: {{status}}</p>
+                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}<button class="rateBtn">Rate</button></p>
+                    <p class="p1">Cost: {{cost}}</p>
+                </div>
+                <!-- <table>
                     <tr>
                         <th>Service Booking</th>
                         <th>Booking Time</th>
@@ -27,10 +34,10 @@
                         <td>{{service_booking}}</td>
                         <td>{{schedule}}</td>
                         <td *ngIf="!status.includes('Completed')">{{status}}</td>
-                        <td *ngIf="status.includes('Completed')">{{status}} <button>Rate</button></td>
+                        <td *ngIf="status.includes('Completed')">{{status}} <button class="rateBtn">Rate</button></td>
                         <td>{{cost}}</td>
                     </tr>
-                </table>
+                </table> -->
                 <label for="payment">Payment Method:</label>
                 <select name="payment" id="payment">
             <option value="gcash">Gcash</option>

@@ -46,30 +46,6 @@ routes.route("/filteredOngoing").post((req, res) => {
     })
 });
 
-routes.route("/deleteBookings").delete((req, res) => {
-    console.log("Request: ")
-    Booking.find(req.params.id, (err, data) => {
-            if (err) {
-                return res.status(404).send({ error: err.message });
-
-            } else {
-                console.log(data);
-
-                res.send({ message: "Tungiw successfully deleted" })
-            }
-        })
-        // const index = Booking.find({ _id: req.body.id }, (err, data) => {
-        //     console.log(index);
-        //     if (err) {
-        //         return res.send({ error: err, status: false })
-        //     } else {
-        //         console.log("data " + data);
-
-    //         // return res.send(index.splice(data))
-
-
-    //     }
-})
 
 // exports.filteredOngoing = (req, res) => {
 //     res.send('Testing!')

@@ -43,7 +43,6 @@ app.use('/authenticate', authentication);
 app.use('/msq_service', msq_service);
 app.use('/forgot_password', forgot_password);
 app.use('/reviews', rate_artisan);
-app.use('/msq_bookings', msq_bookings);
 app.use('/public', express.static('public'));
 
 // app.post('/filteredOngoing', msq_service.filteredOngoing)
