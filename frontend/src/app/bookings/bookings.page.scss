@@ -1,45 +1,44 @@
-ion-toolbar {
-    --background: rgba(21, 160, 224, 0.5) !important;
-}
-
-
-
-.head{
-    width:100%;
+// ion-toolbar {
+//     // --background: rgba(21, 160, 224, 0.5) !important;
+// }
+.head {
+    width: 100%;
     // font-size: 24px;    
     // text-align: center;
-   
 }
-.btnfil1,.btnfil2,.btnfil3{
-    width:100%;
-    border: none;
+
+.btnfil1,
+.btnfil2,
+.btnfil3 {
+    width: 100%;
+    border: black;
     color: white;
     padding: 6px;
     font-size: 16px;
     cursor: pointer;
     // background-color: red;
     border-radius: 10px;
-
-
 }
 
-.btnfil1{
+.btnfil1 {
     background-color: red;
 }
 
-.btnfil2{
+.btnfil2 {
     background-color: blue;
 }
 
-.btnfil3{
-    background-color: green;;
-}
-h4{
-    text-align: center;
-    top:3%;
+.btnfil3 {
+    background-color: green;
+    ;
 }
 
-.buttonVD{
+h4 {
+    text-align: center;
+    top: 3%;
+}
+
+.buttonVD {
     margin-right: -15%;
     margin-left: 61%;
     color: black;
@@ -49,39 +48,32 @@ h4{
     font-size: 16px;
     text-align: center;
     cursor: pointer;
-    background-color: green;
-
+    // background-color: green;
 }
-.title,.location{
+
+.title,
+.location {
     text-align: center;
-    
 }
 
-
-.head{
+.head {
     width: 100%;
-    background-color: burlywood;
- 
+    // background-color: burlywood;
 }
 
 .content {
     position: absolute;
     width: 100%;
-  
 }
 
 .column1 {
     position: absolute;
-    top:12%;
+    top: 12%;
     margin-top: 40px;
-    width: 95%;
-    height: 120vh;
+    width: 100%;
+    height: 200vh;
     border: 1px solid rgba(0, 0, 0, 0.2);
     // background-color: black;
-}
-
-ion-card {
-    height: 10vh;
 }
 
 .left {
@@ -92,7 +84,7 @@ ion-card {
     width: 87%;
     height: 10vh;
     color: black;
-    background-color:pink;
+    // background-color: pink;
 }
 
 .mid {
@@ -101,7 +93,7 @@ ion-card {
     left: -29%;
     width: 191%;
     height: 10vh;
-    background: burlywood;
+    // background: burlywood;
     color: black;
 }
 
@@ -116,7 +108,6 @@ ion-card {
 //     cursor: pointer;
 //     background-color: green;
 // }
-
 // .col-2-left {
 //     position: absolute;
 //     top: 0;
@@ -124,7 +115,6 @@ ion-card {
 //     width: 50%;
 //     height: 100%;
 // }
-
 // .col-2-right {
 //     position: absolute;
 //     top: 0;
@@ -133,7 +123,6 @@ ion-card {
 //     height: 100%;
 //     // background: skyblue;
 // }
-
 ion-icon {
     margin: 10% 25% 25% 40%;
 }
@@ -168,19 +157,19 @@ tr:nth-child(even) {
 }
 
 .btn {
-    border:1px solid black;
-    margin-top:  10%;
-    margin-left:65%;
+    border: 1px solid black;
+    margin-top: 10%;
+    margin-left: 65%;
     border: none;
     color: white;
     padding: 15px 25px;
     font-size: 14px;
     cursor: pointer;
-    background-color: blue;
+    // background-color: blue;
 }
 
 .btn1 {
-    margin-right:10%;
+    margin-right: 10%;
     margin-left: 5%;
     border: none;
     color: white;
@@ -194,9 +183,12 @@ tr:nth-child(even) {
 button {
     border: 1px solid black;
     margin-top: 10%;
-   
 }
 
+ion-card {
+    height: 16vh;
+    border: 1px solid black;
+}
 
 @media (max-width: 767.98px) {
     .column1 {
@@ -206,4 +198,4 @@ button {
         width: 100%;
         position: relative;
     }
-} 
+}

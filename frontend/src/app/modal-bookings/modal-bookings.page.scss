@@ -31,10 +31,9 @@ button {
     background-color: red;
 }
 
-.container {
-    background-color: skyblue;
-}
-
+// .container {
+//     background-color: skyblue;
+// }
 .column {
     float: left;
     width: 50%;
@@ -42,15 +41,19 @@ button {
     height: 300px;
 }
 
-.content {
-    background-color: skyblue;
+h1 {
+    text-align: center;
 }
 
-// ion-card {
-//     height: 100vh;
-//     width: 30vh;
-//     // overflow-y: hidden;
+// .content {
+//     background-color: skyblue;
 // }
+ion-card {
+    height: 10vh;
+    // width: 30vh;
+    // overflow-y: hidden;
+}
+
 // .container {
 //     height: 100vh;
 //     overflow-y: hidden;
