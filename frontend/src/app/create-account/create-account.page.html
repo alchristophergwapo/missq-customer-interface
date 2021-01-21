@@ -17,28 +17,30 @@
                     <ion-item>
                         &nbsp;
                         <ion-icon name="person-circle-sharp"></ion-icon>&nbsp;
-                        <ion-input name="name" [(ngModel)]='user.name' type="text" #nameCtrl="ngModel" placeholder=" Full Name"
-                            ngModel required></ion-input>
+                        <ion-input name="name" [(ngModel)]='user.name' type="text" #nameCtrl="ngModel"
+                            placeholder=" Full Name" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!nameCtrl.valid && nameCtrl.touched && nameCtrl.errors?.required">
                         <ion-text color="danger">Name is required</ion-text>
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="location-sharp"></ion-icon>&nbsp;
-                        <ion-input name="address" [(ngModel)]='user.address' #addCtrl="ngModel" type="text" placeholder="Address"
-                            ngModel required></ion-input>
+                        <ion-input name="address" [(ngModel)]='user.address' #addCtrl="ngModel" type="text"
+                            placeholder="Address" ngModel required></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!addCtrl.valid && addCtrl.touched && addCtrl.errors?.required">
                         <ion-text color="danger">Address is required</ion-text>
                     </ion-label><br>
                     <ion-item>
+                        <!-- <div class="item row">
+                            <div class="col"> -->
                         <ion-icon name="call-sharp"></ion-icon>&nbsp;
-                        <ion-select name="code" [(ngModel)]='user.code' type="text" #codeCtrl="ngModel" placeholder="Country Code"
-                            ngModel required>
+                        <ion-select name="code" [(ngModel)]='user.code' type="text" #codeCtrl="ngModel"
+                            placeholder="Country Code" ngModel required>
                             <ion-select-option *ngFor="let per of dataList">{{per.dial_code}}</ion-select-option>
                         </ion-select>
-                        <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel" placeholder="Phone Number"
-                            ngModel required number></ion-input>
+                        <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel"
+                            placeholder="Phone Number" ngModel required number></ion-input>
                     </ion-item>
                     <ion-label *ngIf="!codeCtrl.valid && codeCtrl.touched && codeCtrl.errors?.required">
                         <ion-text color="danger">Country Code is required</ion-text>
@@ -46,18 +48,18 @@
                     <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
                         <ion-text color="danger">Phone Number is required</ion-text>
                     </ion-label><br>
-                    <!-- <ion-item>
-                      <ion-select>
-                          <ion-select-option *ngFor="let per of dataList">({{per.name}}) {{per.dial_code}}</ion-select-option>
-                      </ion-select>
-                  </ion-item><br>
-                  <ion-item>
-                      <ion-icon name="call-sharp"></ion-icon>&nbsp;
-                      <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel" placeholder="Phone Number" ngModel required number></ion-input>
-                  </ion-item>
-                  <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
-                      <ion-text color="danger">Phone Number is required</ion-text>
-                  </ion-label><br> -->
+                    <ion-item>
+                        <ion-select>
+                            <ion-select-option *ngFor="let per of dataList">({{per.name}}) {{per.dial_code}}</ion-select-option>
+                        </ion-select>
+                    </ion-item><br>
+                    <ion-item>
+                        <ion-icon name="call-sharp"></ion-icon>&nbsp;
+                        <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel" placeholder="Phone Number" ngModel required number></ion-input>
+                    </ion-item>
+                    <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
+                        <ion-text color="danger">Phone Number is required</ion-text>
+                    </ion-label><br>
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
                         <ion-input name="email" [(ngModel)]='user.email' type="email" #emailCtrl="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
@@ -76,18 +78,18 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
-                        <ion-input type="{{type}}" name="password" [(ngModel)]='user.password' compare-password="confirm"
-                            type="password" #password="ngModel" [ngClass]="{ 'is-invalid': form.submitted && password.invalid}"
-                            placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel minlength="6"
-                            required (ionInput)="validatePassword($event)" (ionBlur)="onBlur($event)"></ion-input>
-                        <button class="btnEye" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right
-                            (click)="showPassword()">
-                            <ion-icon name="eye" style="font-size:25px;"></ion-icon>
-                        </button>
-                        <button class="btnEye" *ngIf="showPass" ion-button clear color="dark" type="button" item-right
-                            (click)="showPassword()">
-                            <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
-                        </button>
+
+                        <ion-input name="password" [(ngModel)]='user.password' compare-password="confirm"
+                            type="password" #password="ngModel"
+                            [ngClass]="{ 'is-invalid': form.submitted && password.invalid}" placeholder="Password"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel minlength="6" required
+                            (ionInput)="validatePassword($event)" (ionBlur)="onBlur($event)"></ion-input>
+                        <button class="btnEye" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+                                <ion-icon name="eye" style="font-size:25px;"></ion-icon>
+                             </button>
+                        <button class="btnEye" *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+                                <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
+                             </button>
                     </ion-item><br>
                     <ion-label *ngIf="!password.valid && password.touched && password.errors?.required">
                         <ion-text color="danger">Password is required</ion-text>
@@ -100,21 +102,20 @@
                         <p id="length" class="invalid">Minimum <b>6 characters</b></p>
                     </div>
                     <!-- <ion-label color="danger" *ngIf="password.errors?.minlength">Password must be at least 6 characters
-                  </ion-label> -->
+                    </ion-label> -->
                     <ion-item>
                         <ion-icon name="key-sharp"></ion-icon>&nbsp;
-                        <ion-input type="{{type1}}" name="confirm" [(ngModel)]='user.confirm' mustMatch="password" type="password"
+                        <ion-input name="confirm" [(ngModel)]='user.confirm' mustMatch="password" type="password"
                             #confirm="ngModel" [ngClass]="{ 'is-invalid': form.submitted && confirm.invalid}"
-                            placeholder="Confirm Password" pattern="{{password.value}}" ngModel required (ionInput)="confirmPassword($event)">
+                            placeholder="Confirm Password" pattern="{{password.value}}" ngModel required
+                            (ionInput)="confirmPassword($event)">
                         </ion-input>
-                        <button class="btnEye" *ngIf="!showPass1" ion-button clear color="dark" type="button"
-                            item-right (click)="showPasswordConfirm()">
+                        <button class="btnEye" *ngIf="!showPass1" ion-button clear color="dark" type="button" item-right (click)="showPasswordConfirm()"> 
                             <ion-icon name="eye" style="font-size:25px;"></ion-icon>
-                        </button>
-                        <button class="btnEye" *ngIf="showPass1" ion-button clear color="dark" type="button" item-right
-                            (click)="showPasswordConfirm()">
+                         </button>
+                        <button class="btnEye" *ngIf="showPass1" ion-button clear color="dark" type="button" item-right (click)="showPasswordConfirm()"> 
                             <ion-icon name="eye-off" style="font-size:25px;"></ion-icon>
-                        </button>
+                         </button>
                     </ion-item>
                     <ion-label *ngIf="!confirm.valid && confirm.touched && confirm.errors?.required">
                         <ion-text color="danger">Confirm Password is required</ion-text>
@@ -125,21 +126,22 @@
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-label slot="end">Picture(Selfie)</ion-label>
-                        <ion-input name="picture" [(ngModel)]='user.picture' type="button" (click)="takeSelfie()" id="file-input"
+                        <ion-input name="picture" [(ngModel)]='user.picture' type="button"
+                            (click)="getPicture('camera')" id="file-input"
                             accept="image/png, image/jpeg" name="picture" #picCtrl="ngModel" ngModel required>
                         </ion-input>
                         <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">
-                      <img [src]="capturedSnapURL" /> -->
+                        <img [src]="capturedSnapURL" /> -->
                     </ion-item>
                     <div *ngFor="let p of photoService.photos, let i = index">
-                        <img [src]="p.webviewPath" alt="" id="img" (click)="deleteImage(p,i)">
+                      <img [src]="p.webviewPath" alt="" id="img" (click)="deleteImage(p, i)">
                     </div><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-label slot="end">Picture(ID)</ion-label>
                         <ion-input (change)="loadImageFromDevice($event)" id="file-input" accept="image/png, image/jpeg"
-                            name="id_image" [(ngModel)]='user.id_image' type="file" #picCtrl="ngModel" placeholder="ID Picture"
-                            ngModel required>
+                            name="id_image" [(ngModel)]='user.id_image' type="file" #picCtrl="ngModel"
+                            placeholder="ID Picture" ngModel required>
                         </ion-input>
                     </ion-item><br>
                     <ion-item>
@@ -157,6 +159,6 @@
                 </div>
             </ion-card-content>
         </form>
-
+  
     </ion-card>
-</ion-content>
+  </ion-content>
