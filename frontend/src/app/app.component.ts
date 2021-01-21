@@ -12,10 +12,10 @@ import { AuthService } from './api/services/auth.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  dashboard : boolean = true;
+  dashboard: boolean = true;
   currentRoute: string;
   user: any;
-  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,6 +26,15 @@ export class AppComponent {
     private storage: Storage
   ) {
     this.initializeApp();
+  }
+
+  ngOnInit() {
+    this.storage.get('jwt-token').then(res => {
+      if (res) {
+        this.user = res.user
+      }
+    });
+    this.setDashboard(true);
   }
 
   initializeApp() {
@@ -43,7 +52,7 @@ export class AppComponent {
 
       this.currentRoute = window.location.pathname;
 
-      this.storage.get('jwt-token').then(async res=> {
+      this.storage.get('jwt-token').then(async res => {
         if (res) {
           this.user = await res.user
         }
@@ -111,14 +120,5 @@ export class AppComponent {
     } else {
       this.dashboard = false;
     }
-  }
-
-  ngOnInit() {
-    this.storage.get('jwt-token').then(res=> {
-      if (res) {
-        this.user = res.user
-      }
-    });
-    this.setDashboard(true);
   }
 }

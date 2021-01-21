@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
         cb(null, DIR);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
+        cb(null, Date.now() + "-" + file.originalname)
     }
 });
 
@@ -57,55 +57,67 @@ routes.route("/profile").post((req, res) => {
                 });
             }
         })
-        
+
     })
 
 })
 
-routes.post("/register",
-    // upload.single('id_image'),
-    upload.single('picture'),
-    (request, response, next) => {
+routes.post("/upload", (req, res) => {
+    console.log(req.files);
+    if(upload.single("selfie")) {
+        res.status(200).send({status: 200, message: "File uploaded successfully."})
+    }
+});
 
-//         console.log(request.file);
-        // return request.body
-        // upload.single('picture');
-        // upload.single('id_image');
-
-        // const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
-
-        let pass = bcrypt.hashSync(request.body.password);
-
-        let account = new Customer(request.body);
-
-        account['password'] = pass;
-        account['picture'] = Date.now() + '-' + request.body.picture;
-        account['id_image'] = Date.now() + '-' + request.body.id_image;
-//         console.log(request.file);
-
-        account
-            .save()
-            .then(user => {
-                const expiresIn = 24 * 60 * 60;
-                const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
-                    expiresIn: expiresIn
-                });
-                response
-                    .status(200)
-                    .json({
-                        user: user,
-                        access_token: accessToken,
-                        expires_in: expiresIn,
-                        status: 200
-                    });
-                console.log('User created: ', user);
-
-            })
-            .catch(error => {
-                console.log("Error => ", error);
-                response.status(400).send("Failed to store to database!", error.body);
-            });
+routes.post("/register", (req, res) => {
+    console.log(req.body);
+    upload(req, res, function (err) {
+        console.log(req.body);
+        console.log(req.files);
+        if (err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
     });
+    // console.log(req.files);
+    // // return request.files
+    // res.status(200);
+    // // upload.single('id_image');
+
+    // // const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
+
+    // let pass = bcrypt.hashSync(request.body.password);
+
+    // let account = new Customer(request.body);
+
+    // account['password'] = pass;
+    // account['picture'] = Date.now() + '-' + request.body.picture;
+    // account['id_image'] = Date.now() + '-' + request.body.id_image;
+    // // console.log(request.file);
+
+    // account
+    //     .save()
+    //     .then(user => {
+    //         const expiresIn = 24 * 60 * 60;
+    //         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
+    //             expiresIn: expiresIn
+    //         });
+    //         response
+    //             .status(200)
+    //             .json({
+    //                 user: user,
+    //                 access_token: accessToken,
+    //                 expires_in: expiresIn,
+    //                 status: 200
+    //             });
+    //         console.log('User created: ', user);
+
+    //     })
+    //     .catch(error => {
+    //         console.log("Error => ", error);
+    //         response.status(400).send("Failed to store to database!", error.body);
+    //     });
+});
 
 routes.route("/login").post((req, res) => {
     Customer.findOne({ email: req.body.email })
@@ -121,7 +133,7 @@ routes.route("/login").post((req, res) => {
 
             if (user) {
                 console.log("nisud dri na part");
-                let passMatch =  bcrypt.compareSync(req.body.password, user.password);
+                let passMatch = bcrypt.compareSync(req.body.password, user.password);
                 if (passMatch) {
                     console.log("pass matching password")
                     res
