@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../api/services/auth.service';
+import { ArtisanReviewService } from '../api/services/artisan-review.service';
 
 @Component({
   selector: 'app-modal-bookings',
@@ -22,8 +23,15 @@ export class ModalBookingsPage implements OnInit {
 
   // rating: boolean = true;
 
-  constructor(private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
+  constructor(private reviewArtisan: ArtisanReviewService, private authService: AuthService, private modalController: ModalController) { 
     this.user = this.authService.user;
+  }
+
+  rateArtisan(id, data) {
+    this.reviewArtisan.review(id, data).subscribe(res => {
+      console.log(res);
+
+    })
   }
 
   ngOnInit() 
