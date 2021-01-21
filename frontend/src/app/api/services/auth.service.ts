@@ -60,8 +60,8 @@ export class AuthService {
     formData.append('picture', data.picture);
     formData.append('id_image', data.id_image);
     formData.append('id_number', data.id_number);
-    formData.append('images', id_image, data.id_image);
-    formData.append('images', selfie, data.picture)
+    formData.append('picture', id_image, data.id_image);
+    formData.append('id_image', selfie, data.picture)
     // debugger
 
     // for (let [key, value] of formData.entries()) {
@@ -122,7 +122,7 @@ export class AuthService {
   }
 
   getAllMessages(): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
+    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/allMessages`);
   }
 
   //FILTERED STATUS

@@ -41,23 +41,21 @@ export class CreateAcountPage implements OnInit {
     private platform: Platform,
     private sanitizer: DomSanitizer
   ) {
-    // console.log(typeof (this.photoService.photos));
-
   }
 
   async ngOnInit() {
     this.user = {
-      name: "Irish Rufo",
+      name: "Geneva Rivas",
       address: "Talamban",
       code: "+63",
-      phone: 9517871056,
-      email: "irishs.rufo@gmail.com",
-      birth_date: new Date('03/26/2000'),
-      password: "Irish@123",
-      confirm: "Irish@123",
+      phone: 9458562899,
+      email: "genevaxoxorivas99@gmail.com",
+      birth_date: new Date('06/12/1999'),
+      password: "jhenRivas1999",
+      confirm: "jhenRivas1999",
       picture: "",
       id_image: "",
-      id_number: 18106242
+      id_number: 18106143
     };
 
     fetch('assets/country-code.json').then(async res => {
@@ -71,13 +69,21 @@ export class CreateAcountPage implements OnInit {
   }
 
   async takeSelfie() {
-    await this.photoService.addNewToGallery();
+    let s = await this.photoService.addNewToGallery()
     // this.selfie = this.photoService.photo; 
 
-    // console.log(typeof (this.selfie.webviewPath));
+    console.log("Selfie: ", s);
 
-    // this.user.picture = this.selfie.filepath
+    if (s) {
+      this.user.picture = this.photoService.photo.filepath
 
+      console.log(this.user.picture);
+      
+    }
+
+  }
+  deleteImage(photo,position) {
+    this.photoService.deletePicture(photo, position);
   }
 
   deleteImage(photo, position) {
