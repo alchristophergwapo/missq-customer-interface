@@ -47,7 +47,7 @@ import { ProfilePage } from './profile/profile.page';
     ValidateEqualModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    ModalpopupPageModule
+    ModalpopupPageModule,
   ],
   providers: [
     ServicesService,

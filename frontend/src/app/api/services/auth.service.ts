@@ -31,7 +31,7 @@ export class AuthService {
 
   /**
    * 
-   */ 
+   */
 
   loadStoredToken() {
     this.storage.get(TOKEN_KEY).then(res => {
@@ -42,10 +42,13 @@ export class AuthService {
     })
   }
 
-  register(data, id_image: File, picture: File): Observable<any> {
+  register(data, id_image, selfie) {
     let url = this.AUTH_SERVER_ADDRESS + 'authenticate/register';
 
     var formData: any = new FormData();
+
+    console.log(data);
+    
 
     formData.append('name', data.name);
     formData.append('address', data.address);
@@ -54,30 +57,33 @@ export class AuthService {
     formData.append('email', data.email);
     formData.append('birth_date', data.birth_date);
     formData.append('password', data.password);
-    formData.append('picture', picture);
-    formData.append('id_image', id_image);
+    formData.append('picture', data.picture);
+    formData.append('id_image', data.id_image);
     formData.append('id_number', data.id_number);
-
+    formData.append('picture', id_image, data.id_image);
+    formData.append('id_image', selfie, data.picture)
     // debugger
 
     // for (let [key, value] of formData.entries()) {
     //   console.log(key, value);
     // }
 
-    // console.log("Data to Add: ", dataToAdd);
-
-    return this.httpClient.post<User>(url, formData, {
+    return this.httpClient.post<User>(url, JSON.stringify(formData), {
       reportProgress: true,
       observe: 'events'
-    }).pipe(
-      tap(async (res) => {
-        // debugger
-        if (res) {
-          this.authSubject.next(true);
-        }
-      })
-    );
+    });
   };
+
+  uploadImage(blobData, ext) {
+    const formData: any = new FormData();
+    formData.append('selfie', blobData, `myimage.${ext}`);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload`, formData);
+  }
 
   login(user: User): Observable<any> {
     console.log("nisud sa log in function")
@@ -98,7 +104,7 @@ export class AuthService {
   };
 
   updateContactInfo(user: User) {
-    console.log('nisud sa auth service.' , user)
+    console.log('nisud sa auth service.', user)
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/profile`, user).pipe(
       take(1),
 
@@ -114,17 +120,17 @@ export class AuthService {
 
     );
   }
-  
+
   getAllMessages(): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/messages`);
+    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}chat/allMessages`);
   }
 
   //FILTERED STATUS
-  filteredOngoing(arrays,datas): Observable<any> {
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}msq_service/filteredOngoing`,{array:arrays,data:datas})
+  filteredOngoing(arrays, datas): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}msq_service/filteredOngoing`, { array: arrays, data: datas })
   }
 
-  getUser(){
+  getUser() {
     return this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         return res.user;

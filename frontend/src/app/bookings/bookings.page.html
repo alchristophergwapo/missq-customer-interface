@@ -15,7 +15,8 @@
                 <!-- <button (click)="allStatus()">ALL</button> -->
                 <button (click)="filteredByPending()">PENDING</button>
                 <button (click)="filteredByOngoing()">ONGOING</button>
-                <button (click)="filteredByCompleted()">COMPLETED</button></p>
+                <button (click)="filteredByCompleted()">COMPLETED</button>
+            </p>
         </div>
         <div class="column1">
             <div *ngFor="let b of arryOfStatus">
@@ -37,5 +38,4 @@
             </div>
         </div>
     </div>
-  </div>
 </ion-content>
