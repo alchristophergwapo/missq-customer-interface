@@ -26,14 +26,13 @@
         </div>
         <div class="column1">
             <div *ngFor="let b of arryOfStatus">
-                <!-- <div *ngIf="!table" *ngFor="let b of bookings"> -->
                 <ion-card>
                     <ion-card-content>
                         <ion-grid>
                             <ion-row class="row2">
                                 <ion-col>
                                     <div class="left">
-                                        {{b.schedule}}
+                                        {{b.schedule| date:"MM/dd/yyyy 'at' h:mma"}}
                                     </div>
                                 </ion-col>
                                 <ion-col>
@@ -43,10 +42,7 @@
                                     </div>
                                 </ion-col>
                                 <ion-col>
-                                    <!-- <div class="buttonVD"> -->
                                     <button class="viewBtn" (click)="passToOrders(b)">View Details</button>
-
-                                    <!-- </div/> -->
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
