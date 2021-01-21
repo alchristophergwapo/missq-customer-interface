@@ -111,6 +111,8 @@ export class LiveChatPage implements OnInit {
 
   allRecentMessages() {
     this.authService.getAllMessages().subscribe((messages) => {
+      console.log(messages);
+      
       this.messages = messages
     })
   }
