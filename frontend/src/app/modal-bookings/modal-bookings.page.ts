@@ -16,10 +16,9 @@ export class ModalBookingsPage implements OnInit {
   @Input() cost: string;
   @Input() notes: string;
   @Input() status: string;
-
   bookings: any;
   user: any;
-
+  arrayOfStatus=[];
   // rating: boolean = true;
 
   constructor(private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
@@ -33,12 +32,36 @@ export class ModalBookingsPage implements OnInit {
     const userBookings = this.authService.user;
 
     this.bookings = userBookings['bookings']
-    
   }
+
 
   closeModal()
   {
     this.modalController.dismiss();
   }
 
+  deleteBtn(){
+    console.log("sldkhfksdhk");
+    
+    this.authService.deleteBookings(this.id).subscribe((data) => {
+      console.log(data)
+      // this.arrayOfStatus = data.data;
+      
+    })
+    
+  }
+
+  // async passToOrders(b) {
+  //   const modal = await this.modalController.create({
+  //     component: ModalBookingsPage,
+  //     componentProps: {
+  //       status: b.status, id: b._id, service_booking: b.service_booking,
+  //       updatedAt: b.updatedAt, service_location: b.service_location,
+  //       cost: b.cost, notes: b.notes
+  //     },
+  //     cssClass: 'setting-modal',
+  //     backdropDismiss: false,
+  //   });
+  //   modal.present();
+  // }
 }

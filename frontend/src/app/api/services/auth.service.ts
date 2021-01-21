@@ -110,6 +110,10 @@ export class AuthService {
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}msq_service/filteredOngoing`,{array:arrays,data:datas})
   }
 
+  deleteBookings(_id): Observable<any>{ 
+    return this.httpClient.get<any>(`${this.AUTH_SERVER_ADDRESS}msq_bookings/deleteBookings`,_id) 
+  }
+
   getUser(){
     return this.storage.get(TOKEN_KEY).then(res => {
       if (res) {

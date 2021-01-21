@@ -30,28 +30,27 @@
                 <ion-card>
                     <ion-card-content>
                         <ion-grid>
-                            <ion-row class= "row2">
+                            <ion-row class="row2">
                                 <ion-col>
-                                    <div class="left">
+                                    <div >
                                         {{b.schedule}}
                                     </div>
                                 </ion-col>
                                 <ion-col>
-                                    <div class="mid">
+                                    <div >
                                         <p class="title">{{b.service_booking}}</p>
                                         <p class="location">{{b.service_location}}</p>
                                     </div>
                                 </ion-col>
                                 <ion-col>
-                                    <div  class="buttonVD">
-                                        <h4  (click)="passToOrders(b)">View Details</h4>
+                                    <div >
+                                        <ion-button class="buttonVD" (click)="passToOrders(b)">View Details</ion-button>
 
                                     </div>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
                     </ion-card-content>
-
                 </ion-card>
             </div>
         </div>

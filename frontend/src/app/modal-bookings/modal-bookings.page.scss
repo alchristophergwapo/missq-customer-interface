@@ -23,11 +23,7 @@ button {
 
 .btn {
     margin-left: 70%;
-    height: 30px;
-    font-size: 15px;
-    // border-radius: 10px;
-    color: white;
-   background-color: blue;
+    background-color: blue;
 }
 
 .btn1 {
@@ -37,11 +33,32 @@ button {
     // border-radius: 10px;
     color: white;
     background-color: red;
-
- 
 }
 
-.container{
-    background-color:skyblue;
+// .container {
+//     background-color: skyblue;
+// }
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px;
 }
 
+h1 {
+    text-align: center;
+}
+
+// .content {
+//     background-color: skyblue;
+// }
+ion-card {
+    height: 10vh;
+    // width: 30vh;
+    // overflow-y: hidden;
+}
+
+// .container {
+//     height: 100vh;
+//     overflow-y: hidden;
+// }
