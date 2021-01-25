@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../api/services/auth.service";
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 
 
@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
   public showPass = false;
   name: string;
   password: string;
+  loaded: boolean = false;
 
 // passwordType: string = 'password';
 // eye: boolean = false;
@@ -24,11 +25,15 @@ export class LoginPage implements OnInit {
     private authService: AuthService, 
     private router: Router, 
     private alertCtrl: AlertController, 
-    private dash: AppComponent
+    private dash: AppComponent,
+    private loadingController: LoadingController
   ) 
   { 
     this.name = 'alchristopheroppa0143@gmail.com';
     this.password = "Toper@3013";
+  }
+  
+  ngOnInit() {
   }
   
   showPassword() {
@@ -41,6 +46,8 @@ export class LoginPage implements OnInit {
   }
   login(form) {
     // console.log(form.value);
+    this.presentLoading();
+    
     this.authService.login(form.value).subscribe(res => {
       if (res) {
         this.router.navigateByUrl('/place-order');
@@ -56,6 +63,20 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async presentLoading() {
+    this.loaded = false;
+    const loading = await this.loadingController.create({
+      spinner: "dots",
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      animated: true,
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    this.loaded = true;
+    console.log('Loading dismissed!');
   }
+
 }
