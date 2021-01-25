@@ -99,7 +99,7 @@
                         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                         <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                         <p id="number" class="invalid">A <b>number</b></p>
-                        <p id="length" class="invalid">Minimum <b>6 characters</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
                     </div>
                     <!-- <ion-label color="danger" *ngIf="password.errors?.minlength">Password must be at least 6 characters
                     </ion-label> -->
@@ -127,7 +127,7 @@
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-label slot="end">Picture(Selfie)</ion-label>
                         <ion-input name="picture" [(ngModel)]='user.picture' type="button"
-                            (click)="getPicture('camera')" id="file-input"
+                            (click)="getPicture()" id="file-input"
                             accept="image/png, image/jpeg" name="picture" #picCtrl="ngModel" ngModel required>
                         </ion-input>
                         <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">

@@ -36,6 +36,8 @@ export class AppComponent {
     this.storage.get('jwt-token').then(res => {
       if (res) {
         this.user = res.user
+        console.log(this.user);
+        
       }
     });
     this.setDashboard(true);
