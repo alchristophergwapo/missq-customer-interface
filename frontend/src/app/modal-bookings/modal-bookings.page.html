@@ -20,7 +20,7 @@
                     <p class="p1">Service Booking: {{service_booking}}</p>
                     <p class="p1">Booking Time: {{schedule}}</p>
                     <p class="p1" *ngIf="!status.includes('Completed')">Booking Status: {{status}}</p>
-                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}<button class="rateBtn">Rate</button></p>
+                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}<button (click)="presentToast()" class="rateBtn">Rate</button></p>
                     <p class="p1">Cost: {{cost}}</p>
                     <p class="p1">Payment Method: </p>
                     <p class="p1">Payment Status: </p>

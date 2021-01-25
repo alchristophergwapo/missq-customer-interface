@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../api/services/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-bookings',
@@ -21,13 +22,12 @@ export class ModalBookingsPage implements OnInit {
   arrayOfStatus=[];
   // rating: boolean = true;
 
-  constructor(private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
+  constructor(private toastCtrl: ToastController, private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
     this.user = this.authService.user;
   }
 
   ngOnInit() 
   {
-    // console.log("service ",this.service_booking)
 
     const userBookings = this.authService.user;
 
@@ -40,17 +40,25 @@ export class ModalBookingsPage implements OnInit {
     this.modalController.dismiss();
   }
 
-  // async passToOrders(b) {
-  //   const modal = await this.modalController.create({
-  //     component: ModalBookingsPage,
-  //     componentProps: {
-  //       status: b.status, id: b._id, service_booking: b.service_booking,
-  //       updatedAt: b.updatedAt, service_location: b.service_location,
-  //       cost: b.cost, notes: b.notes
-  //     },
-  //     cssClass: 'setting-modal',
-  //     backdropDismiss: false,
-  //   });
-  //   modal.present();
-  // }
+
+  async presentToast() {
+    const toast = await this.toastCtrl.create({
+      header: 'Message!',
+      message: 'This feature is under development',
+      position: 'top',
+      color: 'success',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+            console.log("this.proceedAlert();")
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
+
+
 }

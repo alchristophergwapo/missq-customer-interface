@@ -3,6 +3,8 @@ import { AuthService } from '../api/services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { ModalBookingsPage } from '../modal-bookings/modal-bookings.page';
+
+// import { ModalRatingsPage } from '../modal-ratings/modal-ratings.page';
 // import { MatDialog,  MatDialogConfig } from '@angular/material';
 import { ArtisanReviewService } from '../api/services/artisan-review.service';
 
@@ -93,6 +95,8 @@ export class BookingsPage implements OnInit {
     });
     modal.present();
   }
+
+  
 
 }
 

@@ -70,6 +70,7 @@ const routes: Routes = [
     loadChildren: () => import('./modal-bookings/modal-bookings.module').then( m => m.ModalBookingsPageModule)
   }
 
+
 ];
 
 @NgModule({
