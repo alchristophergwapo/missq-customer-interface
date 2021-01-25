@@ -63,21 +63,23 @@ routes.route("/profile").post((req, res) => {
 })
 
 routes.post("/upload", (req, res) => {
-    console.log(req.files);
+    console.log('0 :: ',req.body.value);
     if(upload.single("selfie")) {
         res.status(200).send({status: 200, message: "File uploaded successfully."})
+    }else{
+        res.status(500).send({status: 500, message: "File uploaded unsssuccessfully."})
     }
 });
 
 routes.post("/register", (req, res) => {
-    console.log(req.body);
-    upload(req, res, function (err) {
-        console.log(req.body);
-        console.log(req.files);
+    // console.log('1 :: ',req);
+    upload.single(req, res, function (err) {
+        console.log('2 :: ',req.body);
+        console.log('3 :: ',req.files);
         if (err) {
-            return res.end("Error uploading file.");
+            return res.send("Error uploading file.");
         }
-        res.end("File is uploaded");
+        res.send("File is uploaded");
     });
     // console.log(req.files);
     // // return request.files

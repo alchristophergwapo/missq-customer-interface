@@ -69,21 +69,18 @@ export class CreateAcountPage implements OnInit {
   }
 
   async takeSelfie() {
-    let s = await this.photoService.addNewToGallery()
+    let s = await this.photoService.addNewToGallery();
     // this.selfie = this.photoService.photo; 
 
     console.log("Selfie: ", s);
 
-    if (s) {
+    if (s !== null) {
       this.user.picture = this.photoService.photo.filepath
 
       console.log(this.user.picture);
       
     }
 
-  }
-  deleteImage(photo,position) {
-    this.photoService.deletePicture(photo, position);
   }
 
   deleteImage(photo, position) {
