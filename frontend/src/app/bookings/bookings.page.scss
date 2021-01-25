@@ -1,229 +1,210 @@
-// ion-toolbar {
-//     // --background: rgba(21, 160, 224, 0.5) !important;
-// }
-.head {
-    width: 100%;
-    // font-size: 24px;    
-    // text-align: center;
-}
-
-.btnfil1,
-.btnfil2,
-.btnfil3 {
-    width: 100%;
-    border: black;
-    color: white;
-    padding: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-.btnfil1 {
-    background-color: red;
-}
-
-.btnfil2 {
-    background-color: blue;
-}
-
-.btnfil3 {
-    background-color: green;
-    ;
-}
-
-h4 {
-    text-align: center;
-    top: 3%;
-}
-
- .buttonVD {
-    // background-color: green;
-    border-radius: 50px;
-    // box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    padding: 11px 29px;
-    // margin-right: -15%;
-    margin-left: 37%;
-    // color: black;
-    // padding: 6px;
-    // margin-top: -7%;
-    // height: 13vh;
-    // font-size: 16px;
-    // text-align: center;
-    // cursor: pointer;
-    // background-color: green;
+    // ion-toolbar {
+    //     // --background: rgba(21, 160, 224, 0.5) !important;
+    // }
+    .head {
+        width: 100%;
+        // font-size: 24px;    
+        // text-align: center;
+    }
     
-// 	// background-color: green;
-// 	// border: 0;
-// 	// border-radius: 50px;
-// 	// box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-// 	// color: #fff;
-// 	// font-size: 16px;
-// 	// padding: 12px 12px;
-// 	// position: absolute;
-// 	// bottom: 30px;
-// 	// right: 30px;
-// 	// letter-spacing: 1px;
-}
+    .btnfil1,
+    .btnfil2,
+    .btnfil3 {
+        width: 100%;
+        height: 10vh;
+        border: black;
+        color: white;
+        padding: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        // background-color: red;
+        border-radius: 10px;
+    }
+    
+    .btnfil1 {
+        background-color: red;
+    }
+    
+    .btnfil2 {
+        background-color: blue;
+    }
+    
+    .btnfil3 {
+        background-color: green;
+        ;
+    }
+    
+    h4 {
+        text-align: center;
+        top: 3%;
+    }
+    
+    // .buttonVD {
+    //     // margin-right: -15%;
+    //     // margin-left: 61%;
+    //     // color: black;
+    //     // padding: 6px;
+        // margin-top: -7%;
+        // height: -13vh;
+        // width: 50%;
+    //     // font-size: 16px;
+    //     // text-align: center;
+    //     // cursor: pointer;
+    //     // background-color: green;
+        // size: 50%
 
-
-.title,
-.location {
-    text-align: center;
-}
-
-.head {
-    width: 100%;
-    // background-color: burlywood;
-}
-
-.content {
-    position: absolute;
-    width: 100%;
-}
-
-.column1 {
-    position: absolute;
-    top: 12%;
-    margin-top: 40px;
-    width: 100%;
-    height: 200vh;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    // background-color: black;
-}
-
-.left {
-    position: absolute;
-    text-align: center;
-    top: -18px;
-    left: -21px;
-    width: 87%;
-    height: 10vh;
-    color: black;
-    // background-color: pink;
-}
-
-.mid {
-    position: absolute;
-    top: -18px;
-    left: -29%;
-    width: 191%;
-    height: 10vh;
-    // background: burlywood;
-    color: black;
-}
-
-// .right {
-//     margin-left: -279%;
-//     border: none;
-//     height: 9vh;
-//     margin-top: -131%;
-//     color: white;
-//     padding: 15px 32px;
-//     font-size: 16px;
-//     cursor: pointer;
-//     background-color: green;
-// }
-// .col-2-left {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 50%;
-//     height: 100%;
-// }
-// .col-2-right {
-//     position: absolute;
-//     top: 0;
-//     left: 50%;
-//     width: 50%;
-//     height: 100%;
-//     // background: skyblue;
-// }
-ion-icon {
-    margin: 10% 25% 25% 40%;
-}
-
-img {
-    border-radius: 100%;
-    width: 35%;
-    margin-top: 5%;
-    margin-left: 30%;
-}
-
-h1 {
-    text-align: center;
-}
-
-h4{
-    text-align: center;
-    top:3%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 20px;
-    margin-bottom: 2px;
-    font-size: 14px;
-    font-weight: normal;
-}
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 5%;
-}
-
-td,
-th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-.btn {
-    border: 1px solid black;
-    margin-top: 10%;
-    margin-left: 65%;
-    border: none;
-    color: white;
-    padding: 15px 25px;
-    font-size: 14px;
-    cursor: pointer;
-    // background-color: blue;
-}
-
-.btn1 {
-    margin-right: 10%;
-    margin-left: 5%;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: red;
-    border: 1px solid black;
-}
-
-button {
-    border: 1px solid black;
-    margin-top: 10%;
-}
-
-ion-card {
-    height: 16vh;
-    border: 1px solid black;
-}
-
-@media (max-width: 767.98px) {
+    // }
+    
+    .title,
+    .location {
+        text-align: center;
+    }
+    
+    .head {
+        width: 100%;
+        // background-color: burlywood;
+    }
+    
+    .content {
+        position: absolute;
+        width: 100%;
+    }
+    
     .column1 {
+        position: absolute;
+        top: 12%;
+        margin-top: 40px;
         width: 100%;
+        height: 200vh;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+         
     }
-    .column2 {
-        width: 100%;
-        position: relative;
+    
+    .left {
+        position: absolute;
+        text-align: center;
+        // top: 15px;
+        left: -16px;
+        width: 87%;
+        height: 10vh;
+        color: black;
+     
+      
     }
-}
+    
+    .mid {
+        // position: absolute;
+        // text-align: center;
+        // margin-left: -21px;
+        // margin-right: 20px;
+        // margin-top: 10px;
+        // top: -14px;
+        // left: -29%;
+        // width: 191%;
+        // height: 10vh;
+        padding:2px;
+        color: black;
+        border-left: 1px solid gray;
+        height: 70px;
+    }
+    
+    
+    ion-icon {
+        margin: 10% 25% 25% 40%;
+    }
+    
+    img {
+        border-radius: 100%;
+        width: 35%;
+        margin-top: 5%;
+        margin-left: 30%;
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    // table {
+    //     font-family: arial, sans-serif;
+    //     border-collapse: collapse;
+    //     width: 100%;
+    //     margin-top: 5%;
+    // }
+    
+    // td,
+    // th {
+    //     border: 1px solid black;
+    //     text-align: left;
+    //     padding: 8px;
+    // }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    
+    .btn {
+        border: 1px solid black;
+        margin-top: 10%;
+        margin-left: 65%;
+        border: none;
+        color: white;
+        padding: 15px 25px;
+        font-size: 14px;
+        cursor: pointer;
+        // background-color: blue;
+    }
+    
+    .btn1 {
+        margin-right: 10%;
+        margin-left: 5%;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: red;
+        border: 1px solid black;
+    }
+    
+    .viewBtn {
+        height: 10vh;
+        width: 38%;
+        border: 1px solid black;
+        margin-top: -3%;
+        font-size: larger;
+        font-style: bold;
+        background-color: skyblue;
+        border-radius: 12px;
+        padding: 5px 10px;
+        margin-right: -15%;
+        margin-left: 61%;
+    }
+    
+    ion-card {
+        height: 16vh;
+        border: 1px solid black;
+    }
+    
+    @media (max-width: 767.98px) {
+        .column1 {
+            width: 100%;
+        }
+        .column2 {
+            width: 100%;
+            position: relative;
+        }
+        .card-content-md p {
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: -8px;
+            margin-bottom: 2px;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.5;
+        }
+        .ionicon, svg {
+            display: block;
+            height: 120%;
+            width: 100%;
+        }
+    }

@@ -40,17 +40,6 @@ export class ModalBookingsPage implements OnInit {
     this.modalController.dismiss();
   }
 
-  deleteBtn(){
-    console.log("sldkhfksdhk");
-    
-    this.authService.deleteBookings(this.id).subscribe((data) => {
-      console.log(data)
-      // this.arrayOfStatus = data.data;
-      
-    })
-    
-  }
-
   // async passToOrders(b) {
   //   const modal = await this.modalController.create({
   //     component: ModalBookingsPage,
