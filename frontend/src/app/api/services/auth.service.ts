@@ -68,7 +68,9 @@ export class AuthService {
     //   console.log(key, value);
     // }
 
-    return this.httpClient.post<User>(url, JSON.stringify(formData), {
+    console.log('Form Data::', formData);
+
+    return this.httpClient.post<User>(url, JSON.stringify(data), {
       reportProgress: true,
       observe: 'events'
     });

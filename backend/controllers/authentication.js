@@ -63,7 +63,7 @@ routes.route("/profile").post((req, res) => {
 })
 
 routes.post("/upload", (req, res) => {
-    console.log('0 :: ',req.body.value);
+    console.log('0 :: ',req.body);
     if(upload.single("selfie")) {
         res.status(200).send({status: 200, message: "File uploaded successfully."})
     }else{

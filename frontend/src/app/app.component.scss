@@ -11,16 +11,16 @@ ion-item.active div {
 }
 
 #header_logo {
-    background-color: white;
+    background-color: rgba(255, 255, 255, .3);
     border-radius: 60%;
-    padding: 8px;
+    padding: 3px;
     width: 130px;
     height: 120px;
-    border: 4px solid #22bbea8f;
+    border: 2px solid #22bbea8f;
 }
 
 #head{
-    background: linear-gradient(to bottom left, #33ccff 0%, #0066ff 100%);
+    background: linear-gradient(to top right, #33ccff 0%, #3366ff 100%);
 }
 
 .header {
@@ -58,10 +58,10 @@ ion-item.active div {
 
 ion-note {
     position: absolute;
-    margin-left: 130px;
-    top: 120px;
+    margin-left: 115px;
+    top: 125px;
     font-size: 14px;
-    color: white !important;
+    color: #ffffff !important;
     font-weight: 300;
 }
 

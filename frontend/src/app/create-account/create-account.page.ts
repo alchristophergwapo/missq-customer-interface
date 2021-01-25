@@ -48,7 +48,7 @@ export class CreateAcountPage implements OnInit {
       name: "Geneva Rivas",
       address: "Talamban",
       code: "+63",
-      phone: 9458562899,
+      phone: 9482850377,
       email: "genevaxoxorivas99@gmail.com",
       birth_date: new Date('06/12/1999'),
       password: "jhenRivas1999",
