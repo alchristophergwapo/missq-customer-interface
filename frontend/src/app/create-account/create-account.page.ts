@@ -48,7 +48,7 @@ export class CreateAcountPage implements OnInit {
       name: "Geneva Rivas",
       address: "Talamban",
       code: "+63",
-      phone: 9458562899,
+      phone: 9482850377,
       email: "genevaxoxorivas99@gmail.com",
       birth_date: new Date('06/12/1999'),
       password: "jhenRivas1999",
@@ -69,21 +69,18 @@ export class CreateAcountPage implements OnInit {
   }
 
   async takeSelfie() {
-    let s = await this.photoService.addNewToGallery()
+    let s = await this.photoService.addNewToGallery();
     // this.selfie = this.photoService.photo; 
 
     console.log("Selfie: ", s);
 
-    if (s) {
+    if (s !== null) {
       this.user.picture = this.photoService.photo.filepath
 
       console.log(this.user.picture);
       
     }
 
-  }
-  deleteImage(photo,position) {
-    this.photoService.deletePicture(photo, position);
   }
 
   deleteImage(photo, position) {
