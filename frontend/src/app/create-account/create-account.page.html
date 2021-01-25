@@ -1,7 +1,6 @@
 <ion-content class="background">
     <ion-card>
         <div class="back">
-            <!-- <img height="30" float-left src="assets/images/back2.png" [routerLink]="['/home']"> -->
             <ion-icon name="arrow-back" [routerLink]="['/home']"></ion-icon>
         </div>
         <div id="container1">
@@ -49,7 +48,7 @@
                     <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
                         <ion-text color="danger">Phone Number is required</ion-text>
                     </ion-label><br>
-                    <!-- <ion-item>
+                    <ion-item>
                         <ion-select>
                             <ion-select-option *ngFor="let per of dataList">({{per.name}}) {{per.dial_code}}</ion-select-option>
                         </ion-select>
@@ -60,7 +59,7 @@
                     </ion-item>
                     <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
                         <ion-text color="danger">Phone Number is required</ion-text>
-                    </ion-label><br> -->
+                    </ion-label><br>
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
                         <ion-input name="email" [(ngModel)]='user.email' type="email" #emailCtrl="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
@@ -79,6 +78,7 @@
                     </ion-label><br>
                     <ion-item>
                         <ion-icon name="key-outline"></ion-icon>&nbsp;
+
                         <ion-input name="password" [(ngModel)]='user.password' compare-password="confirm"
                             type="password" #password="ngModel"
                             [ngClass]="{ 'is-invalid': form.submitted && password.invalid}" placeholder="Password"

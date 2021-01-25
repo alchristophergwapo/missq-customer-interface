@@ -85,7 +85,13 @@ export class AppComponent {
   }
 
   onClickNav(event) {
-
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.user = await res.user
+        console.log(res.user)
+      }
+    })
+    
     event.preventDefault();
 
     event.target.parentElement.classList.add("active");

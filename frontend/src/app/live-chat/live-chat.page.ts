@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { v4 } from 'uuid';
 import { ChatService } from '../api/services/chat.service';
-import { AuthService } from '../api/services/auth.service';
-import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { AuthService } from '../api/services/auth.service';
+
+import { HttpClient } from '@angular/common/http';
+import { v4 } from 'uuid';
 
 interface Message {
   id: string;
@@ -18,41 +19,50 @@ interface Message {
   templateUrl: './live-chat.page.html',
   styleUrls: ['./live-chat.page.scss'],
 })
-export class LiveChatPage implements OnInit {
 
+export class LiveChatPage implements OnInit {
   constructor(
+    private authService: AuthService,
     private http: HttpClient,
     private chat: ChatService,
-    private authService: AuthService,
-    private storage: Storage,
-  ) { }
+    private storage: Storage) { }
 
-  public messages;
+  public messages: Array<Message> = [];
   message: string = '';
-  public time = new Date();
-  public fullTime = this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds()
   lastMessageId;
-  currentUser;
   userAccount: string = '';
+  public currentUser;
+  public time = new Date();
+  public fullTime = this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds();
+  today = Date.now();
+
   sendMessage() {
     if (this.message !== '') {
+
       // Assign an id to each outgoing message. It aids in the process of differentiating between outgoing and incoming messages
       this.lastMessageId = v4();
       const data = {
         id: this.lastMessageId,
         text: this.message,
         timeStamp: this.fullTime,
-        user: this.currentUser.name
+        user: this.currentUser,
       };
 
       this.http
-        .post(`http://localhost:5000/messages`, data)
+        .post(`http://localhost:8080/messages`, data)
         .subscribe((res: Message) => {
-          this.messages = res
+          const message = {
+            ...res,
+            // The message type is added to distinguish between incoming and outgoingmessages. It also aids with styling of each message type
+            type: 'outgoing',
+          };
+          console.log(message);
 
+          this.messages = this.messages.concat(message);
           this.message = '';
         });
 
+      // console.log(data);
     }
   }
 
@@ -61,7 +71,6 @@ export class LiveChatPage implements OnInit {
     return {
       incoming: messageType === 'incoming',
       outgoing: messageType === 'outgoing',
-
     };
   }
 
@@ -70,7 +79,8 @@ export class LiveChatPage implements OnInit {
     channel.bind('message', (data) => {
       this.messages = data
     })
-    // this.account();
+
+    this.account();
 
   }
 
@@ -80,15 +90,30 @@ export class LiveChatPage implements OnInit {
         this.userAccount = res.user;
         let name = this.userAccount['name'];
         this.currentUser = name;
-        this.allRecentMessages();
+        console.log(this.currentUser);
+
       }
     })
+    this.allRecentMessages();
+
+    // this.authService.getUser().then(res => {
+    //   if (res) {
+    //     this.currentUser = res.name;
+    //     console.log(this.currentUser);
+    //     return this.currentUser;
+    //   } else {
+    //     return null;
+    //   }
+    // });
+    // this.allRecentMessages();
+
   }
 
   allRecentMessages() {
     this.authService.getAllMessages().subscribe((messages) => {
+      console.log(messages);
+      
       this.messages = messages
     })
   }
-
 }

@@ -1,13 +1,31 @@
 <ion-app>
     <ion-split-pane contentId="main-content">
-        <ion-menu contentId="main-content" *ngIf="user || dashboard">
-            <ion-content>
-                <ion-list id="inbox-list">
+        <ion-menu contentId="main-content" type="overlay" *ngIf="user || dashboard">
+            <ion-header>
+                <div id="head"><br>
                     <ion-list-header>
-                        <ion-img src="../assets/images/msqlogo.png"></ion-img><strong>Ms.Q Associates</strong>
-                    </ion-list-header>
-                    <ion-note>"We serve at your pleasure"</ion-note>
+                        <ion-img id="header_logo" src="../assets/images/msqlogo.png"></ion-img>&nbsp;
+                        <!-- <span id="company">Ms.Q
+                                Associates</span> -->
+                        <h1 id="company">Ms. Q
+                            Associates</h1>
+                    </ion-list-header><br>
 
+                    <ion-note>"We serve at your pleasure"</ion-note>
+                </div>
+            </ion-header>
+            <ion-content>
+                <!-- <div id="head"><br>
+                        <ion-list-header>
+                            <ion-img id="header_logo" src="../assets/images/msqlogo.png"></ion-img>&nbsp; -->
+                <!-- <span id="company">Ms.Q
+                                Associates</span> -->
+                <!-- <h1 id="company">Ms. Q
+                                        Associates</h1>
+                        </ion-list-header><br>
+                        <ion-note>"We serve at your pleasure"</ion-note>
+                    </div> -->
+                <ion-list id="inbox-list">
 
                     <ion-menu-toggle auto-hide="false">
                         <ion-item routerLink="profile" routerDirection="root" lines="none" *ngIf="user">

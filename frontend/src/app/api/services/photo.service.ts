@@ -12,7 +12,7 @@ export class PhotoService {
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
   public photo: Photo
-
+  
   constructor(platform: Platform) {
     this.platform = platform;
   }
