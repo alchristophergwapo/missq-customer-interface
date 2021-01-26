@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { AuthService } from '../api/services/auth.service';
 import { User } from '../api/models/user';
 import { CountryCodes } from '../api/models/country-codes';
 import { PhotoService } from '../api/services/photo.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CameraResultType, CameraSource, Capacitor, Plugins } from '@capacitor/core';
+
+const { Camera } = Plugins;
 
 @Component({
   selector: 'app-create-acount',
@@ -34,24 +38,24 @@ export class CreateAcountPage implements OnInit {
     private toastController: ToastController,
     private loadingController: LoadingController,
     private photoService: PhotoService,
+    private platform: Platform,
+    private sanitizer: DomSanitizer
   ) {
-    console.log(typeof (this.photoService.photos));
-
   }
 
   async ngOnInit() {
     this.user = {
-      name: "Christopher Alonzo",
+      name: "Geneva Rivas",
       address: "Talamban",
       code: "+63",
-      phone: 9458562899,
-      email: "toper@gmail.com",
-      birth_date: new Date('09/13/1997'),
-      password: "Toper@123",
-      confirm: "Toper@123",
+      phone: 9482850377,
+      email: "genevaxoxorivas99@gmail.com",
+      birth_date: new Date('06/12/1999'),
+      password: "jhenRivas1999",
+      confirm: "jhenRivas1999",
       picture: "",
       id_image: "",
-      id_number: 18106145
+      id_number: 18106143
     };
 
     fetch('assets/country-code.json').then(async res => {
@@ -61,17 +65,26 @@ export class CreateAcountPage implements OnInit {
     })
 
     await this.photoService.loadSaved();
-    
+
   }
 
   async takeSelfie() {
-    await this.photoService.addNewToGallery();
+    let s = await this.photoService.addNewToGallery();
     // this.selfie = this.photoService.photo; 
 
-    // console.log(typeof (this.selfie.webviewPath));
+    console.log("Selfie: ", s);
 
-    // this.user.picture = this.selfie.filepath
+    if (s !== null) {
+      this.user.picture = this.photoService.photo.filepath
 
+      console.log(this.user.picture);
+      
+    }
+
+  }
+
+  deleteImage(photo, position) {
+    this.photoService.deletePicture(photo, position);
   }
 
   showPassword() {
@@ -235,5 +248,45 @@ export class CreateAcountPage implements OnInit {
 
   onBlur(event) {
     document.getElementById("message").style.display = "none";
+  }
+
+  async getPicture(type: String) {
+    
+      const image = await Camera.getPhoto({
+        quality: 60,
+        allowEditing: true,
+        resultType: CameraResultType.Base64,
+      source: CameraSource.Prompt,
+      });
+   
+      this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
+      this.user.picture = `${Date.now()}.${image.format}`
+
+      console.log(this.selfie);
+      
+      this.authService.uploadImage(this.selfie, image.format).subscribe(()=>{
+
+      })
+
+  }
+
+  b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+ 
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+ 
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+ 
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+ 
+    const blob = new Blob(byteArrays, { type: contentType });
+    return blob;
   }
 }
