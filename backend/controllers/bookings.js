@@ -5,6 +5,7 @@ const Booking = require("../models/Booking");
 const Customers = require("../models/User");
 
 
+
 routes.route("/book_service").post(async(request, response) => {
     const booking = new Booking(request.body);
 
@@ -38,12 +39,13 @@ routes.route("/filteredOngoing").post((req, res) => {
         arryOfStatus = Filter.filter((filtered) => {
             return filtered.status.toLocaleLowerCase().includes(req.body.data.toLocaleLowerCase());
         });
-        res.status(200).send({ status: 200, message: "OngoingJobs:", data: arryOfStatus })
+        res.status(200).send({ status: 200, message: "Status:", data: arryOfStatus })
     }).catch(error => {
         console.log(error);
 
     })
 });
+
 
 // exports.filteredOngoing = (req, res) => {
 //     res.send('Testing!')

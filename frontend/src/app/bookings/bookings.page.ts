@@ -3,6 +3,8 @@ import { AuthService } from '../api/services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { ModalBookingsPage } from '../modal-bookings/modal-bookings.page';
+
+// import { ModalRatingsPage } from '../modal-ratings/modal-ratings.page';
 // import { MatDialog,  MatDialogConfig } from '@angular/material';
 import { ArtisanReviewService } from '../api/services/artisan-review.service';
 
@@ -26,11 +28,18 @@ export class BookingsPage implements OnInit {
     this.user = app.user;
     console.log("On profile: ", this.user);
   }
+  
+  ngOnInit() {
+    const userBookings = this.authService.user;
+
+    this.bookings = userBookings['bookings']
+    this.arryOfStatus=this.bookings;                                 
+
+  } 
   // constructor(private authService: AuthService, private reviewArtisan: ArtisanReviewService) { }
   rateArtisan(id, data) {
     this.reviewArtisan.review(id, data).subscribe(res => {
       console.log(res);
-
     })
   }
 
@@ -47,21 +56,6 @@ export class BookingsPage implements OnInit {
 
     })
   }
-
-  ngOnInit() {
-    const userBookings = this.authService.user;
-
-    this.bookings = userBookings['bookings']
-    this.arryOfStatus=this.bookings;                                 
-
-  }
-
-  // allStatus() {
-  //   this.authService.filteredOngoing(this.arryOfStatus,this.bookings).subscribe(res => {
-  //     console.log(res);
-  //     this.arryOfStatus = res.data;
-  //   })
-  // }
 
   //Filtered by Status PENDING
   filteredByPending() {
@@ -101,6 +95,8 @@ export class BookingsPage implements OnInit {
     });
     modal.present();
   }
+
+  
 
 }
 
