@@ -34,6 +34,11 @@ ion-row {
     margin-top: 3%;
     margin-left: 2%;
     text-align: justify;
+    color: black;
+}
+
+ion-label.user {
+    // color: rgb(29, 50, 59);
     color: rgba(52, 184, 245, 1);
 }
 
@@ -49,13 +54,14 @@ ion-label.user {
 .name {
     font-size: 14px;
     padding: 10px;
+    color: black;
 }
 
 .username {
     // margin-left:42%;
-    font-size: 20px;
+    font-size: 15px;
     padding: 5%;
-    color: rgba(5, 56, 80, 1);
+    color: black;
     font-weight: bold;
 }
 
@@ -78,6 +84,7 @@ ion-card {
         margin-left: 20%;
         margin-right: 20%;
     }
+    
 }
 
 @media (max-width: 698.98px) {
@@ -86,6 +93,17 @@ ion-card {
         margin-left: 3%;
         margin-right: 3%;
     }
+    h3{
+        font-size: 15px;
+    }
+}
+
+h3{
+    text-align: center;
+    margin-bottom: 5%;
+    // font-family: "Comic Sans MS", cursive, sans-serif;
+    color: black;
+    font-size: 25px;
 }
 
 h1 {
@@ -97,7 +115,8 @@ h1 {
 }
 
 nobr {
-    text-transform: uppercase;
+    // text-transform: uppercase;
+    font-weight: bold;
 }
 
 nobr.close {

@@ -2,8 +2,8 @@ ion-toolbar {
     border-bottom: 2px solid rgba(21, 160, 224, 1);
 }
 
-ion-content .container {
-    padding: 15px 25px 25px 25px;
+ion-content .container{  
+    padding:10px 20px 5px 20px;
 }
 
 .close-btn {
@@ -56,3 +56,109 @@ ion-footer ion-icon {
     right: 10px;
     bottom: 10px;
 }
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: aqua;
+    .chat-box {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #f9fbfc;
+      .message-area {
+        max-height: auto;
+        height: auto;
+        overflow: auto;
+        padding: 15px 10px;
+        .message {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-end;
+          p {
+            color: black;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 0px;
+            max-width: 95%;
+            min-width: 55%;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+            padding: 10px 15px 10px 7px;
+            margin: 5px 0;
+            background-color: aqua;
+            border-radius: 11px 11px 0 11px;
+          }
+        }
+        .message.incoming {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          p {
+            color: white;
+            border-radius: 0 11px 11px 11px;
+            background: #B9C0E9;
+          }
+        }
+        .message.outgoing {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-end;
+          p {
+            border-radius: 11px 11px 0 11px;
+          }
+        }
+      }
+      .emo-area {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        padding: 3px 10px;
+      }
+    }
+  }
+  .input-area {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: white;
+    form {
+      display: flex;
+      height: 100%;
+
+      ion-input {
+        width: 82%;
+        border: none;
+        padding: 5px 10px;
+        color: black;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Titillium Web', sans-serif;
+        background: inherit;
+        &:focus {
+          outline: none;
+        }
+      }
+      button {
+        width: 10%;
+        border: none;
+        color: rgba(21, 160, 224);
+        opacity: 0.9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: inherit;
+        ion-icon {
+          font-size: 2rem;
+        }
+      }
+    }
+  }

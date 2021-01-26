@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/api/services/auth.service';
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { MsqService } from 'src/app/api/services/msq-service.service';
@@ -23,10 +23,8 @@ export class LocationSelectPage implements OnInit {
   public static lat;
   public static lon;
 
-  myLocation: any;
-
   data: any;
-  service_location: any;
+  public service_location: any;
   user: any;
 
   constructor(
@@ -35,11 +33,24 @@ export class LocationSelectPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private service: MsqService,
     private authService: AuthService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastController: ToastController
   ) {
     this.getGeoLocation();
     this.user = authService.user;
-    console.log("On constructor: ",this.user);
+    this.service_location = "";
+    
+  }
+
+  ngOnInit() {
+    this.service_location = "";
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.data = JSON.parse(params.bookedData);
+    });
+
+    
+    this.user = this.authService.user;
+    
     
   }
 
@@ -62,6 +73,8 @@ export class LocationSelectPage implements OnInit {
       zoom: 13,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+
+    var selected_place = '';
 
     var input = document.getElementById("pac-input");
     var searchBox = new google.maps.places.SearchBox(input);
@@ -89,7 +102,8 @@ export class LocationSelectPage implements OnInit {
       places.forEach(function(place) {
         // LocationSelectPage.lat = place.geometry.viewport.Ya.i;
         // LocationSelectPage.lon = place.geometry.viewport.Ua.i;
-
+        selected_place = place.name +", "+place.formatted_address;
+        
         if (!place.geometry) {
           console.log("No geometry");
           return;
@@ -110,13 +124,22 @@ export class LocationSelectPage implements OnInit {
         }
       });
 
+      this.setServiceLocation(selected_place);
+
       map.fitBounds(bounds);
     });
+  }
+
+  setServiceLocation(loc) {
+    this.service_location = loc;
+    console.log(this.service_location);
+    
   }
 
   async proceedAlert() {
     const alert = await this.alertCtrl.create({
       header: 'Scheduled Date',
+      backdropDismiss: false,
       inputs: [
         {
           name: 'schedule',
@@ -129,12 +152,6 @@ export class LocationSelectPage implements OnInit {
           text: 'Book now',
           cssClass: 'book-now',
           handler: input => {
-            try {
-              // this.service_location = <HTMLInputElement>document.getElementById('pac-input').value;
-            } catch (error) {
-              console.log(error);
-              
-            }
             
             const datas = {
               service_booking: this.data.service_booking,
@@ -150,7 +167,7 @@ export class LocationSelectPage implements OnInit {
             let date = new Date()
             let todayDate = pipe.transform(date,"YYYY-MM-ddTHH:mm")
             if (todayDate == input.schedule || pipe.transform(input.schedule,"YYYY-MM-dd") < pipe.transform(date,"YYYY-MM-dd")) {
-              true
+              this.presentErrorToast();
             } else {
               this.bookServiceNow(datas);
             }
@@ -164,23 +181,29 @@ export class LocationSelectPage implements OnInit {
 
   bookServiceNow(serviceData) {
     this.service.bookNow(serviceData).subscribe(response => {
-      console.log("Response",response);
       if (response) {
         this.router.navigateByUrl('/place-order');
       }
     });
   }
 
-  ngOnInit() {
-    this.service_location = "";
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.data = JSON.parse(params.bookedData);
+  async presentErrorToast() {
+    const toast = await this.toastController.create({
+      header: 'Error Message!',
+      message: 'Date of service must be the day after today.',
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+            this.proceedAlert();
+          }
+        }
+      ]
     });
-
-    
-    this.user = this.authService.user;
-    
-    
+    toast.present();
   }
 
 }
