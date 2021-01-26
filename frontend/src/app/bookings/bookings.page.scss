@@ -1,10 +1,5 @@
-    // ion-toolbar {
-    //     // --background: rgba(21, 160, 224, 0.5) !important;
-    // }
     .head {
         width: 100%;
-        // font-size: 24px;    
-        // text-align: center;
     }
     
     .btnfil1,
@@ -17,7 +12,6 @@
         padding: 6px;
         font-size: 16px;
         cursor: pointer;
-        // background-color: red;
         border-radius: 10px;
     }
     
@@ -39,22 +33,6 @@
         top: 3%;
     }
     
-    // .buttonVD {
-    //     // margin-right: -15%;
-    //     // margin-left: 61%;
-    //     // color: black;
-    //     // padding: 6px;
-        // margin-top: -7%;
-        // height: -13vh;
-        // width: 50%;
-    //     // font-size: 16px;
-    //     // text-align: center;
-    //     // cursor: pointer;
-    //     // background-color: green;
-        // size: 50%
-
-    // }
-    
     .title,
     .location {
         text-align: center;
@@ -62,7 +40,6 @@
     
     .head {
         width: 100%;
-        // background-color: burlywood;
     }
     
     .content {
@@ -76,32 +53,20 @@
         margin-top: 40px;
         width: 100%;
         height: 200vh;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-         
+        border: 1px solid rgba(0, 0, 0, 0.2);       
     }
     
     .left {
         position: absolute;
         text-align: center;
-        // top: 15px;
+        margin-top: -2px;
         left: -16px;
         width: 87%;
         height: 10vh;
-        color: black;
-     
-      
+        color: black;   
     }
     
     .mid {
-        // position: absolute;
-        // text-align: center;
-        // margin-left: -21px;
-        // margin-right: 20px;
-        // margin-top: 10px;
-        // top: -14px;
-        // left: -29%;
-        // width: 191%;
-        // height: 10vh;
         padding:2px;
         color: black;
         border-left: 1px solid gray;
@@ -123,21 +88,7 @@
     h1 {
         text-align: center;
     }
-    
-    // table {
-    //     font-family: arial, sans-serif;
-    //     border-collapse: collapse;
-    //     width: 100%;
-    //     margin-top: 5%;
-    // }
-    
-    // td,
-    // th {
-    //     border: 1px solid black;
-    //     text-align: left;
-    //     padding: 8px;
-    // }
-    
+     
     tr:nth-child(even) {
         background-color: #dddddd;
     }
@@ -151,7 +102,6 @@
         padding: 15px 25px;
         font-size: 14px;
         cursor: pointer;
-        // background-color: blue;
     }
     
     .btn1 {
@@ -189,10 +139,12 @@
         .column1 {
             width: 100%;
         }
+
         .column2 {
             width: 100%;
             position: relative;
         }
+
         .card-content-md p {
             margin-left: 0;
             margin-right: 0;
@@ -202,6 +154,7 @@
             font-weight: normal;
             line-height: 1.5;
         }
+        
         .ionicon, svg {
             display: block;
             height: 120%;
