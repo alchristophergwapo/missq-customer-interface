@@ -9,7 +9,7 @@ import { WorkforceService } from '../api/services/workforce.service';
 })
 export class WorkforcePage{
   
-  segmentModel = "ideal";
+  segmentModel = "ideals";
 
   ideals: any;
 
