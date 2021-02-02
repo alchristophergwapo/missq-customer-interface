@@ -73,11 +73,11 @@ export class PlaceOrderPage implements OnInit {
   };
 
   costOfServie: any = {
-    Nanny: 84,
-    Housekeeping: 93,
-    TutorCumNanny: 150,
+    Nanny: 250,
+    Housekeeping: 250,
+    TutorCumNanny: 325,
     MassageTherapist: 500,
-    Haircut: 100
+    Haircut: 250
   };
 
   description: any = {
