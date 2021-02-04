@@ -83,8 +83,8 @@ export class PlaceOrderPage implements OnInit {
   };
 
   additionalCost: any = {
-    Nanny: 1.66666,
-    Housekeeping: 1.66666,
+    Nanny: 1.666666666666667,
+    Housekeeping: 1.666666666666667,
     TutorCumNanny: 2.5,
     MassageTherapist: 5
   };
