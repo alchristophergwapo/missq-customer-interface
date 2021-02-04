@@ -142,3 +142,12 @@ ion-footer ion-button.btn {
     width: 90vw;
     --background-color: rgba(21, 160, 224, 1);
 }
+
+ion-card-content{
+    height: 100%;
+    overflow: scroll;
+}
+
+ion-card{
+    margin-bottom: 15%;
+}

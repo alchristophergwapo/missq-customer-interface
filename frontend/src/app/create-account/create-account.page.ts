@@ -68,21 +68,6 @@ export class CreateAcountPage implements OnInit {
 
   }
 
-  async takeSelfie() {
-    let s = await this.photoService.addNewToGallery();
-    // this.selfie = this.photoService.photo; 
-
-    console.log("Selfie: ", s);
-
-    if (s !== null) {
-      this.user.picture = this.photoService.photo.filepath
-
-      console.log(this.user.picture);
-      
-    }
-
-  }
-
   deleteImage(photo, position) {
     this.photoService.deletePicture(photo, position);
   }
@@ -112,6 +97,8 @@ export class CreateAcountPage implements OnInit {
 
     this.authService.register(form.value, this.idPic, this.selfie).subscribe(response => {
       if (response) {
+        console.log(response);
+        
         this.isSubmitted = true;
         this.dismiss();
         this.router.navigateByUrl("login");
@@ -172,6 +159,10 @@ export class CreateAcountPage implements OnInit {
 
       // console.log(blobURL);
       this.idPic = file;
+
+      // this.authService.uploadImage(this.idPic, this.user.id_image).subscribe(() => {
+
+      // })
       console.log(this.idPic);
 
     };
@@ -196,7 +187,7 @@ export class CreateAcountPage implements OnInit {
 
   validatePassword(event) {
     const password = {
-      length: 6,
+      length: 8,
       uppercase: /[A-Z]/g,
       lowercase: /[a-z]/g,
       number: /[0-9 ]/g
@@ -250,42 +241,42 @@ export class CreateAcountPage implements OnInit {
     document.getElementById("message").style.display = "none";
   }
 
-  async getPicture(type: String) {
-    
-      const image = await Camera.getPhoto({
-        quality: 60,
-        allowEditing: true,
-        resultType: CameraResultType.Base64,
+  async getPicture() {
+
+    const image = await Camera.getPhoto({
+      quality: 60,
+      allowEditing: true,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Prompt,
-      });
-   
-      this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
-      this.user.picture = `${Date.now()}.${image.format}`
+    });
 
-      console.log(this.selfie);
-      
-      this.authService.uploadImage(this.selfie, image.format).subscribe(()=>{
+    this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
+    this.user.picture = `${Date.now()}.${image.format}`
 
-      })
+    console.log(this.selfie);
+
+    // this.authService.uploadImage(this.selfie, this.user.picture).subscribe(() => {
+
+    // })
 
   }
 
   b64toBlob(b64Data, contentType = '', sliceSize = 512) {
     const byteCharacters = atob(b64Data);
     const byteArrays = [];
- 
+
     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
       const slice = byteCharacters.slice(offset, offset + sliceSize);
- 
+
       const byteNumbers = new Array(slice.length);
       for (let i = 0; i < slice.length; i++) {
         byteNumbers[i] = slice.charCodeAt(i);
       }
- 
+
       const byteArray = new Uint8Array(byteNumbers);
       byteArrays.push(byteArray);
     }
- 
+
     const blob = new Blob(byteArrays, { type: contentType });
     return blob;
   }

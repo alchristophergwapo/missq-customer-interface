@@ -27,12 +27,12 @@ export class ModalBookingsPage implements OnInit {
     this.user = this.authService.user;
   }
 
-  rateArtisan(id, data) {
-    this.reviewArtisan.review(id, data).subscribe(res => {
-      console.log(res);
+  // rateArtisan(id, data) {
+  //   this.reviewArtisan.review(id, data).subscribe(res => {
+  //     console.log(res);
 
-    })
-  }
+  //   })
+  // }
 
   ngOnInit() 
   {

@@ -60,8 +60,8 @@ export class AuthService {
     formData.append('picture', data.picture);
     formData.append('id_image', data.id_image);
     formData.append('id_number', data.id_number);
-    formData.append('picture', id_image, data.id_image);
-    formData.append('id_image', selfie, data.picture)
+    formData.append('img[]', id_image, data.id_image);
+    formData.append('img[]', selfie, data.picture)
     // debugger
 
     // for (let [key, value] of formData.entries()) {
@@ -70,19 +70,19 @@ export class AuthService {
 
     console.log('Form Data::', formData);
 
-    return this.httpClient.post<User>(url, JSON.stringify(data), {
+    return this.httpClient.post<User>(url, formData, {
       reportProgress: true,
       observe: 'events'
     });
   };
 
-  uploadImage(blobData, ext) {
+  uploadImage(blobData, name) {
     const formData: any = new FormData();
     var data ={
       key:"",
       value:""
     }
-    formData.append('selfie', blobData, `myimage.${ext}`);
+    formData.append('picture', blobData, name);
 
     for (let [key, value] of formData.entries()) {
       // console.log('Upload::',key, "value :: "+value);
@@ -93,7 +93,7 @@ export class AuthService {
 
     console.log("formData :: ",formData.entries() )
 
-    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload`, data);
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload`, formData);
   }
 
   login(user: User): Observable<any> {
