@@ -12,8 +12,6 @@ export class PlaceOrderPage implements OnInit {
 
   segmentModel = "Nanny";
 
-  // @ViewChild(IonSlides) slides: IonSlides;
-
   nanny: any = [
     {
       MediaUrl: "../../assets/images/nanny.jpg"
@@ -74,12 +72,20 @@ export class PlaceOrderPage implements OnInit {
     pager: true
   };
 
-  descriptions: any = {
+  costOfServie: any = {
     Nanny: 84,
     Housekeeping: 93,
     TutorCumNanny: 150,
     MassageTherapist: 500,
     Haircut: 100
+  };
+
+  description: any = {
+    Nanny: 'Hours of service',
+    Housekeeping: 'Hours of service',
+    TutorCumNanny: 'Hours of service',
+    MassageTherapist: 'Hours of service',
+    Haircut: 'Count of heads'
   };
 
   totalCost: number;
@@ -90,16 +96,25 @@ export class PlaceOrderPage implements OnInit {
     private app: AppComponent
     // private msqService: MsqService,
     // private authService: AuthService
-  ) {}
+  ) { }
+
+  ngOnInit() {
+    if (!this.totalCost) {
+      this.totalCost = this.costOfServie[this.segmentModel];
+    }
+
+    this.app.dashboard = true;
+  }
 
   async bookService() {
     const alert = await this.alertCtrl.create({
       header: this.segmentModel,
       subHeader: "Please fill up the needed information!",
+      backdropDismiss: false,
       inputs: [
         {
           name: "hours",
-          placeholder: "Hours of service",
+          placeholder: this.description[this.segmentModel],
           type: "number"
         },
         {
@@ -112,14 +127,14 @@ export class PlaceOrderPage implements OnInit {
         {
           text: "Cancel",
           role: "cancel",
-          handler: data => {}
+          handler: data => { }
         },
         {
           text: "Next",
           handler: data => {
             if (data.hours && data.notes) {
               this.totalCost =
-                this.descriptions[this.segmentModel] * data.hours;
+                this.costOfServie[this.segmentModel] * data.hours;
               const params = {
                 service_booking: this.segmentModel,
                 cost: this.totalCost,
@@ -160,14 +175,6 @@ export class PlaceOrderPage implements OnInit {
     });
 
     await alert.present();
-  }
-
-  ngOnInit() {
-    if (!this.totalCost) {
-      this.totalCost = this.descriptions[this.segmentModel];
-    }
-
-    this.app.dashboard = true;
   }
 
   segmentChanged(event) {

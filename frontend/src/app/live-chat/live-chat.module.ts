@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LiveChatPageRoutingModule } from './live-chat-routing.module';
 
-import { LiveChatPage } from './live-chat.page';
+import {LiveChatPage } from './live-chat.page';
 
 @NgModule({
   imports: [

@@ -1,22 +1,17 @@
-    // ion-toolbar {
-    //     // --background: rgba(21, 160, 224, 0.5) !important;
-    // }
-    .head {
+.head {
         width: 100%;
-        // font-size: 24px;    
-        // text-align: center;
     }
     
     .btnfil1,
     .btnfil2,
     .btnfil3 {
         width: 100%;
+        height: 10vh;
         border: black;
         color: white;
         padding: 6px;
         font-size: 16px;
         cursor: pointer;
-        // background-color: red;
         border-radius: 10px;
     }
     
@@ -38,19 +33,6 @@
         top: 3%;
     }
     
-    .buttonVD {
-        margin-right: -15%;
-        margin-left: 61%;
-        color: black;
-        padding: 6px;
-        margin-top: -7%;
-        height: 13vh;
-        font-size: 16px;
-        text-align: center;
-        cursor: pointer;
-        // background-color: green;
-    }
-    
     .title,
     .location {
         text-align: center;
@@ -58,7 +40,6 @@
     
     .head {
         width: 100%;
-        // background-color: burlywood;
     }
     
     .content {
@@ -72,57 +53,27 @@
         margin-top: 40px;
         width: 100%;
         height: 200vh;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        // background-color: black;
+        border: 1px solid rgba(0, 0, 0, 0.2);       
     }
     
     .left {
         position: absolute;
         text-align: center;
-        top: -14px;
+        margin-top: -2px;
         left: -16px;
         width: 87%;
         height: 10vh;
-        color: black;
-        // background-color: pink;
+        color: black;   
     }
     
     .mid {
-        position: absolute;
-        top: -14px;
-        left: -29%;
-        width: 191%;
-        height: 10vh;
-        // background: burlywood;
+        padding:2px;
         color: black;
+        border-left: 1px solid gray;
+        height: 70px;
     }
     
-    // .right {
-    //     margin-left: -279%;
-    //     border: none;
-    //     height: 9vh;
-    //     margin-top: -131%;
-    //     color: white;
-    //     padding: 15px 32px;
-    //     font-size: 16px;
-    //     cursor: pointer;
-    //     background-color: green;
-    // }
-    // .col-2-left {
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 50%;
-    //     height: 100%;
-    // }
-    // .col-2-right {
-    //     position: absolute;
-    //     top: 0;
-    //     left: 50%;
-    //     width: 50%;
-    //     height: 100%;
-    //     // background: skyblue;
-    // }
+    
     ion-icon {
         margin: 10% 25% 25% 40%;
     }
@@ -137,21 +88,7 @@
     h1 {
         text-align: center;
     }
-    
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        margin-top: 5%;
-    }
-    
-    td,
-    th {
-        border: 1px solid black;
-        text-align: left;
-        padding: 8px;
-    }
-    
+     
     tr:nth-child(even) {
         background-color: #dddddd;
     }
@@ -165,7 +102,6 @@
         padding: 15px 25px;
         font-size: 14px;
         cursor: pointer;
-        // background-color: blue;
     }
     
     .btn1 {
@@ -181,11 +117,14 @@
     }
     
     .viewBtn {
+        height: 10vh;
+        width: 38%;
         border: 1px solid black;
-        margin-top: 10%;
+        margin-top: -3%;
+        font-size: larger;
         font-style: bold;
         background-color: skyblue;
-        border-radius: 12%;
+        border-radius: 12px;
         padding: 5px 10px;
         margin-right: -15%;
         margin-left: 61%;
@@ -200,8 +139,24 @@
         .column1 {
             width: 100%;
         }
+
         .column2 {
             width: 100%;
             position: relative;
+        }
+        .card-content-md p {
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: -8px;
+            margin-bottom: 2px;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.5;
+        }
+        
+        .ionicon, svg {
+            display: block;
+            height: 120%;
+            width: 100%;
         }
     }

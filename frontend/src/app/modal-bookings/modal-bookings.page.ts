@@ -23,7 +23,15 @@ export class ModalBookingsPage implements OnInit {
   // rating: boolean = true;
 
   constructor(private toastCtrl: ToastController, private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
+
     this.user = this.authService.user;
+  }
+
+  rateArtisan(id, data) {
+    this.reviewArtisan.review(id, data).subscribe(res => {
+      console.log(res);
+
+    })
   }
 
   ngOnInit() 

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CameraPhoto, CameraResultType, CameraSource, Camera as Cam, Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
-import { File, FileEntry } from "@ionic-native/file/ngx";
+import { CameraPhoto, CameraResultType, CameraSource, Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
 import { Platform } from "@ionic/angular";
-import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 
-const { Filesystem, Storage } = Plugins;
+const { Filesystem, Storage, Camera} = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -14,54 +12,35 @@ export class PhotoService {
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
   public photo: Photo
-
-  options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  };
-
-  constructor(platform: Platform, private file: File, private camera: Camera) {
+  
+  constructor(platform: Platform) {
     this.platform = platform;
   }
 
   public async addNewToGallery() {
 
     // Take a photo
-    if (this.platform.is('cordova')) {
-      this.camera.getPicture(this.options).then((imageData) => {
-        this.file.resolveLocalFilesystemUrl(imageData).then((entry: FileEntry) => {
-          entry.file(file => {
-            console.log("File: ", file);
+    await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100
+    }).then(async (file) => {
+      // console.log('File: ', file);
+      const savedImageFile = await this.savePicture(file);
 
-          })
-        })
+      console.log("saved file : ", savedImageFile);
+
+      this.photos.unshift(savedImageFile);
+      this.photo = savedImageFile;
+
+      Storage.set({
+        key: this.PHOTO_STORAGE,
+        value: JSON.stringify(this.photos)
       });
-    } else {
-      const capturedPhoto = await Cam.getPhoto({
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
-        quality: 100
-      }).then(async (file) => {
-        // console.log('File: ', file);
-        const savedImageFile = await this.savePicture(file);
 
-        console.log(savedImageFile);
-        
-        this.photos.unshift(savedImageFile);
-        this.photo = savedImageFile;
-  
-        Storage.set({
-          key: this.PHOTO_STORAGE,
-          value: JSON.stringify(this.photos)
-        });
-  
-        return this.photo;
-        
-      })
+      return this.photo;
 
-    }
+    })
 
     // console.log("Captured Photo: ", capturedPhoto);
 
@@ -71,7 +50,8 @@ export class PhotoService {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
 
-    console.log(base64Data);
+
+    // console.log(base64Data);
 
 
     // Write the file to the data directory
@@ -106,7 +86,6 @@ export class PhotoService {
       const file = await Filesystem.readFile({
         path: cameraPhoto.path
       });
-
       return file.data;
     }
     else {
@@ -132,7 +111,7 @@ export class PhotoService {
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
 
-    console.log(this.photos);
+    // console.log("these are the photos uploaded: ", this.photos);
 
 
     // Easiest way to detect when running on the web:
