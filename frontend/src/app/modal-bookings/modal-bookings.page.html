@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
         <ion-title>Bookings</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -9,8 +9,6 @@
         <ion-icon name="arrow-back" (click)="closeModal()"></ion-icon>
         <div class="content">
             <div class="column2">
-                <button class="btn">Edit</button>
-                <button class="btn1">Delete Booking</button>
                 <img [src]="user.picture">
                 <h1>{{user.name}}</h1>
                 <ion-card class="card">

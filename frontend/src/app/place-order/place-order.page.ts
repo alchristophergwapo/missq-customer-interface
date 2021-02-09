@@ -133,7 +133,7 @@ export class PlaceOrderPage implements OnInit {
           name: "additional",
           placeholder: "Additional Minute/s",
           type: "number",
-          value: 0
+          // value: 0
 
         },
         {
@@ -201,7 +201,7 @@ export class PlaceOrderPage implements OnInit {
     const alert = await this.alertCtrl.create({
       cssClass: "my-custom-class",
       header: "Reminder!",
-      message: "Please fill up the needed information.",
+      message: "Please indicate the number of heads.",
       inputs: [
         {
           name: "head",
