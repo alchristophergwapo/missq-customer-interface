@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
+import { Storage } from "@ionic/storage";
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
@@ -102,7 +103,8 @@ export class PlaceOrderPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private router: Router,
-    private app: AppComponent
+    private app: AppComponent,
+    private storage: Storage
     // private msqService: MsqService,
     // private authService: AuthService
   ) { }
@@ -131,6 +133,7 @@ export class PlaceOrderPage implements OnInit {
           name: "additional",
           placeholder: "Additional Minute/s",
           type: "number",
+          value: 0
 
         },
         {
@@ -287,7 +290,6 @@ export class PlaceOrderPage implements OnInit {
 
     await alert.present();
   }
-
   async inputErrorHaircut() {
     const alert = await this.alertCtrl.create({
       cssClass: "my-custom-class",
@@ -314,6 +316,15 @@ export class PlaceOrderPage implements OnInit {
 
   segmentChanged(event) {
     this.segmentModel = event;
+  }
+
+  updateUser(){
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.app.user.name = await res.user.name;
+        console.log(res.user);
+      }
+    })
   }
 
 }

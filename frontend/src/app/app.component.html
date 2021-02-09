@@ -63,12 +63,6 @@
                         <ion-label>Logout</ion-label>
                     </div>
                 </ion-item>
-            </ion-menu-toggle>
-        </ion-list>
-    </ion-content>
-    <ion-footer>
-        <ion-toolbar>
-            <ion-menu-toggle auto-hide="false">
                 <ion-item lines="none" (click)="clickChatSupport()">
                     <div>
                         <ion-icon name="help-circle-outline"></ion-icon>
@@ -82,8 +76,8 @@
                     </div>
                 </ion-item>
             </ion-menu-toggle>
-        </ion-toolbar>
-    </ion-footer>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 <ion-router-outlet id="main-content" *ngIf="loaded"></ion-router-outlet>
 <div *ngIf="!loaded" id="main-content" style="width: 100%; height: 100%;">
@@ -94,7 +88,6 @@
         <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
         <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
     </div>
-
     <ion-list>
         <ion-list-header>
             <ion-label>

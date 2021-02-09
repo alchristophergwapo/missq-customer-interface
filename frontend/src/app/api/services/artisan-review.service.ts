@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ArtisanReviewService {
 
-  ARTISAN_REVIEW_ADDRESS: string = 'http://localhost:8080/';
+  ARTISAN_REVIEW_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
 
   constructor(
     private httpClient: HttpClient
