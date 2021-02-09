@@ -351,7 +351,7 @@ ion-content {
     height: 45px;
     border-radius: 100%;
     display: block;
-    background: linear-gradient(50deg, white, rgba(21, 160, 224));
+    background: linear-gradient(50deg, white, rgba(21, 160, 224, 1));
     transition: all 265ms ease-out;
 }
 
@@ -365,7 +365,7 @@ ion-content {
     -ms-transform: scale(2.2);
     -webkit-transform: scale(2.2);
     color: white;
-    background: -webkit-linear-gradient(50deg, white, rgba(21, 160, 224));
+    background: -webkit-linear-gradient(50deg, white, rgba(21, 160, 224, 1));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 265ms ease-in;

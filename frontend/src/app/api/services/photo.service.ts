@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CameraPhoto, CameraResultType, CameraSource, Capacitor,  FilesystemDirectory, Plugins } from '@capacitor/core';
-
+import { CameraPhoto, CameraResultType, CameraSource, Capacitor, FilesystemDirectory, Plugins } from '@capacitor/core';
 import { Platform } from "@ionic/angular";
 
-const { Camera, Filesystem, Storage } = Plugins;
+const { Filesystem, Storage, Camera} = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -12,31 +11,48 @@ export class PhotoService {
   public photos: Photo[] = [];
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
-
+  public photo: Photo
+  
   constructor(platform: Platform) {
     this.platform = platform;
   }
 
   public async addNewToGallery() {
+
     // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
+    await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
       quality: 100
-    });
+    }).then(async (file) => {
+      // console.log('File: ', file);
+      const savedImageFile = await this.savePicture(file);
 
-    const savedImageFile = await this.savePicture(capturedPhoto);
-    this.photos.unshift(savedImageFile);
+      console.log("saved file : ", savedImageFile);
 
-    Storage.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos)
-    });
+      this.photos.unshift(savedImageFile);
+      this.photo = savedImageFile;
+
+      Storage.set({
+        key: this.PHOTO_STORAGE,
+        value: JSON.stringify(this.photos)
+      });
+
+      return this.photo;
+
+    })
+
+    // console.log("Captured Photo: ", capturedPhoto);
+
   }
 
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
+
+
+    // console.log(base64Data);
+
 
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
@@ -70,7 +86,6 @@ export class PhotoService {
       const file = await Filesystem.readFile({
         path: cameraPhoto.path
       });
-
       return file.data;
     }
     else {
@@ -95,6 +110,9 @@ export class PhotoService {
     // Retrieve cached photo array data
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
+
+    // console.log("these are the photos uploaded: ", this.photos);
+
 
     // Easiest way to detect when running on the web:
     // “when the platform is NOT hybrid, do this”

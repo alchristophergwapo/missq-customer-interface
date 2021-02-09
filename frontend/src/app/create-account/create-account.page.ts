@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { AuthService } from '../api/services/auth.service';
 import { User } from '../api/models/user';
 import { CountryCodes } from '../api/models/country-codes';
 import { PhotoService } from '../api/services/photo.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CameraResultType, CameraSource, Capacitor, Plugins } from '@capacitor/core';
+
+const { Camera } = Plugins;
 
 @Component({
   selector: 'app-create-acount',
   templateUrl: './create-account.page.html',
   styleUrls: ['./create-account.page.scss'],
 })
-export class CreateAccountPage implements OnInit {
+export class CreateAcountPage implements OnInit {
 
   public user: User;
   isSubmitted = false;
@@ -26,26 +30,32 @@ export class CreateAccountPage implements OnInit {
   public showPass = false;
   public showPass1 = false;
 
+  isLoading: boolean = null;
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private toastController: ToastController,
-    private photoService: PhotoService
-  ) { }
+    private loadingController: LoadingController,
+    private photoService: PhotoService,
+    private platform: Platform,
+    private sanitizer: DomSanitizer
+  ) {
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.user = {
-      name: "Christopher Alonzo",
+      name: "Geneva Rivas",
       address: "Talamban",
-      code: "",
-      phone: null,
-      email: "toper@gmail.com",
-      birth_date: null,
-      password: "Toper@123",
-      confirm: "Toper@123",
+      code: "+63",
+      phone: 9482850377,
+      email: "genevaxoxorivas99@gmail.com",
+      birth_date: new Date('06/12/1999'),
+      password: "jhenRivas1999",
+      confirm: "jhenRivas1999",
       picture: "",
       id_image: "",
-      id_number: null
+      id_number: 18106143
     };
 
     fetch('assets/country-code.json').then(async res => {
@@ -53,11 +63,13 @@ export class CreateAccountPage implements OnInit {
       this.dataList = result.data;
 
     })
+
+    await this.photoService.loadSaved();
+
   }
 
-  takeSelfie() {
-    this.selfie = this.photoService.addNewToGallery();
-    console.log(this.selfie);
+  deleteImage(photo, position) {
+    this.photoService.deletePicture(photo, position);
   }
 
   showPassword() {
@@ -78,37 +90,41 @@ export class CreateAccountPage implements OnInit {
   }
 
   async register(form) {
-    // const loading = await this.loadingController.create({
-    //   message: 'Creating account...',
-    // });
-    // await loading.present();
-    const formData = new FormData(form);
 
-    // formData.append('name', form.value.name);
-    // formData.append('address', form.value.address);
-    // formData.append('code', form.value.code);
-    // formData.append('phone', form.value.phone);
-    // formData.append('email', form.value.email);
-    // formData.append('birth_date', form.value.birth_date);
-    // formData.append('password', form.value.password);
-    // formData.append('id_number', form.value.id_number);
-    // formData.append('picture', blob, this.selfie);
-    // formData.append('id_image', blob, this.idPic);
+    await this.present();
 
-    // for(let [name, value] of formData) {
-    //    // key1 = value1, then key2 = value2
-    // }
-    // var data = {
-    //   body: formData
-    // }
+    form.value.id_image = this.idPic.name;
 
-    console.log(formData);
-
-    this.authService.register(form.value).subscribe(response => {
+    this.authService.register(form.value, this.idPic, this.selfie).subscribe(response => {
       if (response) {
+        console.log(response);
+        
         this.isSubmitted = true;
+        this.dismiss();
         this.router.navigateByUrl("login");
       }
+    });
+  }
+
+  async present() {
+    this.isLoading = true;
+    return await this.loadingController.create({
+      message: 'Creating account...',
+    }).then(a => {
+      a.present().then(() => {
+        console.log('presented');
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort presenting'));
+        }
+      });
+    });
+  }
+
+  async dismiss() {
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(async () => {
+      console.log('dismissed')
+      await this.presentToast('Account Created!')
     });
   }
 
@@ -131,10 +147,9 @@ export class CreateAccountPage implements OnInit {
       console.log("No file selected!");
       return
     }
-    let file = event.target.files[0];
-    const reader = new FileReader();
+    let file = (event.target as HTMLInputElement).files[0];
 
-    reader.readAsArrayBuffer(file);
+    const reader = new FileReader();
 
     reader.onload = () => {
 
@@ -142,17 +157,20 @@ export class CreateAccountPage implements OnInit {
 
       let blobURL: string = URL.createObjectURL(blob)
 
-      console.log(blobURL);
+      // console.log(blobURL);
+      this.idPic = file;
 
-      if (type == 'selfie') {
-        this.selfie = file;
-      } else {
-        this.idPic = file;
-      }
+      // this.authService.uploadImage(this.idPic, this.user.id_image).subscribe(() => {
+
+      // })
+      console.log(this.idPic);
+
     };
     reader.onerror = error => {
       //handle errors
     };
+
+    reader.readAsDataURL(file);
 
   }
 
@@ -169,7 +187,7 @@ export class CreateAccountPage implements OnInit {
 
   validatePassword(event) {
     const password = {
-      length: 6,
+      length: 8,
       uppercase: /[A-Z]/g,
       lowercase: /[a-z]/g,
       number: /[0-9 ]/g
@@ -221,5 +239,45 @@ export class CreateAccountPage implements OnInit {
 
   onBlur(event) {
     document.getElementById("message").style.display = "none";
+  }
+
+  async getPicture() {
+
+    const image = await Camera.getPhoto({
+      quality: 60,
+      allowEditing: true,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Prompt,
+    });
+
+    this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
+    this.user.picture = `${Date.now()}.${image.format}`
+
+    console.log(this.selfie);
+
+    // this.authService.uploadImage(this.selfie, this.user.picture).subscribe(() => {
+
+    // })
+
+  }
+
+  b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: contentType });
+    return blob;
   }
 }

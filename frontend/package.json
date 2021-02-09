@@ -48,7 +48,10 @@
     "email-existence": "^0.1.6",
     "multer": "^1.4.2",
     "ng-validate-equal": "^1.0.4",
+    "pusher": "^4.0.2",
+    "pusher-js": "^7.0.2",
     "rxjs": "~6.5.5",
+    "sweetalert2": "^10.14.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
@@ -61,6 +64,7 @@
     "@capacitor/cli": "2.4.2",
     "@ionic-native/file-transfer": "^5.30.0",
     "@ionic/angular-toolkit": "^3.0.0",
+    "@ionic/app-scripts": "^3.2.4",
     "@types/googlemaps": "^3.40.2",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
@@ -69,6 +73,7 @@
     "cordova-android": "^9.0.0",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -97,7 +102,9 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-nativegeocoder": {}
+      "cordova-plugin-nativegeocoder": {},
+      "cordova-plugin-camera": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "browser",

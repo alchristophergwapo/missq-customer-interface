@@ -9,7 +9,6 @@ ion-icon.back {
         margin-left: 5px;
         margin-right: 10px;
     }
-    
 }
 
 ion-toolbar {
@@ -20,13 +19,13 @@ ion-toolbar {
     width: 95%;
     border: none;
     padding: 5px;
-    border-bottom: 1.5px solid rgba(21, 160, 224);
+    border-bottom: 1.5px solid rgba(21, 160, 224, 1);
 }
 
 .controls:focus {
     outline: none;
     border: none;
-    border-bottom: 2px solid rgba(48, 181, 243);
+    border-bottom: 2px solid rgba(48, 181, 243, 1);
 }
 
 #maps {
