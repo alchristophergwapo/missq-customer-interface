@@ -83,7 +83,7 @@ ion-footer ion-icon {
             font-size: 13px;
             font-weight: bold;
             margin: 0px;
-            max-width: 95%;
+            max-width: 75%;
             min-width: 55%;
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
             padding: 10px 15px 10px 7px;
@@ -112,13 +112,6 @@ ion-footer ion-icon {
             border-radius: 11px 11px 0 11px;
           }
         }
-      }
-      .emo-area {
-        position: absolute;
-        bottom: 50px;
-        left: 0;
-        width: 100%;
-        padding: 3px 10px;
       }
     }
   }
@@ -149,7 +142,7 @@ ion-footer ion-icon {
       button {
         width: 10%;
         border: none;
-        color: rgb(21, 160, 224);
+        color: rgba(21, 160, 224, 1);
         opacity: 0.9;
         display: flex;
         justify-content: center;

@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
         cb(null, DIR);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + "-" + file.originalname)
+        cb(null, file.originalname)
     }
 });
 
@@ -62,61 +62,48 @@ routes.route("/profile").post((req, res) => {
 
 })
 
-routes.post("/upload", (req, res) => {
-    console.log(req.files);
-    if(upload.single("selfie")) {
-        res.status(200).send({status: 200, message: "File uploaded successfully."})
-    }
+routes.post("/upload", upload.single("picture"), (req, res) => {
+    // console.log('0 :: ',req.body);
+    // if(upload.single("selfie")) {
+    res.status(200).send({ status: 200, message: "File uploaded successfully." })
+    // }else{
+    //     res.status(500).send({status: 500, message: "File uploaded unsssuccessfully."})
+    // }
 });
 
-routes.post("/register", (req, res) => {
-    console.log(req.body);
-    upload(req, res, function (err) {
-        console.log(req.body);
-        console.log(req.files);
-        if (err) {
-            return res.end("Error uploading file.");
-        }
-        res.end("File is uploaded");
-    });
-    // console.log(req.files);
-    // // return request.files
-    // res.status(200);
-    // // upload.single('id_image');
+routes.post("/register", upload.array('img[]', 3), (request, response) => {
 
-    // // const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
+    const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
 
-    // let pass = bcrypt.hashSync(request.body.password);
+    let pass = bcrypt.hashSync(request.body.password);
 
-    // let account = new Customer(request.body);
+    let account = new Customer(request.body);
 
-    // account['password'] = pass;
-    // account['picture'] = Date.now() + '-' + request.body.picture;
-    // account['id_image'] = Date.now() + '-' + request.body.id_image;
+    account['password'] = pass;
+    account['picture'] = url + request.body.picture;
+    account['id_image'] = url + request.body.id_image;
     // // console.log(request.file);
 
-    // account
-    //     .save()
-    //     .then(user => {
-    //         const expiresIn = 24 * 60 * 60;
-    //         const accessToken = jwt.sign({ id: user._id }, SECRET_KEY, {
-    //             expiresIn: expiresIn
-    //         });
-    //         response
-    //             .status(200)
-    //             .json({
-    //                 user: user,
-    //                 access_token: accessToken,
-    //                 expires_in: expiresIn,
-    //                 status: 200
-    //             });
-    //         console.log('User created: ', user);
+    account
+        .save()
+        .then(user => {
+            if (user) {
+                response
+                    .status(200)
+                    .json({
+                        user: user,
+                        status: 200
+                    });
+                console.log('User created: ', user);
+            } else {
+                response.status(400).send({status: 200, message: 'Cannot create user!'})
+            }
 
-    //     })
-    //     .catch(error => {
-    //         console.log("Error => ", error);
-    //         response.status(400).send("Failed to store to database!", error.body);
-    //     });
+        })
+        .catch(error => {
+            console.log("Error => ", error);
+            response.status(400).send("Failed to store to database!", error.body);
+        });
 });
 
 routes.route("/login").post((req, res) => {
@@ -159,17 +146,5 @@ routes.route("/login").post((req, res) => {
             console.log("Error ", error);
         });
 });
-
-
-
-
-// routes.route("/forgot-password").get((req, res) => {
-//     res.render('forgot-password');
-// });
-
-// routes.route("/forgot-password").post((req, res) => {
-
-// });
-
 
 module.exports = routes;

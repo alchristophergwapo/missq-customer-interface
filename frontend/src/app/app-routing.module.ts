@@ -46,7 +46,6 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuardService]
   },
- 
   {
     path: 'live-chat',
     loadChildren: () => import('./live-chat/live-chat.module').then( m => m.LiveChatPageModule),

@@ -32,6 +32,7 @@ export class LiveChatPage implements OnInit {
   lastMessageId;
   userAccount: string = '';
   public currentUser;
+  public image;
   public time = new Date();
   public fullTime = this.time.getHours() + ":" + this.time.getMinutes() + ":" + this.time.getSeconds();
   today = Date.now();
@@ -89,7 +90,9 @@ export class LiveChatPage implements OnInit {
       if (res) {
         this.userAccount = res.user;
         let name = this.userAccount['name'];
+        let img = this.userAccount['picture'];
         this.currentUser = name;
+        this.image = img;
         console.log(this.currentUser);
 
       }

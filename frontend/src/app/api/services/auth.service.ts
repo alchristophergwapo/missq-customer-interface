@@ -15,7 +15,7 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
 
   public user: Observable<any>;
-  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
+  AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
   authSubject = new BehaviorSubject(false);
 
   constructor(
@@ -47,7 +47,7 @@ export class AuthService {
 
     var formData: any = new FormData();
 
-    console.log(data);
+    console.log('Register::',data);
     
 
     formData.append('name', data.name);
@@ -60,27 +60,38 @@ export class AuthService {
     formData.append('picture', data.picture);
     formData.append('id_image', data.id_image);
     formData.append('id_number', data.id_number);
-    formData.append('picture', id_image, data.id_image);
-    formData.append('id_image', selfie, data.picture)
+    formData.append('img[]', id_image, data.id_image);
+    formData.append('img[]', selfie, data.picture)
     // debugger
 
     // for (let [key, value] of formData.entries()) {
     //   console.log(key, value);
     // }
 
-    return this.httpClient.post<User>(url, JSON.stringify(formData), {
+    console.log('Form Data::', formData);
+
+    return this.httpClient.post<User>(url, formData, {
       reportProgress: true,
       observe: 'events'
     });
   };
 
-  uploadImage(blobData, ext) {
+  uploadImage(blobData, name) {
     const formData: any = new FormData();
-    formData.append('selfie', blobData, `myimage.${ext}`);
+    var data ={
+      key:"",
+      value:""
+    }
+    formData.append('picture', blobData, name);
 
     for (let [key, value] of formData.entries()) {
-      console.log(key, value);
+      // console.log('Upload::',key, "value :: "+value);
+      data.key = key;
+      data.value = value;
     }
+    console.log("data :: ", data)
+
+    console.log("formData :: ",formData.entries() )
 
     return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload`, formData);
   }

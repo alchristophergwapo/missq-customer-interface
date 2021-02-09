@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from "@ionic/storage";
-import { ActionSheetController, Platform } from '@ionic/angular';
+import { ActionSheetController, LoadingController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -16,6 +16,8 @@ export class AppComponent {
   currentRoute: string;
   user: any;
 
+  loaded: boolean = false;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -23,9 +25,11 @@ export class AppComponent {
     private actionSheetController: ActionSheetController,
     private router: Router,
     private authService: AuthService,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
   ) {
     this.initializeApp();
+    this.presentLoading();
   }
 
   ngOnInit() {
@@ -59,6 +63,22 @@ export class AppComponent {
         }
       })
     });
+  }
+
+  async presentLoading() {
+    this.loaded = false;
+    const loading = await this.loadingController.create({
+      spinner: "lines",
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      animated: true,
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    this.loaded = true;
+    console.log('Loading dismissed!');
   }
 
   logout() {
