@@ -26,7 +26,6 @@ export class ModalpopupPage implements OnInit {
     this.authService.getUser().then(user => {
       this.user = user;
       this.user.name = user.name;
-      // console.log("user _ id :: ", this.user.id)
     })
   }
 
@@ -39,14 +38,14 @@ export class ModalpopupPage implements OnInit {
     this.authService.updateContactInfo(form.value).subscribe((response) => {
       if (response) {
         console.log(response);
-        
+        this.app.user.name = response.user.name;
         this.profile.user = response.user;
-        this.app.user = response.user;
         this.app.dashboard = true;
-        console.log("Profile user: ", this.profile.user);
         this.profile.user = response.user;
         console.log("App Component user: ", this.app.user);
       }
+        // this.router.navigate(['/profile']);
+
     });
     console.log("maoy sulod sa form ",form);
     

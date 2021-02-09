@@ -4,6 +4,8 @@ import {ModalController} from '@ionic/angular';
 import {ModalpopupPage} from '../modalpopup/modalpopup.page';
 import { AuthService } from '../api/services/auth.service';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -15,16 +17,19 @@ export class ProfilePage implements OnInit {
   logo: string;
   user: any;
 
-  constructor(private modalController: ModalController, private authService: AuthService ) {
+  constructor(private modalController: ModalController, private authService: AuthService, private storage: Storage, private app: AppComponent) {
     this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:"", birth_date: ""}
   }
 
   ngOnInit() {
-    console.log("every open sa profile ni siya")
+ 
     this.authService.getUser().then(user => {
       this.user = user;
-    })   
+    });
+
+    console.log("opened profile");
   }
+  
 
   editProfile() {
     this.modalController.create({component:ModalpopupPage, cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
@@ -35,9 +40,16 @@ export class ProfilePage implements OnInit {
   updateUser(){ 
     this.authService.getUser().then(user =>  {
       this.user = user;
-    console.log("update user ni siya char lang huuhuhaha", this.user)
-
+    })
+  }
+ updateUserinApp(){
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.app.user= await res.user;
+        console.log(res.user);
+      }
     })
   }
 
 }
+

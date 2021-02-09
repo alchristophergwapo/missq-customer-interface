@@ -46,7 +46,7 @@ export class CreateAcountPage implements OnInit {
   async ngOnInit() {
     this.user = {
       name: "Geneva Rivas",
-      address: "Talamban",
+      address: 'Talamban',
       code: "+63",
       phone: 9482850377,
       email: "genevaxoxorivas99@gmail.com",
@@ -66,10 +66,6 @@ export class CreateAcountPage implements OnInit {
 
     await this.photoService.loadSaved();
 
-  }
-
-  deleteImage(photo, position) {
-    this.photoService.deletePicture(photo, position);
   }
 
   showPassword() {
