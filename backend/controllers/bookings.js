@@ -6,7 +6,7 @@ const Customers = require("../models/User");
 
 
 
-routes.route("/book_service").post(async(request, response) => {
+routes.route("/book_service").post(async (request, response) => {
     const booking = new Booking(request.body);
 
     await booking.save();
@@ -20,6 +20,19 @@ routes.route("/book_service").post(async(request, response) => {
 
     await author.save();
 });
+
+routes.route("/mark_done").post((request, response) => {
+    const booking = Booking.findById({ _id: request._id })
+
+    if (booking) {
+        booking.status = "Completed"
+        booking.save().then(updatedBooking => {
+            response.status(200).send({ status: 200, booking: updatedBooking })
+        }).catch(error => {
+            response.status(400).send({ status: 400 })
+        })
+    }
+})
 
 routes.route("/trial", (req, res) => {
     res.send('Testing!')

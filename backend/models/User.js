@@ -31,7 +31,8 @@ let User = new Schema({
     password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        select: false
     },
     picture: {
         type: String,
@@ -50,18 +51,18 @@ let User = new Schema({
         required: false
     }
 },
-{
-    collection: 'customers'
-}
+    {
+        collection: 'customers'
+    }
 );
 
 User.virtual('bookings', {
     ref: 'Bookings',
     localField: '_id',
     foreignField: 'author',
- });
- 
- User.set('toObject', { virtuals: true });
- User.set('toJSON', { virtuals: true });
+});
+
+User.set('toObject', { virtuals: true });
+User.set('toJSON', { virtuals: true });
 
 module.exports = mongo.model('Customers', User);

@@ -50,7 +50,7 @@ export class LiveChatPage implements OnInit {
       };
 
       this.http
-        .post(`http://localhost:8080/messages`, data)
+        .post(`http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/messages`, data)
         .subscribe((res: Message) => {
           const message = {
             ...res,

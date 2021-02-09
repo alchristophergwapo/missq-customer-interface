@@ -62,15 +62,6 @@ routes.route("/profile").post((req, res) => {
 
 })
 
-routes.post("/upload", upload.single("picture"), (req, res) => {
-    // console.log('0 :: ',req.body);
-    // if(upload.single("selfie")) {
-    res.status(200).send({ status: 200, message: "File uploaded successfully." })
-    // }else{
-    //     res.status(500).send({status: 500, message: "File uploaded unsssuccessfully."})
-    // }
-});
-
 routes.post("/register", upload.array('img[]', 3), (request, response) => {
 
     const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
@@ -96,7 +87,7 @@ routes.post("/register", upload.array('img[]', 3), (request, response) => {
                     });
                 console.log('User created: ', user);
             } else {
-                response.status(400).send({status: 200, message: 'Cannot create user!'})
+                response.status(400).send({ status: 200, message: 'Cannot create user!' })
             }
 
         })
