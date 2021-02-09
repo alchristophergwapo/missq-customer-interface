@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
+import { Storage } from "@ionic/storage";
+
 
 @Component({
   selector: 'app-place-order',
@@ -87,10 +89,18 @@ export class PlaceOrderPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private router: Router,
-    private app: AppComponent
+    private app: AppComponent,
+    private storage: Storage
     // private msqService: MsqService,
     // private authService: AuthService
   ) {}
+  ngOnInit() {
+    if (!this.totalCost) {
+      this.totalCost = this.descriptions[this.segmentModel];
+    }
+
+    this.app.dashboard = true;
+  }
 
   async bookService() {
     const alert = await this.alertCtrl.create({
@@ -162,16 +172,19 @@ export class PlaceOrderPage implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() {
-    if (!this.totalCost) {
-      this.totalCost = this.descriptions[this.segmentModel];
-    }
-
-    this.app.dashboard = true;
-  }
+ 
 
   segmentChanged(event) {
     this.segmentModel = event;
+  }
+
+  updateUser(){
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.app.user.name = await res.user.name;
+        console.log(res.user);
+      }
+    })
   }
 
 }

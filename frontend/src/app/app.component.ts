@@ -29,11 +29,12 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.storage.get('jwt-token').then(res => {
+    this.storage.get('jwt-token').then(async res=> {
       if (res) {
-        this.user = res.user
+        this.user = await res.user
+        console.log(res.user)
       }
-    });
+    })
     this.setDashboard(true);
   }
 
@@ -127,4 +128,18 @@ export class AppComponent {
       this.dashboard = false;
     }
   }
+
+  openProfile(){
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.user = await res.user
+        console.log(res.user)
+      }
+    })
+    // this.router.navigateByUrl('/place-order', { skipLocationChange: false }).then(() => {
+    this.router.navigate(['/profile']);
+  // });
+  }
+
+  
 }

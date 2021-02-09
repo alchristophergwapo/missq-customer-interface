@@ -46,7 +46,7 @@ export class CreateAcountPage implements OnInit {
   async ngOnInit() {
     this.user = {
       name: "Geneva Rivas",
-      address: "Talamban",
+      address: 'Talamban',
       code: "+63",
       phone: 9458562899,
       email: "genevaxoxorivas99@gmail.com",
@@ -74,7 +74,7 @@ export class CreateAcountPage implements OnInit {
 
     console.log("Selfie: ", s);
 
-    if (s) {
+    if (s !== null) {
       this.user.picture = this.photoService.photo.filepath
 
       console.log(this.user.picture);
@@ -83,10 +83,6 @@ export class CreateAcountPage implements OnInit {
 
   }
   deleteImage(photo,position) {
-    this.photoService.deletePicture(photo, position);
-  }
-
-  deleteImage(photo, position) {
     this.photoService.deletePicture(photo, position);
   }
 

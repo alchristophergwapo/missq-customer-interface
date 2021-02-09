@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+            <ion-menu-button (click) = "updateUserinApp()"></ion-menu-button>
         </ion-buttons>
         <ion-title>Profile</ion-title>
     </ion-toolbar>
@@ -9,15 +9,8 @@
 <ion-content class="background">
     <ion-card>
         <ion-card-content>
-            <nobr class='close'>
-                <ion-icon name="arrow-back" [routerLink]="['/place-order']"></ion-icon>
-            </nobr>
-            <!-- <h3>
-                Account Information
-            </h3> -->
-            <!-- http://localhost:8080/public/images/id.jpg id='userimage' -->
-          
-            <ion-label class="user"><img src="http://localhost:8080/public/images/id.jpg" id='userimage' alt=""><br>
+
+            <ion-label class="user"><img src="{{user.picture}}" id='userimage' alt=""><br>
                 <h6 class="username">{{ user.name }}
                 <ion-icon (click)="editProfile()" name="pencil"></ion-icon></h6>
             </ion-label>
