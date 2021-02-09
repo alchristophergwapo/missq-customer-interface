@@ -60,7 +60,6 @@ export class ModalBookingsPage implements OnInit {
           text: 'Okay',
           role: 'cancel',
           handler: () => {
-            console.log("this.proceedAlert();")
           }
         }
       ]
