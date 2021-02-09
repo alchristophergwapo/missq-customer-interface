@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header [translucent]="true">
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button (click) = "updateUser()"></ion-menu-button>
+            <ion-menu-button (click)="updateUser()"></ion-menu-button>
         </ion-buttons>
         <ion-title>Place Order</ion-title>
     </ion-toolbar>
@@ -152,7 +152,7 @@
                     <h2>Minimum: &#8369;{{costOfServie.MassageTherapist}} for the first 90 minutes.</h2>
                     <h2>Additional hours: &#8369;150/30 minutes.</h2>
                     <br />
-                    <div  class="divCard">
+                    <div class="divCard">
                         A trained and licensed professional that practices the manual, or hands-on, movement of soft body tissues to enhance a person's well-being.
                     </div>
                 </ion-card-content>
