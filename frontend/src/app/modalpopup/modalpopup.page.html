@@ -1,26 +1,31 @@
 <ion-content>
-  <ion-item>
-  </ion-item>
-  <form #form="ngForm" (ngSubmit)="updateContactInfo(form)"> 
     <ion-item>
-      <ion-input name="name" type="text" [ngModel]="user.name"><nobr>name: </nobr></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input name="phone" type="Text" [ngModel]="user.phone" pattern="\d*" maxlength="10"><nobr>Phone:  </nobr></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="address" type="text" [ngModel]="user.address" >Address: </ion-input><br>
-    </ion-item>
-    <ion-item>
-      <ion-input name="email" type="email" [ngModel]="user.email"><nobr>Email: </nobr></ion-input><br>
-    </ion-item>
-    <ion-item>
-      <ion-input name="ID" type="Number" [ngModel]="user.id_number"><nobr>ID: </nobr></ion-input><br>
-    </ion-item>
-    <ion-item id = "hideId">
-      <ion-input name="id"  [readonly]="readonly" [hidden]    = "true"   type="id" [ngModel]="user.id" ><nobr>id: </nobr></ion-input>
-    </ion-item>
-    <ion-button size="large" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
-  </form  >
-  <ion-button size="large" color='danger' type="cancel"  (click)='CloseModal()' expand="block">Cancel</ion-button>
+    <form #form="ngForm" (ngSubmit)="updateContactInfo(form)">
+        <ion-item>
+            <ion-input name="name" type="text" [ngModel]="user.name">
+                <nobr>name: </nobr>
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input name="phone" type="Text" [ngModel]="user.phone" pattern="\d*" maxlength="10">
+                <nobr>Phone: </nobr>
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input name="address" type="text" [ngModel]="user.address">Address: </ion-input><br>
+        </ion-item>
+        <ion-item>
+            <ion-input name="email" type="email" [ngModel]="user.email">
+                <nobr>Email: </nobr>
+            </ion-input><br>
+        </ion-item>
+        <ion-item id="hideId">
+            <ion-input name="id" [readonly]="readonly" [hidden]="true" type="id" [ngModel]="user.id">
+                <nobr>id: </nobr>
+            </ion-input>
+        </ion-item>
+        <ion-button size="large" color='secondary' type="submit" (click)='CloseModal()' expand="block">Update profile</ion-button>
+    </form>
+    <ion-button size="large" color='danger' type="cancel" (click)='CloseModal()' expand="block">Cancel</ion-button>
 </ion-content>
