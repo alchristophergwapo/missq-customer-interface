@@ -63,21 +63,21 @@ app.post('/messages', (req, res) => {
     const result = sentiment.analyze(text);
     const comparative = result.comparative;
     const tone =
-      comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
+        comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
     const data = {
-      text,
-      id,
-      timeStamp: new Date(),
-      sentiment: {
-        tone,
-        score: result.score,
-      },
+        text,
+        id,
+        timeStamp: new Date(),
+        sentiment: {
+            tone,
+            score: result.score,
+        },
     };
     pusher.trigger('chat', 'message', data);
     res.json(data);
-  });
+});
 
-  app.get('/chat/allMessages', (req, res) => {
+app.get('/chat/allMessages', (req, res) => {
     res.send(messages)
 })
 //Live Chat
@@ -105,7 +105,6 @@ mongoose.connect(url, connectionParams).then(() => {
 
 const authentication = require('./controllers/authentication');
 const msq_service = require('./controllers/bookings');
-const msq_bookings = require('./controllers/bookings');
 const forgot_password = require('./controllers/forgotPassword');
 const rate_artisan = require('./controllers/rateArtisan');
 
