@@ -113,10 +113,14 @@ export class PlaceOrderPage implements OnInit {
       backdropDismiss: false,
       inputs: [
         {
-          name: "hours",
+          name: "additional hours",
           placeholder: this.description[this.segmentModel],
           type: "number"
         },
+        // {
+        //   name: "minutes",
+        //   value: 30,
+        // },
         {
           name: "notes",
           placeholder: "Notes",
@@ -132,7 +136,7 @@ export class PlaceOrderPage implements OnInit {
         {
           text: "Next",
           handler: data => {
-            if (data.hours && data.notes) {
+            if (data.hours <= 12 && data.notes) {
               this.totalCost =
                 this.costOfServie[this.segmentModel] * data.hours;
               const params = {
