@@ -62,14 +62,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
-  },  {
-    path: 'information-modal',
-    loadChildren: () => import('./information-modal/information-modal.module').then( m => m.InformationModalPageModule)
-  },
+    path: 'modal-bookings',
+    loadChildren: () => import('./modal-bookings/modal-bookings.module').then( m => m.ModalBookingsPageModule)
+  }
 
-  
+
 ];
 
 @NgModule({

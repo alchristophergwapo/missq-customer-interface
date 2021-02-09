@@ -6,7 +6,7 @@ ion-header ion-toolbar ion-title {
     font-size: 20px;
 }
 
-ion-header ion-toolbar ion-icon{
+ion-header ion-toolbar ion-icon {
     font-size: 25px;
     font-weight: 900;
 }
@@ -16,7 +16,7 @@ ion-toolbar ion-title {
     font-size: 12px;
 }
 
-ion-toolbar ion-title p {  
+ion-toolbar ion-title p {
     --position: absolute;
     top: 0;
 }
@@ -39,12 +39,13 @@ ion-note {
     margin-left: 60px;
 }
 
-ion-item ion-icon, ion-toolbar ion-button {
+ion-item ion-icon,
+ion-toolbar ion-button {
     color: rgba(21, 160, 224, .5) !important;
 }
 
 ion-toggle {
-    --background-checked: rgba(21, 160, 224) !important;
+    --background-checked: rgba(21, 160, 224, 1) !important;
     --handle-background: black;
     --handle-background-checked: black;
-} 
+}

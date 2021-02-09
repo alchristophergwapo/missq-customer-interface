@@ -10,58 +10,53 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar color="light">
     <ion-card>
-      <ion-segment value="ideals" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="workforceIdeals">
+      <ion-segment value="ideal" color="white" scrollable="true" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="ideals">
           <ion-label>Ideal</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="workforceBanned">
+        <ion-segment-button value="banned">
           <ion-label>Banned</ion-label>
         </ion-segment-button>
       </ion-segment>
     </ion-card>
   </ion-toolbar>
 
-  <ion-card *ngIf="segmentModel === 'workforceIdeals'">
+  <ion-card *ngIf="segmentModel === 'ideals'">
     <ion-card-header color="secondary">
       <ion-card-title>Ideal</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content *ngIf="ideals.length > 0">
       <ion-list>
-        <ion-item-sliding *ngFor="let worker of ideals; let i = index">
+        <ion-item-sliding *ngFor="let item of ideals; let i = index">
           <ion-item>
-            <button class="display" (click)="openModal(worker);">
-              {{worker.name}}
-            </button>
+            {{item.title}}
           </ion-item>
-          <ion-item-options side="end">
-            <ion-icon class="del" (click)="dltList(worker._id)" name="trash"></ion-icon>
+          <ion-item-options side="end" >
+            <ion-icon class="del" (click)="dltList(item)" name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
     </ion-card-content>
-    <p *ngIf="ideals?.length === 0">No ideal worker.</p>
+    <p *ngIf="ideals.length <= 0">No ideal worker.</p>
   </ion-card>
 
-  <ion-card *ngIf="segmentModel === 'workforceBanned'">
+  <ion-card *ngIf="segmentModel === 'banned'">
     <ion-card-header color="secondary">
       <ion-card-title>Banned</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item-sliding *ngFor="let worker of banned ; let i = index">
+        <ion-item-sliding *ngFor="let item of banned; let i = index">
           <ion-item>
-            <button class="display" >
-                {{worker.name}}
-            </button>
+            {{item}}
           </ion-item>
-          <ion-item-options side="end">
-            <ion-icon class="del" (click)="dltBanned(worker._id)" name="trash"></ion-icon>
+          <ion-item-options side="end" >
+            <ion-icon class="del" [routerLink]="['/ideal', item._id]"   name="trash"></ion-icon>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
     </ion-card-content>
-    <p *ngIf="banned?.length === 0">No banned worker.</p>
   </ion-card>
 
 </ion-content>

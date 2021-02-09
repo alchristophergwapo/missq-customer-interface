@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from "@ionic/storage";
-import { ActionSheetController, Platform } from '@ionic/angular';
+import { ActionSheetController, LoadingController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -12,11 +12,12 @@ import { AuthService } from './api/services/auth.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  dashboard : boolean = true;
+  dashboard: boolean = true;
   currentRoute: string;
   user: any;
-  artisan: any;
-  
+
+  loaded: boolean = false;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -24,9 +25,21 @@ export class AppComponent {
     private actionSheetController: ActionSheetController,
     private router: Router,
     private authService: AuthService,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
   ) {
     this.initializeApp();
+    this.presentLoading();
+  }
+
+  ngOnInit() {
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.user = await res.user
+        console.log(res.user)
+      }
+    })
+    this.setDashboard(true);
   }
 
   initializeApp() {
@@ -44,7 +57,7 @@ export class AppComponent {
 
       this.currentRoute = window.location.pathname;
 
-      this.storage.get('jwt-token').then(async res=> {
+      this.storage.get('jwt-token').then(async res => {
         if (res) {
           this.user = await res.user
         }
@@ -52,12 +65,34 @@ export class AppComponent {
     });
   }
 
+  async presentLoading() {
+    this.loaded = false;
+    const loading = await this.loadingController.create({
+      spinner: "lines",
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      animated: true,
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    this.loaded = true;
+    console.log('Loading dismissed!');
+  }
+
   logout() {
     this.authService.logout();
   }
 
   onClickNav(event) {
-
+    this.storage.get('jwt-token').then(async res=> {
+      if (res) {
+        this.user = await res.user
+        console.log(res.user)
+      }
+    })
+    
     event.preventDefault();
 
     event.target.parentElement.classList.add("active");
@@ -114,12 +149,17 @@ export class AppComponent {
     }
   }
 
-  ngOnInit() {
-    this.storage.get('jwt-token').then(res=> {
+  openProfile(){
+    this.storage.get('jwt-token').then(async res=> {
       if (res) {
-        this.user = res.user
+        this.user = await res.user
+        console.log(res.user)
       }
-    });
-    this.setDashboard(true);
+    })
+    // this.router.navigateByUrl('/place-order', { skipLocationChange: false }).then(() => {
+    this.router.navigate(['/profile']);
+  // });
   }
+
+  
 }

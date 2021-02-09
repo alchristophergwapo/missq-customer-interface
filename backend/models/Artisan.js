@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-// var bcrypt = require('bcrypt    
-
 
 var ArtisansSchema = new mongoose.Schema({
     name: {
@@ -30,10 +28,6 @@ var ArtisansSchema = new mongoose.Schema({
         type: String,
         required: 'password is required'
     },
-    confirmPassword: {
-        type: String,
-        required: 'confirm password is required'
-    },
     selfie: {
         type: String,
         required: 'selfie is required'
@@ -58,12 +52,16 @@ var ArtisansSchema = new mongoose.Schema({
     },
     nannyFile: {
         type: String
+        
     },
     housekeepingFile: {
         type: String
+        
     },
     haircutMassageFile: {
         type: String
+        
     },
 });
+ 
 module.exports = mongoose.model('Artisans', ArtisansSchema);
