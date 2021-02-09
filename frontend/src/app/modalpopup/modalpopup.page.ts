@@ -44,7 +44,8 @@ export class ModalpopupPage implements OnInit {
         this.profile.user = response.user;
         console.log("App Component user: ", this.app.user);
       }
-        // this.router.navigate(['/profile']);
+        this.router.navigate(['/profile']);
+        this.modalController.dismiss();
 
     });
     console.log("maoy sulod sa form ",form);

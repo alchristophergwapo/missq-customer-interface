@@ -1,26 +1,38 @@
 <ion-content>
-  <ion-item>
-  </ion-item>
-  <form #form="ngForm" (ngSubmit)="updateContactInfo(form)"> 
-    <ion-item>
-      <ion-input name="name" type="text" [ngModel]="user.name"><nobr>name: </nobr></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="phone" type="Text" [ngModel]="user.phone" pattern="\d*" maxlength="10"><nobr>Phone:  </nobr></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="address" type="text" [ngModel]="user.address" >Address: </ion-input><br>
-    </ion-item>
-    <ion-item>
-      <ion-input name="email" type="email" [ngModel]="user.email"><nobr>Email: </nobr></ion-input><br>
-    </ion-item>
-    <ion-item>
-      <ion-input name="ID" type="Number" [ngModel]="user.id_number"><nobr>ID: </nobr></ion-input><br>
-    </ion-item>
-    <ion-item id = "hideId">
-      <ion-input name="id"  [readonly]="readonly" [hidden]    = "true"   type="id" [ngModel]="user.id" ><nobr>id: </nobr></ion-input>
-    </ion-item>
-    <ion-button size="medium" color='secondary' type="submit"  (click)='CloseModal()' expand="block">Update profile</ion-button>
-  </form  >
-  <ion-button size="medium" color='danger' type="cancel" fill="outline"  (click)='CloseModal()' expand="block">Cancel</ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <b>Update Information:</b>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="updateContactInfo(form)">
+        <ion-item>
+          <ion-input name="name" type="text" [ngModel]="user.name">
+            <nobr>Name: &nbsp; </nobr>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input name="phone" type="Text" [ngModel]="user.phone" pattern="\d*" maxlength="10">
+            <nobr>Phone: &nbsp; </nobr>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input name="address" type="text" [ngModel]="user.address">Address: &nbsp; </ion-input><br>
+        </ion-item>
+        <ion-item>
+          <ion-input name="email" type="email" [ngModel]="user.email">
+            <nobr>Email: &nbsp; </nobr>
+          </ion-input><br>
+        </ion-item> 
+        <ion-item id="hideId">
+          <ion-input name="id" [readonly]="readonly" [hidden]="true" type="id" [ngModel]="user.id">
+            <nobr>id: </nobr>
+          </ion-input>
+        </ion-item>
+        <ion-button size="medium" color='secondary' type="submit" expand="block">Update profile</ion-button>
+        <ion-button size="medium" color='danger' type="cancel" fill="outline" (click)='CloseModal()' expand="block">Cancel</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
