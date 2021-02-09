@@ -4,11 +4,6 @@ import { Artisan } from 'src/app/api/models/artisan';
 import { ModalController, NavParams } from '@ionic/angular';
 import { ActivatedRoute, Params } from '@angular/router';
 
-
-
-
-
-
 @Component({
   selector: 'app-information-modal',
   templateUrl: './information-modal.page.html',
