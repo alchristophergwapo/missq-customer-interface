@@ -3,6 +3,7 @@ import {ModalController} from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../api/services/auth.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-bookings',
@@ -22,7 +23,8 @@ export class ModalBookingsPage implements OnInit {
   arrayOfStatus=[];
   // rating: boolean = true;
 
-  constructor(private toastCtrl: ToastController, private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
+  constructor(private toastCtrl: ToastController, private app: AppComponent, private authService: AuthService, private modalController: ModalController,
+    private router: Router) { 
 
     this.user = this.authService.user;
   }
@@ -46,6 +48,7 @@ export class ModalBookingsPage implements OnInit {
   closeModal()
   {
     this.modalController.dismiss();
+    this.router.navigateByUrl('/bookings')
   }
 
 

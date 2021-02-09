@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/api/services/auth.service';
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { MsqService } from 'src/app/api/services/msq-service.service';
@@ -34,7 +34,8 @@ export class LocationSelectPage implements OnInit {
     private service: MsqService,
     private authService: AuthService,
     private alertCtrl: AlertController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) {
     this.getGeoLocation();
     this.user = authService.user;
@@ -180,7 +181,8 @@ export class LocationSelectPage implements OnInit {
   }
 
   bookServiceNow(serviceData) {
-    this.service.bookNow(serviceData).subscribe(response => {
+    this.service.bookNow(serviceData).subscribe(async response => {
+      await this.presentLoading(); 
       if (response) {
         this.router.navigateByUrl('/place-order');
       }
@@ -204,6 +206,18 @@ export class LocationSelectPage implements OnInit {
       ]
     });
     toast.present();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
 }

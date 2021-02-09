@@ -1,153 +1,109 @@
 ion-content {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 ion-toolbar ion-card {
-    height: 100px;
+  height: 100px;
 }
 
 ion-segment {
-    height: 100px;
+  height: 100px;
 }
 
 .segment::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
 
 /* Hide scrollbar for IE, Edge and Firefox */
 
 .segment {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .icon {
-    width: auto;
-    height: 50px;
+  width: auto;
+  height: 50px;
 }
 
-// ion-segment-button.s1,
-// ion-segment-button.s2,
-// ion-segment-button.s3,
-// ion-segment-button.s4 {
-//   border-right: 1px solid rgba(21, 160, 224, .5);
-// }
 ion-toolbar ion-button {
-    margin-left: 4px;
+  margin-left: 4px;
 }
 
 ion-slides {
-    height: 100%;
+  height: 100%;
 }
 
 ion-slide img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 ion-card-header {
-    text-align: center;
-}
-
-.nanny ion-icon {
-    font-size: 20px;
-    padding: 4px;
-    border: 1px solid black;
-    border-radius: 15px;
-}
-
-.sched {
-    width: 49%;
-}
-
-.book-now {
-    width: 49%;
-    --background: rgba(21, 160, 224, 1) !important;
-}
-
-.nanny ion-con.location {
-    color: rgba(21, 160, 224, 1) !important;
+  text-align: center;
 }
 
 ion-input {
-    padding: 10px;
+  padding: 10px;
 }
 
 ion-item {
-    border-bottom: 2px solid rgba(21, 160, 224, 1);
-    margin-bottom: 20px;
+  border-bottom: 2px solid rgba(21, 160, 224, 1);
+  margin-bottom: 20px;
 }
 
 ion-item.textarea {
-    border: 1px solid rgba(21, 160, 224, 1);
+  border: 1px solid rgba(21, 160, 224, 1);
 }
 
 ion-segment-button ion-label {
-    color: black;
-    font-size: 13px;
+  color: black;
+  font-size: 13px;
 }
 
-// ion-segment-button:hover {
-//   // background-color: rgba(21, 160, 224, 0.5) !important;
-//   border-radius: 50px;
-// }
-@media (max-width: 968.98px) {
-    .sched {
-        width: 48%;
-    }
-    .book-now {
-        width: 48%;
-    }
-}
-
-// .slider {
-//   height: 40%;
-// }
 ion-slide {
-    height: 40vh;
+  height: 40vh;
 }
 
 .slide-label {
-    position: absolute;
-    right: 10px;
-    padding: 5px;
-    font-size: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 5px;
+  position: absolute;
+  right: 10px;
+  padding: 5px;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
 }
 
 ion-card-content h1 {
-    color: black;
-    font-weight: 700;
+  color: black;
+  font-weight: 700;
 }
 
 ion-card-content h2 {
-    color: rgba(21, 160, 224, 1);
-    font-weight: 700;
+  color: rgba(21, 160, 224, 1);
+  font-weight: 700;
 }
 
 ion-footer {
-    position: fixed;
-    bottom: 0;
+  position: fixed;
+  bottom: 0;
 }
 
 ion-footer ion-button.btn {
-    position: absolute;
-    bottom: 0;
-    margin-right: 5vw;
-    margin-left: 5vw;
-    width: 90vw;
-    --background-color: rgba(21, 160, 224, 1);
+  // position: absolute;
+  // bottom: 0;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  width: 90vw;
+  --background-color: rgba(21, 160, 224, 1);
 }
 
-ion-card-content{
-    height: 100%;
-    overflow: scroll;
+ion-card-content {
+  height: 100%;
 }
 
-ion-card{
-    margin-bottom: 15%;
+ion-card {
+  margin-bottom: 15%;
 }
