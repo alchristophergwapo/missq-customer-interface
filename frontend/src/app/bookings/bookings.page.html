@@ -13,13 +13,16 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div><button (click)="filteredByPending()" class="btnfil1">PENDING</button></div>
+                        <ion-button (click)="filteredByPending()" size="medium" color='danger'>PENDING</ion-button>
+                        <!-- <div><button (click)="filteredByPending()" class="btnfil1">PENDING</button></div> -->
                     </ion-col>
                     <ion-col>
-                        <div><button (click)="filteredByOngoing()" class="btnfil2">ONGOING</button></div>
+                        <ion-button (click)="filteredByOngoing()" size="medium" color='secondary'>ONGOING</ion-button>
+                        <!-- <div><button (click)="filteredByOngoing()" class="btnfil2">ONGOING</button></div> -->
                     </ion-col>
                     <ion-col>
-                        <div><button (click)="filteredByCompleted()" class="btnfil3">COMPLETED</button></div>
+                        <ion-button (click)="filteredByCompleted()" size="medium" color='success'>COMPLETED</ion-button>
+                        <!-- <div><button (click)="filteredByCompleted()" class="btnfil3">COMPLETED</button></div> -->
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -30,19 +33,19 @@
                     <ion-card-content>
                         <ion-grid>
                             <ion-row class="row2">
-                                <ion-col  size="2">
+                                <ion-col size="2">
                                     <div class="left">
                                         {{b.schedule| date:"MM/dd/yyyy 'at' h:mma"}}
                                     </div>
                                 </ion-col>
-                                <ion-col >
+                                <ion-col>
                                     <div class="mid">
                                         <p class="title">{{b.service_booking}}</p>
                                         <p class="location">{{b.service_location}}</p>
                                     </div>
                                 </ion-col>
                                 <ion-col size="1">
-                                   <ion-icon name="eye" class= 'buttonVD' (click)="passToOrders(b)"></ion-icon>
+                                    <ion-icon name="eye" class='buttonVD' (click)="passToOrders(b)"></ion-icon>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
@@ -52,4 +55,3 @@
         </div>
     </div>
 </ion-content>
-
