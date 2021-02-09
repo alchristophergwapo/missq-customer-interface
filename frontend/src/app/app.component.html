@@ -5,8 +5,8 @@
                 <ion-img id="header_logo" src="../assets/images/msqlogo.png"></ion-img>&nbsp;
                 <!-- <span id="company">Ms.Q
                                 Associates</span> -->
-                <h1 id="company">Ms. Q
-                    Associates</h1>
+                <h1 id="company">Ms. Q Associates
+                </h1>
             </ion-list-header><br>
             <ion-note>"We serve at your pleasure"</ion-note>
         </div>
@@ -16,7 +16,7 @@
 
             <ion-menu-toggle auto-hide="false">
                 <ion-item routerLink="profile" routerDirection="root" lines="none" *ngIf="user">
-                    <div (click)="onClickNav($event)" id="profile">
+                    <div (click)="openProfile()" id="profile">
                         <ion-label class="user">{{ user.name }}</ion-label>
                         <ion-icon class="prof" name="pencil"></ion-icon>
                     </div>
