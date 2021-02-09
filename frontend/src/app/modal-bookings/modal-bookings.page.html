@@ -24,6 +24,9 @@
                     <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}<button (click)="presentToast()" class="rateBtn">Rate</button></p>
                     <p class="p1">Cost: {{cost}}</p>
                 </ion-card>
+                <center>
+                    <ion-button size="medium" color='secondary'>Mark as done</ion-button>
+                </center>
             </div>
         </div>
     </div>

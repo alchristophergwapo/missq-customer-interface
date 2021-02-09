@@ -103,6 +103,10 @@ tr:nth-child(even) {
     cursor: pointer;
 }
 
+ion-icon {
+    font-size: 200%;
+}
+
 .btn1 {
     margin-right: 10%;
     margin-left: 5%;
@@ -159,5 +163,8 @@ ion-card {
         display: block;
         height: 120%;
         width: 100%;
+    }
+    ion-icon {
+        font-size: 200%;
     }
 }
