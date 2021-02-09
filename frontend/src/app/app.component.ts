@@ -15,6 +15,7 @@ export class AppComponent {
   dashboard : boolean = true;
   currentRoute: string;
   user: any;
+  artisan: any;
   
   constructor(
     private platform: Platform,

@@ -32,6 +32,7 @@ import { MsqService } from './api/services/msq-service.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { File } from "@ionic-native/file/ngx";
+import { WorkforcePage } from './workforce/workforce.page'
 
 @NgModule({
   declarations: [AppComponent],
@@ -61,6 +62,7 @@ import { File } from "@ionic-native/file/ngx";
     File,
     Camera,
     FileTransfer,
+    WorkforcePage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

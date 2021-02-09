@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar color="light">
     <ion-card>
-      <ion-segment value="ideals" scrollable="true" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
+      <ion-segment value="ideals" [(ngModel)]="segmentModel" (ionChange)="segmentChanged($event)">
         <ion-segment-button value="workforceIdeals">
           <ion-label>Ideal</ion-label>
         </ion-segment-button>
@@ -30,9 +30,8 @@
       <ion-list>
         <ion-item-sliding *ngFor="let worker of ideals; let i = index">
           <ion-item>
-            <button ion-button full (click)="openModal(); showInfo(worker.ids);">
+            <button class="display" (click)="openModal(worker);">
               {{worker.name}}
-              <ion-icon class="back" name="arrow-dropleft"></ion-icon>
             </button>
           </ion-item>
           <ion-item-options side="end">
@@ -52,7 +51,9 @@
       <ion-list>
         <ion-item-sliding *ngFor="let worker of banned ; let i = index">
           <ion-item>
-            {{worker.name}}
+            <button class="display" >
+                {{worker.name}}
+            </button>
           </ion-item>
           <ion-item-options side="end">
             <ion-icon class="del" (click)="dltBanned(worker._id)" name="trash"></ion-icon>

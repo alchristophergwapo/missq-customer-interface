@@ -7,10 +7,9 @@ import { Ideal } from 'src/app/api/models/workforce/ideal';
 
 import { WorkforceService } from 'src/app/api/services/workforce.service';
 
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { InformationModalPage } from '../information-modal/information-modal.page';
-
-
+import { Artisan } from '../api/models/artisan';
 
 
 @Component({
@@ -24,37 +23,63 @@ export class WorkforcePage {
 
   public ideals: Ideal;
   public banned: Banned;
-  // public worker: Artisan;
+  public worker: Artisan;
+  public id
 
   constructor(
     private workforceService: WorkforceService,
     private route: ActivatedRoute,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private toastController: ToastController
   ) { }
 
-  async openModal() {
-    const modal = await this.modalController.create({
-      component: InformationModalPage,
-      cssClass: 'my-custom-class'
-    });
-    
-    return await modal.present();
-  }
-
-  ngOnInit() {
-
+  async ngOnInit() {
     //For displaying of ideals list
     this.workforceService.getWorkforceIdeal().subscribe((ideals: Ideal) => {
       this.ideals = ideals;
-
       console.log(ideals);
-    });
 
+    });
     //For displaying of banned list
     this.workforceService.getWorkforceBanned().subscribe((banned: Banned) => {
       this.banned = banned;
       console.log(banned);
     });
+
+    await this.presentErrorToast();
+  }
+
+  async presentErrorToast() {
+    const toast = await this.toastController.create({
+      header: 'Attention: ',
+      message: 'This page is under construction/development !!... Thank You :)',
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+            // this.proceedAlert();
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
+
+  async openModal(i) {
+    this.id = i.workerId
+
+    const modal = await this.modalController.create({
+      component: InformationModalPage,
+      componentProps: {
+        id: this.id,
+      },
+      cssClass: 'my-custom-class',
+      backdropDismiss: false,
+    });
+    modal.present();
   }
 
   segmentChanged(event) {
@@ -70,13 +95,6 @@ export class WorkforcePage {
   //Function for deleting data from banned by an id.
   dltBanned(ids) {
     this.workforceService.deleteWorkforceBanned(ids).subscribe((response: any) => {
-
-    });
-  }
-
-  showInfo(ids) {
-    this.workforceService.informationIdeal(ids).subscribe((response:any) => {
-
     });
   }
 }

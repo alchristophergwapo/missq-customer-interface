@@ -4,6 +4,8 @@ import { catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
+import { Artisan } from '../models/artisan';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 export class WorkforceService {
 
   public uri: Observable<any>;
+  public artisans: Observable<any>;
   readonly ROOT_URL;
   errorMsg: string;
 
@@ -28,6 +31,16 @@ export class WorkforceService {
   getWorkforceBanned(): Observable<any> {
     return this.http.get(`${this.ROOT_URL}/banned`);
   }
+
+
+//pinataka
+  getDetails(id): Observable<any> {
+    return this.http.get(`${this.ROOT_URL}/ideal/information/${id}`);
+}
+
+
+
+
 
   //  post(uri:Ideal):Observable<any> {
   //   return this.http.post(`${this.ROOT_URL}/ideal`, uri);
@@ -63,7 +76,23 @@ export class WorkforceService {
   }
 
   informationIdeal(uri) {
-    return this.http.get(`${this.ROOT_URL}/ideal/information/${uri}`);
+    return this.http.get(`${this.ROOT_URL}/ideal/information/${uri}`)
+    .pipe(
+      catchError(error => {
+        this.errorMsg = error.message;
+        return of([]);
+      })
+    );
+  }
+
+  informationBanned(uri) {
+    return this.http.get(`${this.ROOT_URL}/banned/infomation/${uri}`)
+    .pipe(
+      catchError(error => {
+        this.errorMsg = error.message;
+        return of([]);
+      })
+    );
   }
 
   reRoute() {

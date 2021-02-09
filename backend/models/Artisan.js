@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-// var bcrypt = require('bcrypt     
+// var bcrypt = require('bcrypt    
+
 
 var ArtisansSchema = new mongoose.Schema({
     name: {

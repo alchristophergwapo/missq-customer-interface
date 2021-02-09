@@ -39,6 +39,7 @@ const msq_service = require('./controllers/bookings');
 const forgot_password = require('./controllers/forgotPassword');
 const workforce = require('./controllers/workforce');
 
+
 app.use('/authenticate', authentication);
 app.use('/msq_service', msq_service);
 app.use('/forgot_password', forgot_password);
