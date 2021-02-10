@@ -16,6 +16,12 @@ th {
     padding: 8px;
 }
 
+.done {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 tr:nth-child(even) {
     background-color: #dddddd;
 }

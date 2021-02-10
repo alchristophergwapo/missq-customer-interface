@@ -21,12 +21,11 @@
                     <p class="p1">Service Booking: {{service_booking}}</p>
                     <p class="p1">Booking Time: {{schedule}}</p>
                     <p class="p1" *ngIf="!status.includes('Completed')">Booking Status: {{status}}</p>
-                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}<button (click)="presentToast()" class="rateBtn">Rate</button></p>
-                    <p class="p1">Cost: {{cost}}</p>
+                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}
+                        <ion-button (click)="presentToast()" size="medium" color='success'>RATE</ion-button>
+                        <p class="p1">Cost: {{cost}}</p>
                 </ion-card>
-                <center>
-                    <ion-button size="medium" color='secondary'>Mark as done</ion-button>
-                </center>
+                <ion-button class="done" size="medium" color='secondary'>Mark as done</ion-button>
             </div>
         </div>
     </div>
