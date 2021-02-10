@@ -26,8 +26,14 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-.p1 {
+.p1,
+.p2 {
     margin-left: 5%;
+}
+
+.p2 {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 button {
