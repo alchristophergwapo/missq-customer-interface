@@ -10,23 +10,22 @@
         <div class="content">
             <div class="column2">
                 <img [src]="user.picture">
-                <h1>{{user.name}}</h1>
+                <h1>{{ user.name }}</h1>
                 <ion-card class="card">
                     <ion-card-content>
-                        <p class="column">EMAIL: {{user.email}}</p>
-                        <p class="column">PHONE: {{user.phone}}</p>
+                        <p class="column">EMAIL: {{ user.email }}</p>
+                        <p class="column">PHONE: {{ user.phone }}</p>
                     </ion-card-content>
                 </ion-card>
                 <ion-card>
-                    <p class="p1">Service Booking: {{service_booking}}</p>
-                    <p class="p1">Booking Time: {{schedule}}</p>
-                    <p class="p1" *ngIf="!status.includes('Completed')">Booking Status: {{status}}</p>
-                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{status}}<button (click)="presentToast()" class="rateBtn">Rate</button></p>
-                    <p class="p1">Cost: {{cost}}</p>
+                    <p class="p1">Service Booking: {{ service_booking }}</p>
+                    <p class="p1" *ngIf="schedule">Booking Time: {{ schedule }}</p>
+                    <p class="p1" *ngIf="!status.includes('Completed')">Booking Status: {{ status }}</p>
+                    <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{ status }}<button
+                            (click)="presentToast()" class="rateBtn">Rate</button></p>
+                    <p class="p1">Cost: {{ cost }}</p>
                 </ion-card>
-                <center>
-                    <ion-button size="medium" color='secondary'>Mark as done</ion-button>
-                </center>
+                <ion-button size="medium" color='secondary'>Mark as done</ion-button>
             </div>
         </div>
     </div>

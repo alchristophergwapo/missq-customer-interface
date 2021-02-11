@@ -4,7 +4,6 @@ import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { AuthService } from '../api/services/auth.service';
 import { User } from '../api/models/user';
 import { CountryCodes } from '../api/models/country-codes';
-import { PhotoService } from '../api/services/photo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CameraResultType, CameraSource, Capacitor, Plugins } from '@capacitor/core';
 
@@ -37,9 +36,6 @@ export class CreateAcountPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private photoService: PhotoService,
-    private platform: Platform,
-    private sanitizer: DomSanitizer
   ) {
   }
 
@@ -63,8 +59,6 @@ export class CreateAcountPage implements OnInit {
       this.dataList = result.data;
 
     })
-
-    await this.photoService.loadSaved();
 
   }
 
@@ -138,7 +132,7 @@ export class CreateAcountPage implements OnInit {
     e.preventDefault();
   }
 
-  loadImageFromDevice(event, type) {
+  loadImageFromDevice(event) {
     if (event.target.files.length == 0) {
       console.log("No file selected!");
       return

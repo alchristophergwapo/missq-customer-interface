@@ -25,7 +25,7 @@ export class BookingsPage implements OnInit {
   // public table: boolean = true;
 
   constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
-    this.user = app.user;
+    this.user = this.app.user;
     console.log("On profile: ", this.user);
   }
   
