@@ -88,6 +88,7 @@ export class BookingsPage implements OnInit {
       componentProps: {
         status: b.status, id: b._id, service_booking: b.service_booking,
         updatedAt: b.updatedAt, service_location: b.service_location,
+        schedule: b.schedule,
         cost: b.cost, notes: b.notes
       },
       cssClass: 'setting-modal',

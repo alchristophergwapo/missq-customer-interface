@@ -19,7 +19,7 @@
                 </ion-card>
                 <ion-card>
                     <p class="p1">Service Booking: {{ service_booking }}</p>
-                    <p class="p1" *ngIf="schedule">Booking Time: {{ schedule }}</p>
+                    <!-- <p class="p1" *ngIf="schedule">Booking Time: {{ schedule }}</p> -->
                     <p class="p1" *ngIf="!status.includes('Completed')">Booking Status: {{ status }}</p>
                     <p class="p1" *ngIf="status.includes('Completed')">Booking Status: {{ status }}<button
                             (click)="presentToast()" class="rateBtn">Rate</button></p>
