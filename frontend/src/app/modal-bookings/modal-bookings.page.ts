@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { MsqService } from '../api/services/msq-service.service';
-import { ArtisanReviewService } from '../api/services/artisan-review.service';
+import { MsqService } from '../services/msq-service.service';
+import { ArtisanReviewService } from '../services/artisan-review.service';
 
 @Component({
   selector: 'app-modal-bookings',

@@ -4,5 +4,9 @@
     "capacitor": {},
     "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [{
+    "path": "/",
+    "proxyUrl": "http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com"
+  }]
 }

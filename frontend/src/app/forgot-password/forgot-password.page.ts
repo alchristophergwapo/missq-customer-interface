@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../api/models/user";
-import { ForgotPasswordService } from '../api/services/forgot-password.service';
+import { User } from "../models/user";
+import { ForgotPasswordService } from '../services/forgot-password.service';
 
 import { Router } from '@angular/router';
 

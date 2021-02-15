@@ -25,9 +25,8 @@
                             (click)="presentToast()" class="rateBtn">Rate</button></p>
                     <p class="p1">Cost: {{ cost }}</p>
                 </ion-card>
-                <center>
-                    <ion-button *ngIf="status.includes('Ongoing')" size="medium" color='secondary' (click)="markBookingAsDone(_id)">Mark as done</ion-button>
-                </center>
+                    <ion-button *ngIf="status.includes('Ongoing')" size="medium" color='secondary' (click)="markBookingAsDone(id)">Mark as done</ion-button>
+
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { WorkforceService } from '../api/services/workforce.service';
+import { WorkforceService } from '../services/workforce.service';
 
 @Component({
   selector: 'app-workforce',

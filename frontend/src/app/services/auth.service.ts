@@ -15,8 +15,8 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
 
   public user: Observable<any>;
-  // AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
-  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
+  AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
+  // AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
   authSubject = new BehaviorSubject(false);
 
   constructor(
@@ -75,19 +75,17 @@ export class AuthService {
     })
   };
 
-  login(user: User): Observable<any> {
+  login(user: User){
     console.log("nisud sa log in function")
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user).pipe(
-      take(1),
-
-      switchMap(token => {
-        // console.log("Auth Service token in login: ", token);
-        this.authSubject.next(true);
-        this.user = token.user;
-        console.log("token :: ", TOKEN_KEY)
-
-        let storageObservable = from(this.storage.set(TOKEN_KEY, token));
-        return storageObservable;
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user)
+    .pipe(
+      tap(res=>{
+        if (res) {
+          console.log('nisud sa tap');
+          this.authSubject.next(true);
+          this.user = res.user;
+          this.storage.set(TOKEN_KEY,res);
+        }
       })
 
     );

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { ModalBookingsPage } from '../modal-bookings/modal-bookings.page';
 
 // import { ModalRatingsPage } from '../modal-ratings/modal-ratings.page';
 // import { MatDialog,  MatDialogConfig } from '@angular/material';
-import { ArtisanReviewService } from '../api/services/artisan-review.service';
+import { ArtisanReviewService } from '../services/artisan-review.service';
 
 @Component({
   selector: 'app-bookings',
@@ -83,7 +83,7 @@ export class BookingsPage implements OnInit {
       componentProps: {
         status: b.status, id: b._id, service_booking: b.service_booking,
         updatedAt: b.updatedAt, service_location: b.service_location,
-        cost: b.cost, notes: b.notes, _id: b._id,
+        cost: b.cost, notes: b.notes,
         schedule: b.schedule,
       },
       cssClass: 'setting-modal',
@@ -91,8 +91,6 @@ export class BookingsPage implements OnInit {
     });
     modal.present();
   }
-
-
 
 }
 

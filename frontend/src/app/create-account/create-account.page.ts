@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, Platform, ToastController } from '@ionic/angular';
-import { AuthService } from '../api/services/auth.service';
-import { User } from '../api/models/user';
-import { CountryCodes } from '../api/models/country-codes';
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
+import { CountryCodes } from '../models/country-codes';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 
 const { Camera } = Plugins;

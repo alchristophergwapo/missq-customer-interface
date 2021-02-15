@@ -2,9 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { AuthService } from 'src/app/api/services/auth.service';
 import { Geolocation } from "@ionic-native/geolocation/ngx";
-import { MsqService } from 'src/app/api/services/msq-service.service';
+import { MsqService } from 'src/app/services/msq-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 declare var google: any;
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../api/services/auth.service";
+import { AuthService } from "../services/auth.service";
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
@@ -49,7 +49,11 @@ export class LoginPage implements OnInit {
     this.presentLoading();
     
     this.authService.login(form.value).subscribe(res => {
+      console.log(res);
+      
       if (res) {
+        console.log(res.status);
+        
         this.router.navigateByUrl('/place-order');
         this.dash.dashboard = true;
       } else {

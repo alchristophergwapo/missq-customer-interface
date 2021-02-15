@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from '../api/services/chat.service';
+import { ChatService } from '../services/chat.service';
 import { Storage } from '@ionic/storage';
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 import { HttpClient } from '@angular/common/http';
 import { v4 } from 'uuid';

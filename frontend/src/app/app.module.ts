@@ -19,10 +19,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { AuthGuardService as AuthGuard } from "./api/services/auth-guard.service";
-import { AuthService } from "./api/services/auth.service";
+import { AuthGuardService as AuthGuard } from "./services/auth-guard.service";
+import { AuthService } from "./services/auth.service";
 import { PlaceOrderPage } from "./place-order/place-order.page";
-import { MsqService } from './api/services/msq-service.service';
+import { MsqService } from './services/msq-service.service';
 import { ProfilePage } from './profile/profile.page';
 
 

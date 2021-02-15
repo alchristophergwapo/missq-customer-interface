@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ModalController } from '@ionic/angular';
 import { ModalpopupPage } from '../modalpopup/modalpopup.page';
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 
