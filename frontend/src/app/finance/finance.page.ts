@@ -9,6 +9,7 @@ import { ToastController } from '@ionic/angular';
 export class FinancePage implements OnInit {
 
   segmentModel: "cash-in";
+  
   constructor(
     private toastController: ToastController
   ) { }

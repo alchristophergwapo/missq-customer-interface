@@ -25,7 +25,7 @@ export class BookingsPage implements OnInit {
   // public table: boolean = true;
 
   constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
-    this.user = app.user;
+    this.user = this.app.user;
     console.log("On profile: ", this.user);
   }
 
@@ -83,7 +83,8 @@ export class BookingsPage implements OnInit {
       componentProps: {
         status: b.status, id: b._id, service_booking: b.service_booking,
         updatedAt: b.updatedAt, service_location: b.service_location,
-        cost: b.cost, notes: b.notes, _id: b._id
+        cost: b.cost, notes: b.notes, _id: b._id,
+        schedule: b.schedule,
       },
       cssClass: 'setting-modal',
       backdropDismiss: false,
