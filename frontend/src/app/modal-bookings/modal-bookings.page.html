@@ -25,7 +25,7 @@
                     <p class="p1">Cost: {{cost}}</p>
                 </ion-card>
                 <center>
-                    <ion-button size="medium" color='secondary'>Mark as done</ion-button>
+                    <ion-button *ngIf="status.includes('Ongoing')" size="medium" color='secondary' (click)="markBookingAsDone(_id)">Mark as done</ion-button>
                 </center>
             </div>
         </div>

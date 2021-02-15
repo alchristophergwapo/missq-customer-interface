@@ -32,7 +32,6 @@ let User = new Schema({
         type: String,
         required: true,
         trim: true,
-        select: false
     },
     picture: {
         type: String,

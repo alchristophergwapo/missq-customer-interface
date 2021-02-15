@@ -4,8 +4,6 @@ import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { AuthService } from '../api/services/auth.service';
 import { User } from '../api/models/user';
 import { CountryCodes } from '../api/models/country-codes';
-import { PhotoService } from '../api/services/photo.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CameraResultType, CameraSource, Capacitor, Plugins } from '@capacitor/core';
 
 const { Camera } = Plugins;
@@ -37,19 +35,16 @@ export class CreateAcountPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private photoService: PhotoService,
-    private platform: Platform,
-    private sanitizer: DomSanitizer
   ) {
   }
 
   async ngOnInit() {
     this.user = {
-      name: "Geneva Rivas",
+      name: "Test Aws",
       address: 'Talamban',
       code: "+63",
       phone: 9482850377,
-      email: "genevaxoxorivas99@gmail.com",
+      email: "test1999aws@gmail.com",
       birth_date: new Date('06/12/1999'),
       password: "jhenRivas1999",
       confirm: "jhenRivas1999",
@@ -64,7 +59,6 @@ export class CreateAcountPage implements OnInit {
 
     })
 
-    await this.photoService.loadSaved();
 
   }
 
@@ -91,13 +85,20 @@ export class CreateAcountPage implements OnInit {
 
     form.value.id_image = this.idPic.name;
 
-    this.authService.register(form.value, this.idPic, this.selfie).subscribe(response => {
-      if (response) {
+    this.authService.register(form.value, this.idPic, this.selfie).subscribe(async (response) => {
+      if (response['status'] == 200) {
         console.log(response);
-        
+        let success = await response.body
+
         this.isSubmitted = true;
-        this.dismiss();
+        this.dismiss(success.message, 'success');
         this.router.navigateByUrl("login");
+      } if (response['status'] == 201) {
+
+        // console.log("Response ", response.body);
+        let err = await response.body
+
+        this.dismiss(err.message, 'danger');
       }
     });
   }
@@ -116,18 +117,19 @@ export class CreateAcountPage implements OnInit {
     });
   }
 
-  async dismiss() {
+  async dismiss(message, type) {
     this.isLoading = false;
     return await this.loadingController.dismiss().then(async () => {
       console.log('dismissed')
-      await this.presentToast('Account Created!')
+      await this.presentToast(message, type)
     });
   }
 
-  async presentToast(text) {
+  async presentToast(text, type) {
     const toast = await this.toastController.create({
       message: text,
-      position: 'bottom',
+      color: type,
+      position: 'top',
       duration: 3000
     })
 

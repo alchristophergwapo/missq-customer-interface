@@ -6,66 +6,68 @@ const Customers = require("../models/User");
 
 
 
-routes.route("/book_service").post(async (request, response) => {
+routes.route("/book_service").post((request, response) => {
     const booking = new Booking(request.body);
 
-    await booking.save();
+    booking.save().then(newBooking => {
+        if (newBooking) {
+            Customers.findOne({ _id: newBooking.author._id }).then(author => {
+                if (author) {
 
-    const author = await Customers.findById({ _id: booking.author });
+                    if (!author.bookings) {
+                        author['bookings'] = [];
+                    }
+                    author.bookings.push(booking);
 
-    author.bookings.push(booking);
+                    author.save();
 
-    response.status(200)
-        .send({ status: 200, bookings: author.bookings });
-
-    await author.save();
+                    response.status(200)
+                        .send({ status: 200, message: "Bookings successfully added.", bookings: author.bookings });
+                }
+            }).catch(error => {
+                // console.log(error);
+                response.status(400).send({ status: 400, message: error })
+            });
+        }
+    }).catch(error => {
+        response.status(400).send({ status: 400, message: error })
+    });
 });
 
-routes.route("/mark_done").post((request, response) => {
-    const booking = Booking.findById({ _id: request._id })
+routes.route("/mark_done/:_id").post((request, response) => {
+    Booking.findById({ _id: request.params._id }).then(booking => {
 
-    if (booking) {
-        booking.status = "Completed"
-        booking.save().then(updatedBooking => {
-            response.status(200).send({ status: 200, booking: updatedBooking })
-        }).catch(error => {
-            response.status(400).send({ status: 400 })
-        })
-    }
-})
+        if (booking) {
+            booking.status = "Completed"
+            if (booking.schedule == null) {
+                booking.schedule = new Date('2020-12-04T13:00:00.000+00:00')
+            }
 
-routes.route("/trial", (req, res) => {
-    res.send('Testing!')
+            booking.save().then(updatedBooking => {
+                if (updatedBooking) {
+                    response.status(200).send({ status: 200, message: "Successfully marked as done.", booking: updatedBooking })
+                }
+            }).catch(error => {
+                response.status(400).send({ status: 400, message: error })
+            })
+        }
+    })
 })
 
 //FILTERED ALL ONGOINGS
 
 routes.route("/filteredOngoing").post((req, res) => {
-    var arryOfStatus = [];
-    Booking.find({}).then(Filter => {
-        if (!req.body.array) {
-            return arryOfStatus = [];
-        }
-        if (!req.body.data) {
-            return arryOfStatus = Filter;
-        }
-        arryOfStatus = Filter.filter((filtered) => {
-            return filtered.status.toLocaleLowerCase().includes(req.body.data.toLocaleLowerCase());
-        });
-        res.status(200).send({ status: 200, message: "Status:", data: arryOfStatus })
-    }).catch(error => {
-        console.log(error);
+    Booking.find({ author: req.body.author, status: req.body.status })
+        .populate({
+            path: "bookedBy",
+            select: "*"
+        })
+        .then(booking => {
+            res.status(200).send({ status: 200, message: "Status:", data: booking })
+        }).catch(error => {
+            console.log(error);
 
-    })
+        })
 });
-
-
-// exports.filteredOngoing = (req, res) => {
-//     res.send('Testing!')
-// }
-
-// routes.route('/filteredOngoing').post((req, res) => {
-//     console.log("testing:" + req.data)
-// })
 
 module.exports = routes;

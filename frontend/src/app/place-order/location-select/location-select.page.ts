@@ -40,7 +40,7 @@ export class LocationSelectPage implements OnInit {
     this.getGeoLocation();
     this.user = authService.user;
     this.service_location = "";
-    
+
   }
 
   ngOnInit() {
@@ -49,10 +49,10 @@ export class LocationSelectPage implements OnInit {
       this.data = JSON.parse(params.bookedData);
     });
 
-    
+
     this.user = this.authService.user;
-    
-    
+
+
   }
 
   getGeoLocation() {
@@ -92,7 +92,7 @@ export class LocationSelectPage implements OnInit {
         return;
       }
 
-      markers.forEach(function(marker) {
+      markers.forEach(function (marker) {
         marker.setMap(null);
       });
 
@@ -100,11 +100,11 @@ export class LocationSelectPage implements OnInit {
 
       var bounds = new google.maps.LatLngBounds();
 
-      places.forEach(function(place) {
+      places.forEach(function (place) {
         // LocationSelectPage.lat = place.geometry.viewport.Ya.i;
         // LocationSelectPage.lon = place.geometry.viewport.Ua.i;
-        selected_place = place.name +", "+place.formatted_address;
-        
+        selected_place = place.name + ", " + place.formatted_address;
+
         if (!place.geometry) {
           console.log("No geometry");
           return;
@@ -134,7 +134,7 @@ export class LocationSelectPage implements OnInit {
   setServiceLocation(loc) {
     this.service_location = loc;
     console.log(this.service_location);
-    
+
   }
 
   async proceedAlert() {
@@ -153,7 +153,7 @@ export class LocationSelectPage implements OnInit {
           text: 'Book now',
           cssClass: 'book-now',
           handler: input => {
-            
+
             const datas = {
               service_booking: this.data.service_booking,
               service_location: this.service_location,
@@ -166,8 +166,8 @@ export class LocationSelectPage implements OnInit {
 
             let pipe = new DatePipe('en-US');
             let date = new Date()
-            let todayDate = pipe.transform(date,"YYYY-MM-ddTHH:mm")
-            if (todayDate == input.schedule || pipe.transform(input.schedule,"YYYY-MM-dd") < pipe.transform(date,"YYYY-MM-dd")) {
+            let todayDate = pipe.transform(date, "YYYY-MM-ddTHH:mm")
+            if (todayDate == input.schedule || pipe.transform(input.schedule, "YYYY-MM-dd") < pipe.transform(date, "YYYY-MM-dd")) {
               this.presentErrorToast();
             } else {
               this.bookServiceNow(datas);
@@ -181,8 +181,10 @@ export class LocationSelectPage implements OnInit {
   }
 
   bookServiceNow(serviceData) {
+    console.log(serviceData);
+
     this.service.bookNow(serviceData).subscribe(async response => {
-      await this.presentLoading(); 
+      await this.presentLoading();
       if (response) {
         this.router.navigateByUrl('/place-order');
       }

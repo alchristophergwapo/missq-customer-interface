@@ -15,7 +15,8 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
 
   public user: Observable<any>;
-  AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
+  // AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
+  AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
   authSubject = new BehaviorSubject(false);
 
   constructor(
@@ -42,13 +43,13 @@ export class AuthService {
     })
   }
 
-  register(data, id_image, selfie) {
+  register(data, id_image, selfie): Observable<any> {
     let url = this.AUTH_SERVER_ADDRESS + 'authenticate/register';
 
     var formData: any = new FormData();
 
-    console.log('Register::',data);
-    
+    // console.log('Register::', data);
+
 
     formData.append('name', data.name);
     formData.append('address', data.address);
@@ -68,33 +69,11 @@ export class AuthService {
     //   console.log(key, value);
     // }
 
-    console.log('Form Data::', formData);
-
-    return this.httpClient.post<User>(url, formData, {
+    return this.httpClient.post<any>(url, formData, {
       reportProgress: true,
       observe: 'events'
-    });
+    })
   };
-
-  uploadImage(blobData, name) {
-    const formData: any = new FormData();
-    var data ={
-      key:"",
-      value:""
-    }
-    formData.append('picture', blobData, name);
-
-    for (let [key, value] of formData.entries()) {
-      // console.log('Upload::',key, "value :: "+value);
-      data.key = key;
-      data.value = value;
-    }
-    console.log("data :: ", data)
-
-    console.log("formData :: ",formData.entries() )
-
-    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload`, formData);
-  }
 
   login(user: User): Observable<any> {
     console.log("nisud sa log in function")
@@ -102,7 +81,7 @@ export class AuthService {
       take(1),
 
       switchMap(token => {
-        console.log("Auth Service token in login: ", token);
+        // console.log("Auth Service token in login: ", token);
         this.authSubject.next(true);
         this.user = token.user;
         console.log("token :: ", TOKEN_KEY)
@@ -137,8 +116,8 @@ export class AuthService {
   }
 
   //FILTERED STATUS
-  filteredOngoing(arrays, datas): Observable<any> {
-    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}msq_service/filteredOngoing`, { array: arrays, data: datas })
+  filteredOngoing(datas): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}msq_service/filteredOngoing`, datas)
   }
 
   getUser() {
