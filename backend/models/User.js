@@ -35,7 +35,7 @@ let User = new Schema({
     },
     picture: {
         type: String,
-        required: true
+        required: false
     },
     id_image: {
         type: String,

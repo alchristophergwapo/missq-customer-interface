@@ -62,10 +62,6 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
-  },
-  {
     path: 'modal-bookings',
     loadChildren: () => import('./modal-bookings/modal-bookings.module').then( m => m.ModalBookingsPageModule)
   }
