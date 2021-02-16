@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../api/services/auth.service';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { ModalBookingsPage } from '../modal-bookings/modal-bookings.page';
 
 // import { ModalRatingsPage } from '../modal-ratings/modal-ratings.page';
 // import { MatDialog,  MatDialogConfig } from '@angular/material';
-import { ArtisanReviewService } from '../api/services/artisan-review.service';
+import { ArtisanReviewService } from '../services/artisan-review.service';
 
 @Component({
   selector: 'app-bookings',
@@ -14,9 +14,9 @@ import { ArtisanReviewService } from '../api/services/artisan-review.service';
   styleUrls: ['./bookings.page.scss'],
 })
 export class BookingsPage implements OnInit {
-  pending='Pending';
-  ongoing='Ongoing';
-  completed='Completed';
+  pending = 'Pending';
+  ongoing = 'Ongoing';
+  completed = 'Completed';
   bookings: any;
   user: any;
   arryOfStatus = [];
@@ -24,24 +24,18 @@ export class BookingsPage implements OnInit {
   // arryOfStatusCompleted = [];
   // public table: boolean = true;
 
-  constructor(private app: AppComponent, private authService: AuthService, private loadingController: LoadingController, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
-    this.user = app.user;
-    console.log("On profile: ", this.user);
+  constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
+    this.user = this.app.user;
   }
-  
+
   ngOnInit() {
     const userBookings = this.authService.user;
 
     this.bookings = userBookings['bookings']
-    this.arryOfStatus=this.bookings;                                 
+    this.arryOfStatus = this.bookings.filter(bookings => bookings.status == "Pending");
 
-  } 
-  // constructor(private authService: AuthService, private reviewArtisan: ArtisanReviewService) { }
-  rateArtisan(id, data) {
-    this.reviewArtisan.review(id, data).subscribe(res => {
-      console.log(res);
-    })
   }
+  // constructor(private authService: AuthService, private reviewArtisan: ArtisanReviewService) { }
 
   tagArtisanAsSuki(id) {
     this.reviewArtisan.tagAsSuki(id).subscribe(res => {
@@ -68,9 +62,9 @@ export class BookingsPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
-    this.authService.filteredOngoing(this.arryOfStatus,this.pending).subscribe(res => {
+    this.authService.filteredOngoing({ status: "Pending", author: this.user }).subscribe(res => {
       console.log(res);
-      this.arryOfStatus=res.data;
+      this.arryOfStatus = res.data;
     })
 
   }
@@ -86,9 +80,9 @@ export class BookingsPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
-    this.authService.filteredOngoing(this.arryOfStatus,this.ongoing).subscribe(res => {
+    this.authService.filteredOngoing({ status: "Ongoing", author: this.user }).subscribe(res => {
       console.log(res);
-      this.arryOfStatus=res.data;
+      this.arryOfStatus = res.data;
     })
   }
 
@@ -105,7 +99,7 @@ export class BookingsPage implements OnInit {
     console.log('Loading dismissed!');
     this.authService.filteredOngoing(this.arryOfStatus,this.completed).subscribe(res => {
       console.log(res);
-      this.arryOfStatus=res.data;
+      this.arryOfStatus = res.data;
     })
   }
 
@@ -115,14 +109,14 @@ export class BookingsPage implements OnInit {
       componentProps: {
         status: b.status, id: b._id, service_booking: b.service_booking,
         updatedAt: b.updatedAt, service_location: b.service_location,
-        cost: b.cost, notes: b.notes
+        cost: b.cost, notes: b.notes,
+        schedule: b.schedule,
       },
       cssClass: 'setting-modal',
       backdropDismiss: false,
     });
     modal.present();
   }
-
   // async presentLoading() {
   //   const loading = await this.loadingController.create({
   //     cssClass: 'my-custom-class',
@@ -134,8 +128,5 @@ export class BookingsPage implements OnInit {
   //   const { role, data } = await loading.onDidDismiss();
   //   console.log('Loading dismissed!');
   // }
-
-  
-
 }
 

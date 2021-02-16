@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular'
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { Storage } from "@ionic/storage";

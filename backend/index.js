@@ -106,16 +106,17 @@ mongoose.connect(url, connectionParams).then(() => {
 const authentication = require('./controllers/authentication');
 const msq_service = require('./controllers/bookings');
 const forgot_password = require('./controllers/forgotPassword');
+const workforce = require('./controllers/workforce');
 const rate_artisan = require('./controllers/rateArtisan');
 
 
 app.use('/authenticate', authentication);
 app.use('/msq_service', msq_service);
 app.use('/forgot_password', forgot_password);
-app.use('/reviews', rate_artisan);
-app.use('/public', express.static('public'));
+app.use('/workforce', workforce);
 
-// app.post('/filteredOngoing', msq_service.filteredOngoing)
+app.use('/public', express.static('public'));
+app.use('/reviews', rate_artisan);
 
 app.use((req, res, next) => {
     setImmediate(() => {
@@ -129,7 +130,6 @@ app.use((err, req, res, next) => {
     if (!err.statusCode) err.statusCode = 500;
 
     res.status(err.statusCode).send(err.message);
-
 })
 
 const port = process.env.PORT || 8080;

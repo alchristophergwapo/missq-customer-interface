@@ -44,18 +44,6 @@
                     <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
                         <ion-text color="danger">Phone Number is required</ion-text>
                     </ion-label><br>
-                    <!-- <ion-item>
-                        <ion-select>
-                            <ion-select-option *ngFor="let per of dataList">({{per.name}}) {{per.dial_code}}</ion-select-option>
-                        </ion-select>
-                    </ion-item><br> -->
-                    <!-- <ion-item>
-                        <ion-icon name="call-sharp"></ion-icon>&nbsp;
-                        <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel" placeholder="Phone Number" ngModel required number></ion-input>
-                    </ion-item>
-                    <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
-                        <ion-text color="danger">Phone Number is required</ion-text>
-                    </ion-label><br> -->
                     <ion-item>
                         <ion-icon name="mail-sharp"></ion-icon>&nbsp;
                         <ion-input name="email" [(ngModel)]='user.email' type="email" #emailCtrl="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="your@gmail.com" ngModel required email></ion-input>
@@ -117,12 +105,7 @@
                         <ion-label slot="end">Picture(Selfie)</ion-label>
                         <ion-input name="picture" [(ngModel)]='user.picture' type="button" (click)="getPicture()" id="file-input" accept="image/png, image/jpeg" name="picture" #picCtrl="ngModel" ngModel required>
                         </ion-input>
-                        <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">
-                        <img [src]="capturedSnapURL" /> -->
                     </ion-item>
-                    <div *ngFor="let p of photoService.photos, let i = index">
-                        <img [src]="p.webviewPath" alt="" id="img" (click)="deleteImage(p, i)">
-                    </div><br>
                     <ion-item>
                         <ion-icon name="image-sharp"></ion-icon>&nbsp;
                         <ion-label slot="end">Picture(ID)</ion-label>
@@ -144,5 +127,5 @@
             </ion-card-content>
         </form>
 
-    </ion-card>
-</ion-content>
+    </ion-card
+  </ion-content>

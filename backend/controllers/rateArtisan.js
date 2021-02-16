@@ -3,11 +3,35 @@ const routes = express.Router();
 const Artisan = require('../models/Artisan');
 const Reviews = require('../models/Reviews');
 const Banned = require('../models/BannedArtisan');
-const Booking = require('../models/Booking');
-const ArtisanLogHistory = require('../models/ArtisanLogHistory');
+const ArtisanTaskHistory = require('../models/ArtisanTaskHistory');
 
 routes.route('/rate_artisan/:_id').post((request, response) => {
-    ArtisanLogHistory.find()
+    ArtisanTaskHistory.find({ jobsOfferedThroughId: request.params._id }).then(artisanLog => {
+        Artisan.findById({ _id: artisanLog.logsOwner }).then(artisan => {
+            if (artisan) {
+                let review = new Reviews({
+                    artisan: artisan
+                });
+
+                review.ratings.push(request.body.rating);
+
+                if (request.body.suki)
+                    review.suki.push(request.body.suki);
+
+                review.save().then((rate) => {
+
+                    if (rate)
+                        response.status(200).send({ status: 200, message: "Successfully sent ratings." });
+
+                    else
+                        response.send({ status: 400, message: "We cannot send your ratings please try again." });
+
+                }).catch(error => {
+                    console.log(error);
+                })
+            }
+        })
+    })
 })
 
 routes.route('/ban_artisan/:_id').post((req, res) => {
