@@ -26,7 +26,6 @@ export class BookingsPage implements OnInit {
 
   constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
     this.user = this.app.user;
-    console.log("On profile: ", this.user);
   }
 
   ngOnInit() {
@@ -53,7 +52,16 @@ export class BookingsPage implements OnInit {
   }
 
   //Filtered by Status PENDING
-  filteredByPending() {
+  async filteredByPending() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
     this.authService.filteredOngoing({ status: "Pending", author: this.user }).subscribe(res => {
       console.log(res);
       this.arryOfStatus = res.data;
@@ -62,7 +70,16 @@ export class BookingsPage implements OnInit {
   }
 
   ///Filtered by Status ONGOING
-  filteredByOngoing() {
+  async filteredByOngoing(){
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
     this.authService.filteredOngoing({ status: "Ongoing", author: this.user }).subscribe(res => {
       console.log(res);
       this.arryOfStatus = res.data;
@@ -70,8 +87,17 @@ export class BookingsPage implements OnInit {
   }
 
   // //Filtered by Status COMPLETED
-  filteredByCompleted() {
-    this.authService.filteredOngoing({ status: "Completed", author: this.user }).subscribe(res => {
+  async filteredByCompleted(){
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+    this.authService.filteredOngoing(this.arryOfStatus,this.completed).subscribe(res => {
       console.log(res);
       this.arryOfStatus = res.data;
     })
@@ -91,6 +117,16 @@ export class BookingsPage implements OnInit {
     });
     modal.present();
   }
+  // async presentLoading() {
+  //   const loading = await this.loadingController.create({
+  //     cssClass: 'my-custom-class',
+  //     message: 'Please wait...',
+  //     duration: 2000
+  //   });
+  //   await loading.present();
 
+  //   const { role, data } = await loading.onDidDismiss();
+  //   console.log('Loading dismissed!');
+  // }
 }
 
