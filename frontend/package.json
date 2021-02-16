@@ -9,7 +9,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "android-add": "ionic capacitor add android",
+    "android-build": "ionic capacitor build android",
+    "android-copy": "ionic capacitor copy android",
+    "android-run": "ionic capacitor run android",
+    "android-open": "ionic capacitor open android"
+
   },
   "private": true,
   "dependencies": {

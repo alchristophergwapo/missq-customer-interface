@@ -13,7 +13,7 @@ export class WebRequestService {
 
 
   constructor(private http: HttpClient) {
-    this.ROOT_URL = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com';
+    this.ROOT_URL = 'http://18.191.237.185:8080';
   }
 
   get(uri: string) {

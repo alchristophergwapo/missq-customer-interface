@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ArtisanReviewService {
 
-  ARTISAN_REVIEW_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
+  ARTISAN_REVIEW_ADDRESS: string = 'http://18.191.237.185:8080/';
 
   constructor(
     private httpClient: HttpClient
