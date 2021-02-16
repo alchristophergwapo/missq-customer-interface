@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { MsqService } from '../services/msq-service.service';
+import { ArtisanReviewService } from '../services/artisan-review.service';
 
 @Component({
   selector: 'app-modal-bookings',
@@ -10,7 +13,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./modal-bookings.page.scss'],
 })
 export class ModalBookingsPage implements OnInit {
-  @Input() id : string;
+  @Input() id: string;
   @Input() service_booking: string;
   @Input() updatedAt: string;
   @Input() service_location: string;
@@ -19,10 +22,18 @@ export class ModalBookingsPage implements OnInit {
   @Input() status: string;
   bookings: any;
   user: any;
-  arrayOfStatus=[];
+  arrayOfStatus = [];
   // rating: boolean = true;
 
-  constructor(private toastCtrl: ToastController, private app: AppComponent, private authService: AuthService, private modalController: ModalController) { 
+  constructor(
+    private toastCtrl: ToastController,
+    private app: AppComponent,
+    private authService: AuthService,
+    private modalController: ModalController,
+    private router: Router,
+    private msqService: MsqService,
+    private reviewArtisan: ArtisanReviewService,
+  ) {
 
     this.user = this.authService.user;
   }
@@ -34,8 +45,7 @@ export class ModalBookingsPage implements OnInit {
   //   })
   // }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
 
     const userBookings = this.authService.user;
 
@@ -43,9 +53,25 @@ export class ModalBookingsPage implements OnInit {
   }
 
 
-  closeModal()
-  {
+  closeModal() {
     this.modalController.dismiss();
+    this.router.navigateByUrl('/bookings')
+  }
+
+  markBookingAsDone(_id) {
+
+    this.msqService.markAsDone(_id).subscribe(res => {
+      if (res) {
+        this.router.navigateByUrl('/bookings')
+      }
+
+    })
+  }
+
+  rateArtisan(id, data) {
+    this.reviewArtisan.review(id, data).subscribe(res => {
+      console.log(res);
+    })
   }
 
 

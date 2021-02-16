@@ -4,7 +4,7 @@ import { ActionSheetController, LoadingController, Platform } from '@ionic/angul
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
-import { AuthService } from './api/services/auth.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',

@@ -2,6 +2,10 @@ ion-content {
     margin-top: 100px;
 }
 
+ion-toolbar {
+    --background: rgba(21, 160, 224, 0.5);
+}
+
 ion-toolbar ion-card {
     height: 100px;
 }
@@ -21,12 +25,9 @@ ion-segment {
 
 
 /* Hide scrollbar for IE, Edge and Firefox */
-
 .segment {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .icon {
@@ -34,12 +35,6 @@ ion-segment {
     height: 50px;
 }
 
-// ion-segment-button.s1,
-// ion-segment-button.s2,
-// ion-segment-button.s3,
-// ion-segment-button.s4 {
-//   border-right: 1px solid rgba(21, 160, 224, .5);
-// }
 ion-toolbar ion-button {
     margin-left: 4px;
 }
@@ -58,23 +53,22 @@ ion-card-header {
 }
 
 .nanny ion-icon {
-    font-size: 20px;
-    padding: 4px;
-    border: 1px solid black;
-    border-radius: 15px;
+  font-size: 20px;
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 15px;
 }
 
 .sched {
-    width: 49%;
+  width: 49%;
 }
 
 .book-now {
-    width: 49%;
-    --background: rgba(21, 160, 224, 1) !important;
+  width: 49%;
+  --background: rgba(21, 160, 224) !important;
 }
-
 .nanny ion-con.location {
-    color: rgba(21, 160, 224, 1) !important;
+  color: rgba(21, 160, 224) !important;
 }
 
 ion-input {
@@ -95,22 +89,6 @@ ion-segment-button ion-label {
     font-size: 13px;
 }
 
-// ion-segment-button:hover {
-//   // background-color: rgba(21, 160, 224, 0.5) !important;
-//   border-radius: 50px;
-// }
-@media (max-width: 968.98px) {
-    .sched {
-        width: 48%;
-    }
-    .book-now {
-        width: 48%;
-    }
-}
-
-// .slider {
-//   height: 40%;
-// }
 ion-slide {
     height: 40vh;
 }
@@ -140,20 +118,19 @@ ion-footer {
 }
 
 ion-footer ion-button.btn {
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     margin-right: 5vw;
     margin-left: 5vw;
     width: 90vw;
     --background-color: rgba(21, 160, 224, 1);
 }
 
-ion-card-content{
+ion-card-content {
     height: 100%;
-    overflow: scroll;
 }
 
-ion-card{
+ion-card {
     margin-bottom: 15%;
 }
 

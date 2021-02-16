@@ -136,6 +136,10 @@ export class PlaceOrderPage implements OnInit {
           // value: 0
 
         },
+        // {
+        //   name: "minutes",
+        //   value: 30,
+        // },
         {
           name: "notes",
           placeholder: "Notes",

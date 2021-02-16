@@ -13,13 +13,16 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div><button (click)="filteredByPending()" class="btnfil1">PENDING</button></div>
+                        <ion-button (click)="filteredByPending()" size="medium" color='danger'>PENDING</ion-button>
+                        <!-- <div><button (click)="filteredByPending()" class="btnfil1">PENDING</button></div> -->
                     </ion-col>
                     <ion-col>
-                        <div><button (click)="filteredByOngoing()" class="btnfil2">ONGOING</button></div>
+                        <ion-button (click)="filteredByOngoing()" size="medium" color='secondary'>ONGOING</ion-button>
+                        <!-- <div><button (click)="filteredByOngoing()" class="btnfil2">ONGOING</button></div> -->
                     </ion-col>
                     <ion-col>
-                        <div><button (click)="filteredByCompleted()" class="btnfil3">COMPLETED</button></div>
+                        <ion-button (click)="filteredByCompleted()" size="medium" color='success'>COMPLETED</ion-button>
+                        <!-- <div><button (click)="filteredByCompleted()" class="btnfil3">COMPLETED</button></div> -->
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -30,26 +33,87 @@
                     <ion-card-content>
                         <ion-grid>
                             <ion-row class="row2">
-                                <ion-col  size="2">
+                                <ion-col size="2">
                                     <div class="left">
-                                        {{b.schedule| date:"MM/dd/yyyy 'at' h:mma"}}
+                                        {{ b.schedule| date:"MM/dd/yyyy 'at' h:mma" }}
                                     </div>
                                 </ion-col>
-                                <ion-col >
+                                <ion-col>
                                     <div class="mid">
-                                        <p class="title">{{b.service_booking}}</p>
-                                        <p class="location">{{b.service_location}}</p>
+                                        <p class="title">{{ b.service_booking }}</p>
+                                        <p class="location">{{ b.service_location }}</p>
                                     </div>
                                 </ion-col>
                                 <ion-col size="1">
-                                   <ion-icon name="eye" class= 'buttonVD' (click)="passToOrders(b)"></ion-icon>
+                                    <ion-icon name="eye" class='buttonVD' (click)="passToOrders(b)"></ion-icon>
+
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
                     </ion-card-content>
                 </ion-card>
             </div>
+          </ion-card-content>
+        </ion-card>
+        <table>
+            <tr>
+              <th>Booking Date</th>
+              <th>Booking Time</th>
+              <th>Booking Status</th>
+            </tr>
+            <tr>
+              <td>December 25, 2020</td>
+              <td>12:30</td>
+              <td>Pending</td>
+            </tr>
+          </table>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+          </tr>
+          <tr>
+            <td>1.Haircut</td>
+            <td>50 pesos</td>
+            <td>x1</td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>
+              SubTotal
+            </td>
+            <td></td>
+          </tr>
+        </table>
+        <br>
+        <label for="payment">Payment Method:</label>
+        <select name="payment" id="payment">
+            <option value="gcash">Gcash</option>
+            <option value="paymaya">PayMaya</option>
+            <option value="creditcard">Credit Card</option>
+        </select>
+        <p>Payment Status:</p>
+      </div>
+      <div class="column1">
+        <div *ngFor="let b of bookings">
+            <ion-card>
+                <ion-card-content>
+                  <div class="col-1-left">
+                    <div *ngIf="b.schedule">{{b.schedule}}</div>
+                  </div>
+                  <div class="col-1-mid">
+                    {{b.service_booking}}
+                  </div>
+                  <div class="col-1-right">
+                    <ion-icon name="arrow-forward"> </ion-icon>
+                  </div>
+                </ion-card-content>
+            </ion-card>
         </div>
+      </div>
     </div>
 </ion-content>
-

@@ -58,52 +58,53 @@ routes.route("/profile").post((req, res) => {
             }
         })
 
+    }).catch(error => {
+        res.status(400).send({ message: "We cannot successfully update your account." })
     })
 
 })
 
-routes.post("/upload", upload.single("picture"), (req, res) => {
-    // console.log('0 :: ',req.body);
-    // if(upload.single("selfie")) {
-    res.status(200).send({ status: 200, message: "File uploaded successfully." })
-    // }else{
-    //     res.status(500).send({status: 500, message: "File uploaded unsssuccessfully."})
-    // }
-});
-
 routes.post("/register", upload.array('img[]', 3), (request, response) => {
+    Customer.findOne({ email: request.body.email }).then(user => {
+        console.log(user);
+        if (user) {
+            response.status(201).send({ message: 'Email already exist.' });
+        } else {
+            const url = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/' + 'public/images/';
 
-    const url = request.protocol + "://" + request.hostname + ':' + 8080 + '/' + 'public/images/';
+            let pass = bcrypt.hashSync(request.body.password);
 
-    let pass = bcrypt.hashSync(request.body.password);
+            let account = new Customer(request.body);
 
-    let account = new Customer(request.body);
+            account['password'] = pass;
+            account['picture'] = url + request.body.picture;
+            account['id_image'] = url + request.body.id_image;
+            account['bookings'] = [];
+            // // console.log(request.file);
 
-    account['password'] = pass;
-    account['picture'] = url + request.body.picture;
-    account['id_image'] = url + request.body.id_image;
-    // // console.log(request.file);
+            account
+                .save()
+                .then(user => {
+                    if (user) {
+                        response
+                            .status(200)
+                            .send({
+                                user: user,
+                                status: 200,
+                                message: "Account successfully created."
+                            });
+                        console.log('User created: ', user);
+                    } else {
+                        response.status(400).send({ status: 400, message: 'Cannot create user!' })
+                    }
 
-    account
-        .save()
-        .then(user => {
-            if (user) {
-                response
-                    .status(200)
-                    .json({
-                        user: user,
-                        status: 200
-                    });
-                console.log('User created: ', user);
-            } else {
-                response.status(400).send({status: 200, message: 'Cannot create user!'})
-            }
-
-        })
-        .catch(error => {
-            console.log("Error => ", error);
-            response.status(400).send("Failed to store to database!", error.body);
-        });
+                })
+                .catch(error => {
+                    console.log("Error => ", error);
+                    response.status(400).send({ status: 400, message: "Failed to store to database!", error });
+                });
+        }
+    })
 });
 
 routes.route("/login").post((req, res) => {
@@ -119,10 +120,11 @@ routes.route("/login").post((req, res) => {
             });
 
             if (user) {
-                console.log("nisud dri na part");
+                console.log("nisud dri na part ");
                 let passMatch = bcrypt.compareSync(req.body.password, user.password);
                 if (passMatch) {
                     console.log("pass matching password")
+
                     res
                         .status(200)
                         .send({
@@ -134,12 +136,12 @@ routes.route("/login").post((req, res) => {
                 } else {
                     console.log("password doesn't match!!")
                     res
-                        .status(400)
-                        .send({ error: "Password doesn't match!", status: 400 });
+                        .status(401)
+                        .send({ message: "Password doesn't match!", status: 400 });
                     // res.flash('error', " Password doesn't match!")
                 }
             } else {
-                res.status(400).send({ status: 400 });
+                res.status(404).send({ message: "User not found. Make sure your credentials are valid.", status: 400 });
             }
         })
         .catch(error => {
