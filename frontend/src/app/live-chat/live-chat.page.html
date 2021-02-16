@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-title>Live Chat</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,8 +9,8 @@
     <div class="close-btn">
       <ion-icon name="close" routerLink="/place-order"></ion-icon>
     </div>
-    <div class="preload">Today</div>
-    <div class="greating-msg">
+    <div class="preload">Today: <br> {{today | date}}</div>
+    <div class="greeting-msg">
       <div class="start">
         <p class="heading">Chat Started</p>
         <span class="sub-heading">{{ time | date :'shortTime'}}</span>
@@ -29,6 +29,42 @@
       <div class="msg-content">
         <span class="triangle">Content</span>
         <p class="line-breaker"></p>
+      </div>
+    </div> -->
+  </div>
+  <div class="main">
+    <div class="chat-box">
+      <div class="message-area">
+        <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
+          <div *ngIf="currentUser !== message.user" class="other-user">
+            <p>
+              <ion-chip>
+                <ion-avatar>
+                  <img [src]="image">
+                </ion-avatar>
+                <label style="color: rgb(85, 85, 85)">{{currentUser}}</label><br>
+              </ion-chip><br><br>
+              &nbsp;&nbsp;<span style="color: black;">
+                {{message.text}}
+              </span><br>
+            </p>
+            <label style="margin-left: 5%;font-size: 10px;"> {{message.timeStamp}} </label><br><br>
+          </div>
+          <div *ngIf="currentUser === message.user" class="my-message">
+            <p>
+              <ion-chip>
+                <ion-avatar>
+                  <img [src]="image">
+                </ion-avatar>
+                <label style="color: rgb(85, 85, 85)">{{currentUser}}</label><br>
+              </ion-chip><br><br>
+              &nbsp;&nbsp;<span class="name">
+                {{message.text}}
+              </span><br>
+            </p>
+            <label style="margin-right: 5%;font-size: 12px;"> {{message.timeStamp}} </label><br><br>
+          </div><br>
+        </div>
       </div>
     </div>
   </div>
