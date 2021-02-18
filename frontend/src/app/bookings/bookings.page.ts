@@ -31,10 +31,10 @@ export class BookingsPage implements OnInit {
     this.user = this.app.user;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     const userBookings = this.authService.user;
 
-    this.bookings = userBookings['bookings']
+    this.bookings = await userBookings['bookings']
     this.arryOfStatus = this.bookings.filter(bookings => bookings.status == "Pending");
 
   }
