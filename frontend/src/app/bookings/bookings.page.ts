@@ -24,15 +24,17 @@ export class BookingsPage implements OnInit {
   // arryOfStatusCompleted = [];
   // public table: boolean = true;
 
-  constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController,
-    private loadingController: LoadingController) {
+  constructor(
+    private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController,
+    private loadingController: LoadingController
+  ) {
     this.user = this.app.user;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     const userBookings = this.authService.user;
 
-    this.bookings = userBookings['bookings']
+    this.bookings = await userBookings['bookings']
     this.arryOfStatus = this.bookings.filter(bookings => bookings.status == "Pending");
 
   }
@@ -71,7 +73,7 @@ export class BookingsPage implements OnInit {
   }
 
   ///Filtered by Status ONGOING
-  async filteredByOngoing(){
+  async filteredByOngoing() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',
@@ -88,7 +90,7 @@ export class BookingsPage implements OnInit {
   }
 
   // //Filtered by Status COMPLETED
-  async filteredByCompleted(){
+  async filteredByCompleted() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',

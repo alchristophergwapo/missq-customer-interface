@@ -14,16 +14,16 @@ let codeToSend = '';
 const Nexmo = require('nexmo');
 
 const nexmo = new Nexmo({
-  apiKey: '221d4eca',
-  apiSecret: 'HLQ0NJgby7JNwZUE',
+    apiKey: '221d4eca',
+    apiSecret: 'HLQ0NJgby7JNwZUE',
 });
 
 const from = 'MsQ Associates';
-const to = '639458562899';
-const text = 'You are receiving this is because you (or someone does) have requested the reset of the password or your account.                 \n\n'
-            + 'Please enter the following code to complete the process within one hour if receiving this: \n'
-            + `${codeToSend}\n\n`
-            + 'If you did not request this, please ignore this SMS and your password will remain unchanged.\n';
+let to = '';
+let text = 'You are receiving this is because you (or someone does) have requested the reset of the password or your account.                 \n\n'
+    + 'Please enter the following code to complete the process within one hour if receiving this: \n'
+    + `${codeToSend}\n\n`
+    + 'If you did not request this, please ignore this SMS and your password will remain unchanged.\n';
 
 
 routes.route('/request_code').post((request, response) => {
@@ -31,6 +31,8 @@ routes.route('/request_code').post((request, response) => {
 
     Customer.findOne({ email: request.body.email }).then((customer) => {
         console.log("Customer: ", customer);
+
+        to = "63" + customer.phone
 
         if (!customer) {
             response.status(404).send({ 'status': 404, 'message': 'The email address ' + request.body.email + ' is not associated with any account. Double-check your email address and try again.' })
@@ -65,7 +67,7 @@ routes.route('/request_code').post((request, response) => {
 
                                 nexmo.message.sendSms(from, to, text);
 
-                                const sendMail = sendEmail(codeToSend);
+                                const sendMail = sendEmail(codeToSend, request.body.email);
 
                                 if (!sendMail && sendMail != null)
                                     response.status(400).send({ 'status': 400, 'message': `We can't send the code to the your email.` });
@@ -77,7 +79,7 @@ routes.route('/request_code').post((request, response) => {
                         })
                     } else {
                         codeToSend = code.code;
-                        const sendMail = sendEmail(codeToSend)
+                        const sendMail = sendEmail(codeToSend, request.body.email)
 
                         nexmo.message.sendSms(from, to, text);
 
@@ -174,7 +176,7 @@ generateCode = (codeGenerated, customer) => {
 
 }
 
-sendEmail = (code) => {
+sendEmail = (code, email) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -185,7 +187,7 @@ sendEmail = (code) => {
 
     const mailOptions = {
         from: 'msqintern0@gmail.com',
-        to: 'christopher.alonzo@student.passerellesnumeriques.org',
+        to: email,
         subject: 'Code for Password Reset',
         text: 'You are receiving this is because you (or someone does) have requested the reset of the password or your account. \n\n'
             + 'Please enter the following code to complete the process within one hour if receiving this: \n'

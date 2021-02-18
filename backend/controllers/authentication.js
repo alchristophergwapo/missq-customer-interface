@@ -9,7 +9,7 @@ const Customer = require("../models/User");
 
 const multer = require('multer');
 
-const DIR = '../backend/public/images';
+const DIR = 'public/images';
 
 // var ObjectId = require('mongodb').ObjectID;
 
@@ -70,7 +70,7 @@ routes.post("/register", upload.array('img[]', 3), (request, response) => {
         if (user) {
             response.status(201).send({ message: 'Email already exist.' });
         } else {
-            const url = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/' + 'public/images/';
+            const url = 'http://18.191.237.185:8080/' + 'public/images/';
 
             let pass = bcrypt.hashSync(request.body.password);
 
