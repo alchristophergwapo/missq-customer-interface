@@ -1,54 +1,50 @@
-
 ion-toolbar ion-bar {
-    height: 70px;
+  height: 70px;
 }
 
 ion-toolbar ion-segment-button {
-    margin-left: 4px;
-  }
-
-ion-segment{
-    display: flex;
-    height: 80px;
+  margin-left: 4px;
 }
 
-ion-item{
-    border-bottom: 1px solid rgba(0,0,0,0.5);
-    margin-bottom: 5px;
+ion-segment {
+  display: flex;
+  height: 80px;
 }
 
-
-ion-segment-button:hover{
-    // --ion-color-secondary: #3dc2ff;
-    background-color: rgba(21, 160, 224);
-    border-radius: 5px;
-    // color: white !important;
+ion-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 5px;
 }
 
-ion-card-title{
-    text-align: center;
+ion-segment-button:hover {
+  // --ion-color-secondary: #3dc2ff;
+  background-color: rgba(21, 160, 224, 1);
+  border-radius: 5px;
+  // color: white !important;
 }
 
-.del{
-    color: darkred;
-    font-size: 20px;
-    padding-top: 15px;
-    
+ion-card-title {
+  text-align: center;
 }
 
-.back{
-    color: darkred;
-    font-size: 20px;
-    padding-top: 15px;
-    
+.del {
+  color: darkred;
+  font-size: 20px;
+  padding-top: 15px;
+}
+
+.back {
+  color: darkred;
+  font-size: 20px;
+  padding-top: 15px;
 }
 
 p {
-    text-align: center;
+  text-align: center;
 }
 
-button{
-    width: 100%;
-    height: 100%;
-    text-align: left;
+button {
+  width: 100%;
+  height: 100%;
+  text-align: left;
 }

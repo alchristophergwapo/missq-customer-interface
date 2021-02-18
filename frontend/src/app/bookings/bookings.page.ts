@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { ModalBookingsPage } from '../modal-bookings/modal-bookings.page';
 
@@ -24,7 +24,10 @@ export class BookingsPage implements OnInit {
   // arryOfStatusCompleted = [];
   // public table: boolean = true;
 
-  constructor(private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController) {
+  constructor(
+    private app: AppComponent, private authService: AuthService, private reviewArtisan: ArtisanReviewService, private modalController: ModalController,
+    private loadingController: LoadingController
+  ) {
     this.user = this.app.user;
   }
 
@@ -70,7 +73,7 @@ export class BookingsPage implements OnInit {
   }
 
   ///Filtered by Status ONGOING
-  async filteredByOngoing(){
+  async filteredByOngoing() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',
@@ -87,7 +90,7 @@ export class BookingsPage implements OnInit {
   }
 
   // //Filtered by Status COMPLETED
-  async filteredByCompleted(){
+  async filteredByCompleted() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',
@@ -97,7 +100,7 @@ export class BookingsPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
-    this.authService.filteredOngoing(this.arryOfStatus,this.completed).subscribe(res => {
+    this.authService.filteredOngoing({ status: "Completed", author: this.user }).subscribe(res => {
       console.log(res);
       this.arryOfStatus = res.data;
     })
