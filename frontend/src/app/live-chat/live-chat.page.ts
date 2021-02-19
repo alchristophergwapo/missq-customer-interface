@@ -50,7 +50,7 @@ export class LiveChatPage implements OnInit {
       };
 
       this.http
-        .post(`http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/messages`, data)
+        .post(`http://18.191.237.185:8080/messages`, data)
         .subscribe((res: Message) => {
           const message = {
             ...res,
@@ -115,7 +115,7 @@ export class LiveChatPage implements OnInit {
   allRecentMessages() {
     this.authService.getAllMessages().subscribe((messages) => {
       console.log(messages);
-      
+
       this.messages = messages
     })
   }
