@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="secondary">
         <ion-buttons slot="start">
-            <ion-menu-button (click) = "updateUser()"></ion-menu-button>
+            <ion-menu-button (click)="updateUser()"></ion-menu-button>
         </ion-buttons>
         <ion-title>Place Order</ion-title>
     </ion-toolbar>
@@ -37,7 +37,7 @@
 
     <!-- Nanny Segment -->
     <div *ngIf="segmentModel === 'Nanny'">
-        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+        <form #form="ngForm" novalidate>
             <ion-slides [options]="mySlideOptions">
                 <ion-slide *ngFor="let n of nanny; let i = index">
                     <img [src]="n.MediaUrl" />
@@ -70,7 +70,7 @@
 
     <!-- Housekeeping Segment -->
     <div *ngIf="segmentModel === 'Housekeeping'">
-        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+        <form #form="ngForm" novalidate>
             <ion-slides [options]="mySlideOptions">
                 <ion-slide *ngFor="let h of housekeeping; let i = index">
                     <img [src]="h.MediaUrl" />
@@ -101,7 +101,7 @@
     </div>
     <!-- Tutor Cum Nanny Segment -->
     <div *ngIf="segmentModel === 'TutorCumNanny'">
-        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+        <form #form="ngForm" novalidate>
             <ion-slides [options]="mySlideOptions">
                 <ion-slide *ngFor="let tcn of tutor; let i = index">
                     <img [src]="tcn.MediaUrl" />
@@ -133,7 +133,7 @@
 
     <!-- Massage Therapist Segment -->
     <div *ngIf="segmentModel === 'MassageTherapist'">
-        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+        <form #form="ngForm" novalidate>
             <ion-slides>
                 <ion-slide *ngFor="let mt of massage; let i = index">
                     <img [src]="mt.MediaUrl" />
@@ -152,7 +152,7 @@
                     <h2>Minimum: &#8369;{{costOfServie.MassageTherapist}} for the first 90 minutes.</h2>
                     <h2>Additional hours: &#8369;150/30 minutes.</h2>
                     <br />
-                    <div  class="divCard">
+                    <div class="divCard">
                         A trained and licensed professional that practices the manual, or hands-on, movement of soft body tissues to enhance a person's well-being.
                     </div>
                 </ion-card-content>
@@ -165,7 +165,7 @@
 
     <!-- Haircut Segment -->
     <div *ngIf="segmentModel === 'Haircut'">
-        <form #form="ngForm" novalidate (ngSubmit)="bookNow(form, 'Nanny'); form.reset()">
+        <form #form="ngForm" novalidate>
             <ion-slides [options]="mySlideOptions">
                 <ion-slide *ngFor="let h of haircut; let i = index">
                     <img [src]="h.MediaUrl" />

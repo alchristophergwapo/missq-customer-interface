@@ -4,12 +4,6 @@ import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ModalpopupPageModule} from './modalpopup/modalpopup.module';
 
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from 'angularx-social-login';
-
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,15 +17,12 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { IonicStorageModule, Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 
-import { AuthGuardService as AuthGuard } from "./api/services/auth-guard.service";
-import { AuthService } from "./api/services/auth.service";
+import { AuthGuardService as AuthGuard } from "./services/auth-guard.service";
+import { AuthService } from "./services/auth.service";
 import { PlaceOrderPage } from "./place-order/place-order.page";
-import { MsqService } from './api/services/msq-service.service';
-import { Camera } from '@ionic-native/camera/ngx';
-import { FileTransfer } from '@ionic-native/file-transfer/ngx';
-import { File } from "@ionic-native/file/ngx";
+import { MsqService } from './services/msq-service.service';
 import { ProfilePage } from './profile/profile.page';
 
 
@@ -60,9 +51,6 @@ import { ProfilePage } from './profile/profile.page';
     MsqService,
     PlaceOrderPage,
     AppComponent,
-    File,
-    Camera,
-    FileTransfer,
     ProfilePage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

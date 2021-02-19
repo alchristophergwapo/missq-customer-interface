@@ -1,3 +1,7 @@
+ion-toolbar {
+    --background: rgba(21, 160, 224, 0.5);
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -12,17 +16,29 @@ th {
     padding: 8px;
 }
 
+.done {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-.p1 {
+.p1,
+.p2 {
     margin-left: 5%;
+}
+
+.p2 {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 button {
     margin-left: 10%;
-   }
+}
 
 .btn {
     margin-left: 70%;
@@ -61,5 +77,3 @@ h1 {
     height: 14vh;
     border: 1px solid black;
 }
-
-

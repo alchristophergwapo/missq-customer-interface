@@ -1,0 +1,39 @@
+
+.back {
+    font-size: 21px;
+    display: block;
+    width: 8%;
+}
+ion-item{
+    // border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-radius: 100px;
+    margin-bottom: 20px;
+    box-shadow: 3px 2px 3px 2px rgba(21, 160, 224);
+}
+
+div {
+    padding-top: 10px;
+}
+
+div img{
+    background: white;
+    border-radius: 10%;
+    // display: inline;
+    height: 50px;
+    width: 50px;
+}
+div span {
+    padding-left: 20px;
+    padding-top: 20px;
+
+}
+
+ion-item:hover{
+    background-color: rgba(21, 160, 224);
+    border-radius: 100px;
+}
+
+
+.header {
+    box-shadow: none;
+}

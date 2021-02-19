@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from '../api/services/chat.service';
+import { ChatService } from '../services/chat.service';
 import { Storage } from '@ionic/storage';
-import { AuthService } from '../api/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 import { HttpClient } from '@angular/common/http';
 import { v4 } from 'uuid';
@@ -50,7 +50,7 @@ export class LiveChatPage implements OnInit {
       };
 
       this.http
-        .post(`http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/messages`, data)
+        .post(`http://3.137.219.17:8080/messages`, data)
         .subscribe((res: Message) => {
           const message = {
             ...res,
@@ -115,7 +115,7 @@ export class LiveChatPage implements OnInit {
   allRecentMessages() {
     this.authService.getAllMessages().subscribe((messages) => {
       console.log(messages);
-      
+
       this.messages = messages
     })
   }

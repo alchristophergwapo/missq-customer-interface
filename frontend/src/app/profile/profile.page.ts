@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import {ModalController} from '@ionic/angular';
-import {ModalpopupPage} from '../modalpopup/modalpopup.page';
-import { AuthService } from '../api/services/auth.service';
+import { ModalController } from '@ionic/angular';
+import { ModalpopupPage } from '../modalpopup/modalpopup.page';
+import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 
@@ -18,34 +18,34 @@ export class ProfilePage implements OnInit {
   user: any;
 
   constructor(private modalController: ModalController, private authService: AuthService, private storage: Storage, private app: AppComponent) {
-    this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:"", birth_date: ""}
+    this.user = { name: "", phone: "", address: "", email: "", id_number: "", id: "", birth_date: "" }
   }
 
   ngOnInit() {
- 
+
     this.authService.getUser().then(user => {
       this.user = user;
     });
 
     console.log("opened profile");
   }
-  
+
 
   editProfile() {
-    this.modalController.create({component:ModalpopupPage, cssClass: 'my-custom-modal-css'}).then((modalElement)=> {
-      modalElement.present(); 
+    this.modalController.create({ component: ModalpopupPage, cssClass: 'my-custom-modal-css' }).then((modalElement) => {
+      modalElement.present();
     })
   }
 
-  updateUser(){ 
-    this.authService.getUser().then(user =>  {
+  updateUser() {
+    this.authService.getUser().then(user => {
       this.user = user;
     })
   }
- updateUserinApp(){
-    this.storage.get('jwt-token').then(async res=> {
+  updateUserinApp() {
+    this.storage.get('jwt-token').then(async res => {
       if (res) {
-        this.app.user= await res.user;
+        this.app.user = await res.user;
         console.log(res.user);
       }
     })
