@@ -64,7 +64,7 @@ routes.route("/profile").post((req, res) => {
 
 })
 
-routes.post("/register", upload.array('img[]', 3), (request, response) => {
+routes.post("/register",upload.array('img[]', 3), (request, response) => {
     Customer.findOne({ email: request.body.email }).then(user => {
         console.log(user);
         if (user) {

@@ -17,7 +17,7 @@ export class AuthService {
   public user: Observable<any>;
   // AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
   // AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
-  AUTH_SERVER_ADDRESS: string = 'http://18.191.237.185:8080/';
+  AUTH_SERVER_ADDRESS: string = 'http://3.137.219.17:8080/';
   
   authSubject = new BehaviorSubject(false);
 
