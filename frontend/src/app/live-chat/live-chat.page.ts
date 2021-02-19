@@ -50,7 +50,7 @@ export class LiveChatPage implements OnInit {
       };
 
       this.http
-        .post(`http://18.191.237.185:8080/messages`, data)
+        .post(`http://3.137.219.17:8080/messages`, data)
         .subscribe((res: Message) => {
           const message = {
             ...res,

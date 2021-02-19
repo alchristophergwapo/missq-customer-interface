@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const routes = express.Router();
-const ObjectId = require('mongodb').ObjectID;
 
 const bodyParser = require('body-parser');
 
