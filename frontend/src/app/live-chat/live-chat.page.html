@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-title>Live Chat</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -22,20 +25,12 @@
             Thank you for contacting MissQ Associates. Please wait for a moment
             while we get you connected to the next available live chat agent.
           </p>
-          <span class="msg-subtitle">{{time | date : 'shortTime'}}</span>
+          <!-- <span class="msg-subtitle">{{time | date : 'shortTime'}}</span> -->
         </div>
       </div>
     </div>
+    <br /><br />
     <img class="user" src="" alt="" />
-    <div class="msg-detail">
-      <div class="mgs-info">
-        <p>Agent</p>
-      </div>
-      <div class="msg-content">
-        <span class="triangle">Content</span>
-        <p class="line-breaker"></p>
-      </div>
-    </div>
   </div>
   <div class="main">
     <div class="chat-box">
@@ -82,8 +77,17 @@
     </div>
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-input placeholder="Type your message here"></ion-input>
-  <ion-icon name="send" class="send-icon"></ion-icon>
+<ion-footer class="input-area">
+  <form (submit)="sendMessage()" #messageForm="ngForm">
+    <ion-input
+      type="text"
+      name="message"
+      id="message"
+      [(ngModel)]="message"
+      placeholder="Type your message here"
+    ></ion-input>
+    <button [disabled]="message===''">
+      <ion-icon name="send" class="send-icon"></ion-icon>
+    </button>
+  </form>
 </ion-footer>
