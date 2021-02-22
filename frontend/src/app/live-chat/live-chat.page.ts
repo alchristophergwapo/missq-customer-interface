@@ -50,7 +50,7 @@ export class LiveChatPage implements OnInit {
       };
 
       this.http
-        .post(`http://3.137.219.17/messages`, data)
+        .post(`http://3.137.219.17:8080/messages`, data)
         .subscribe((res: Message) => {
           const message = {
             ...res,
@@ -115,7 +115,7 @@ export class LiveChatPage implements OnInit {
   allRecentMessages() {
     this.authService.getAllMessages().subscribe((messages) => {
       console.log(messages);
-      
+
       this.messages = messages
     })
   }

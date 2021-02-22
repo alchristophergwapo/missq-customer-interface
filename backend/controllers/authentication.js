@@ -64,13 +64,13 @@ routes.route("/profile").post((req, res) => {
 
 })
 
-routes.post("/register",upload.array('img[]', 3), (request, response) => {
+routes.post("/register", upload.array('img[]', 3), (request, response) => {
     Customer.findOne({ email: request.body.email }).then(user => {
         console.log(user);
         if (user) {
             response.status(201).send({ message: 'Email already exist.' });
         } else {
-            const url = 'http://18.191.237.185:8080/' + 'public/images/';
+            const url = 'http://3.137.219.17:8080/' + 'public/images/';
 
             let pass = bcrypt.hashSync(request.body.password);
 

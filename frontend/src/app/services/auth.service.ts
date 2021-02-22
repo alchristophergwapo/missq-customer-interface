@@ -18,7 +18,7 @@ export class AuthService {
   // AUTH_SERVER_ADDRESS: string = 'http://msqcustomerinterfacebackend-env-1.eba-negj35aw.us-east-2.elasticbeanstalk.com/';
   // AUTH_SERVER_ADDRESS: string = 'http://localhost:8080/';
   AUTH_SERVER_ADDRESS: string = 'http://3.137.219.17:8080/';
-  
+
   authSubject = new BehaviorSubject(false);
 
 
@@ -78,20 +78,20 @@ export class AuthService {
     })
   };
 
-  login(user: User){
+  login(user: User) {
     console.log("nisud sa log in function")
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user)
-    .pipe(
-      tap(res=>{
-        if (res) {
-          console.log('nisud sa tap');
-          this.authSubject.next(true);
-          this.user = res.user;
-          this.storage.set(TOKEN_KEY,res);
-        }
-      })
+      .pipe(
+        tap(res => {
+          if (res) {
+            console.log('nisud sa tap');
+            this.authSubject.next(true);
+            this.user = res.user;
+            this.storage.set(TOKEN_KEY, res);
+          }
+        })
 
-    );
+      );
   };
 
   updateContactInfo(user: User) {
