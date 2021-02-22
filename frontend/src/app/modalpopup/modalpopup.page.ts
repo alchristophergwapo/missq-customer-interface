@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController} from '@ionic/angular'
+import { ModalController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { Storage } from "@ionic/storage";
 import { ProfilePage } from '../profile/profile.page';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+
 const TOKEN_KEY = 'jwt-token';
 
 @Component({
@@ -13,12 +16,18 @@ const TOKEN_KEY = 'jwt-token';
   styleUrls: ['./modalpopup.page.scss'],
 })
 export class ModalpopupPage implements OnInit {
-  user:any;
-  readonly:boolean;
+  user: any;
+  readonly: boolean;
 
-  constructor(private modalController: ModalController, private authService:AuthService,private storage: Storage, private router:Router, private profile: ProfilePage, private app: AppComponent) {
-    this.user = {name:"", phone: "",address: "", email: "", id_number: "", id:""}
-    this.readonly=true
+  constructor(
+    private modalController: ModalController,
+    private authService: AuthService,
+    private storage: Storage,
+    private router: Router,
+    private profile: ProfilePage,
+    private app: AppComponent) {
+    this.user = { picture: "", name: "", phone: "", address: "", email: "", id_number: "", id: "" }
+    this.readonly = true
   }
 
   ngOnInit() {
@@ -29,12 +38,7 @@ export class ModalpopupPage implements OnInit {
     })
   }
 
-  CloseModal()
-  {
-    this.modalController.dismiss();
-  }
-  updateContactInfo(form){
-    
+  updateContactInfo(form) {
     this.authService.updateContactInfo(form.value).subscribe((response) => {
       if (response) {
         console.log(response);
@@ -43,13 +47,23 @@ export class ModalpopupPage implements OnInit {
         this.app.dashboard = true;
         this.profile.user = response.user;
         console.log("App Component user: ", this.app.user);
+        Swal.fire({
+          // position: 'top-end',
+          icon: 'success',
+          title: 'Profile updated successfully!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
-        this.router.navigate(['/profile']);
-        this.modalController.dismiss();
-
+      this.router.navigate(['/profile']);
     });
-    console.log("maoy sulod sa form ",form);
-    
+    console.log("maoy sulod sa form ", form);
   }
+
+
+  async CloseModal() {
+    await this.modalController.dismiss();
+  }
+
 
 }

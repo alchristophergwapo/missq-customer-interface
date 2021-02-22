@@ -21,9 +21,9 @@
       </ion-card-title>
       <ion-card-content>
         <div padding>
-          <ion-item>
+          <ion-item class="input-container">
             &nbsp;
-            <ion-icon name="person-circle-sharp"></ion-icon>&nbsp;
+            <ion-icon name="person-circle-sharp" class="icon"></ion-icon>&nbsp;
             <ion-input
               name="name"
               [(ngModel)]="user.name"
@@ -39,8 +39,8 @@
           >
             <ion-text color="danger">Name is required</ion-text> </ion-label
           ><br />
-          <ion-item>
-            <ion-icon name="location-sharp"></ion-icon>&nbsp;
+          <ion-item class="input-container">
+            <ion-icon name="location-sharp" class="icon"></ion-icon>&nbsp;
             <ion-input
               name="address"
               [(ngModel)]="user.address"
@@ -56,10 +56,10 @@
           >
             <ion-text color="danger">Address is required</ion-text> </ion-label
           ><br />
-          <ion-item>
+          <ion-item class="input-container">
             <!-- <div class="item row">
-                            <div class="col"> -->
-            <ion-icon name="call-sharp"></ion-icon>&nbsp;
+                            <div c color='secondary'lass="col"> -->
+            <ion-icon name="call-sharp" class="icon"></ion-icon>&nbsp;
             <ion-select
               name="code"
               [(ngModel)]="user.code"
@@ -98,8 +98,20 @@
               >Phone Number is required</ion-text
             > </ion-label
           ><br />
-          <ion-item>
-            <ion-icon name="mail-sharp"></ion-icon>&nbsp;
+          <!-- <ion-item>
+                        <ion-select>
+                            <ion-select-option *ngFor="let per of dataList">({{per.name}}) {{per.dial_code}}</ion-select-option>
+                        </ion-select>
+                    </ion-item><br> -->
+          <!-- <ion-item>
+                        <ion-icon name="call-sharp"></ion-icon>&nbsp;
+                        <ion-input name="phone" [(ngModel)]='user.phone' type="number" #phoneCtrl="ngModel" placeholder="Phone Number" ngModel required number></ion-input>
+                    </ion-item>
+                    <ion-label *ngIf="!phoneCtrl.valid && phoneCtrl.touched && phoneCtrl.errors?.required">
+                        <ion-text color="danger">Phone Number is required</ion-text>
+                    </ion-label><br> -->
+          <ion-item class="input-container">
+            <ion-icon name="mail-sharp" class="icon"></ion-icon>&nbsp;
             <ion-input
               name="email"
               [(ngModel)]="user.email"
@@ -117,8 +129,8 @@
           >
             <ion-text color="danger">Email is required</ion-text> </ion-label
           ><br />
-          <ion-item>
-            <ion-icon name="calendar-sharp"></ion-icon>&nbsp;
+          <ion-item class="input-container">
+            <ion-icon name="calendar-sharp" class="icon"></ion-icon>&nbsp;
             <ion-input
               name="birth_date"
               [(ngModel)]="user.birth_date"
@@ -134,9 +146,8 @@
           >
             <ion-text color="danger">Date is required.</ion-text> </ion-label
           ><br />
-          <ion-item>
-            <ion-icon name="key-outline"></ion-icon>&nbsp;
-
+          <ion-item class="input-container">
+            <ion-icon name="key-outline" class="icon"></ion-icon>&nbsp;
             <ion-input
               type="{{type}}"
               name="password"
@@ -194,8 +205,8 @@
           </div>
           <!-- <ion-label color="danger" *ngIf="password.errors?.minlength">Password must be at least 6 characters
                     </ion-label> -->
-          <ion-item>
-            <ion-icon name="key-sharp"></ion-icon>&nbsp;
+          <ion-item class="input-container">
+            <ion-icon name="key-sharp" class="icon"></ion-icon>&nbsp;
             <ion-input
               name="confirm"
               type="{{type1}}"
@@ -246,8 +257,8 @@
           <ion-label *ngIf="passwordMatch == false">
             <ion-text color="danger">Password must match</ion-text> </ion-label
           ><br />
-          <ion-item>
-            <ion-icon name="image-sharp"></ion-icon>&nbsp;
+          <ion-item class="input-container">
+            <ion-icon name="image-sharp" class="icon"></ion-icon>&nbsp;
             <ion-label slot="end">Picture(Selfie)</ion-label>
             <ion-input
               name="picture"
@@ -262,9 +273,11 @@
               required
             >
             </ion-input>
+            <!-- <input type="button" value="Take a selfie picture" (click)="loadImageFromDevice($event, 'selfie')">
+                        <img [src]="capturedSnapURL" /> -->
           </ion-item>
-          <ion-item>
-            <ion-icon name="image-sharp"></ion-icon>&nbsp;
+          <ion-item class="input-container">
+            <ion-icon name="image-sharp" class="icon"></ion-icon>&nbsp;
             <ion-label slot="end">Picture(ID)</ion-label>
             <ion-input
               (change)="loadImageFromDevice($event)"
@@ -280,8 +293,8 @@
             >
             </ion-input> </ion-item
           ><br />
-          <ion-item>
-            <ion-icon name="person-sharp"></ion-icon>&nbsp;
+          <ion-item class="input-container">
+            <ion-icon name="person-sharp" class="icon"></ion-icon>&nbsp;
             <ion-input
               name="id_number"
               [(ngModel)]="user.id_number"
