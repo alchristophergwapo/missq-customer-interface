@@ -78,10 +78,8 @@ export class CreateAcountPage implements OnInit {
     }
   }
 
-  async register(form) {
-
+  async register(form){
     await this.present();
-
     form.value.id_image = this.idPic.name;
 
     this.authService.register(form.value, this.idPic, this.selfie).subscribe(async (response) => {
