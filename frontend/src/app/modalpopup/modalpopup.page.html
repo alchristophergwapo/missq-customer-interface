@@ -10,12 +10,12 @@
         <form #form="ngForm" (ngSubmit)="updateContactInfo(form)">
           <ion-item>
             <ion-input name="name" type="text" [ngModel]="user.name">
-              <nobr>Name: &nbsp; </nobr>
+              Name: &nbsp;
             </ion-input>
           </ion-item>
           <ion-item>
             <ion-input name="phone" type="Text" [ngModel]="user.phone" pattern="\d*" maxlength="10">
-              <nobr>Phone: &nbsp; </nobr>
+              Phone: &nbsp; 
             </ion-input>
           </ion-item>
           <ion-item>
@@ -23,12 +23,12 @@
           </ion-item>
           <ion-item>
             <ion-input name="email" type="email" [ngModel]="user.email">
-              <nobr>Email: &nbsp; </nobr>
+              Email: &nbsp; 
             </ion-input><br>
           </ion-item>
           <ion-item id="hideId">
             <ion-input name="id" [readonly]="readonly" [hidden]="true" type="id" [ngModel]="user.id">
-              <nobr>id: </nobr>
+              ID: 
             </ion-input>
           </ion-item>
           <ion-button size="medium" color='secondary' type="submit" (click)='CloseModal()' expand="block">Update

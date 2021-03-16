@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "ms.q.customer_interface",
   "appName": "missq_customer_interface",
   "bundledWebRuntime": false,
   "npmClient": "npm",
@@ -21,7 +21,6 @@
     }
   },
   "server": {
-    "url": "http://localhost:8100",
-    "originalUrl": "http://localhost:8100"
+    "url": "http://localhost:8100"
   }
 }

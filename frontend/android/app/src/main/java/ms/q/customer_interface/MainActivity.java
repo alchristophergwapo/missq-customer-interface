@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package ms.q.customer_interface;
 
 import android.os.Bundle;
 

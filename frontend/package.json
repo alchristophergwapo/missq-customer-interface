@@ -10,6 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod",
     "android-add": "ionic capacitor add android",
     "android-build": "ionic capacitor build android",
     "android-copy": "ionic capacitor copy android",
@@ -17,8 +18,10 @@
     "android-open": "ionic capacitor open android"
 
   },
+
   "private": true,
   "dependencies": {
+    "typescript": "~4.0.5",
     "@angular/common": "^11.0.4",
     "@angular/core": "^11.0.4",
     "@angular/forms": "^11.0.4",
@@ -128,5 +131,12 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alchristophergwapo/missq-customer-interface/issues"
+  },
+  "@angular/cli": "1.4.9",
+  "@angular/compiler-cli": "^4.4.6",
+  "engines": {
+    "node": "15.8.0",
+    "npm": "7.5.1"
   }
+  
 }

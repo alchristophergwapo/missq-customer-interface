@@ -19,7 +19,7 @@ export class WorkforceService {
 
 
   constructor(private http: HttpClient, private route: Router) {
-    this.ROOT_URL = 'http://localhost:8080/workforce';
+    this.ROOT_URL = 'http://3.137.219.17:8080/workforce';
   }
 
   //Get service of ideal

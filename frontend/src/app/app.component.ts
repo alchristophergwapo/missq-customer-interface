@@ -35,7 +35,9 @@ export class AppComponent {
   ngOnInit() {
     this.storage.get('jwt-token').then(async res=> {
       if (res) {
-        this.user = await res.user
+        // this.user = await res.user
+        console.log(this.user);
+
         console.log(res.user)
       }
     })

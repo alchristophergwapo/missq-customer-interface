@@ -263,8 +263,8 @@
             <ion-input
               name="picture"
               [(ngModel)]="user.picture"
-              type="button"
-              (click)="getPicture()"
+              type="file"
+              (change)="loadImageFromDevice($event, 'selfie')"
               id="file-input"
               accept="image/png, image/jpeg"
               name="picture"
@@ -280,7 +280,7 @@
             <ion-icon name="image-sharp" class="icon"></ion-icon>&nbsp;
             <ion-label slot="end">Picture(ID)</ion-label>
             <ion-input
-              (change)="loadImageFromDevice($event)"
+              (change)="loadImageFromDevice($event,'idPic')"
               id="file-input"
               accept="image/png, image/jpeg"
               name="id_image"

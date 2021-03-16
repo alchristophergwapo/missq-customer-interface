@@ -40,17 +40,17 @@ export class CreateAcountPage implements OnInit {
 
   async ngOnInit() {
     this.user = {
-      name: "Test Aws",
-      address: 'Talamban',
-      code: "+63",
-      phone: 9482850377,
-      email: "test1999aws@gmail.com",
-      birth_date: new Date('06/12/1999'),
-      password: "jhenRivas1999",
-      confirm: "jhenRivas1999",
+      name: "",
+      address: '',
+      code: "",
+      phone: null,
+      email: "",
+      birth_date: null,
+      password: "",
+      confirm: "",
       picture: "",
       id_image: "",
-      id_number: 18106143
+      id_number: null
     };
 
     fetch('assets/country-code.json').then(async res => {
@@ -78,24 +78,43 @@ export class CreateAcountPage implements OnInit {
     }
   }
 
-  async register(form){
+  async register(form) {
     await this.present();
-    form.value.id_image = this.idPic.name;
-
-    this.authService.register(form.value, this.idPic, this.selfie).subscribe(async (response) => {
+    // form.value.id_image = this.idPic.name;
+    console.log(form.value);
+    
+    this.authService.register(form.value).subscribe(async (response) => {
       if (response['status'] == 200) {
-        console.log(response);
-        let success = await response.body
+        console.log('account succesfully added!')
+        // let success = await response
+        // this.isSubmitted = true;
+        // this.dismiss(success['message'], 'success');
+        // this.router.navigateByUrl("login");
 
-        this.isSubmitted = true;
-        this.dismiss(success.message, 'success');
-        this.router.navigateByUrl("login");
-      } if (response['status'] == 201) {
+        console.log(response);
+        let id = response['user']['_id']
+        let success = await response
+        this.authService.uploadImage(this.idPic, this.selfie, this.user.id_image, this.user.picture).subscribe(res=>{
+          console.log(res);
+          // if (res['status'] != 200) {
+          //   console.log(id);
+
+          //   // this.authService.deleteAccount(id).subscribe(res=>{
+          //   //   console.log(res);
+
+          //   // })
+          // } else {
+            this.isSubmitted = true;
+            this.dismiss(success['message'], 'success');
+            this.router.navigateByUrl("login");
+          // }
+        })
+      } else {
 
         // console.log("Response ", response.body);
-        let err = await response.body
+        let err = await response
 
-        this.dismiss(err.message, 'danger');
+        this.dismiss(err['message'], 'danger');
       }
     });
   }
@@ -137,7 +156,7 @@ export class CreateAcountPage implements OnInit {
     e.preventDefault();
   }
 
-  loadImageFromDevice(event) {
+  loadImageFromDevice(event,type) {
     if (event.target.files.length == 0) {
       console.log("No file selected!");
       return
@@ -153,7 +172,13 @@ export class CreateAcountPage implements OnInit {
       let blobURL: string = URL.createObjectURL(blob)
 
       // console.log(blobURL);
-      this.idPic = file;
+      if (type == 'selfie') {
+        this.selfie = file
+        this.user.picture = file.name
+      } else {
+        this.idPic = file;
+        this.user.id_image = file.name
+      }
 
       // this.authService.uploadImage(this.idPic, this.user.id_image).subscribe(() => {
 
@@ -171,7 +196,7 @@ export class CreateAcountPage implements OnInit {
 
   confirmPassword(event) {
     const password = this.user.password;
-    console.log(password);
+    // console.log(password);
 
     if (event.target.value == password) {
       this.passwordMatch = true;
@@ -236,43 +261,43 @@ export class CreateAcountPage implements OnInit {
     document.getElementById("message").style.display = "none";
   }
 
-  async getPicture() {
+//   async getPicture() {
 
-    const image = await Camera.getPhoto({
-      quality: 60,
-      allowEditing: true,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Prompt,
-    });
+//     const image = await Camera.getPhoto({
+//       quality: 60,
+//       allowEditing: true,
+//       resultType: CameraResultType.Base64,
+//       source: CameraSource.Prompt,
+//     });
 
-    this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
-    this.user.picture = `${Date.now()}.${image.format}`
+//     this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
+//     this.user.picture = `${Date.now()}.${image.format}`
 
-    console.log(this.selfie);
+//     console.log(this.selfie);
 
-    // this.authService.uploadImage(this.selfie, this.user.picture).subscribe(() => {
+//     // this.authService.uploadImage(this.selfie, this.user.picture).subscribe(() => {
 
-    // })
+//     // })
 
-  }
+//   }
 
-  b64toBlob(b64Data, contentType = '', sliceSize = 512) {
-    const byteCharacters = atob(b64Data);
-    const byteArrays = [];
+//   b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+//     const byteCharacters = atob(b64Data);
+//     const byteArrays = [];
 
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      const slice = byteCharacters.slice(offset, offset + sliceSize);
+//     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+//       const slice = byteCharacters.slice(offset, offset + sliceSize);
 
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
+//       const byteNumbers = new Array(slice.length);
+//       for (let i = 0; i < slice.length; i++) {
+//         byteNumbers[i] = slice.charCodeAt(i);
+//       }
 
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-    }
+//       const byteArray = new Uint8Array(byteNumbers);
+//       byteArrays.push(byteArray);
+//     }
 
-    const blob = new Blob(byteArrays, { type: contentType });
-    return blob;
-  }
+//     const blob = new Blob(byteArrays, { type: contentType });
+//     return blob;
+//   }
 }

@@ -40,7 +40,7 @@
         </ion-item-sliding>
       </ion-list>
     </ion-card-content>
-    <p *ngIf="ideals?.length === 0">No ideal worker.</p>
+    <p *ngIf="!ideals">No ideal worker.</p>
   </ion-card>
 
   <ion-card *ngIf="segmentModel === 'workforceBanned'">
@@ -61,7 +61,7 @@
         </ion-item-sliding>
       </ion-list>
     </ion-card-content>
-    <p *ngIf="banned?.length === 0">No banned worker.</p>
+    <p *ngIf="!banned">No banned worker.</p>
   </ion-card>
 
 </ion-content>

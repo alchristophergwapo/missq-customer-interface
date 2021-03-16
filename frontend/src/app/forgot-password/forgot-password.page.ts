@@ -3,6 +3,7 @@ import { User } from "../models/user";
 import { ForgotPasswordService } from '../services/forgot-password.service';
 
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forgot-password',
@@ -31,7 +32,8 @@ export class ForgotPasswordPage implements OnInit {
 
   constructor(
     private forgotPass: ForgotPasswordService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController,
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,8 @@ export class ForgotPasswordPage implements OnInit {
       id_image: "",
       id_number: null
     };
+
+    this.presentErrorToast()
   }
 
   noSubmit(e) {
@@ -59,10 +63,12 @@ export class ForgotPasswordPage implements OnInit {
     this.forgotPass.requestPassResetCode(form.value).subscribe(async response => {
       
       if (await response) {
+       if (response.status == 200) {
         console.log(response);
         this.forgotUserData = response.user;
         this.emailCard = false;
         this.codeCard = true;
+       }
 
       }
     })
@@ -203,6 +209,25 @@ export class ForgotPasswordPage implements OnInit {
 
   onBlur(event) {
     document.getElementById("message").style.display = "none";
+  }
+
+  async presentErrorToast() {
+    const toast = await this.toastController.create({
+      header: 'Attention: ',
+      message: 'This page is under construction/development !!... Thank You :)',
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+            // this.proceedAlert();
+          }
+        }
+      ]
+    });
+    toast.present();
   }
 
 }
