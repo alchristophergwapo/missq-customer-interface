@@ -3,6 +3,7 @@ import { User } from "../models/user";
 import { ForgotPasswordService } from '../services/forgot-password.service';
 
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forgot-password',
@@ -31,7 +32,8 @@ export class ForgotPasswordPage implements OnInit {
 
   constructor(
     private forgotPass: ForgotPasswordService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,7 @@ export class ForgotPasswordPage implements OnInit {
   sendPassResetCode(form) {
 
     this.forgotPass.requestPassResetCode(form.value).subscribe(async response => {
-      
+
       if (await response) {
         console.log(response);
         this.forgotUserData = response.user;
@@ -65,13 +67,18 @@ export class ForgotPasswordPage implements OnInit {
         this.codeCard = true;
 
       }
-    })
+    },
+      error => {
+        // console.log("Error: ", error.error);
+        let err = error.error.message
+        this.presentErrorToast(err)
+      })
   }
 
   async checkCode(form) {
 
     console.log(form.value);
-    
+
 
     let formData = {
       customer: this.forgotUserData,
@@ -88,9 +95,9 @@ export class ForgotPasswordPage implements OnInit {
 
   async updatePassword(form) {
     console.log(form.value);
-    
+
     console.log(this.forgotUserData);
-    
+
     const data = {
       _id: this.forgotUserData._id,
       password: form.value.password
@@ -203,6 +210,24 @@ export class ForgotPasswordPage implements OnInit {
 
   onBlur(event) {
     document.getElementById("message").style.display = "none";
+  }
+
+  async presentErrorToast(message) {
+    const toast = await this.toastController.create({
+      header: 'Error Message!',
+      message: message,
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    toast.present();
   }
 
 }

@@ -1,0 +1,56 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>gcash-payment-info</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-icon size="large" name="close" (click)="closeModal()"></ion-icon>
+  <ion-card class="card">
+    <ion-card-header>
+      <ion-card-title class="card-title"
+        ><ion-icon size="medium" name="information-circle-outline"></ion-icon>
+        Payment <span class="method">Method</span></ion-card-title
+      >
+      <ion-card-subtitle class="card-subtitle">Gcash</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <h4>
+        To pay through GCash, you can pay through this GCash account number
+      </h4>
+      <br />
+      <div class="account-number">
+        <span>09423738249</span>
+      </div>
+      <br />
+      <h4>You can also pay using this GCash QR Code</h4>
+      <div class="image">
+        <img src="assets/images/QR.jpg" alt="" />
+        <div class="btn">
+          <ion-button color="success" class="btn"
+            ><a href="assets/images/QR.jpg" download="QR.jpg"
+              >Download</a
+            ></ion-button
+          >
+        </div>
+      </div>
+      <br />
+      <div class="message">
+        If you're done with the payment you can send your proof of payment on
+        <a href="https://www.facebook.com/msqartisans" target="__blank">
+          Artisans Local Service
+        </a>
+        facebook page.
+      </div>
+      <br />
+      <div class="btns">
+        <ion-button color="danger" (click)="closeModal()"
+          >Change Payment Method</ion-button
+        >
+        <ion-button color="primary" (click)="bookServiceNow()"
+          >Finish</ion-button
+        >
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -167,7 +167,7 @@ export class PlaceOrderPage implements OnInit {
               /* Read more about isConfirmed, isDenied below */
               if (result.isConfirmed) {
                 if (data.additional && data.notes) {
-                  Swal.fire('Saved!', '', 'success')
+                  // Swal.fire('Saved!', '', 'success')
                   this.totalCost =
                     this.costOfServie[this.segmentModel] + (data.additional * this.additionalCost[this.segmentModel]);
                   console.log(Math.round(this.totalCost));
@@ -214,7 +214,7 @@ export class PlaceOrderPage implements OnInit {
         },
         {
           name: "notes",
-          placeholder: "Notes",
+          placeholder: "Notes/Description",
           type: "textarea",
         }
       ],
@@ -322,8 +322,8 @@ export class PlaceOrderPage implements OnInit {
     this.segmentModel = event;
   }
 
-  updateUser(){
-    this.storage.get('jwt-token').then(async res=> {
+  updateUser() {
+    this.storage.get('jwt-token').then(async res => {
       if (res) {
         this.app.user.name = await res.user.name;
         console.log(res.user);

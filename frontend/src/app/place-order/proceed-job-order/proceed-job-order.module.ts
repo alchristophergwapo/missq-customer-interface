@@ -2,20 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
 import { IonicModule } from '@ionic/angular';
 
-import { PlaceOrderPageRoutingModule } from './place-order-routing.module';
+import { ProceedJobOrderPageRoutingModule } from './proceed-job-order-routing.module';
 
-import { PlaceOrderPage } from './place-order.page';
+import { ProceedJobOrderPage } from './proceed-job-order.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlaceOrderPageRoutingModule
+    ProceedJobOrderPageRoutingModule
   ],
-  declarations: [PlaceOrderPage]
+  declarations: [ProceedJobOrderPage]
 })
-export class PlaceOrderPageModule { }
+export class ProceedJobOrderPageModule {}

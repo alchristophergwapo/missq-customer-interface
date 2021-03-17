@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { Geolocation } from "@ionic-native/geolocation/ngx";
 import { MsqService } from 'src/app/services/msq-service.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProceedJobOrderPage } from '../proceed-job-order/proceed-job-order.page';
 
 declare var google: any;
 
@@ -35,7 +36,8 @@ export class LocationSelectPage implements OnInit {
     private authService: AuthService,
     private alertCtrl: AlertController,
     private toastController: ToastController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private modalCntrl: ModalController
   ) {
     this.getGeoLocation();
     this.user = authService.user;
@@ -138,46 +140,58 @@ export class LocationSelectPage implements OnInit {
   }
 
   async proceedAlert() {
-    const alert = await this.alertCtrl.create({
-      header: 'Scheduled Date',
-      backdropDismiss: false,
-      inputs: [
-        {
-          name: 'schedule',
-          type: 'datetime-local',
-          cssClass: 'schedule'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Book now',
-          cssClass: 'book-now',
-          handler: input => {
+    const modal = await this.modalCntrl.create({
+      component: ProceedJobOrderPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        service_booking: this.data.service_booking,
+        service_location: this.service_location,
+        cost: this.data.cost,
+        notes: this.data.notes,
+      }
+    });
+    return await modal.present();
+    // const alert = await this.alertCtrl.create({
+    //   header: 'Scheduled Date',
+    //   backdropDismiss: false,
+    //   inputs: [
+    //     {
+    //       name: 'schedule',
+    //       type: 'datetime-local',
+    //       cssClass: 'schedule'
+    //     },
+    //   ],
+    //   buttons: [
+    //     {
+    //       text: 'Book now',
+    //       cssClass: 'book-now',
+    //       handler: input => {
 
-            const datas = {
-              service_booking: this.data.service_booking,
-              service_location: this.service_location,
-              cost: this.data.cost,
-              notes: this.data.notes,
-              schedule: input.schedule,
-              status: "Pending",
-              author: this.user
-            };
+    //         const datas = {
+    //           service_booking: this.data.service_booking,
+    //           service_location: this.service_location,
+    //           cost: this.data.cost,
+    //           notes: this.data.notes,
+    //           schedule: input.schedule,
+    //           status: "Pending",
+    //           author: this.user
+    //         };
 
-            let pipe = new DatePipe('en-US');
-            let date = new Date()
-            let todayDate = pipe.transform(date, "YYYY-MM-ddTHH:mm")
-            if (todayDate == input.schedule || pipe.transform(input.schedule, "YYYY-MM-dd") < pipe.transform(date, "YYYY-MM-dd")) {
-              this.presentErrorToast();
-            } else {
-              this.bookServiceNow(datas);
-            }
-          }
-        }
-      ]
-    })
+    //         let pipe = new DatePipe('en-US');
+    //         let date = new Date()
+    //         let todayDate = pipe.transform(date, "YYYY-MM-ddTHH:mm")
+    //         if (todayDate == input.schedule || pipe.transform(input.schedule, "YYYY-MM-dd") < pipe.transform(date, "YYYY-MM-dd")) {
+    //           this.presentErrorToast();
+    //         } else {
+    //           this.bookServiceNow(datas);
+    //         }
+    //       }
+    //     }
+    //   ]
+    // })
 
-    await alert.present();
+    // await alert.present();
+
   }
 
   bookServiceNow(serviceData) {

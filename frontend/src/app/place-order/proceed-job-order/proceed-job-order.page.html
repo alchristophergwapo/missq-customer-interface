@@ -1,0 +1,85 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    
+    <ion-title>proceed job order</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-icon
+    slot="start"
+    size="large"
+    name="arrow-back"
+    (click)="closeModal()"
+  ></ion-icon>
+  <ion-card class="payment">
+    <ion-card-header>
+      <ion-card-subtitle>
+        Please fill up the following details.
+      </ion-card-subtitle>
+      <!-- <ion-card-title>Card Title</ion-card-title> -->
+    </ion-card-header>
+    <form #form="ngForm" (ngSubmit)="submit(form)" novalidate>
+      <ion-item>
+        <ion-label position="stacked">Schedule Date</ion-label>
+        <ion-input
+          type="datetime-local"
+          name="schedule"
+          [(ngModel)]="data.schedule"
+          #scheduleCtrl="ngModel"
+          ngModel
+          clearInput
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-label
+        *ngIf="!scheduleCtrl.valid && scheduleCtrl.touched && scheduleCtrl.errors?.required"
+      >
+        <ion-text color="danger">Schedule date is required</ion-text>
+      </ion-label>
+      <ion-list>
+        <ion-radio-group
+          value="cash"
+          [ngModel]="data.payment_method"
+          name="payment_method"
+        >
+          <ion-list-header>
+            <ion-label>Payment Method</ion-label>
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>Pay by Cash</ion-label>
+            <ion-radio
+              color="primary"
+              slot="start"
+              value="cash"
+              checked
+              name="cash"
+            ></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Pay through GCash</ion-label>
+            <ion-radio
+              color="secondary"
+              slot="start"
+              value="gcash"
+              name="gcash"
+            ></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <div>
+        <ion-button
+          size="large"
+          type="submit"
+          color="secondary"
+          [disabled]="form.invalid"
+          expand="block"
+        >
+          Next</ion-button
+        >
+      </div>
+    </form>
+  </ion-card>
+</ion-content>
