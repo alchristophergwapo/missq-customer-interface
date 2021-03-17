@@ -16,16 +16,23 @@ export class ProfilePage implements OnInit {
 
   logo: string;
   user: any;
+  picture: any;
 
   constructor(private modalController: ModalController, private authService: AuthService, private storage: Storage, private app: AppComponent) {
     this.user = { name: "", phone: "", address: "", email: "", id_number: "", id: "", birth_date: "" }
+    this.picture = "";
   }
 
   ngOnInit() {
 
     this.authService.getUser().then(user => {
       this.user = user;
+      console.log("User Picture::", this.user.picture);
+       this.picture =this.user.picture 
+      
+      this.user.picture = 'http://3.137.219.17:8080/public/images/' + this.picture
     });
+
 
     console.log("opened profile");
   }

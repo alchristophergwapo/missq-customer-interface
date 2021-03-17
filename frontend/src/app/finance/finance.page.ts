@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-finance',
@@ -8,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 export class FinancePage implements OnInit {
 
   segmentModel: "cash-in";
-  constructor() { }
+  constructor(
+    private toastController: ToastController
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.presentErrorToast();
+  }
+
+  async presentErrorToast() {
+    const toast = await this.toastController.create({
+      header: 'Attention: ',
+      message: 'This page is under construction/development !!... Thank You :)',
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+            // this.proceedAlert();
+          }
+        }
+      ]
+    });
+    toast.present();
   }
 
   segmentOnChange(event){

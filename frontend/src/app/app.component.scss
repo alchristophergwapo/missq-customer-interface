@@ -10,13 +10,17 @@ ion-item.active div {
   font-family: fantasy;
 }
 
+ion-img {
+  --border-radius: 50%;
+}
+
 #header_logo {
-  background-color: rgba(255, 255, 255, 0.3);
+  // background-color: rgba(255, 255, 255, 0.3);
   border-radius: 60%;
   padding: 3px;
-  width: 130px;
+  width: 110px;
   height: 120px;
-  border: 2px solid #22bbea8f;
+  // border: 2px solid #22bbea8f;
 }
 
 #head {

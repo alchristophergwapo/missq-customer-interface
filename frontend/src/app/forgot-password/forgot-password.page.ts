@@ -50,6 +50,8 @@ export class ForgotPasswordPage implements OnInit {
       id_image: "",
       id_number: null
     };
+
+    this.presentConstructionToast()
   }
 
   noSubmit(e) {
@@ -61,10 +63,12 @@ export class ForgotPasswordPage implements OnInit {
     this.forgotPass.requestPassResetCode(form.value).subscribe(async response => {
 
       if (await response) {
-        console.log(response);
-        this.forgotUserData = response.user;
-        this.emailCard = false;
-        this.codeCard = true;
+        if (response.status == 200) {
+          console.log(response);
+          this.forgotUserData = response.user;
+          this.emailCard = false;
+          this.codeCard = true;
+        }
 
       }
     },
@@ -216,6 +220,24 @@ export class ForgotPasswordPage implements OnInit {
     const toast = await this.toastController.create({
       header: 'Error Message!',
       message: message,
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
+
+  async presentConstructionToast() {
+    const toast = await this.toastController.create({
+      header: 'Attention: ',
+      message: 'This page is under construction/development !!... Thank You :)',
       position: 'top',
       color: 'danger',
       buttons: [

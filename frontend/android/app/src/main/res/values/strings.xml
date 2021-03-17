@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">missq_customer_interface</string>
     <string name="title_activity_main">missq_customer_interface</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="package_name">ms.q.customer_interface</string>
+    <string name="custom_url_scheme">ms.q.customer_interface</string>
 </resources>

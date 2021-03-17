@@ -46,40 +46,41 @@ export class AuthService {
     })
   }
 
-  register(data, id_image, selfie): Observable<any> {
+  register(data){
     let url = this.AUTH_SERVER_ADDRESS + 'authenticate/register';
 
-    var formData: any = new FormData();
+    // var formData: any = new FormData();
 
-    // console.log('Register::', data);
-
-
-    formData.append('name', data.name);
-    formData.append('address', data.address);
-    formData.append('code', data.code);
-    formData.append('phone', data.phone);
-    formData.append('email', data.email);
-    formData.append('birth_date', data.birth_date);
-    formData.append('password', data.password);
-    formData.append('picture', data.picture);
-    formData.append('id_image', data.id_image);
-    formData.append('id_number', data.id_number);
-    formData.append('img[]', id_image, data.id_image);
-    formData.append('img[]', selfie, data.picture)
-    // debugger
-
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
-
-    return this.httpClient.post<any>(url, formData, {
-      reportProgress: true,
-      observe: 'events'
-    })
+    // formData.append('name', data.name);
+    // formData.append('address', data.address);
+    // formData.append('code', data.code);
+    // formData.append('phone', data.phone);
+    // formData.append('email', data.email);
+    // formData.append('birth_date', data.birth_date);
+    // formData.append('password', data.password);
+    // formData.append('picture', data.picture);
+    // formData.append('id_image', data.id_image);
+    // formData.append('id_number', data.id_number);
+    console.log(data);
+    
+    return this.httpClient.post(url, data);
   };
 
+  uploadImage(id_image, selfie, id_image_name, selfie_name) {
+    var formData: any = new FormData();
+    formData.append('img[]', id_image, id_image_name);
+    formData.append('img[]', selfie, selfie_name)
+    console.log("FORM DATA:: ", formData);
+    formData.forEach(element => {
+      console.log(element, "gesap");
+    });
+      
+    
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload_images`, formData)
+  }
+
   login(user: User) {
-    console.log("nisud sa log in function")
+    // console.log("nisud sa log in function")
     return this.httpClient.post<any>(`${this.AUTH_SERVER_ADDRESS}authenticate/login`, user)
       .pipe(
         tap(res => {
@@ -93,6 +94,10 @@ export class AuthService {
 
       );
   };
+
+  deleteAccount(id){
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/delete_account`,{id: id})
+  }
 
   updateContactInfo(user: User) {
     console.log('nisud sa auth service.', user)

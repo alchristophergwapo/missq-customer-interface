@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "ms.q.customer_interface",
   "appName": "missq_customer_interface",
   "bundledWebRuntime": false,
   "npmClient": "npm",

@@ -322,13 +322,15 @@ export class PlaceOrderPage implements OnInit {
     this.segmentModel = event;
   }
 
-  updateUser() {
-    this.storage.get('jwt-token').then(async res => {
-      if (res) {
-        this.app.user.name = await res.user.name;
-        console.log(res.user);
-      }
-    })
-  }
+  // updateUser(){
+  //   this.storage.get('jwt-token').then(async res=> {
+  //     if (res) {
+  //       console.log(res);
+
+  //       // this.app.user.name = await res.user.name;
+  //       // console.log(res.user);
+  //     }
+  //   })
+  // }
 
 }
