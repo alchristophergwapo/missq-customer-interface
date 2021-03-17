@@ -46,7 +46,7 @@ export class AuthService {
     })
   }
 
-  register(data){
+  register(data) {
     let url = this.AUTH_SERVER_ADDRESS + 'authenticate/register';
 
     // var formData: any = new FormData();
@@ -62,7 +62,7 @@ export class AuthService {
     // formData.append('id_image', data.id_image);
     // formData.append('id_number', data.id_number);
     console.log(data);
-    
+
     return this.httpClient.post(url, data);
   };
 
@@ -74,8 +74,8 @@ export class AuthService {
     formData.forEach(element => {
       console.log(element, "gesap");
     });
-      
-    
+
+
     return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/upload_images`, formData)
   }
 
@@ -95,8 +95,8 @@ export class AuthService {
       );
   };
 
-  deleteAccount(id){
-    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/delete_account`,{id: id})
+  deleteAccount(id) {
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}authenticate/delete_account`, { id: id })
   }
 
   updateContactInfo(user: User) {

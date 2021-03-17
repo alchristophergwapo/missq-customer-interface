@@ -45,10 +45,12 @@ export class ProceedJobOrderPage implements OnInit {
     let todayDate = pipe.transform(date, "YYYY-MM-ddTHH:mm")
     let scheduleHour = new Date(form.value.schedule).getHours();
 
-    if (todayDate == form.value.schedule || scheduleHour < (date.getHours() + 2) && pipe.transform(todayDate, "YYYY-MM-dd") == pipe.transform(form.value.schedule, "YYYY-MM-dd")) {
+    if (todayDate == form.value.schedule || todayDate > form.value.schedule || scheduleHour < (date.getHours() + 2) && pipe.transform(todayDate, "YYYY-MM-dd") == pipe.transform(form.value.schedule, "YYYY-MM-dd")) {
       this.presentErrorToast();
-    } else if (todayDate > form.value.schedule || scheduleHour > (date.getHours() + 2) && pipe.transform(todayDate, "YYYY-MM-dd") == pipe.transform(form.value.schedule, "YYYY-MM-dd")) {
-      this.openGCashModal();
+    } else {
+      if (todayDate < form.value.schedule) {
+        this.openGCashModal();
+      }
     }
   }
 
@@ -65,13 +67,14 @@ export class ProceedJobOrderPage implements OnInit {
         payment_method: this.data.payment_method
       }
     });
+    this.closeModal();
     return await modal.present();
   }
 
   async presentErrorToast() {
     const toast = await this.toastController.create({
       header: 'Error Message!',
-      message: 'Date of service must be 2 hours ahead.',
+      message: 'Date of service must be 2 hours ahead or the day after today.',
       position: 'top',
       color: 'danger',
       buttons: [
