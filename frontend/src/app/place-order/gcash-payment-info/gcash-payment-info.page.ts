@@ -1,9 +1,12 @@
-import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { AuthService } from 'src/app/services/auth.service';
 import { MsqService } from 'src/app/services/msq-service.service';
+
+
+const TOKEN_KEY = 'jwt-token';
 
 @Component({
   selector: 'app-gcash-payment-info',
@@ -28,7 +31,8 @@ export class GcashPaymentInfoPage implements OnInit {
     private toastController: ToastController,
     private loadingController: LoadingController,
     private service: MsqService,
-    private router: Router
+    private router: Router,
+    private storage: Storage
   ) { }
 
   ngOnInit() {
@@ -56,7 +60,13 @@ export class GcashPaymentInfoPage implements OnInit {
 
     this.service.bookNow(this.data).subscribe(response => {
       if (response) {
+        this.storage.get(TOKEN_KEY).then(res => {
+          res.user.bookings = response.bookings;
+          this.authService.user = res.user;
+          this.storage.set(TOKEN_KEY, res);
+        })
         this.presentToast(response.message, 'success')
+        this.closeModal();
         this.router.navigateByUrl('/place-order');
       }
     },

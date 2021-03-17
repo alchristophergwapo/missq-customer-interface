@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ForgotPasswordService {
 
   PASS_RESET_ADDRESS: string = 'http://3.137.219.17:8080/';
+  // PASS_RESET_ADDRESS: string = 'http://localhost:8080/';
 
   constructor(private httpClient: HttpClient) { }
 

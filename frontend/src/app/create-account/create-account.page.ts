@@ -82,19 +82,18 @@ export class CreateAcountPage implements OnInit {
     await this.present();
     // form.value.id_image = this.idPic.name;
     console.log(form.value);
-    
+
     this.authService.register(form.value).subscribe(async (response) => {
       if (response['status'] == 200) {
         console.log('account succesfully added!')
-        // let success = await response
-        // this.isSubmitted = true;
-        // this.dismiss(success['message'], 'success');
-        // this.router.navigateByUrl("login");
+        let success = await response
+        this.isSubmitted = true;
+        this.dismiss(success['message'], 'success');
+        this.router.navigateByUrl("login");
 
         console.log(response);
         let id = response['user']['_id']
-        let success = await response
-        this.authService.uploadImage(this.idPic, this.selfie, this.user.id_image, this.user.picture).subscribe(res=>{
+        this.authService.uploadImage(this.idPic, this.selfie, this.user.id_image, this.user.picture).subscribe(res => {
           console.log(res);
           // if (res['status'] != 200) {
           //   console.log(id);
@@ -104,18 +103,19 @@ export class CreateAcountPage implements OnInit {
 
           //   // })
           // } else {
-            this.isSubmitted = true;
-            this.dismiss(success['message'], 'success');
-            this.router.navigateByUrl("login");
+          this.isSubmitted = true;
+          this.dismiss(success['message'], 'success');
+          this.router.navigateByUrl("login");
           // }
         })
       } else {
-
-        // console.log("Response ", response.body);
-        let err = await response
-
-        this.dismiss(err['message'], 'danger');
+        this.dismiss(response['message'], 'danger')
       }
+    }, async (error) => {
+
+      let err = await error
+
+      this.dismiss(err['message'], 'danger');
     });
   }
 
@@ -156,7 +156,7 @@ export class CreateAcountPage implements OnInit {
     e.preventDefault();
   }
 
-  loadImageFromDevice(event,type) {
+  loadImageFromDevice(event, type) {
     if (event.target.files.length == 0) {
       console.log("No file selected!");
       return
@@ -261,43 +261,43 @@ export class CreateAcountPage implements OnInit {
     document.getElementById("message").style.display = "none";
   }
 
-//   async getPicture() {
+  //   async getPicture() {
 
-//     const image = await Camera.getPhoto({
-//       quality: 60,
-//       allowEditing: true,
-//       resultType: CameraResultType.Base64,
-//       source: CameraSource.Prompt,
-//     });
+  //     const image = await Camera.getPhoto({
+  //       quality: 60,
+  //       allowEditing: true,
+  //       resultType: CameraResultType.Base64,
+  //       source: CameraSource.Prompt,
+  //     });
 
-//     this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
-//     this.user.picture = `${Date.now()}.${image.format}`
+  //     this.selfie = this.b64toBlob(image.base64String, `image/${image.format}`);
+  //     this.user.picture = `${Date.now()}.${image.format}`
 
-//     console.log(this.selfie);
+  //     console.log(this.selfie);
 
-//     // this.authService.uploadImage(this.selfie, this.user.picture).subscribe(() => {
+  //     // this.authService.uploadImage(this.selfie, this.user.picture).subscribe(() => {
 
-//     // })
+  //     // })
 
-//   }
+  //   }
 
-//   b64toBlob(b64Data, contentType = '', sliceSize = 512) {
-//     const byteCharacters = atob(b64Data);
-//     const byteArrays = [];
+  //   b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+  //     const byteCharacters = atob(b64Data);
+  //     const byteArrays = [];
 
-//     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-//       const slice = byteCharacters.slice(offset, offset + sliceSize);
+  //     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+  //       const slice = byteCharacters.slice(offset, offset + sliceSize);
 
-//       const byteNumbers = new Array(slice.length);
-//       for (let i = 0; i < slice.length; i++) {
-//         byteNumbers[i] = slice.charCodeAt(i);
-//       }
+  //       const byteNumbers = new Array(slice.length);
+  //       for (let i = 0; i < slice.length; i++) {
+  //         byteNumbers[i] = slice.charCodeAt(i);
+  //       }
 
-//       const byteArray = new Uint8Array(byteNumbers);
-//       byteArrays.push(byteArray);
-//     }
+  //       const byteArray = new Uint8Array(byteNumbers);
+  //       byteArrays.push(byteArray);
+  //     }
 
-//     const blob = new Blob(byteArrays, { type: contentType });
-//     return blob;
-//   }
+  //     const blob = new Blob(byteArrays, { type: contentType });
+  //     return blob;
+  //   }
 }
