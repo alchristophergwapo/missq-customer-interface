@@ -62,10 +62,7 @@
     "rxjs": "~6.5.5",
     "sweetalert2": "^10.14.0",
     "tslib": "^2.0.0",
-    "typescript": "~4.0.5",
-    "zone.js": "~0.10.3"
-  },
-  "devDependencies": {
+    "zone.js": "~0.10.3",
     "@angular-devkit/build-angular": "^0.1100.3",
     "@angular/cli": "^11.2.4",
     "@angular/compiler": "~11.0.1",
@@ -102,6 +99,7 @@
     "tslint": "~6.1.0",
     "typescript": "~4.0.5"
   },
+  "devDependencies": {},
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
