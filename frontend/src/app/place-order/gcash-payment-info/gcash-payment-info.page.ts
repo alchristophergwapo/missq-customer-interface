@@ -42,6 +42,7 @@ export class GcashPaymentInfoPage implements OnInit {
     this.data = {
       schedule: this.schedule,
       payment_method: this.payment_method,
+      paid: false,
       service_booking: this.service_booking,
       service_location: this.service_location,
       cost: this.cost,

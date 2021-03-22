@@ -38,7 +38,7 @@ export class ProceedJobOrderPage implements OnInit {
   }
 
   submit(form) {
-    console.log(this.data);
+    console.log(form.value);
 
     let pipe = new DatePipe('en-US');
     let date = new Date()
@@ -49,12 +49,12 @@ export class ProceedJobOrderPage implements OnInit {
       this.presentErrorToast();
     } else {
       if (todayDate < form.value.schedule) {
-        this.openGCashModal();
+        this.openGCashModal(form.value);
       }
     }
   }
 
-  async openGCashModal() {
+  async openGCashModal(form) {
     const modal = await this.modalController.create({
       component: GcashPaymentInfoPage,
       cssClass: 'my-custom-class',
@@ -63,8 +63,8 @@ export class ProceedJobOrderPage implements OnInit {
         service_location: this.service_location,
         cost: this.data.cost,
         notes: this.data.notes,
-        schedule: this.data.schedule,
-        payment_method: this.data.payment_method
+        schedule: form.schedule,
+        payment_method: form.payment_method
       }
     });
     this.closeModal();
